@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "elements-of-style-lessons"
+version = "0.1.0"
+description = "Structured biomedical-workflow lessons. Companion to Anne Deslattes Mays' Springer book."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Anne Deslattes Mays" },
+]
+keywords = [
+  "biomedical", "bioinformatics", "training",
+  "nextflow", "typer", "mcp", "agentic-ai",
+  "single-cell", "federated-computing",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+  "typer>=0.9",
+]
+
+[project.optional-dependencies]
+docs = [
+  "sphinx>=7,<7.3",
+  "sphinx-rtd-theme",
+  "myst-parser>=2,<4",
+  "myst-nb<1.2",
+  "sphinx-copybutton",
+  "sphinx-design",
+  "linkify-it-py",
+]
+
+[project.urls]
+Homepage    = "https://adeslatt.github.io/elements-of-style-lessons/"
+Repository  = "https://github.com/adeslatt/elements-of-style-lessons"
+"Book companion" = "https://github.com/adeslatt/elements-of-style-workflows"
+
+# Console scripts — one per lesson that ships a CLI.
+# These make every lesson's deliverable installable AND agent-callable
+# (an MCP server can introspect any of these via `--help`).
+[project.scripts]
+eos-command-line       = "eos_lessons.command_line:app"
+eos-version-control    = "eos_lessons.version_control:app"
+eos-env-diff           = "eos_lessons.env_diff:app"
+eos-kernel-check       = "eos_lessons.kernel_check:app"
+eos-hello              = "eos_lessons.hello_typer:app"
+eos-container-check    = "eos_lessons.container_check:app"
+eos-nextflow-step      = "eos_lessons.nextflow_step:app"
+eos-modules            = "eos_lessons.modules_demo:app"
+eos-federated-compute  = "eos_lessons.federated_compute:app"
+eos-federated-learn    = "eos_lessons.federated_learn:app"
+eos-mcp-nsforest       = "eos_lessons.nsforest_mcp:app"
+eos-publish            = "eos_lessons.publish:app"
+eos-platforms          = "eos_lessons.platforms_inventory:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+eos_lessons = ["py.typed"]

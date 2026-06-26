@@ -1,0 +1,111 @@
+name: Build and Deploy Sphinx Documentation
+
+# Adapted from sibling repo NIH-NLM/sc-nsforest-qc-nf — same shape, pruned for
+# this repo (no Python API to autodoc yet, no Nextflow docblock generator).
+# When Typer CLIs land (see curriculum/06-typer-clis.md), add sphinx-apidoc back.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'ipynb/**'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Sphinx and extensions
+        # Pins are intentional: Sphinx 8+/9 broke the SphinxUnreferencedFootnotesDetector
+        # API that myst-parser <4 patches against. Until the myst stack catches up,
+        # we hold to Sphinx 7.2 + myst-parser 3.x + myst-nb 1.1.x, which is known good.
+        # `linkify-it-py` backs the `linkify` MyST extension enabled in conf.py.
+        run: |
+          python -m pip install --upgrade pip
+          pip install \
+            "sphinx>=7,<7.3" \
+            "sphinx-rtd-theme" \
+            "myst-parser>=2,<4" \
+            "myst-nb<1.2" \
+            "sphinx-copybutton" \
+            "sphinx-design" \
+            "linkify-it-py"
+
+      - name: Ensure required directories exist
+        run: |
+          mkdir -p docs/source/_static docs/source/_templates docs/source/ipynb
+
+      - name: Refresh notebook symlinks
+        # If the symlinks aren't in git or got broken on checkout, recreate them.
+        run: |
+          ln -sf ../../../ipynb/starter_python.ipynb docs/source/ipynb/starter_python.ipynb
+          ln -sf ../../../ipynb/starter_r.ipynb      docs/source/ipynb/starter_r.ipynb
+          ls -la docs/source/ipynb/
+
+      - name: Build Sphinx docs
+        run: sphinx-build -b html docs/source docs/build/html
+
+      - name: Verify build succeeded
+        run: |
+          if [ ! -f docs/build/html/index.html ]; then
+            echo "ERROR: Build failed - index.html not found"
+            exit 1
+          fi
+          echo "Build succeeded - index.html exists"
+
+      - name: Create .nojekyll file
+        # Tells GitHub Pages not to run Jekyll over our Sphinx output.
+        run: touch docs/build/html/.nojekyll
+
+      - name: Setup Pages
+        # Only configure Pages on main-branch builds; PRs just validate the build.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/build/html'
+
+  deploy:
+    # Deploy only on push to main, never on PRs.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
