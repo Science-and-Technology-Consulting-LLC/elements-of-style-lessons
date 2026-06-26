@@ -76,7 +76,7 @@ MIT — see [LICENSE](LICENSE).
 ## Citation
 
 > Deslattes Mays, A. (2026). *Elements of Style in Creating Workflows for
-> Biomedical Research*. Springer Nature.
+> Biomedical Research in the Era of Agentic AI*. Springer Nature.
 
 ---
 
