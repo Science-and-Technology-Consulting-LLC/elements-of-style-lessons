@@ -34,7 +34,7 @@ elements-of-style-lessons/
 
 When the GitHub Pages deploy is configured for this repo, the site lives at:
 
-**https://adeslatt.github.io/elements-of-style-lessons/**
+**https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/**
 
 ## Lesson spine
 

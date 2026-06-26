@@ -79,7 +79,7 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 html_title = "Elements of Style — Lessons"
 html_short_title = "Elements of Style — Lessons"
-html_baseurl = "https://adeslatt.github.io/elements-of-style-lessons/"
+html_baseurl = "https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/"
 
 # Theme options chosen for parity with Annie's MkDocs ReadTheDocs theme.
 html_theme_options = {
@@ -92,7 +92,7 @@ html_theme_options = {
 # GitHub source link in the header (RTD theme convention).
 html_context = {
     "display_github": True,
-    "github_user": "adeslatt",
+    "github_user": "Science-and-Technology-Consulting-LLC",
     "github_repo": "elements-of-style-lessons",
     "github_version": "main",
     "conf_py_path": "/docs/source/",

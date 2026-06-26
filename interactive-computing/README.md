@@ -48,8 +48,8 @@ in the middle.
 Open these from JupyterLab's file tree. They live in this lessons repo
 under `ipynb/`:
 
-- [`ipynb/starter_python.ipynb`](https://github.com/adeslatt/elements-of-style-lessons/blob/main/interactive-computing/notebooks/python.ipynb)
-- [`ipynb/starter_r.ipynb`](https://github.com/adeslatt/elements-of-style-lessons/blob/main/interactive-computing/notebooks/r.ipynb)
+- [`ipynb/starter_python.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/interactive-computing/notebooks/python.ipynb)
+- [`ipynb/starter_r.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/interactive-computing/notebooks/r.ipynb)
 
 Each one is short on purpose. The goal is to give you a runnable artefact
 that demystifies the basics, not to teach you pandas or tidyverse — those

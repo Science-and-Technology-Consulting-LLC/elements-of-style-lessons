@@ -41,8 +41,8 @@ docs = [
 ]
 
 [project.urls]
-Homepage    = "https://adeslatt.github.io/elements-of-style-lessons/"
-Repository  = "https://github.com/adeslatt/elements-of-style-lessons"
+Homepage    = "https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/"
+Repository  = "https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons"
 "Book companion" = "https://github.com/adeslatt/elements-of-style-workflows"
 
 # Console scripts — one per lesson that ships a CLI.
