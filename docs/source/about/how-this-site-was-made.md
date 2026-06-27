@@ -4,7 +4,7 @@ This site is built with [Sphinx](https://www.sphinx-doc.org/), the
 documentation generator behind the official Python docs and thousands of
 other technical sites. We chose Sphinx for three reasons:
 
-1. **Annie teaches with Sphinx.** Voice and tool continuity matter.
+1. **Teaching with Sphinx.** Voice and tool continuity matter.
 2. **It pairs naturally with notebooks.** Via `myst-nb`, the same parser
    handles Markdown pages *and* Jupyter notebooks, so the curriculum and
    the worked-example notebooks live side by side.

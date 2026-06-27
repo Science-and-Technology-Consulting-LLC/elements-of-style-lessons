@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -60,7 +60,7 @@ any workflow that needs that step.
 :sync: local
 
 ```bash
-nextflow run main-hello-py-greet.nf -profile docker --name Annie
+nextflow run main-hello-py-greet.nf -profile docker --name elements-of-style
 ```
 :::
 
@@ -68,7 +68,7 @@ nextflow run main-hello-py-greet.nf -profile docker --name Annie
 :sync: test
 
 ```bash
-nextflow run main-hello-py-greet.nf -profile test --name Annie
+nextflow run main-hello-py-greet.nf -profile test --name elements-of-style
 ```
 :::
 
@@ -76,9 +76,9 @@ nextflow run main-hello-py-greet.nf -profile test --name Annie
 :sync: lifebit
 
 ```bash
-nextflow run main-hello-py-greet.nf -profile lifebit --name Annie
+nextflow run main-hello-py-greet.nf -profile lifebit --name elements-of-style
 # (Lifebit may require the file to be named main.nf — copy or symlink
-#  at deploy time. Annie is confirming.)
+#  at deploy time. TBD:  confirming.)
 ```
 :::
 

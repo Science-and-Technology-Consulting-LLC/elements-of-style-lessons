@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -41,7 +41,7 @@ The agent reads the MCP-exposed `--help`, asks any clarifying questions,
 and runs the workflow on Lifebit. The researcher never types a Nextflow
 command. *That's* the agentic AI portion of the book.
 
-Annie will extend this lesson this week with how this pattern lands
+TBD: will extend this lesson this week with how this pattern lands
 inside enterprise settings (auth, audit, data-residency).
 :::
 
@@ -101,7 +101,7 @@ cat ~/.claude/config.json
 
 The Lifebit pattern: the MCP server runs *inside* a Lifebit workspace
 exposing nsforest-cli; the agent (Claude / ChatGPT) connects to that
-workspace's URL with the appropriate auth. *Annie's enterprise-settings
+workspace's URL with the appropriate auth. TBD:  enterprise-settings
 discussion will land here.*
 :::
 

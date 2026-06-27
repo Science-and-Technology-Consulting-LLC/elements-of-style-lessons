@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -51,9 +51,9 @@ Two real, single-purpose containers live in the book companion repo.
 Before you read the rest of this page, open both `Dockerfile`s in two
 tabs and notice they're both well under 50 lines:
 
-- **[`containers/scanpy-qc/`](https://github.com/adeslatt/elements-of-style-workflows/tree/main/containers/scanpy-qc)** —
+- **[`containers/scanpy-qc/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/containers/scanpy-qc)** —
   Python 3.11 base, one job: scRNA-seq QC + h5ad conversion.
-- **[`containers/limma-voom/`](https://github.com/adeslatt/elements-of-style-workflows/tree/main/containers/limma-voom)** —
+- **[`containers/limma-voom/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/containers/limma-voom)** —
   R base, one job: pseudobulk differential expression.
 
 Each one does exactly one thing. That isn't an accident — that's the
@@ -181,7 +181,7 @@ docker push ghcr.io/adeslatt/scanpy-qc:1.0.0
 ```
 
 The book companion's
-[`.github/workflows/docker-publish.yml`](https://github.com/adeslatt/elements-of-style-workflows/tree/main/.github/workflows)
+[`.github/workflows/docker-publish.yml`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/.github/workflows)
 pattern automates this: every push to `main` builds the image, tags it
 with both `:latest` and `:<git-sha>`, and pushes both to GHCR. Steal
 that pattern.

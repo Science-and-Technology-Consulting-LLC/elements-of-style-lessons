@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -88,8 +88,8 @@ Run it:
 ```bash
 python hello.py --help
 python hello.py greet --help
-python hello.py greet --name "Annie"
-python hello.py greet --name "Annie" --shout
+python hello.py greet --name "your-name"
+python hello.py greet --name "your-name" --shout
 ```
 
 What just happened:
@@ -107,7 +107,7 @@ the same thing.
 ## Converting `scanpy_qc.py` — your conversion target
 
 The book companion's
-[`containers/scanpy-qc/scanpy_qc.py`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/containers/scanpy-qc/scanpy_qc.py)
+[`containers/scanpy-qc/scanpy_qc.py`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/containers/scanpy-qc/scanpy_qc.py)
 is a single-purpose script today. The pedagogical exercise: turn it
 into `scanpy-qc qc` (and later, `scanpy-qc convert`, `scanpy-qc
 inspect`).

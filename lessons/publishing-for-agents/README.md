@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -62,7 +62,7 @@ list a thoughtful agent will (implicitly) walk when it discovers your
 tool.
 
 1. **GitHub repo at a stable URL.** Ideally under an organisation
-   (NIH-NLM, your lab, Scitechcon) rather than a personal account.
+   (your lab, your school, your company) rather than a personal account.
 2. **README starts with one sentence that names the inputs and outputs.**
    Not "this is a tool for..." but "this tool takes X and produces Y."
    An agent's first scan is for I/O shape.
@@ -143,9 +143,9 @@ That structure isn't beautiful prose. It's *parseable*. An agent (or a
 new teammate) reading it can answer "what does this do, how do I run
 it, what does it produce?" in under a minute.
 
-## The NIH-NLM publishing path
+## The Company publishing path
 
-For team work, publishing to **[`github.com/NIH-NLM`](https://github.com/NIH-NLM)**
+For team work, publishing to **[`github.com/Science-and-Technology-Consulting-LLC`](https://github.com/Science-and-Technology-Consulting-LLC/)**
 makes your tool part of the organisation's discoverable surface.
 
 A couple of conventions worth borrowing from the existing repos:
@@ -158,13 +158,11 @@ A couple of conventions worth borrowing from the existing repos:
   if the tool is documented, a docs deploy workflow.
 - Tagged releases are SemVer (`v1.0.0`, `v1.1.0`).
 
-If your tool is mature, propose it to the NIH-NLM organisation. The
-discoverability boost is significant — anyone (or any agent) browsing
-the org sees it.
+Even if your tool is mature, commit it regularly to the repository.  Working in a team environment - to a branch - and manage merging through review and pull requests. 
 
 ## Semantic versioning, briefly
 
-When you tag a release, follow `MAJOR.MINOR.PATCH`:
+When you are ready to release, this is when you tag a release, follow `MAJOR.MINOR.PATCH`:
 
 - `1.0.0 → 1.0.1` — bug fix, no behaviour change. Safe upgrade.
 - `1.0.1 → 1.1.0` — new feature, no behaviour change. Safe upgrade.
