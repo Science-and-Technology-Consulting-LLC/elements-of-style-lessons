@@ -19,8 +19,8 @@ conda-environments
 interactive-computing
 reusable-clis
 containers
-nextflow
 nextflow-modules
+nextflow-workflows
 federated-computing
 federated-learning
 mcp-server

@@ -1,1 +1,1 @@
-../../../platforms/README.md
+../../../lessons/platforms/README.md

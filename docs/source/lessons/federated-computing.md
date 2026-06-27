@@ -1,1 +1,1 @@
-../../../federated-computing/README.md
+../../../lessons/federated-computing/README.md

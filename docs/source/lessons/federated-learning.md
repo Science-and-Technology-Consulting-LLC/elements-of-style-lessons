@@ -1,1 +1,1 @@
-../../../federated-learning/README.md
+../../../lessons/federated-learning/README.md

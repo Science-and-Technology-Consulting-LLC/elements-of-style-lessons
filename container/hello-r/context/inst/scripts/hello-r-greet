@@ -1,0 +1,25 @@
+#!/usr/bin/env Rscript
+# hello-r-greet — Rscript CLI entry point.
+#
+# Parses argv with docopt, calls the pure R function in helloR::greet().
+# The pattern is: argv stays in the script, business logic stays in R/.
+
+"hello-r-greet — say hello.
+
+Usage:
+  hello-r-greet [--name=<name>] [--shout]
+  hello-r-greet (-h | --help)
+
+Options:
+  -n --name=<name>   Who to greet [default: world].
+  --shout            Use uppercase output.
+  -h --help          Show this help.
+" -> doc
+
+suppressPackageStartupMessages({
+  library(docopt)
+  library(helloR)
+})
+
+args <- docopt(doc)
+cat(helloR::greet(name = args[["--name"]], shout = isTRUE(args[["--shout"]])), "\n")

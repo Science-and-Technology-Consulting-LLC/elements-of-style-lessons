@@ -50,7 +50,7 @@ The end-to-end single-cell analysis on the same dataset. Pseudobulk DE in
 R (limma-voom), cross-validation notebooks, and the
 `sc-nsforest-fork/` worked example for cell-type marker discovery.
 
-Best paired with the [Toward Nextflow](../lessons/nextflow.md) and
+Best paired with the [Toward Nextflow](../lessons/nextflow-workflows.md) and
 [Reusable CLIs](../lessons/reusable-clis.md) lessons.
 :::
 
@@ -70,5 +70,5 @@ cards on this page.
 |--------|----------------------------------------|
 | [Version control with Git](../lessons/version-control.md) | `chapters/version-control-as-survival/` (Git survival guide) |
 | [Interactive computing with Jupyter](../lessons/interactive-computing.md) | `chapters/reasoning-from-metadata/` (metadata + volcano) |
-| [From notebooks toward Nextflow](../lessons/nextflow.md) | `workflows/geo-to-h5ad/` + (eventually) `chapters/nextflow-development/` |
+| [From notebooks toward Nextflow](../lessons/nextflow-workflows.md) | `workflows/geo-to-h5ad/` + (eventually) `chapters/nextflow-development/` |
 | [Building reusable command-line tools](../lessons/reusable-clis.md) | `containers/scanpy-qc/` (the conversion target) |

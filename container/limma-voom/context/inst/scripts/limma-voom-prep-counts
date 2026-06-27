@@ -1,0 +1,26 @@
+#!/usr/bin/env Rscript
+"limma-voom-prep-counts — Step 1 of 5.
+
+Loads an h5ad, pseudobulk-aggregates by (cell_type x sample_id), filters
+low-expression genes, and writes the prepared counts matrix + sample
+metadata as RDS for the next step.
+
+Usage:
+  limma-voom-prep-counts --h5ad=<path> --out=<path> [--min-count=<n>] [--min-samples=<n>]
+  limma-voom-prep-counts (-h | --help)
+
+Options:
+  --h5ad=<path>        Input .h5ad file.
+  --out=<path>         Output .rds with a list(counts, coldata).
+  --min-count=<n>      Minimum total count per gene [default: 10].
+  --min-samples=<n>    Min samples meeting min-count [default: 3].
+  -h --help            Show this help.
+" -> doc
+suppressPackageStartupMessages({ library(docopt); library(limmaVoomCLI) })
+args <- docopt(doc)
+result <- prep_counts(
+  h5ad        = args[["--h5ad"]],
+  min_count   = as.integer(args[["--min-count"]]),
+  min_samples = as.integer(args[["--min-samples"]])
+)
+saveRDS(result, file = args[["--out"]])

@@ -1,1 +1,1 @@
-../../../interactive-computing/README.md
+../../../lessons/interactive-computing/README.md

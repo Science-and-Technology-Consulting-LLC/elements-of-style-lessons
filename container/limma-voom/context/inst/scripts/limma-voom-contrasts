@@ -1,0 +1,21 @@
+#!/usr/bin/env Rscript
+"limma-voom-contrasts — Step 5 of 5.
+
+Applies the contrast matrix and writes the DE results table.
+
+Usage:
+  limma-voom-contrasts --fit=<path> --design=<path> --out=<path>
+  limma-voom-contrasts (-h | --help)
+
+Options:
+  --fit=<path>         Path to .rds from fit-lm.
+  --design=<path>      Path to .rds from make-design.
+  --out=<path>         Output .csv (RFC 4180) DE results table.
+  -h --help            Show this help.
+" -> doc
+suppressPackageStartupMessages({ library(docopt); library(limmaVoomCLI) })
+args <- docopt(doc)
+fit        <- readRDS(args[["--fit"]])
+design_obj <- readRDS(args[["--design"]])
+tbl <- contrasts_table(fit = fit, contrasts = design_obj$contrasts)
+write.csv(tbl, file = args[["--out"]], row.names = FALSE)

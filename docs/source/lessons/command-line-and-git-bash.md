@@ -1,1 +1,1 @@
-../../../command-line-and-git-bash/README.md
+../../../lessons/command-line-and-git-bash/README.md

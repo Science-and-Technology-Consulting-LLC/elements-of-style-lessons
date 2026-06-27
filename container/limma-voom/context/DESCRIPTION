@@ -1,0 +1,21 @@
+Package: limmaVoomCLI
+Title: limma-voom DE pipeline broken into 5 callable steps
+Version: 0.1.0
+Authors@R: person("Anne", "Deslattes Mays", role = c("aut", "cre"),
+                  email = "adeslat@scitechcon.org")
+Description: Pseudobulk differential expression via limma-voom,
+    structured as a 5-step pipeline. Each step is a pure R function in
+    R/ and an Rscript entry in inst/scripts/. Each Rscript becomes a
+    Nextflow module.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    docopt,
+    limma,
+    edgeR,
+    SingleCellExperiment,
+    scuttle,
+    zellkonverter
+Suggests:
+    testthat
+RoxygenNote: 7.3.0

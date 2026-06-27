@@ -1,0 +1,21 @@
+#!/usr/bin/env Rscript
+"limma-voom-make-design — Step 2 of 5.
+
+Builds the design matrix and the contrast matrix from a pseudobulk
+coldata table.
+
+Usage:
+  limma-voom-make-design --coldata=<path> --contrast=<spec> --out=<path>
+  limma-voom-make-design (-h | --help)
+
+Options:
+  --coldata=<path>     Path to the .rds emitted by prep-counts.
+  --contrast=<spec>    Contrast specification, e.g., 'CF-Control'.
+  --out=<path>         Output .rds with list(design, contrasts).
+  -h --help            Show this help.
+" -> doc
+suppressPackageStartupMessages({ library(docopt); library(limmaVoomCLI) })
+args <- docopt(doc)
+prep <- readRDS(args[["--coldata"]])
+result <- make_design(coldata = prep$coldata, contrast = args[["--contrast"]])
+saveRDS(result, file = args[["--out"]])

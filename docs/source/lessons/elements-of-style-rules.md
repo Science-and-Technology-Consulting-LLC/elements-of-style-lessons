@@ -1,1 +1,1 @@
-../../../elements-of-style-rules/README.md
+../../../lessons/elements-of-style-rules/README.md

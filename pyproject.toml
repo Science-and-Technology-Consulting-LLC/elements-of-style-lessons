@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "elements-of-style-lessons"
 version = "0.1.0"
-description = "Structured biomedical-workflow lessons. Companion to Anne Deslattes Mays' Springer book."
+description = "Companion to \"Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI\" by Anne Deslattes Mays."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -43,28 +43,24 @@ docs = [
 [project.urls]
 Homepage    = "https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/"
 Repository  = "https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons"
-"Book companion" = "https://github.com/adeslatt/elements-of-style-workflows"
 
-# Console scripts — one per lesson that ships a CLI.
-# These make every lesson's deliverable installable AND agent-callable
-# (an MCP server can introspect any of these via `--help`).
+# Console scripts.
+# Each entry points at a Python CLI source living inside its container's
+# context/src/<name>_cli/. Install editable from repo root:
+#   pip install -e container/hello-py/context
+#   pip install -e container/scanpy-qc/context
+#   pip install -e container/mcp-nsforest-server/context
+# (R containers — hello-r, limma-voom — aren't pip-installable; they're
+#  built directly into their Docker images.)
+#
+# These scripts entry-points are referenced here as a manifest for what
+# CLIs the repo ships. Each container's context/setup.py is the actual
+# installer.
 [project.scripts]
-eos-command-line       = "eos_lessons.command_line:app"
-eos-version-control    = "eos_lessons.version_control:app"
-eos-env-diff           = "eos_lessons.env_diff:app"
-eos-kernel-check       = "eos_lessons.kernel_check:app"
-eos-hello              = "eos_lessons.hello_typer:app"
-eos-container-check    = "eos_lessons.container_check:app"
-eos-nextflow-step      = "eos_lessons.nextflow_step:app"
-eos-modules            = "eos_lessons.modules_demo:app"
-eos-federated-compute  = "eos_lessons.federated_compute:app"
-eos-federated-learn    = "eos_lessons.federated_learn:app"
-eos-mcp-nsforest       = "eos_lessons.nsforest_mcp:app"
-eos-publish            = "eos_lessons.publish:app"
-eos-platforms          = "eos_lessons.platforms_inventory:app"
+# (intentionally empty at root — install each container as a sub-package)
 
 [tool.setuptools.packages.find]
+# Don't discover Python packages from the repo root; each container ships
+# its own setup.py.
 where = ["src"]
-
-[tool.setuptools.package-data]
-eos_lessons = ["py.typed"]
+exclude = ["*"]

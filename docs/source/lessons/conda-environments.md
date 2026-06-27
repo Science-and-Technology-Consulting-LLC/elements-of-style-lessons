@@ -1,1 +1,1 @@
-../../../conda-environments/README.md
+../../../lessons/conda-environments/README.md

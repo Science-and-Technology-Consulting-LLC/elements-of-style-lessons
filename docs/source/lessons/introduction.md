@@ -1,1 +1,1 @@
-../../../introduction/README.md
+../../../lessons/introduction/README.md

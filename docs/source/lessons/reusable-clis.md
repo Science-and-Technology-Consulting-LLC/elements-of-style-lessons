@@ -1,1 +1,1 @@
-../../../reusable-clis/README.md
+../../../lessons/reusable-clis/README.md

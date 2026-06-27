@@ -1,1 +1,1 @@
-../../../version-control/README.md
+../../../lessons/version-control/README.md

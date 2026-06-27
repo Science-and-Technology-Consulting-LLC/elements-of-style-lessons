@@ -1,0 +1,13 @@
+Package: helloR
+Title: The smallest R CLI we can teach with
+Version: 0.1.0
+Authors@R: person("Anne", "Deslattes Mays", role = c("aut", "cre"),
+                  email = "adeslat@scitechcon.org")
+Description: Minimal R package + Rscript entry used by the reusable-clis
+    lesson. Pure R functions live in R/; the argv-parsing entry lives in
+    inst/scripts/.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    docopt
+RoxygenNote: 7.3.0

@@ -1,1 +1,1 @@
-../../../mcp-server/README.md
+../../../lessons/mcp-server/README.md

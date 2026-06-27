@@ -1,0 +1,21 @@
+#!/usr/bin/env Rscript
+"limma-voom-fit-lm — Step 4 of 5.
+
+Fits the linear model on the voom-weighted counts.
+
+Usage:
+  limma-voom-fit-lm --voom=<path> --design=<path> --out=<path>
+  limma-voom-fit-lm (-h | --help)
+
+Options:
+  --voom=<path>        Path to .rds from run-voom.
+  --design=<path>      Path to .rds from make-design.
+  --out=<path>         Output .rds with the MArrayLM fit.
+  -h --help            Show this help.
+" -> doc
+suppressPackageStartupMessages({ library(docopt); library(limmaVoomCLI) })
+args <- docopt(doc)
+voom_e     <- readRDS(args[["--voom"]])
+design_obj <- readRDS(args[["--design"]])
+fit <- fit_lm(voom_e = voom_e, design = design_obj$design)
+saveRDS(fit, file = args[["--out"]])

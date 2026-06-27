@@ -1,0 +1,21 @@
+#!/usr/bin/env Rscript
+"limma-voom-run-voom — Step 3 of 5.
+
+Applies the voom precision-weight transformation.
+
+Usage:
+  limma-voom-run-voom --counts=<path> --design=<path> --out=<path>
+  limma-voom-run-voom (-h | --help)
+
+Options:
+  --counts=<path>      Path to .rds from prep-counts.
+  --design=<path>      Path to .rds from make-design.
+  --out=<path>         Output .rds with the voom EList.
+  -h --help            Show this help.
+" -> doc
+suppressPackageStartupMessages({ library(docopt); library(limmaVoomCLI) })
+args <- docopt(doc)
+counts_obj <- readRDS(args[["--counts"]])
+design_obj <- readRDS(args[["--design"]])
+voom_e <- run_voom(counts = counts_obj$counts, design = design_obj$design)
+saveRDS(voom_e, file = args[["--out"]])

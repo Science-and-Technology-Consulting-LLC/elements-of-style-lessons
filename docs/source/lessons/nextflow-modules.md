@@ -1,1 +1,1 @@
-../../../nextflow/modules/README.md
+../../../lessons/nextflow-modules/README.md

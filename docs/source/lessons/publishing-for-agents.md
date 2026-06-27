@@ -1,1 +1,1 @@
-../../../publishing-for-agents/README.md
+../../../lessons/publishing-for-agents/README.md

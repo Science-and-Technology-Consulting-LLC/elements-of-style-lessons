@@ -1,1 +1,1 @@
-../../../containers/README.md
+../../../lessons/containers/README.md
