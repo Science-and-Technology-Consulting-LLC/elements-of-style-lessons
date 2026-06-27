@@ -1,10 +1,10 @@
 # Configuration file for the Sphinx documentation builder.
 #
 # Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI
-# Companion training site for the NLM-CKN intramural team.
+# A pragmatic set of lessons for biomedical workflow creation.
 #
 # Mirrors the pattern used in sibling repo `sc-nsforest-qc-nf`:
-#   - sphinx_rtd_theme for visual continuity with Annie's MkDocs sites
+#   - sphinx_rtd_theme for visual continuity with the MkDocs reference sites
 #   - MyST (myst-parser) so pages can be authored in Markdown
 #   - MyST-NB so Jupyter notebooks (.ipynb) render with their saved outputs
 #
@@ -40,7 +40,7 @@ source_suffix = {
     ".rst": "restructuredtext",
 }
 
-# MyST extensions — pick the ones Annie's MkDocs voice relies on:
+# MyST extensions — pick the ones the MkDocs reference relies on:
 #   colon_fence  → ::: admonitions, just like MkDocs
 #   deflist      → definition lists (used in "Bridge patterns")
 #   attrs_inline → ![alt](img.png){width=500} for image sizing
@@ -57,7 +57,7 @@ myst_enable_extensions = [
 ]
 
 # Notebook execution: do NOT execute at build time. The starter notebooks
-# can be re-executed by Annie or the learner; CI only validates that the
+# can be re-executed by the author or the learner; CI only validates that the
 # .ipynb files parse and renders the saved outputs.
 nb_execution_mode = "off"
 

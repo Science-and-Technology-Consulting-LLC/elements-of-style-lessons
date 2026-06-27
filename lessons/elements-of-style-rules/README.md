@@ -22,13 +22,6 @@ The lessons are long. The rules are short. These are the pithy phrases
 that summarize the discipline. Read them once now; come back when you're
 choosing between two ways to do something.
 
-:::{admonition} For Annie
-:class: tip
-
-These are draft pithy rules in your voice. Edit, reorder, drop, add —
-this page is yours to shape. Each rule is meant to be quotable on its own.
-:::
-
 ## On work that lasts
 
 > **Workflows are letters to your future self.**

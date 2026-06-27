@@ -127,7 +127,7 @@ hidden files (the ones starting with `.`).
 
 If a command's flags feel mysterious, paste them into
 [ExplainShell](https://explainshell.com/) — it breaks them down piece by piece.
-This is how Annie's existing trainings have always taught flags, and we
+This is how existing trainings have always taught flags, and we
 shamelessly continue the tradition.
 :::
 
