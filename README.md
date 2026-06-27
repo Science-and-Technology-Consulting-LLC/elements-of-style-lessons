@@ -108,4 +108,4 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-*"Workflows are letters to your future self."*
+*"Writing and building work like notes and letters to your future self."*
