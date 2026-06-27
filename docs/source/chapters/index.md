@@ -1,74 +1,34 @@
-# Worked examples in the book companion
+# Book chapter mapping
 
-The lessons on this site are the *teaching layer*. The full, runnable
-worked examples — real data, real notebooks, real Nextflow pipelines —
-live in the sibling **book companion** repository:
+Each topic in this repository corresponds 1:1 with a chapter of the
+Springer book *Elements of Style in Creating Workflows for Biomedical
+Research in the Era of Agentic AI*. The topical directory names *are*
+the chapter names — this page is the index that connects them.
 
-**[https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons)**
+| Chapter | Topic directory | Lesson page |
+|---------|-----------------|-------------|
+| 1 | [`lessons/introduction/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/introduction) | [Introduction](../lessons/introduction.md) |
+| 2 | [`lessons/elements-of-style-rules/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/elements-of-style-rules) | [The Rules](../lessons/elements-of-style-rules.md) |
+| 3 | [`lessons/command-line-and-git-bash/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/command-line-and-git-bash) | [Command line, with Git Bash](../lessons/command-line-and-git-bash.md) |
+| 4 | [`lessons/version-control/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/version-control) | [Version control with Git](../lessons/version-control.md) |
+| 5 | [`lessons/conda-environments/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/conda-environments) | [Reproducible environments with Conda](../lessons/conda-environments.md) |
+| 6 | [`lessons/interactive-computing/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/interactive-computing) | [Interactive computing with Jupyter](../lessons/interactive-computing.md) |
+| 7 | [`lessons/reusable-clis/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/reusable-clis) | [Building reusable command-line tools](../lessons/reusable-clis.md) |
+| 8 | [`lessons/containers/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/containers) | [Containers](../lessons/containers.md) |
+| 9 | [`lessons/nextflow-modules/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/nextflow-modules) | [Nextflow modules](../lessons/nextflow-modules.md) |
+| 10 | [`lessons/nextflow-workflows/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/nextflow-workflows) | [Nextflow workflows](../lessons/nextflow-workflows.md) |
+| 11 | [`lessons/federated-computing/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/federated-computing) | [Federated computing](../lessons/federated-computing.md) |
+| 12 | [`lessons/federated-learning/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/federated-learning) | [Federated learning](../lessons/federated-learning.md) |
+| 13 | [`lessons/mcp-server/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/mcp-server) | [MCP server](../lessons/mcp-server.md) |
+| 14 | [`lessons/publishing-for-agents/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/publishing-for-agents) | [Publishing for agents](../lessons/publishing-for-agents.md) |
+| 15 | [`lessons/platforms/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/platforms) | [Platforms](../lessons/platforms.md) |
 
-That repo is organized topically too. Each topic corresponds to a chapter
-of the Springer book *Elements of Style in Creating Workflows for
-Biomedical Research in the Era of Agentic AI* with the code, notebooks, containers, and Nextflow
-modules used in that chapter.
+## Case studies — the threaded worked examples
 
-## The threaded dataset
+Two case studies sit alongside the topical lessons. They aren't chapters
+on their own; they're applied stories that combine multiple lessons.
 
-All examples in the book companion work with a single dataset —
-**GSE179640 / PRJNA744463** (endometriosis scRNA-seq + bulk RNA-seq) —
-so you can watch the same data move from FASTQ through QC, expression
-matrices, differential expression, and single-cell annotation.
-
-## Topics you can dive into
-
-::::{grid} 1 1 2 2
-:gutter: 3
-
-:::{grid-item-card} Reasoning from metadata
-:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters/reasoning-from-metadata
-
-The first place you touch real data. Pull the study metadata from the ENA
-API, subset thoughtfully, and produce the volcano plot that motivates
-everything that follows.
-
-Best paired with the [Interactive computing](../lessons/interactive-computing.md) lesson.
-:::
-
-:::{grid-item-card} Version control as survival
-:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters/version-control-as-survival
-
-The Git survival guide for multi-remote biomedical workflows, including
-fork patterns and the "params file" pattern for safely customizing
-upstream pipelines.
-
-Best paired with the [Version control](../lessons/version-control.md) lesson.
-:::
-
-:::{grid-item-card} Single-cell case study
-:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters/single-cell-case-study
-
-The end-to-end single-cell analysis on the same dataset. Pseudobulk DE in
-R (limma-voom), cross-validation notebooks, and the
-`sc-nsforest-fork/` worked example for cell-type marker discovery.
-
-Best paired with the [Toward Nextflow](../lessons/nextflow-workflows.md) and
-[Reusable CLIs](../lessons/reusable-clis.md) lessons.
-:::
-
-:::{grid-item-card} Containerization, deployment, Nextflow
-:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters
-
-Containerization, workflow deployment, and Nextflow development chapters
-are scaffolded and being drafted. As they mature they'll get their own
-cards on this page.
-:::
-
-::::
-
-## How the topics map to the lessons
-
-| Lesson | Best companion topic in the book repo |
-|--------|----------------------------------------|
-| [Version control with Git](../lessons/version-control.md) | `chapters/version-control-as-survival/` (Git survival guide) |
-| [Interactive computing with Jupyter](../lessons/interactive-computing.md) | `chapters/reasoning-from-metadata/` (metadata + volcano) |
-| [From notebooks toward Nextflow](../lessons/nextflow-workflows.md) | `workflows/geo-to-h5ad/` + (eventually) `chapters/nextflow-development/` |
-| [Building reusable command-line tools](../lessons/reusable-clis.md) | `containers/scanpy-qc/` (the conversion target) |
+| Case study | Combines |
+|------------|----------|
+| [`case-studies/endometriosis/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/case-studies/endometriosis) — GSE179640 bulk + scRNA-seq | Containers, Nextflow modules, Nextflow workflows |
+| [`case-studies/oadr-autoantibody/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/case-studies/oadr-autoantibody) — T1D federated (NIH-NLM/oadr-autoantibody) | Federated computing, Federated learning, Platforms |

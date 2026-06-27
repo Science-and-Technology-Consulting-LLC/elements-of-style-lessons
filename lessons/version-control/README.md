@@ -143,7 +143,7 @@ Refresh GitHub — your file is now there. Make another local commit, then
 ## Going deeper: the survival guide
 
 This page gives you the floor. The ceiling — branches, forks, multi-remote
-workflows, untangling mistakes — is in Annie's full
+workflows, untangling mistakes — is in the full
 **Git Survival Guide**, which lives in the book companion repo as
 [`chapters/version-control-as-survival/01_git_survival_guide.md`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/chapters/version-control-as-survival/01_git_survival_guide.md).
 

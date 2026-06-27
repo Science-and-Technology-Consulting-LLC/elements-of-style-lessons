@@ -56,7 +56,7 @@ That's it. No DSL to learn beyond Markdown.
 
 ## Acknowledgements
 
-The voice and structure are descended from Annie's
+The voice and structure are descended from the author's
 [Kids First + INCLUDE training site](https://github.com/NIH-NICHD/Kids-First-INCLUDE-Elements-of-Style-Workflow-Creation-Maintenance)
 and her CAVATICA training. The Sphinx pattern is descended from
 [`sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf).

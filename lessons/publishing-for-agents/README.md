@@ -201,5 +201,5 @@ discover it and run it on a [platform](platforms.md).
 
 → [Platforms — a transport-layer protocol for science](platforms.md)
 
-← Back to the [Lessons overview](index.md), or jump to the
+← Back to the [home](../index.md), or jump to the
 [book companion](../chapters/index.md) for full worked examples.
