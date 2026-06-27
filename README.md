@@ -1,3 +1,4 @@
+[![Build and Deploy Sphinx Documentation](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/actions/workflows/docs.yml/badge.svg)](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/actions/workflows/docs.yml)
 # Elements of Style — Lessons
 
 **The book companion for *Elements of Style in Creating Workflows for
@@ -108,4 +109,4 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-*"Workflows are letters to your future self."*
+*"Writing and building work like notes and letters to your future self."*
