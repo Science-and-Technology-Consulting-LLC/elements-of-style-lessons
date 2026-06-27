@@ -45,7 +45,7 @@ anywhere.
 :link: chapters/index
 :link-type: doc
 
-Real worked examples from Anne's Springer book
+Real worked examples from the Springer-Verlag book
 *Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI.*
 Bulk RNA-seq, single-cell, the lot — running code, not just slides.
 :::
