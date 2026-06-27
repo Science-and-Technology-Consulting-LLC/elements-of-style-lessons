@@ -1,5 +1,24 @@
 # Federated computing
 
+
+> *In the book: Chapter 11 — Federated computing.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Diagram a federation: which boxes are sites, which is the coordinator.
+- Explain what *doesn't* leave each site (the data) and what *does* (parameters).
+- Apply the same shape to your own multi-institution biomedical problem.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 Biomedical data lives in silos — by funding, by institution, by IRB, by
 data-use agreement. *Federated computing* is the discipline of running
 the same workflow against data that lives in different places, without
@@ -131,6 +150,29 @@ Federated computing pairs cleanly with three other lessons:
   the per-site phase is *training a model* and the coordinator phase is
   *aggregating model weights*. The oadr-autoantibody example is exactly
   this case.
+
+## Try the simulation on Lifebit
+
+The full federated simulation lives in
+[`case-studies/oadr-autoantibody`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/oadr-autoantibody/README.md).
+
+::::{tab-set}
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+# In the oadr-autoantibody workspace on Lifebit:
+jupyter notebook ipynb/federated_analysis_simulation_3x3.ipynb
+# 30-60 min from cold; results cache so re-renders are seconds.
+```
+
+*This is the same simulation discussed above — same five methods,
+same headline findings — running where Lifebit's transport layer can
+later carry it to real per-site execution.*
+:::
+
+::::
 
 ## Honest constraints
 

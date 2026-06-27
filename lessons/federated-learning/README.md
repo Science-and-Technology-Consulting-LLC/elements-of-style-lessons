@@ -1,5 +1,24 @@
 # Federated learning
 
+
+> *In the book: Chapter 12 — Federated learning.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- The federated learning loop: send model → train locally → aggregate → repeat.
+- Why naïve CNN federation hurts, and why autoencoder pretraining rescues it.
+- Read the oadr-autoantibody notebooks and explain each headline finding.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 A specific application of [federated computing](federated-computing.md):
 train (or fine-tune) a model where the training data lives in many
 places that cannot share raw data. **The model travels; the data stays

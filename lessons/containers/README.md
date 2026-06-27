@@ -1,5 +1,24 @@
 # Containers
 
+
+> *In the book: Chapter 8 — Containers.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Read a `Dockerfile` line by line and understand each piece.
+- Build a single-purpose container locally and tag a real version.
+- Recognise when a container is *too much job* — and split it.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 A container is a sealed box with everything your code needs to run: the
 OS-level libraries, the language runtime, your specific package
 versions, your script. Hand the container to a collaborator (or to a
@@ -76,6 +95,42 @@ That's it. Four sections, four reasons:
 4. **`ENTRYPOINT`.** When someone runs your image with no arguments,
    they get the actual tool — with `--help` if you wrote it that way
    (see [Reusable CLIs](reusable-clis.md)).
+
+## Install Docker
+
+::::{tab-set}
+
+:::{tab-item} macOS
+:sync: mac
+
+```bash
+# Docker Desktop for Mac: https://docs.docker.com/desktop/install/mac-install/
+# After install, run it once so the engine starts.
+docker --version
+```
+:::
+
+:::{tab-item} Windows
+:sync: win
+
+```bash
+# Docker Desktop for Windows: https://docs.docker.com/desktop/install/windows-install/
+# Enable WSL2 backend when prompted. Restart, then:
+docker --version
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+# Docker (or Singularity) is pre-installed on Lifebit compute nodes.
+# You'd usually let Nextflow handle container pulls; for ad-hoc runs:
+docker --version
+```
+:::
+
+::::
 
 ## A first build
 

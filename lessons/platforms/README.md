@@ -1,5 +1,24 @@
 # Platforms — a transport-layer protocol for science as a service
 
+
+> *In the book: Chapter 15 — Platforms — a transport-layer protocol for science.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Why Lifebit's free, institutional-login tier is the open-science on-ramp.
+- Where CAVATICA and AoU fit (and why Biowulf is a different category).
+- Drive a Lifebit run via the MCP server pattern from Chapter 13.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 Pipelines have to run somewhere. This lesson is about the *where*, and
 about a new way to think about what those somewheres really are.
 
@@ -52,6 +71,32 @@ and submit to the queue. It's the right tool for very-large or
 GPU-heavy jobs. But it doesn't offer the *transport layer* abstraction
 (no built-in data federation, no native MCP/agent surface). Mention it
 where it fits; don't conflate it with the cloud platforms.
+
+## Get on Lifebit (the institutional-login path)
+
+::::{tab-set}
+
+:::{tab-item} Mac / Windows browser
+:sync: web
+
+1. Go to **[lifebit.ai](https://lifebit.ai)** and choose
+   *Sign in with institutional login*.
+2. Pick your institution from the SSO list (NIH, your university, etc.).
+3. Create a workspace; pick the *biomedical analysis* template.
+4. Open the workspace's JupyterLab. You're in.
+:::
+
+:::{tab-item} CLI from your laptop
+:sync: cli
+
+```bash
+# Once Lifebit gives you an API token / personal access token, you can
+# orchestrate runs from your local terminal.
+# Details will be filled in alongside Annie's worked-example run.
+```
+:::
+
+::::
 
 ## What this lesson builds
 

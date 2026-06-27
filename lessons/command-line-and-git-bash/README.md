@@ -1,5 +1,24 @@
 # The command line, with Git Bash
 
+
+> *In the book: Chapter 3 — Command line + Git Bash.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Open a terminal that looks the same on Mac, Windows, and Lifebit.
+- Ten commands that get you from lost to productive.
+- How to read a command and ask `--help` for the rest.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 The terminal is the lingua franca of biomedical computing. Cloud platforms,
 HPC clusters, containers — almost all of them want to talk to you in shell
 commands. The good news: you only need about ten commands to start being
@@ -38,6 +57,45 @@ they'll see the same prompts and run the same commands.
 
 **Linux:** You almost certainly already have Bash. Open your terminal app of
 choice.
+
+## Open your terminal — three ways
+
+::::{tab-set}
+
+:::{tab-item} macOS
+:sync: mac
+
+```bash
+# Spotlight: Cmd-Space, type "Terminal", hit Return.
+# If git --version prompts to install the Command Line Tools, accept.
+git --version
+```
+:::
+
+:::{tab-item} Windows (Git Bash)
+:sync: win
+
+```bash
+# Download Git for Windows from https://git-scm.com/download/win
+# Accept the installer defaults. Then open "Git Bash" from the Start menu.
+git --version
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+# On a Lifebit notebook server, the terminal is already a Bash session
+# with git pre-installed. Open the JupyterLab launcher and pick "Terminal".
+git --version
+```
+:::
+
+::::
+
+After either path, the prompt you see should look about the same. That's
+the whole point — the rest of this lesson works identically.
 
 ## A guided tour of ten commands
 

@@ -1,5 +1,24 @@
 # From notebooks toward Nextflow
 
+
+> *In the book: Chapter 10 — Nextflow workflows.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Compose modules into a runnable pipeline (`main-bulk-de.nf` as the model).
+- Use channels to connect step outputs to the next step's inputs.
+- Run the same workflow locally, in Docker, and on Lifebit.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 A notebook is a *thinking* tool. A Nextflow workflow is a *doing*
 tool — something you (or a teammate, or CI, or an AI agent) can rerun
 identically a year from now on a different machine. This lesson is the
@@ -175,6 +194,42 @@ nextflow run main.nf -profile docker \
 
 The same `main.nf` runs on all three. The *config* changes, not the
 workflow. That's the payoff.
+
+## Run the stitched workflow — three ways
+
+::::{tab-set}
+
+:::{tab-item} macOS / Windows (local + Docker)
+:sync: local
+
+```bash
+nextflow run main-bulk-de.nf -profile docker \
+    --samplesheet data/test-data/bulk-de-samplesheet.csv \
+    --contrast 'CF-Control'
+```
+:::
+
+:::{tab-item} macOS / Windows (test profile)
+:sync: test
+
+```bash
+nextflow run main-bulk-de.nf -profile test
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+# On Lifebit, dispatch to AWS Batch via the lifebit profile.
+# Same command, different config — that's the payoff.
+nextflow run main-bulk-de.nf -profile lifebit \
+    --samplesheet s3://my-bucket/bulk-de-samplesheet.csv \
+    --contrast 'CF-Control'
+```
+:::
+
+::::
 
 ## When NOT to use Nextflow
 

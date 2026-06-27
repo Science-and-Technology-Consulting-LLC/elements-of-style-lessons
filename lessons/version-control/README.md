@@ -1,5 +1,24 @@
 # Version control with Git
 
+
+> *In the book: Chapter 4 — Version control with Git.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Make a repo your code can survive in.
+- The edit → add → commit → push loop.
+- When (and how) to branch, and how to recover when you don't.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 Git is how your code stops being a single fragile copy on a single laptop and
 starts being a versioned, shareable, recoverable thing. You don't need to
 know every Git command — you need about seven, plus a feel for when to use
@@ -23,6 +42,39 @@ is a **commit**. The history of commits is your project's memory.
 
 GitHub is a website that hosts repos. Git works perfectly well without
 GitHub — but GitHub is where most collaboration happens.
+
+## Install / verify Git
+
+::::{tab-set}
+
+:::{tab-item} macOS
+:sync: mac
+
+```bash
+git --version
+# If macOS prompts to install the Command Line Tools, accept.
+```
+:::
+
+:::{tab-item} Windows (Git Bash)
+:sync: win
+
+```bash
+# Git for Windows brought git AND a Bash shell.
+git --version
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+# Lifebit notebook servers ship git pre-installed. Just confirm:
+git --version
+```
+:::
+
+::::
 
 ## The first time only — tell Git who you are
 

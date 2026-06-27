@@ -1,5 +1,24 @@
 # Introduction to Elements of Style
 
+
+> *In the book: Chapter 1 — Introduction.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- The *why* behind this whole curriculum.
+- How to navigate the lessons in any order you like.
+- Where the worked examples and case studies live.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 *Welcome.*
 
 This is the front door of the lessons. The intent of this page is to set the

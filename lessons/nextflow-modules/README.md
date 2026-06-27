@@ -1,5 +1,24 @@
 # Nextflow modules
 
+
+> *In the book: Chapter 9 — Nextflow modules.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Write a `.nf` module that wraps exactly one CLI verb.
+- Test the module standalone with its `main-*.nf` runner.
+- Why `bin/` scripts (or installed CLIs) beat inline `script:` blocks.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 A Nextflow *module* is a single process with documented inputs and
 outputs. Think of it as one LEGO brick — the smallest reusable unit of
 work in your pipeline. A workflow is a *snap-together* of modules.
@@ -32,6 +51,38 @@ backing it.
 
 One `.nf` module + one `bin/` script + one smoke test. Reusable from
 any workflow that needs that step.
+
+## Run the smallest module — three ways
+
+::::{tab-set}
+
+:::{tab-item} macOS / Windows (local)
+:sync: local
+
+```bash
+nextflow run main-hello-py-greet.nf -profile docker --name Annie
+```
+:::
+
+:::{tab-item} macOS / Windows (no Docker — test profile)
+:sync: test
+
+```bash
+nextflow run main-hello-py-greet.nf -profile test --name Annie
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+nextflow run main-hello-py-greet.nf -profile lifebit --name Annie
+# (Lifebit may require the file to be named main.nf — copy or symlink
+#  at deploy time. Annie is confirming.)
+```
+:::
+
+::::
 
 ## Where to next
 

@@ -1,5 +1,24 @@
 # MCP server — the agentic AI portion
 
+
+> *In the book: Chapter 13 — MCP server — the agentic AI portion.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Wrap any CLI in an MCP server so an AI agent can drive it.
+- Register an MCP server with Claude Code on Mac and Windows.
+- Run the nsforest-cli + MCP worked example end-to-end.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 This lesson is where everything from the earlier lessons becomes
 *agent-callable*. The Model Context Protocol (MCP) is a small,
 standardized way to tell an AI agent (Claude, ChatGPT, …) what your tool
@@ -52,6 +71,41 @@ CLIs run on the transport-layer, results come back. See
 A working MCP server that exposes `nsforest-cli` (or any of your topic
 CLIs) to Claude Code, with a recorded conversation showing the agent
 correctly inferring inputs and running the workflow.
+
+## Register the MCP server with Claude Code
+
+::::{tab-set}
+
+:::{tab-item} macOS
+:sync: mac
+
+```bash
+# Claude Code reads ~/.claude/config.json
+# Add (or merge) the mcp-nsforest-server entry:
+cat ~/.claude/config.json
+```
+:::
+
+:::{tab-item} Windows
+:sync: win
+
+```bash
+# Claude Code on Windows reads %USERPROFILE%\.claude\config.json
+# Same JSON shape; just the file lives at a Windows path.
+cat ~/.claude/config.json
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+The Lifebit pattern: the MCP server runs *inside* a Lifebit workspace
+exposing nsforest-cli; the agent (Claude / ChatGPT) connects to that
+workspace's URL with the appropriate auth. *Annie's enterprise-settings
+discussion will land here.*
+:::
+
+::::
 
 ## Where to next
 
