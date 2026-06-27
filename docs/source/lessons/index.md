@@ -6,8 +6,6 @@ ships three things: a **Typer CLI**, **R + Python primary notebooks**, and
 **R + Python eye-candy notebooks** — so the lesson lives where the
 deliverables live.
 
-## The spine
-
 ```{toctree}
 :maxdepth: 1
 
@@ -28,7 +26,7 @@ publishing-for-agents
 platforms
 ```
 
-## How the lessons fit together
+# How the lessons fit together
 
 | Position | Lesson | The deliverable (CLI) |
 |----------|--------|------------------------|
@@ -52,7 +50,7 @@ Every CLI in that right-hand column installs as a console script via
 the repo's `pyproject.toml`. That means every deliverable here is, on
 day one, callable by an AI agent through an [MCP server](mcp-server.md).
 
-## What "complete" looks like at each lesson
+# What "complete" looks like at each lesson
 
 You're done with a lesson when you can answer **yes** to all three:
 
