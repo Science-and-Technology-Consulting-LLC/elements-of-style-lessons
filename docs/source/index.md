@@ -1,8 +1,6 @@
 # Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI
 
-*A companion training site for the NLM-CKN intramural team.*
-
-Welcome. This site is here to help you — whether you joined last week as a summer
+Welcome. This site is here to help you — whether you just started your bioinformatics journey last week as a summer
 researcher or have been writing biomedical pipelines for a decade — work a little
 more confidently with the tools that make modern biomedical research reproducible,
 shareable, and ready for the AI agents that are quickly becoming our collaborators.
@@ -10,7 +8,7 @@ shareable, and ready for the AI agents that are quickly becoming our collaborato
 :::{admonition} Our philosophy
 :class: tip
 
-**Educate without disrupting.** Your director, your platform, and your deadlines
+**Educate without disrupting.** You have your deadlines and they
 already shape how you work. We're not here to change any of that. We're here to
 add gentle, practical tools you can reach for *when the opportunity arises* — so
 that the right thing becomes a little easier each time.
@@ -18,11 +16,13 @@ that the right thing becomes a little easier each time.
 
 ## Who this is for
 
-- **NLM-CKN team members** at any career stage.
-- **Summer researchers** with short timeframes and big ambitions.
-- Anyone whose work has to live somewhere other than a laptop — on the
-  All of Us Researcher Workbench, in CAVATICA, on Biowulf, in containers,
-  or as a Nextflow pipeline someone else can rerun next year.
+- Everyone who wants to enable their science, build modular, extensible systems,
+- Take your work to another level, perform computational analysis at scale and in the cloud
+- To work on platforms, the emerging transport layer of our research (see the 7-layer protocol)
+- Anyone who has been doing R within R studio and wants to replicate that work - keep versions so that it can be referenced for publications
+- Anyone who wants to be able to be kind to their future self.   I wrote that once, where is it again?
+- You may be on the ADAPTS platform, or the All of Us Researcher Workbench, working on an INCLUDE project, or Kids First, CAVATICA, or using an on-premise compute environment such as Biowulf
+- Or an experienced Nextflow workflow developer
 
 If you're moving between Windows, macOS, and remote Linux environments and the
 terminal feels different every time you sit down, you're in the right place.
