@@ -1,5 +1,24 @@
 # Publishing for agents
 
+
+> *In the book: Chapter 14 — Publishing for agents.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- The ten-item agent-ready checklist (and what each item buys you).
+- Write a README an agent can act on, not just read.
+- Tag a SemVer release and publish under NIH-NLM / Scitechcon-LLC conventions.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 This is where the discipline of every earlier lesson pays off. The
 lessons up to this point are about making your work **runnable** — by
 you, by a teammate, by CI, by Nextflow. This lesson is about making

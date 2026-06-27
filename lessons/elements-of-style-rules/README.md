@@ -1,5 +1,23 @@
 # Elements of Style — The Rules
 
+
+> *In the book: Chapter 2 — The Rules.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- The pithy phrases that summarise the discipline.
+- Which rule to reach for when you're choosing between two ways.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 The lessons are long. The rules are short. These are the pithy phrases
 that summarize the discipline. Read them once now; come back when you're
 choosing between two ways to do something.

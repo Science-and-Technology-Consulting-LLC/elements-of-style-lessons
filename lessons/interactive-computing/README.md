@@ -1,5 +1,24 @@
 # Interactive computing with Jupyter
 
+
+> *In the book: Chapter 6 — Interactive computing with Jupyter.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- What a Jupyter kernel actually is — and why that matters.
+- Launch JupyterLab on your machine or on a Lifebit notebook.
+- The Restart-and-Run-All habit that catches order-of-cell bugs.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 A Jupyter notebook is one of the most welcoming places to start a new
 analysis: write a few lines, run them, see the result, write a few more.
 It's also one of the most misunderstood — full of moving parts (kernels,
@@ -42,6 +61,30 @@ jupyter lab
 
 A browser window opens. You'll see a file tree on the left and a launcher
 in the middle.
+
+## Launch JupyterLab
+
+::::{tab-set}
+
+:::{tab-item} macOS / Windows
+:sync: local
+
+```bash
+conda activate eos-lessons
+jupyter lab
+# A browser tab opens at http://localhost:8888/lab
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+On Lifebit, a JupyterLab session is already running — open the
+notebook URL the platform gave you when the workspace started. No
+`jupyter lab` invocation needed.
+:::
+
+::::
 
 ## The two starter notebooks
 

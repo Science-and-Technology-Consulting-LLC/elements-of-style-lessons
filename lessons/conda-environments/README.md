@@ -1,5 +1,24 @@
 # Reproducible environments with Conda
 
+
+> *In the book: Chapter 5 — Reproducible environments with Conda.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Why pinning beats remembering.
+- Create the `eos-lessons` env and activate it everywhere.
+- Register the R kernel so Jupyter sees both R and Python.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 Reproducibility starts with knowing *which versions of which packages* your
 code needs. Conda is the most common way biomedical projects answer that
 question. One file — `environment.yml` — lists everything, and one command
@@ -38,6 +57,42 @@ conda --version
 You almost always want the recipe. Hand-installing packages "until it
 works" is the classic way to make work that nobody else (including future
 you) can reproduce.
+
+## Install Miniforge (one time)
+
+::::{tab-set}
+
+:::{tab-item} macOS
+:sync: mac
+
+```bash
+# Apple Silicon or Intel — Miniforge has installers for both.
+# Download from https://github.com/conda-forge/miniforge#install
+bash Miniforge3-MacOSX-arm64.sh    # or -x86_64 on Intel
+```
+:::
+
+:::{tab-item} Windows (Git Bash)
+:sync: win
+
+```bash
+# Download Miniforge3-Windows-x86_64.exe from
+# https://github.com/conda-forge/miniforge#install — run it.
+# Then reopen Git Bash so PATH picks up conda.
+conda --version
+```
+:::
+
+:::{tab-item} Lifebit
+:sync: lifebit
+
+```bash
+# Lifebit notebook servers ship mamba/conda pre-installed.
+mamba --version    # or: conda --version
+```
+:::
+
+::::
 
 ## Create the environment for this site
 

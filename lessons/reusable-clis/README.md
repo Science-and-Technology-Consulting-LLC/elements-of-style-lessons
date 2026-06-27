@@ -1,5 +1,24 @@
 # Building reusable command-line tools
 
+
+> *In the book: Chapter 7 — Building reusable command-line tools.*
+
+:::{admonition} What you'll learn
+:class: tip
+
+- Write a Typer CLI in ten lines and a real `--help` for free.
+- Convert an existing script into a CLI with subcommands.
+- Install the CLI as a console script via `pip install -e .`.
+:::
+
+:::{admonition} 📸 Screenshot placeholder
+:class: note
+
+*Annie will drop a screenshot at `assets/overview.png` here showing the
+key result of this lesson. Reference it from this README as
+`![overview](assets/overview.png){width=520}` once captured.*
+:::
+
 A command-line interface — a *CLI* — turns a one-off script into a
 *tool*. A teammate can run it without reading your code. CI can run it
 without anyone watching. Nextflow can run it as a `bin/` step. And —
