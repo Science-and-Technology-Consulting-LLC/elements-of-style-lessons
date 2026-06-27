@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBDwill drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -145,7 +145,7 @@ Refresh GitHub — your file is now there. Make another local commit, then
 This page gives you the floor. The ceiling — branches, forks, multi-remote
 workflows, untangling mistakes — is in Annie's full
 **Git Survival Guide**, which lives in the book companion repo as
-[`chapters/version-control-as-survival/01_git_survival_guide.md`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/chapters/version-control-as-survival/01_git_survival_guide.md).
+[`chapters/version-control-as-survival/01_git_survival_guide.md`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/chapters/version-control-as-survival/01_git_survival_guide.md).
 
 Read it when you hit a situation this page doesn't cover.
 

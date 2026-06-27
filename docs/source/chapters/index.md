@@ -4,11 +4,11 @@ The lessons on this site are the *teaching layer*. The full, runnable
 worked examples — real data, real notebooks, real Nextflow pipelines —
 live in the sibling **book companion** repository:
 
-**[adeslatt/elements-of-style-workflows](https://github.com/adeslatt/elements-of-style-workflows)**
+**[https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons)**
 
 That repo is organized topically too. Each topic corresponds to a chapter
-of Anne's Springer book *Elements of Style in Creating Workflows for
-Biomedical Research,* with the code, notebooks, containers, and Nextflow
+of the Springer book *Elements of Style in Creating Workflows for
+Biomedical Research in the Era of Agentic AI* with the code, notebooks, containers, and Nextflow
 modules used in that chapter.
 
 ## The threaded dataset
@@ -24,7 +24,7 @@ matrices, differential expression, and single-cell annotation.
 :gutter: 3
 
 :::{grid-item-card} Reasoning from metadata
-:link: https://github.com/adeslatt/elements-of-style-workflows/tree/main/chapters/reasoning-from-metadata
+:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters/reasoning-from-metadata
 
 The first place you touch real data. Pull the study metadata from the ENA
 API, subset thoughtfully, and produce the volcano plot that motivates
@@ -34,7 +34,7 @@ Best paired with the [Interactive computing](../lessons/interactive-computing.md
 :::
 
 :::{grid-item-card} Version control as survival
-:link: https://github.com/adeslatt/elements-of-style-workflows/tree/main/chapters/version-control-as-survival
+:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters/version-control-as-survival
 
 The Git survival guide for multi-remote biomedical workflows, including
 fork patterns and the "params file" pattern for safely customizing
@@ -44,7 +44,7 @@ Best paired with the [Version control](../lessons/version-control.md) lesson.
 :::
 
 :::{grid-item-card} Single-cell case study
-:link: https://github.com/adeslatt/elements-of-style-workflows/tree/main/chapters/single-cell-case-study
+:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters/single-cell-case-study
 
 The end-to-end single-cell analysis on the same dataset. Pseudobulk DE in
 R (limma-voom), cross-validation notebooks, and the
@@ -55,7 +55,7 @@ Best paired with the [Toward Nextflow](../lessons/nextflow-workflows.md) and
 :::
 
 :::{grid-item-card} Containerization, deployment, Nextflow
-:link: https://github.com/adeslatt/elements-of-style-workflows/tree/main/chapters
+:link: https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/chapters
 
 Containerization, workflow deployment, and Nextflow development chapters
 are scaffolded and being drafted. As they mature they'll get their own

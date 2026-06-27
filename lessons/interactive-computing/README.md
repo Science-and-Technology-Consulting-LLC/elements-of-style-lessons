@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -111,7 +111,7 @@ In each notebook, you'll find:
 
 If you'd like to see what a published, real-data notebook looks like — the
 same pattern, just longer — open Anne's existing
-[`chapters/reasoning-from-metadata/01_explore_metadata.ipynb`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/chapters/reasoning-from-metadata/01_explore_metadata.ipynb)
+[`chapters/reasoning-from-metadata/01_explore_metadata.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/chapters/reasoning-from-metadata/01_explore_metadata.ipynb)
 in JupyterLab. It pulls real metadata from the ENA API for the
 endometriosis dataset the book is built around. It's a great study text.
 

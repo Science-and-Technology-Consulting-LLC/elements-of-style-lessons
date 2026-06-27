@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::

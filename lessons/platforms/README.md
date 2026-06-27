@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -92,7 +92,7 @@ where it fits; don't conflate it with the cloud platforms.
 ```bash
 # Once Lifebit gives you an API token / personal access token, you can
 # orchestrate runs from your local terminal.
-# Details will be filled in alongside Annie's worked-example run.
+# Details will be filled in alongside TBD worked-example run.
 ```
 :::
 

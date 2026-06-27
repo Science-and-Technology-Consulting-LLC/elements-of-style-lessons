@@ -5,10 +5,10 @@
 Biomedical Research in the Era of Agentic AI*** by Anne Deslattes Mays
 (Springer Nature, 2026).
 
-The lessons here are designed for **working biomedical scientists** at
-every skill level — from summer researchers in their first terminal
-session to PIs already shipping Nextflow pipelines. Each lesson is
-topical, ships its own deliverables (containers, CLIs, Nextflow modules,
+The lessons here are designed for **working scientists** at
+every skill level — from researchers finding their way around in their first terminal
+session to accommplished bioinformaticians already shipping Nextflow pipelines. Each lesson is
+topical, complete with containers, command-line interfaces (CLIs), Nextflow modules,
 notebooks), and references its corresponding chapter in the book.
 
 ## The published site
@@ -57,7 +57,7 @@ elements-of-style-lessons/
 │   ├── endometriosis/              GSE179640 bulk + scRNA-seq
 │   └── oadr-autoantibody/          T1D federated (NIH-NLM/oadr-autoantibody)
 │
-├── bridges/                        AoU-style "can't git pull" patterns
+├── bridges/                        Work environments such as AoU-style "can't git pull" patterns
 ├── data/                           shared sample / test fixtures
 ├── docs/                           Sphinx source → GitHub Pages
 ├── pyproject.toml                  console-script manifest
@@ -69,11 +69,11 @@ elements-of-style-lessons/
 
 1. **Container = single-purpose unit shipping a CLI.** Python = Typer.
    R = an R package (`R/` pure functions) + an Rscript entry point in
-   `inst/scripts/`. No container without an honest `--help`.
-2. **Module = thin wrapper around a CLI call.** Each `.nf` in `modules/`
+   `inst/scripts/`. All containers with `--help` to ease use.
+2. **Nextflow Module = thin wrapper around a CLI call.** Each `.nf` in `modules/`
    declares inputs/outputs, names the container, calls one CLI verb.
    No business logic in `.nf`.
-3. **Workflow = composition of modules.** `main-<name>.nf` composes
+3. **Nextflow workflow = composition of modules.** `main-<name>.nf` composes
    modules into a runnable pipeline. `main-bulk-de.nf` is the canonical
    example: 5 limma-voom modules → end-to-end pseudobulk DE.
 4. **The story builds chapter by chapter.** *Reusable CLIs* introduces
@@ -95,7 +95,7 @@ python -m http.server -d build/html 8000
 ## Run a Nextflow module (smallest example)
 
 ```bash
-nextflow run main-hello-py-greet.nf -profile test --name Annie
+nextflow run main-hello-py-greet.nf -profile test --name elements-of-style
 ```
 
 ## License

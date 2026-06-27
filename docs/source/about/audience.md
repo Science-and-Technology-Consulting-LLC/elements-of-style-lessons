@@ -1,16 +1,11 @@
 # Who this site is for
 
-This site is written first for the **NLM-CKN intramural team** under
-director **Richard Scheuermann** — and especially for the summer
-researchers who join us for short, intense stretches and deserve to leave
-with something they can keep using.
-
 ## Specifically, we're writing for…
 
 - **People who have to deliver results on a deadline** and don't have
   time to detour into infrastructure for its own sake. Every tool here
   earns its place by saving you time later.
-- **People who move between platforms** — your laptop, the All of Us
+- **People who move between platforms** — your laptop, ADAPTS, the All of Us
   Workbench, Biowulf, a CAVATICA project, a JupyterHub somewhere. The
   lessons are designed so the muscle memory transfers.
 - **People at every skill level**, from "this is my first terminal
@@ -33,7 +28,6 @@ with something they can keep using.
 
 ## What this site is *not*
 
-- A book. (Anne's actual book is the place for the long-form story.)
 - A complete reference for any one tool. We point you to the official
   docs liberally.
 - A prescription. The right way to work is the way that ships your

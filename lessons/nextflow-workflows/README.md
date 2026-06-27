@@ -14,7 +14,7 @@
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*Annie will drop a screenshot at `assets/overview.png` here showing the
+*TBD will drop a screenshot at `assets/overview.png` here showing the
 key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
@@ -62,7 +62,7 @@ analysis matters enough to need to be rerun.
 ## The worked example — `workflows/geo-to-h5ad/`
 
 Open this in another tab right now:
-**[`workflows/geo-to-h5ad/`](https://github.com/adeslatt/elements-of-style-workflows/tree/main/workflows/geo-to-h5ad)**
+**[`workflows/geo-to-h5ad/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/workflows/geo-to-h5ad)**
 
 It has the shape we're aiming for. Everything in this lesson refers
 back to it.
