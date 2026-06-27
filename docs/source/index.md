@@ -1,4 +1,4 @@
-# Elements of Style in Biomedical Workflow Creation in the Era of Agentic AI
+# Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI
 
 *A companion training site for the NLM-CKN intramural team.*
 
@@ -46,7 +46,7 @@ anywhere.
 :link-type: doc
 
 Real worked examples from Anne's Springer book
-*Elements of Style in Creating Workflows for Biomedical Research.*
+*Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI.*
 Bulk RNA-seq, single-cell, the lot — running code, not just slides.
 :::
 

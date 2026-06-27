@@ -1,6 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 #
-# Elements of Style in Biomedical Workflow Creation in the Era of Agentic AI
+# Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI
 # Companion training site for the NLM-CKN intramural team.
 #
 # Mirrors the pattern used in sibling repo `sc-nsforest-qc-nf`:
@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 
 # -- Project information -----------------------------------------------------
 
-project = "Elements of Style in Biomedical Workflow Creation in the Era of Agentic AI"
+project = "Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI"
 copyright = "2026, Anne Deslattes Mays"
 author = "Anne Deslattes Mays"
 release = "0.1.0"

@@ -20,7 +20,7 @@ as a fallback if you'd rather not embed.
 A structured set of lessons for working biomedical scientists. The lessons
 are descended from Annie's NICHD trainings (Kids First, INCLUDE,
 CAVATICA) and from the Springer book
-*Elements of Style in Creating Workflows for Biomedical Research.*
+*Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI.*
 
 Each topic produces real, durable artifacts: a Typer CLI you can run from
 the command line *and* hand to an AI agent, plus Jupyter notebooks (R and

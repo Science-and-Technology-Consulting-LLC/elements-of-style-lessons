@@ -4,7 +4,7 @@
 
 This is the standalone home of the lesson curriculum that accompanies
 Anne Deslattes Mays' book *Elements of Style in Creating Workflows for
-Biomedical Research* (Springer Nature). The lessons are designed for
+Biomedical Research in the Era of Agentic AI* (Springer Nature). The lessons are designed for
 **working biomedical scientists** at every skill level — from summer
 researchers in their first terminal session to PIs who already ship
 Nextflow pipelines.
@@ -76,7 +76,7 @@ MIT — see [LICENSE](LICENSE).
 ## Citation
 
 > Deslattes Mays, A. (2026). *Elements of Style in Creating Workflows for
-> Biomedical Research*. Springer Nature.
+> Biomedical Research in the Era of Agentic AI*. Springer Nature.
 
 ---
 
