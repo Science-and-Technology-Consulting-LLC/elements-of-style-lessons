@@ -31,4 +31,4 @@ on their own; they're applied stories that combine multiple lessons.
 | Case study | Combines |
 |------------|----------|
 | [`case-studies/endometriosis/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/case-studies/endometriosis) — GSE179640 bulk + scRNA-seq | Containers, Nextflow modules, Nextflow workflows |
-| [`case-studies/oadr-autoantibody/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/case-studies/oadr-autoantibody) — T1D federated (NIH-NLM/oadr-autoantibody) | Federated computing, Federated learning, Platforms |
+| [`case-studies/oadr-autoantibody/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/case-studies/oadr-autoantibody) — T1D federated (Science-and-Technology-Consulting-LLC/oadr-autoantibody) | Federated computing, Federated learning, Platforms |

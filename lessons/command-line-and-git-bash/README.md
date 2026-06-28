@@ -37,26 +37,46 @@ the rest of the curriculum unlocks.
 
 ## One terminal for everyone — install Git Bash
 
-We're going to use **Git Bash** as our terminal. It comes free with Git for
-Windows, and on macOS the built-in `Terminal.app` already speaks the same
-language (Bash / Zsh — close enough for our purposes). The point is: when
-your colleague on Windows and your colleague on a Mac open their terminals,
-they'll see the same prompts and run the same commands.
+We're going to use a Bash shell as our terminal across all three platforms.
+On Mac and Linux the built-in shell is already Bash (or zsh, which is close
+enough). On Windows, the equivalent is **Git Bash** — which arrives as part
+of the *Git for Windows* installer.
 
-**Windows:**
+The point: when a colleague on Windows and a colleague on a Mac open their
+terminals, they see the same prompts and run the same commands.
 
-1. Go to https://git-scm.com/download/win and download the installer.
+:::{important}
+Neither macOS nor a stock Windows install ships with git already on it. You
+have to install git once, the first time. The good news: on Windows that one
+install also gives you the Bash shell, and on Mac the install can be triggered
+by typing one command.
+:::
+
+**Windows — one installer for both git and the shell:**
+
+1. Go to <https://git-scm.com/download/win> and download the installer.
 2. Run it. Accept the defaults — they're sensible.
 3. After install, find **Git Bash** in the Start menu and open it.
 
-**macOS:**
+That's it. Git Bash *is* Git for Windows; you don't install them
+separately. Confirm with `git --version`.
 
-1. Open **Terminal.app** (Spotlight: `Cmd-Space`, type "Terminal").
-2. If you haven't installed Git already, type `git --version` and follow
-   the prompt to install Apple's Command Line Tools.
+**macOS — Terminal first, then git:**
 
-**Linux:** You almost certainly already have Bash. Open your terminal app of
-choice.
+1. Open **Terminal.app** (Spotlight: `Cmd-Space`, type "Terminal", Return).
+2. Type `git --version` and press Return.
+3. If git isn't installed yet, macOS pops up an "Install Command Line
+   Developer Tools" dialog. Click **Install**, accept the licence, wait a
+   few minutes.
+4. When the dialog finishes, run `git --version` again. You'll see a real
+   version number.
+
+(Alternatives if you'd rather: `brew install git` after installing
+[Homebrew](https://brew.sh), or a standalone installer from
+<https://git-scm.com/download/mac>.)
+
+**Linux:** Bash is your default shell; `git` is one `apt install git` (or
+`dnf install git`) away if it isn't already present.
 
 ## Open your terminal — three ways
 
@@ -67,7 +87,9 @@ choice.
 
 ```bash
 # Spotlight: Cmd-Space, type "Terminal", hit Return.
-# If git --version prompts to install the Command Line Tools, accept.
+# On a fresh Mac, `git --version` triggers the macOS dialog
+# to install Xcode Command Line Tools — accept it. Once
+# the install finishes, run the command again.
 git --version
 ```
 :::
@@ -76,8 +98,10 @@ git --version
 :sync: win
 
 ```bash
-# Download Git for Windows from https://git-scm.com/download/win
-# Accept the installer defaults. Then open "Git Bash" from the Start menu.
+# Git for Windows installs BOTH git AND the Bash shell.
+# Download: https://git-scm.com/download/win — accept the
+# installer defaults — then open "Git Bash" from the Start menu.
+# At that point git is already on PATH; just confirm:
 git --version
 ```
 :::

@@ -1,6 +1,6 @@
 name: Build and Deploy Sphinx Documentation
 
-# Adapted from sibling repo NIH-NLM/sc-nsforest-qc-nf — same shape, pruned for
+# Adapted from sibling repo Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf — same shape, pruned for
 # this repo (no Python API to autodoc yet, no Nextflow docblock generator).
 # When Typer CLIs land (see curriculum/06-typer-clis.md), add sphinx-apidoc back.
 

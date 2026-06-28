@@ -45,14 +45,27 @@ GitHub — but GitHub is where most collaboration happens.
 
 ## Install / verify Git
 
+The full install walk-through is in the
+[command line + Git Bash](command-line-and-git-bash.md) lesson. Quick
+reminder of where `git` actually comes from:
+
+- **macOS:** *not* pre-installed. Typing `git --version` on a fresh Mac
+  pops up the Xcode Command Line Tools installer; accept it.
+- **Windows:** comes bundled with the **Git for Windows** installer —
+  the same installer that gives you Git Bash. If Git Bash launches,
+  `git` is on PATH.
+- **Lifebit:** pre-installed on every notebook server.
+
 ::::{tab-set}
 
 :::{tab-item} macOS
 :sync: mac
 
 ```bash
+# Open Terminal.app, then:
 git --version
-# If macOS prompts to install the Command Line Tools, accept.
+# If you see "command not found", accept the macOS Command Line Tools
+# install prompt; on a fresh Mac, the very same line triggers it.
 ```
 :::
 
@@ -60,7 +73,7 @@ git --version
 :sync: win
 
 ```bash
-# Git for Windows brought git AND a Bash shell.
+# In Git Bash (which IS Git for Windows — same installer):
 git --version
 ```
 :::
@@ -145,7 +158,7 @@ Refresh GitHub — your file is now there. Make another local commit, then
 This page gives you the floor. The ceiling — branches, forks, multi-remote
 workflows, untangling mistakes — is in the full
 **Git Survival Guide**, which lives in the book companion repo as
-[`chapters/version-control-as-survival/01_git_survival_guide.md`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/chapters/version-control-as-survival/01_git_survival_guide.md).
+[`chapters/version-control-as-survival/01_git_survival_guide.md`](git-survival-guide.md).
 
 Read it when you hit a situation this page doesn't cover.
 
