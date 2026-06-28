@@ -54,7 +54,7 @@ trustworthy transport and you have a federation.
 
 The headline worked example, *the same one* introduced in
 [federated computing](federated-computing.md), is the federated
-beta-cell-function predictor in **[NIH-NLM/oadr-autoantibody](https://github.com/NIH-NLM/oadr-autoantibody)**.
+beta-cell-function predictor in **[Science-and-Technology-Consulting-LLC/oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)**.
 
 This time, focus on the **learning** half of the story.
 
@@ -97,7 +97,7 @@ open the notebook:
    round 4 with mean prediction error 0.245 — *matching lasso's single
    round to two decimal places.*
 
-The notebook to open: [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb).
+The notebook to open: [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb).
 
 ### Why the autoencoder result is the most important
 

@@ -5,7 +5,7 @@ The federated analysis paired with the
 [federated-learning](../../lessons/federated-learning/README.md) lessons
 lives in its own repository:
 
-**[NIH-NLM/oadr-autoantibody](https://github.com/NIH-NLM/oadr-autoantibody)**
+**[Science-and-Technology-Consulting-LLC/oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)**
 
 *Predicting residual beta-cell function in Type 1 Diabetes, under
 federation.*
@@ -50,10 +50,10 @@ deep models needs a shared representation first.**
 
 In the upstream repo:
 
-- [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb) — end-to-end federated story
-- [`ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb) — centralised baseline
-- [`ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb) — interpretable linear
-- [`ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb) — power-vs-cohort-size
+- [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb) — end-to-end federated story
+- [`ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb) — centralised baseline
+- [`ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb) — interpretable linear
+- [`ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb) — power-vs-cohort-size
 
 ## Why a separate repo, not a fork here
 

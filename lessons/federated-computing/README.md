@@ -73,7 +73,7 @@ site ran the code you think it ran**.
 The headline worked example for this lesson is a real, working federated
 analysis in the NIH-NLM organisation:
 
-**[NIH-NLM/oadr-autoantibody](https://github.com/NIH-NLM/oadr-autoantibody)** —
+**[Science-and-Technology-Consulting-LLC/oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)** —
 *Predicting residual beta-cell function in Type 1 Diabetes, under
 federation.*
 
@@ -116,13 +116,13 @@ they're the structural argument for federation:
 
 The four notebooks worth opening:
 
-- [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb)
+- [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb)
   — the end-to-end federated story.
-- [`ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb)
+- [`ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb)
   — the centralised baseline the federation is compared against.
-- [`ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb)
+- [`ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb)
   — the interpretable-linear iteration.
-- [`ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/NIH-NLM/oadr-autoantibody/blob/main/ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb)
+- [`ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb)
   — the power-vs-cohort-size argument that motivates federation.
 
 Open the federated notebook first. Don't read the code; read the

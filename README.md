@@ -55,7 +55,7 @@ elements-of-style-lessons/
 │
 ├── case-studies/                   Threaded worked stories
 │   ├── endometriosis/              GSE179640 bulk + scRNA-seq
-│   └── oadr-autoantibody/          T1D federated (NIH-NLM/oadr-autoantibody)
+│   └── oadr-autoantibody/          T1D federated (Science-and-Technology-Consulting-LLC/oadr-autoantibody)
 │
 ├── bridges/                        Work environments such as AoU-style "can't git pull" patterns
 ├── data/                           shared sample / test fixtures

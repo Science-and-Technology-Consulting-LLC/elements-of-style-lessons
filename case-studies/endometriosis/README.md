@@ -24,7 +24,7 @@ endometriosis/
 │   └── 01_volcano_teaser.ipynb            R — DESeq2 volcano plot
 ├── data/
 │   └── sra_explorer_metadata.tsv          61-sample export from sra-explorer.info
-└── sc-nsforest-fork/                      Fork of NIH-NLM/sc-nsforest-qc-nf used in the case study
+└── sc-nsforest-fork/                      Fork of Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf used in the case study
 ```
 
 ## Which lessons this case study uses

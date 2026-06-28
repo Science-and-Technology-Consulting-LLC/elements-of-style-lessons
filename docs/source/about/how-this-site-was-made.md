@@ -42,7 +42,7 @@ Every push to `main` triggers `.github/workflows/docs.yml`, which:
    <https://adeslatt.github.io/elements-of-style-workflows/>.
 
 The pattern is borrowed (with thanks) from the sibling NIH-NLM project
-[`sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf).
+[`sc-nsforest-qc-nf`](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf).
 
 ## Add a new page
 
@@ -59,4 +59,4 @@ That's it. No DSL to learn beyond Markdown.
 The voice and structure are descended from the author's
 [Kids First + INCLUDE training site](https://github.com/NIH-NICHD/Kids-First-INCLUDE-Elements-of-Style-Workflow-Creation-Maintenance)
 and her CAVATICA training. The Sphinx pattern is descended from
-[`sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf).
+[`sc-nsforest-qc-nf`](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf).

@@ -74,6 +74,7 @@ lessons/introduction
 lessons/elements-of-style-rules
 lessons/command-line-and-git-bash
 lessons/version-control
+lessons/git-survival-guide
 lessons/conda-environments
 lessons/interactive-computing
 lessons/reusable-clis

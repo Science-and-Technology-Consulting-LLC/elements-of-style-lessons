@@ -2,7 +2,7 @@
 
 Every container in this directory follows the same rule: **one container,
 one job, one CLI.** The layout mirrors
-[`NIH-NLM/sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf).
+[`Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf`](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf).
 
 ## Layout
 
