@@ -23,7 +23,7 @@ We must think of our work on the computer, the scratching of the pen to paper so
 The outcome must be indeed the outcome you planned and that anyone can repeat and achieve the same.   
 
 - Each step must be clear.
-- Each environment clear.
+- Each environment clean.
 - We do not reinvent the wheel.  We can explicitly use the work of others.
 - Find that working code.
 - Add, if required, command line interfaces so each step is clear.
