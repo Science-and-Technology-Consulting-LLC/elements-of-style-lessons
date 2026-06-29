@@ -1,19 +1,37 @@
 # Elements of Style for Biomedical Workflow Creation in the Era of Agentic AI
 
 A pragmatic, repeatable set of lessons for building biomedical workflows
-that promote best practices.  In the spirit of [Strunk and White's English Grammar Book](https://en.wikipedia.org/wiki/The_Elements_of_Style).  White studied writing under Strunk in 1919, he described "the little book" as a "forty-three-page summation of the case for cleanliness, accuracy, and brevity in the use of English".  Similarly, Kernighan and Ritchie wrote [The C Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language).  In it Brian W. Kernighan and Dennis M. Ritchie embraced the spirit of that book in the execution of their book covering the core elements of programming style in C.  With keen focus on clarity, simplicity, maintainability, and predictable execution, closely aligning with the classic design philosophy pioneered by Brian Kernighan and P.J. Plauger in The Elements of Programming Style. The need for cleanliness, accuracy and brevity are even more important now in our Era of Agentic AI.  In [prompt engineering](https://en.wikipedia.org/wiki/Prompt_engineering) you must be very focused, clear and intentional about the desired outcomes.  Doing all of this in such a way that you can find your work again, being kind to your future self, is the focus of this work.  Clarity in an environment where many do not have English as their primary language, it calls for even more brevity, to avoid confusion, more clarity, to ensure precision and absolute accuracy.  When speaking to a computer, one must often remind it that it is precisely that.  A computer.  Not capable of reasoning or judgement.  You as the human must maintain that, and now must even be more sure of your correctness.
+that promote best practices.  In the spirit of [Strunk and White's English Grammar Book](https://en.wikipedia.org/wiki/The_Elements_of_Style).  White studied writing under Strunk in 1919, he described "the little book" as a "forty-three-page summation of the case for cleanliness, accuracy, and brevity in the use of English".  
+
+Similarly, Kernighan and Ritchie wrote [The C Programming Language](https://en.wikipedia.org/wiki/The_C_Programming_Language).  In it Brian W. Kernighan and Dennis M. Ritchie embraced the spirit of that book in the execution of their book covering the core elements of programming style in C.  With keen focus on clarity, simplicity, maintainability, and predictable execution, closely aligning with the classic design philosophy pioneered by Brian Kernighan and P.J. Plauger in [The Elements of Programming Style](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style). 
+
+The need for cleanliness, accuracy and brevity are even more important now in our Era of Agentic AI.  In [prompt engineering](https://en.wikipedia.org/wiki/Prompt_engineering) you must be very focused, clear and intentional about the desired outcomes.  Doing all of this in such a way that you can find your work again, being kind to your future self, is the focus of this work.  Clarity in an environment where many do not have English as their primary language, it calls for even more brevity, to avoid confusion, more clarity, to ensure precision and absolute accuracy.  
+
+When speaking to a computer, one must often remind it that it is precisely that.  A computer.  Not capable of reasoning or judgement.  You as the human must maintain that, and now must even be more sure of your correctness.
 
 :::{admonition} The philosophy
 :class: tip
 
-**Educate without disrupting.** The lessons add gentle, practical
-tools you can reach for *when the opportunity arises* — so that the
-right thing becomes a little easier each time.
+**Clean, Accurate and Brief** The lessons add gentle, practical
+tools for immediate use so the practioner becomes immediately capable.
 :::
 
 ## Dry Workbench
 
-We must think of our work on the computer, the scratching of the pen to paper so to speak, as similar to the wet bench.  The area must be kept clean.  To be sure the experiment you are running is repeatable and that the outcome you achieve is indeed the outcome that anyone will achieve.   Each step must be clear.  Each environment clear.  Benefiting from many who came before you, do not reinvent the wheel.  Find that working code.  If required create command line interfaces to each step.  Assemble the steps into a repeatable SOP.  Test and iterate.  Automate and store.  Each of these steps will be explained but understanding this philosphically first will help the reader on their way.
+We must think of our work on the computer, the scratching of the pen to paper so to speak, as similar to the biologists' wet bench.  The area must be kept clean, free of contaminents.  The researcher must be sure the experiment being run is repeatable.  
+
+The outcome must be indeed the outcome you planned and that anyone can repeat and achieve the same.   
+
+- Each step must be clear.
+- Each environment clear.
+- We do not reinvent the wheel.  We can explicitly use the work of others.
+- Find that working code.
+- Add, if required, command line interfaces so each step is clear.
+- Assemble the steps into a repeatable standard operating proceedure, a SOP.
+- Test and iterate.
+- Automate and store.
+
+Each step clear, brief, clean and accurate.  Understanding this philosphically first will help the reader on their way.
 
 ## Audience
 
