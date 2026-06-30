@@ -97,3 +97,39 @@ html_context = {
     "github_version": "main",
     "conf_py_path": "/docs/source/",
 }
+
+
+# -- "Edit on GitHub" override for include-shim pages -----------------------
+#
+# Lesson narratives live at `lessons/<topic>/README.md` (canonical).
+# `docs/source/lessons/<topic>.md` are include-shims that pull the
+# canonical content in so Sphinx can render it.
+#
+# Without this override, "Edit on GitHub" lands on the shim. We want it to
+# land directly on the canonical README — one click, the right file.
+#
+# The override sets `canonical_edit_path` in the page context; the
+# overridden `_templates/breadcrumbs.html` uses it when present.
+
+def _canonical_edit_path_for(pagename: str) -> str | None:
+    """Return the canonical file path (relative to repo root) for a shim
+    page, or None if this page isn't a shim that needs overriding.
+    """
+    if not pagename.startswith("lessons/"):
+        return None
+    # The git-survival-guide page is a sub-asset of the version-control lesson
+    if pagename == "lessons/git-survival-guide":
+        return "lessons/version-control/git-survival-guide.md"
+    # Standard lesson shim
+    topic = pagename.split("/", 1)[1]
+    return f"lessons/{topic}/README.md"
+
+
+def _add_canonical_edit_path(app, pagename, templatename, context, doctree):
+    canonical = _canonical_edit_path_for(pagename)
+    if canonical:
+        context["canonical_edit_path"] = canonical
+
+
+def setup(app):
+    app.connect("html-page-context", _add_canonical_edit_path)

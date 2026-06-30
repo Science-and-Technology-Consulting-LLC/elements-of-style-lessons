@@ -1,67 +1,100 @@
-# Introduction to Elements of Style
-
+# Introduction
 
 > *In the book: Chapter 1 — Introduction.*
 
 :::{admonition} What you'll learn
 :class: tip
 
-- The *why* behind this whole curriculum.
-- How to navigate the lessons in any order you like.
-- Where the worked examples and case studies live.
+- The why behind this curriculum and the lineage it came from.
+- The three things this work is trying to grow: literacy, capacity, and skill.
+- The good and bad uses of AI tools in this discipline.
+- How to navigate the lessons.
 :::
 
 :::{admonition} 📸 Screenshot placeholder
 :class: note
 
-*TBD: will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
+*A screenshot will land at `assets/overview.png`. Reference it from
+this README as `![overview](assets/overview.png){width=520}` once
+captured.*
 :::
 
-*Welcome.*
+## Why
 
-This is the front door of the lessons. The intent of this page is to set the
-stage: what these lessons are for, who they're for, and why the order is the
-order it is.
+A pragmatic, repeatable set of lessons for building biomedical workflows
+that promote best practices, in the spirit of Strunk and White's English
+grammar book — cleanliness, accuracy, and brevity. Kernighan and Ritchie
+applied the same spirit to *The C Programming Language*. Kernighan and
+Plauger codified it for code in *The Elements of Programming Style*.
 
-## What this site is
+The need is sharper now. In the era of agentic AI, prompt engineering
+asks the same things of you that Strunk and White asked: be focused,
+clear, intentional. Be brief. Be precise.
 
-A structured set of lessons for working biomedical scientists. The lessons
-are descended from the earlier NICHD trainings (Kids First, INCLUDE,
-CAVATICA) and from the Springer book
-*Elements of Style in Creating Workflows for Biomedical Research in the Era of Agentic AI.*
+When speaking to a computer, one must often remind it that it is
+precisely that. A computer. Not capable of reasoning or judgement. You
+as the human must maintain that, and now must even be more sure of
+your correctness.
 
-Each topic produces real, durable artifacts: a Typer CLI you can run from
-the command line *and* hand to an AI agent, plus Jupyter notebooks (R and
-Python) that demonstrate the result visually.
+## Lineage
+
+This curriculum has been taught seven times:
+
+- Dec 2020 — Jackson Laboratory, 5 days, co-taught with Christina
+  Chatzipiantzou and the Lifebit team on the Lifebit Data Analysis
+  platform.
+- Fall 2021 — ISCB Academy, 3 hours, with the Lifebit team.
+- Mar 2022 — NICHD Scholar, 3 hours, INCLUDE platform with Seven
+  Bridges CAVATICA.
+- Aug 2022 — NICHD Scholar, 5 days, Kids First with Seven Bridges
+  CAVATICA.
+- Mar 2023 — NICHD Scholar, Kids First and INCLUDE with Velsera.
+- 2024 — Lifebit Federated Data and Learning Fabric.
+
+## Literacy, capacity, skill
+
+**Literacy** — the vocabulary, the mental models, the names of the
+tools. Reading a Dockerfile, a Nextflow process, a Typer CLI, a
+federated workflow, even before writing one.
+
+**Capacity** — the infrastructure that lets you actually run the
+work: local terminal, conda env, container runtime, GitHub repo,
+platform account. The curriculum lowers this threshold deliberately,
+deck by deck.
+
+**Skill** — the doing. Writing the CLI, the module, the workflow.
+Wrapping the CLI as an MCP server. Skill compounds; it shows up in
+how much science you can do per unit of time.
+
+A fourth — *understanding* — emerges when all three are in place: the
+ability to reason about why a pipeline produced what it produced.
+
+## AI tools — good and bad uses
+
+| Good uses of AI | Pitfalls to avoid |
+|-----------------|-------------------|
+| Learning proper syntax | Letting AI design your architecture |
+| Initial code scaffolding | Accepting code without understanding |
+| Understanding error messages | No review or testing |
+| Creating test data | Overcomplicating simple tasks |
+| Documentation generation | Losing design principles |
+
+One must have a simple design idea in one's head — or one will be led
+astray. Without clear direction, AI generates code that is hard to
+maintain, hard to understand, and unnecessarily complex.
+
+A well-built CLI with an honest `--help`, paired with an MCP server,
+is the discipline that turns AI from hazard into collaborator. See
+[MCP server](mcp-server.md) and
+[Publishing for agents](publishing-for-agents.md).
 
 ## How to use the lessons
 
-- **You can follow them in order** — that's the natural learning arc.
-- **You can drop in anywhere** — each lesson is self-contained.
-- **You can use just the CLIs** — every deliverable is installable from
-  this repo's `pyproject.toml`.
-
-## The arc
-
-| Position | Topic | What you take away |
-|----------|-------|--------------------|
-| Set the stage | Introduction (this page) | The why |
-| Set the stage | [Elements of Style — Rules](elements-of-style-rules.md) | The pithy rules |
-| Foundation | [Command line + Git Bash](command-line-and-git-bash.md) | A working terminal |
-| Foundation | [Version control](version-control.md) | A versioned repo |
-| Foundation | [Conda environments](conda-environments.md) | A pinned env |
-| Foundation | [Interactive computing](interactive-computing.md) | Notebooks demystified |
-| Build | [Reusable CLIs](reusable-clis.md) | Typer in your hands |
-| Build | [Containers](containers.md) | One container, one job |
-| Build | [Nextflow](nextflow-workflows.md) → [modules](nextflow-modules.md) | A real pipeline |
-| Scale | [Federated computing](federated-computing.md) | Many machines, one workflow |
-| Scale | [Federated learning](federated-learning.md) | ML across data silos |
-| Agent | [MCP server](mcp-server.md) | An agent can drive your CLI |
-| Agent | [Publishing for agents](publishing-for-agents.md) | Findable, callable, agent-ready |
-| Run | [Platforms](platforms.md) | Lifebit, CAVATICA, the open-science transport layer |
+- In order, for the natural arc.
+- Drop in anywhere — each lesson is self-contained.
+- Use just the artefacts — every container ships a CLI, every Nextflow
+  module wraps that CLI, every workflow composes the modules.
 
 ## Where to next
 
-→ [Elements of Style — Rules](elements-of-style-rules.md)
+→ [The Rules](elements-of-style-rules.md)

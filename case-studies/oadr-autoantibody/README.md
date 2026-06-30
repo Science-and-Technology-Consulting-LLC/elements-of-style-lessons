@@ -10,6 +10,12 @@ lives in its own repository:
 *Predicting residual beta-cell function in Type 1 Diabetes, under
 federation.*
 
+The federated platform behind this case study is **ADAPTS**
+(Autoimmune Disease Analysis Platform Testing Space) — an NIH
+initiative running on Lifebit's federated computing fabric. The
+case study is the demonstration of what's possible when the
+federated lessons are stacked on the ADAPTS / Lifebit platform.
+
 ## What it shows
 
 Each of four cohorts — **SDY524**, **SDY569**, **SDY797**, **SDY1737** —

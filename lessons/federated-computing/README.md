@@ -68,6 +68,17 @@ That's it. Everything else is engineering. The hard parts are
 **agreement on what summary leaves each site**, and **trust that each
 site ran the code you think it ran**.
 
+## The platform — ADAPTS (on Lifebit's federated fabric)
+
+The platform behind the worked example below is **ADAPTS** —
+Autoimmune Disease Analysis Platform Testing Space, an NIH initiative
+led by NHLBI/CC, NHLBI, NIAMS, NIAID, with NIEHS, NIDCR, NINR, NINDS,
+and NHGRI collaborating. ADAPTS runs on **Lifebit's federated
+computing fabric** — the transport layer that lets each participating
+institution train on its own data and share only model parameters with
+a coordinator. The federation patterns this lesson teaches are the
+same patterns ADAPTS uses in production.
+
 ## The worked example — `oadr-autoantibody`
 
 The headline worked example for this lesson is a real, working federated
