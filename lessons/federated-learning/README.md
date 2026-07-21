@@ -1,7 +1,7 @@
 # Federated learning
 
 
-> *In the book: Chapter 12 — Federated learning.*
+> *In the book: Chapter 14 — Federated learning.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -155,6 +155,14 @@ A federated workflow without DP and without secure aggregation is still
 a major improvement over centralisation in most biomedical contexts —
 but call out which guarantees you have and which you don't have. Don't
 let the word *federated* do work that *private* should be doing.
+
+## Further reading
+
+- [McMahan et al. — Federated Averaging (2016)](https://arxiv.org/abs/1602.05629) — the foundational paper
+- [Flower framework](https://flower.ai/) — an open FL framework
+- [PySyft](https://github.com/OpenMined/PySyft) — privacy-preserving ML
+- [oadr-autoantibody notebooks](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/tree/main/ipynb)
+
 
 ## Where to next
 

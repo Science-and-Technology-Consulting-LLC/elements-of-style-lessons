@@ -84,6 +84,14 @@ nextflow run main-hello-py-greet.nf -profile lifebit --name elements-of-style
 
 ::::
 
+## Further reading
+
+- [Nextflow documentation](https://www.nextflow.io/docs/latest/)
+- [nf-core module standards](https://nf-co.re/docs/contributing/modules) — community conventions
+- [Nextflow process reference](https://www.nextflow.io/docs/latest/process.html)
+- [Groovy documentation](https://groovy-lang.org/documentation.html) — Nextflow's host language
+
+
 ## Where to next
 
-→ [Federated computing](federated-computing.md)
+→ [Nextflow workflows](nextflow-workflows.md) — compose modules into a pipeline.

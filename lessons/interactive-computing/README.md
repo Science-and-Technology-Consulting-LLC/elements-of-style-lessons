@@ -135,6 +135,15 @@ Nextflow are all supported. What it *doesn't* give you is a direct
 notebooks; it just changes the workflow. See
 [Bridge patterns](../bridges/index.md) for the gentle approach.
 
+## Further reading
+
+- [Project Jupyter](https://jupyter.org/) — home page and documentation index
+- [JupyterLab documentation](https://jupyterlab.readthedocs.io/) — the modern interface
+- [IRkernel](https://irkernel.github.io/) — R kernel for Jupyter
+- [Executable Books Project](https://executablebooks.org/) — MyST-NB, Jupyter Book, and friends
+- [nbconvert](https://nbconvert.readthedocs.io/) — convert notebooks to other formats
+
+
 ## Where to next
 
-→ Next lesson: [From notebooks toward Nextflow](nextflow-workflows.md)
+→ [Building reusable command-line tools](reusable-clis.md)

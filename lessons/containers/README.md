@@ -223,6 +223,16 @@ smoke-test command you can paste into any README. Once you have that,
 [Nextflow](nextflow-workflows.md) becomes trivial — it's just wiring boxes
 together.
 
+## Further reading
+
+- [Docker documentation](https://docs.docker.com/)
+- [Dockerfile reference](https://docs.docker.com/reference/dockerfile/) — every instruction
+- [Open Container Initiative](https://opencontainers.org/) — the spec containers implement
+- [BioContainers](https://biocontainers.pro/) — pre-built bioinformatics container catalog
+- [hadolint](https://github.com/hadolint/hadolint) — Dockerfile linter
+- [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+
+
 ## Where to next
 
-→ [From notebooks toward Nextflow](nextflow-workflows.md)
+→ [Nextflow modules](nextflow-modules.md) — wrap each CLI verb as a `.nf` module.

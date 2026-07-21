@@ -1,7 +1,7 @@
 # Publishing for agents
 
 
-> *In the book: Chapter 14 — Publishing for agents.*
+> *In the book: Chapter 17 — Publishing for agents.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -196,6 +196,16 @@ structured README, a tagged release, a CI badge that's green, and a
 container image you (or an agent) can pull. From there,
 [MCP server](mcp-server.md) is the final step that lets an agent
 discover it and run it on a [platform](platforms.md).
+
+## Further reading
+
+- [Python Packaging User Guide](https://packaging.python.org/)
+- [Semantic Versioning](https://semver.org/)
+- [Keep a Changelog](https://keepachangelog.com/)
+- [GitHub Container Registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
+- [Zenodo](https://zenodo.org/) — long-term citable DOI for a GitHub release
+- [NIH-NLM GitHub](https://github.com/NIH-NLM) — publication conventions to mirror
+
 
 ## Where to next
 

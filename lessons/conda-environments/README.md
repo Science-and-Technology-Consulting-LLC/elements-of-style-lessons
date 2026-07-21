@@ -152,6 +152,15 @@ which python         # full path tells you where you are
 If the path doesn't include `envs/eos`, you forgot to `conda activate eos`.
 Happens to everyone.
 
+## Further reading
+
+- [Miniforge](https://github.com/conda-forge/miniforge) — installer
+- [conda-forge](https://conda-forge.org/) — the community package channel
+- [Mamba](https://mamba.readthedocs.io/) — a faster drop-in for conda
+- [IRkernel](https://irkernel.github.io/) — R kernel for Jupyter
+- [conda documentation](https://docs.conda.io/) — the authoritative reference
+
+
 ## Where to next
 
 → Next lesson: [Interactive computing with Jupyter](interactive-computing.md)
