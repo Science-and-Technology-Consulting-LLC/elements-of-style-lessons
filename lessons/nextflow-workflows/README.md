@@ -251,7 +251,14 @@ A `main.nf` you wrote yourself, with one or two modules and one or two
 add modules, swap in real data, and graduate to running on a
 [platform](platforms.md) — but the muscle is built.
 
+## Further reading
+
+- [Nextflow documentation](https://www.nextflow.io/docs/latest/)
+- [Nextflow patterns](https://nextflow-io.github.io/patterns/) — common workflow idioms
+- [nf-core pipelines](https://nf-co.re/pipelines) — production examples
+- [Nextflow Tower / Seqera Platform](https://cloud.seqera.io/) — orchestration and monitoring
+
+
 ## Where to next
 
-→ [Nextflow modules](nextflow-modules.md) — the deeper dive on writing
-modules other people (and other workflows) can reuse.
+→ [Documentation](documentation.md) — write a Sphinx site for the workflow you just built.

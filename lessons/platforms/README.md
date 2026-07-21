@@ -1,7 +1,7 @@
 # Platforms — a transport-layer protocol for science as a service
 
 
-> *In the book: Chapter 15 — Platforms — a transport-layer protocol for science.*
+> *In the book: Chapter 18 — Platforms — a transport-layer protocol for science.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -110,6 +110,16 @@ Platforms close the loop the rest of the lessons opened. Every CLI you
 built, every container you wrote, every Nextflow module you composed —
 they all run on one of these platforms. The [MCP server](mcp-server.md)
 lesson is what makes them agent-driveable.
+
+## Further reading
+
+- [Lifebit](https://lifebit.ai/) — federated computing platform (this lesson's headline)
+- [Seven Bridges CAVATICA](https://www.cavatica.org/) — pediatric research platform
+- [All of Us Researcher Workbench](https://www.researchallofus.org/data-tools/workbench/)
+- [Biowulf](https://hpc.nih.gov/) — NIH HPC (comparison: HPC vs cloud PaaS)
+- [Terra](https://terra.bio/) — Broad Institute genomics platform
+- [DNAnexus](https://www.dnanexus.com/) — commercial PaaS
+
 
 ## Where to next
 

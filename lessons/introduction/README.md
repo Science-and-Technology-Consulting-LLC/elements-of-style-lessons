@@ -11,14 +11,6 @@
 - How to navigate the lessons.
 :::
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
-
-*A screenshot will land at `assets/overview.png`. Reference it from
-this README as `![overview](assets/overview.png){width=520}` once
-captured.*
-:::
-
 ## Why
 
 A pragmatic, repeatable set of lessons for building biomedical workflows
@@ -94,6 +86,14 @@ is the discipline that turns AI from hazard into collaborator. See
 - Drop in anywhere — each lesson is self-contained.
 - Use just the artefacts — every container ships a CLI, every Nextflow
   module wraps that CLI, every workflow composes the modules.
+
+## Further reading
+
+- [Strunk & White — *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
+- [Kernighan & Ritchie — *The C Programming Language*](https://en.wikipedia.org/wiki/The_C_Programming_Language)
+- [Kernighan & Plauger — *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)
+- [Prompt engineering — Wikipedia overview](https://en.wikipedia.org/wiki/Prompt_engineering)
+
 
 ## Where to next
 

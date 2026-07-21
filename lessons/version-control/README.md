@@ -162,6 +162,15 @@ workflows, untangling mistakes — is in the full
 
 Read it when you hit a situation this page doesn't cover.
 
+## Further reading
+
+- [Pro Git book](https://git-scm.com/book/en/v2) — Scott Chacon, free
+- [GitHub Docs](https://docs.github.com/) — for the platform side (PRs, issues, Actions)
+- [GitHub CLI manual](https://cli.github.com/manual/) — `gh` command reference
+- [GitHub Skills](https://skills.github.com/) — interactive courses
+- [Learn Git Branching](https://learngitbranching.js.org/) — visual tutorial
+
+
 ## Where to next
 
 → Next lesson: [Reproducible environments with Conda](conda-environments.md)

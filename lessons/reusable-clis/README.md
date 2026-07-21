@@ -266,7 +266,16 @@ exercises its `--help`, and a Nextflow process that calls it. From
 that point on, the same tool serves humans, CI, Nextflow, and AI
 agents — without changes.
 
+## Further reading
+
+- [Typer](https://typer.tiangolo.com/) — modern Python CLI framework
+- [Click](https://click.palletsprojects.com/) — the library Typer is built on
+- [Command Line Interface Guidelines](https://clig.dev/) — comprehensive design guide
+- [argparse — Python standard library](https://docs.python.org/3/library/argparse.html)
+- [docopt for R](https://cran.r-project.org/package=docopt) — help text as spec
+- [optparse for R](https://cran.r-project.org/package=optparse) — argparse-style for R
+
+
 ## Where to next
 
-→ [MCP server](mcp-server.md) — wrap your CLI as an MCP server and let
-an agent drive it.
+→ [Containers](containers.md) — take your CLI and put it in a single-purpose container.

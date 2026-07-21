@@ -11,14 +11,6 @@
 - How to read a command and ask `--help` for the rest.
 :::
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
-
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
-
 The terminal is the lingua franca of biomedical computing. Cloud platforms,
 HPC clusters, containers — almost all of them want to talk to you in shell
 commands. The good news: you only need about ten commands to start being
@@ -121,6 +113,21 @@ git --version
 After either path, the prompt you see should look about the same. That's
 the whole point — the rest of this lesson works identically.
 
+## Clone this repo
+
+Now that git is on your machine, pull down a local copy of these
+lessons. That gives you a reference to look at as you go.
+
+```bash
+cd ~
+git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+cd elements-of-style-lessons
+ls
+```
+
+`ls` should show `lessons/`, `container/`, `modules/`, `docs/`, and the
+rest of the repo. Every later lesson references files under this tree.
+
 ## A guided tour of ten commands
 
 Type each command below at the prompt, hit Enter, and read what you get back.
@@ -209,6 +216,15 @@ pwd
 You should see `notes.md` listed, and `pwd` should report a path ending in
 `/elements-of-style-practice/day-1`. If yes — congratulations, you've just
 created a project folder. Step 2 will turn it into a Git repo.
+
+## Further reading
+
+- [ExplainShell](https://explainshell.com/) — paste any command, see what each flag means
+- [Git for Windows](https://git-scm.com/download/win) — the installer that includes Git Bash
+- [Miniforge](https://github.com/conda-forge/miniforge) — the terminal-friendly conda installer
+- [The Linux Command Line](https://linuxcommand.org/tlcl.php) — William Shotts' free book
+- [Bash Reference Manual](https://www.gnu.org/software/bash/manual/) — the definitive source
+
 
 ## Where to next
 

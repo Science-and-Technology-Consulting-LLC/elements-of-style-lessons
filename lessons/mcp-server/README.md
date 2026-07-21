@@ -1,7 +1,7 @@
 # MCP server — the agentic AI portion
 
 
-> *In the book: Chapter 13 — MCP server — the agentic AI portion.*
+> *In the book: Chapter 15 — MCP server — the agentic AI portion.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -107,6 +107,15 @@ discussion will land here.*
 
 ::::
 
+## Further reading
+
+- [Model Context Protocol specification](https://modelcontextprotocol.io/)
+- [Anthropic MCP quickstart](https://modelcontextprotocol.io/quickstart)
+- [Official MCP server registry](https://github.com/modelcontextprotocol/servers)
+- [Claude Code MCP integration](https://docs.claude.com/en/docs/claude-code/mcp)
+- [nsforest-cli](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf) — the CLI wrapped in this lesson's example
+
+
 ## Where to next
 
-→ [Publishing for agents](publishing-for-agents.md)
+→ [Agentic harness](agentic-harness.md) — configure the agent that will call your MCP server.

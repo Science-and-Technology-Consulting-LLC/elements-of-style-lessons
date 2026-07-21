@@ -11,14 +11,6 @@
   to reach for when choosing between two ways to do something.
 :::
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
-
-*A screenshot will land at `assets/overview.png` here showing the
-canonical-eight-principles slide. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
-
 ## The canonical eight
 
 Inspired by **Strunk & White** (*The Elements of Style*) and
@@ -167,6 +159,14 @@ in your head; the AI fills in the keystrokes.
 
 GitHub Actions for CI/CD. The sooner you find the broken thing, the
 cheaper it is to fix.
+
+## Further reading
+
+- [Strunk & White — *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
+- [Kernighan & Plauger — *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)
+- [Robert C. Martin — *Clean Code*](https://en.wikipedia.org/wiki/Clean_Code)
+- [How to Design Programs](https://htdp.org/) — a free introduction to program design
+
 
 ## Where to next
 

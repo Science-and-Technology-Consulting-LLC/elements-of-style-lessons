@@ -1,7 +1,7 @@
 # Federated computing
 
 
-> *In the book: Chapter 11 — Federated computing.*
+> *In the book: Chapter 13 — Federated computing.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -201,6 +201,14 @@ every time you propose a federated design:
    themselves can leak training-set information in some adversarial
    settings. Differential privacy and secure aggregation are the next
    step beyond plain federation.
+
+## Further reading
+
+- [Lifebit Federated Data and Learning Fabric](https://lifebit.ai/products/federated-fabric)
+- [Kairouz et al. — *Advances and Open Problems in Federated Learning* (2019)](https://arxiv.org/abs/1912.04977)
+- [oadr-autoantibody repo](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody) — the worked example
+- [NIH ADAPTS overview](https://www.nih.gov/) — Autoimmune Disease Analysis Platform Testing Space
+
 
 ## Where to next
 
