@@ -65,9 +65,12 @@ the right place.
 | Build | [Containers](lessons/containers.md) | One container, one set of CLIs |
 | Build | [Nextflow modules](lessons/nextflow-modules.md) | One `.nf` per CLI verb |
 | Build | [Nextflow workflows](lessons/nextflow-workflows.md) | Compose modules into a pipeline |
+| Durable | [Documentation](lessons/documentation.md) | Sphinx + MyST; this site is the worked example |
+| Durable | [Continuous integration](lessons/continuous-integration.md) | GitHub Actions guards every commit |
 | Scale | [Federated computing](lessons/federated-computing.md) | Compute travels to data |
 | Scale | [Federated learning](lessons/federated-learning.md) | Model parameters travel; data stays put |
 | Agent | [MCP server](lessons/mcp-server.md) | An AI agent can drive your CLI |
+| Agent | [Agentic harness](lessons/agentic-harness.md) | Configure the agent to work with your repo |
 | Agent | [Publishing for agents](lessons/publishing-for-agents.md) | Findable, callable, agent-ready |
 | Run | [Platforms](lessons/platforms.md) | A transport-layer protocol for science as a service |
 
@@ -108,9 +111,12 @@ lessons/reusable-clis
 lessons/containers
 lessons/nextflow-modules
 lessons/nextflow-workflows
+lessons/documentation
+lessons/continuous-integration
 lessons/federated-computing
 lessons/federated-learning
 lessons/mcp-server
+lessons/agentic-harness
 lessons/publishing-for-agents
 lessons/platforms
 ```
