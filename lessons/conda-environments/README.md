@@ -7,7 +7,7 @@
 :class: tip
 
 - Why pinning beats remembering.
-- Create the `eos-lessons` env and activate it everywhere.
+- Create the `eos` env and activate it everywhere.
 - Register the R kernel so Jupyter sees both R and Python.
 :::
 
@@ -21,8 +21,8 @@ key result of this lesson. Reference it from this README as
 
 Reproducibility starts with knowing *which versions of which packages* your
 code needs. Conda is the most common way biomedical projects answer that
-question. One file — `environment.yml` — lists everything, and one command
-recreates the environment from scratch.
+question. One file — `eos.yml` (in the repo root) — lists everything, and
+one command recreates the environment from scratch.
 
 :::{admonition} Why this step matters
 :class: tip
@@ -51,92 +51,141 @@ conda --version
 
 1. An **environment** is a folder full of compatible packages — Python,
    R, bioinformatics tools, whatever. You activate it before running code.
-2. An **`environment.yml`** is a recipe for that folder. Anyone with the
-   recipe can recreate the folder.
+2. An **environment file** (`eos.yml` in this repo) is a *recipe* for
+   that folder. Anyone with the recipe can recreate the folder.
 
 You almost always want the recipe. Hand-installing packages "until it
 works" is the classic way to make work that nobody else (including future
 you) can reproduce.
 
-## Install Miniforge (one time)
+## What's in `eos.yml`
+
+The [`eos.yml`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/eos.yml)
+at the root of this repo is the single environment file for the whole
+curriculum. When resolved it gives you:
+
+- **Python 3.11 + JupyterLab** with three registered kernels:
+  **Python 3**, **Bash**, and **R** (IRkernel).
+- **R 4.x** with a small tidyverse-adjacent set (`tibble`, `dplyr`,
+  `ggplot2`, `docopt`).
+- **Tools** every reader reaches for: `git`, `gh` (GitHub CLI),
+  `nextflow`, `curl`, `wget`.
+- **Python libraries** for the starter notebooks and case studies:
+  `pandas`, `numpy`, `matplotlib`, `typer`, `pydantic`.
+- The **Sphinx + MyST-NB** stack so you can build this site locally.
+
+Docker is *not* installed by `eos.yml` — it needs the system package
+manager (Docker Desktop on macOS/Windows, `apt`/`dnf` on Linux; it's
+already on Lifebit compute). See [containers](../containers/README.md).
+
+## Create the `eos` environment — per venue
 
 ::::{tab-set}
 
-:::{tab-item} macOS
+:::{tab-item} On your laptop (macOS)
 :sync: mac
 
+Install Miniforge once, then create the env from `eos.yml`.
+
 ```bash
-# Apple Silicon or Intel — Miniforge has installers for both.
-# Download from https://github.com/conda-forge/miniforge#install
+# 1. Miniforge — the lightweight, conda-forge-first installer.
+#    Apple Silicon or Intel — Miniforge has installers for both.
+#    Download from https://github.com/conda-forge/miniforge#install
 bash Miniforge3-MacOSX-arm64.sh    # or -x86_64 on Intel
+
+# 2. Create the eos environment from the repo file.
+cd elements-of-style-lessons
+conda env create -f eos.yml
+conda activate eos
 ```
 :::
 
-:::{tab-item} Windows (Git Bash)
+:::{tab-item} On your laptop (Windows Git Bash)
 :sync: win
 
 ```bash
-# Download Miniforge3-Windows-x86_64.exe from
-# https://github.com/conda-forge/miniforge#install — run it.
-# Then reopen Git Bash so PATH picks up conda.
+# 1. Download Miniforge3-Windows-x86_64.exe from
+#    https://github.com/conda-forge/miniforge#install and run it.
+#    Then reopen Git Bash so PATH picks up conda.
 conda --version
+
+# 2. Create the eos environment.
+cd elements-of-style-lessons
+conda env create -f eos.yml
+conda activate eos
 ```
 :::
 
-:::{tab-item} Lifebit
+:::{tab-item} In Google Cloud Shell
+:sync: gcs
+
+Open <https://shell.cloud.google.com/> (any Google account).
+Miniconda isn't pre-installed — bootstrap it once, then create `eos`.
+
+```bash
+# 1. Install Miniconda (see creating-a-conda-environment.md for the
+#    full walkthrough).
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3
+exec -l bash
+
+# 2. Clone the repo and create the eos environment.
+git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+cd elements-of-style-lessons
+conda env create -f eos.yml
+conda activate eos
+```
+:::
+
+:::{tab-item} On Lifebit CloudOS
 :sync: lifebit
 
 ```bash
-# Lifebit notebook servers ship mamba/conda pre-installed.
-mamba --version    # or: conda --version
+# Lifebit notebook servers ship mamba/conda pre-installed —
+# just clone and create.
+git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+cd elements-of-style-lessons
+conda env create -f eos.yml
+conda activate eos
 ```
 :::
 
 ::::
 
-## Create the environment for this site
+The first `conda env create` takes a few minutes — Conda is downloading
+and resolving a few hundred packages. After that, activation is instant.
 
-This lessons repo ships an `environment.yml` at the root. From the repo:
+Confirm the essentials:
 
 ```bash
-cd elements-of-style-lessons
-conda env create -f environment.yml   # creates an env called "eos-lessons"
-conda activate eos-lessons
+python --version    # 3.11.x
+R --version         # 4.x
+jupyter --version   # 4.x
+gh --version
+nextflow -version
 ```
 
-The first run takes a few minutes — Conda is downloading and resolving a
-few hundred packages. After that, activation is instant.
+## Register the Bash and R Jupyter kernels
 
-To confirm:
-
-```bash
-python --version
-R --version
-jupyter --version
-```
-
-You should see Python 3.10, R 4.x, and Jupyter all available.
-
-## Register the R kernel for Jupyter
-
-R notebooks in Jupyter need the **IRkernel** to be registered with Jupyter
-once per environment. This repo's `environment.yml` already installs
-`r-irkernel`; you just need to tell Jupyter about it:
+`eos.yml` installs `bash_kernel` (pip) and `r-irkernel` (conda) but they
+need a one-time registration so JupyterLab shows a **Bash** and an
+**R** tile in the launcher:
 
 ```bash
+conda activate eos
+python -m bash_kernel.install
 R -e 'IRkernel::installspec(name="ir", displayname="R")'
 ```
 
-Now when you open Jupyter and click *New*, you'll see both **Python 3** and
-**R** as kernel options.
+Restart JupyterLab; the launcher now shows Python 3, Bash, and R.
 
 ## Editing the environment
 
-When you need a new package, add it to `environment.yml` (don't `pip
-install` ad-hoc into the env), then:
+When you need a new package, add it to `eos.yml` (don't `pip install`
+ad-hoc into the env), then:
 
 ```bash
-conda env update -f environment.yml --prune
+conda env update -f eos.yml --prune
 ```
 
 The `--prune` flag also removes packages you deleted from the file. This

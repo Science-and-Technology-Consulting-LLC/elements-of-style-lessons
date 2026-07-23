@@ -66,8 +66,9 @@ tool.
 2. **README starts with one sentence that names the inputs and outputs.**
    Not "this is a tool for..." but "this tool takes X and produces Y."
    An agent's first scan is for I/O shape.
-3. **`environment.yml`** that pins every dependency. An agent has to
-   reproduce your environment to call your tool.
+3. **A conda environment file** (e.g. `eos.yml` — see
+   [conda-environments](../conda-environments/README.md)) that pins every
+   dependency. An agent has to reproduce your environment to call your tool.
 4. **A single entry-point CLI** (`pyproject.toml` `[project.scripts]`
    entry), so `pip install` produces a real command. See
    [Reusable CLIs](reusable-clis.md).

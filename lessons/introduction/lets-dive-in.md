@@ -73,7 +73,7 @@ CloudOS** is what you reach for when the work needs to scale.
 ## On your laptop (recommended for lessons 1–8)
 
 ```bash
-conda activate eos-lessons
+conda activate eos
 jupyter lab
 ```
 

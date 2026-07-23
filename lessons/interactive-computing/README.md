@@ -70,7 +70,7 @@ in the middle.
 :sync: local
 
 ```bash
-conda activate eos-lessons
+conda activate eos
 jupyter lab
 # A browser tab opens at http://localhost:8888/lab
 ```

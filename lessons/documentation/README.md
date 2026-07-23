@@ -83,7 +83,7 @@ while the docs tree renders it.
 :sync: mac
 
 ```bash
-conda activate eos-lessons
+conda activate eos
 cd docs && make html
 python -m http.server -d build/html 8000
 # open http://localhost:8000
@@ -94,7 +94,7 @@ python -m http.server -d build/html 8000
 :sync: win
 
 ```bash
-conda activate eos-lessons
+conda activate eos
 cd docs && make html
 python -m http.server -d build/html 8000
 # open http://localhost:8000

@@ -67,7 +67,7 @@ site.
 ## Install the toolchain
 
 ```bash
-conda activate eos-lessons   # or a fresh env
+conda activate eos   # or a fresh env
 pip install sphinx sphinx-rtd-theme myst-parser myst-nb \
             sphinx-copybutton sphinx-design linkify-it-py
 ```

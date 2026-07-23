@@ -69,10 +69,10 @@ each of them needs.
 ## On your laptop
 
 Once you've completed [conda-environments](../conda-environments/README.md)
-and activated the `eos-lessons` env, launch JupyterLab from a terminal:
+and activated the `eos` env, launch JupyterLab from a terminal:
 
 ```bash
-conda activate eos-lessons
+conda activate eos
 jupyter lab
 ```
 

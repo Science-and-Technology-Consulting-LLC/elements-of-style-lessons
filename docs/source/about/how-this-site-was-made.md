@@ -28,8 +28,8 @@ of other technical sites. Three reasons for choosing Sphinx:
 ## Build it locally
 
 ```bash
-conda env create -f environment.yml   # one time
-conda activate eos-lessons
+conda env create -f eos.yml   # one time
+conda activate eos
 cd docs && make html
 python -m http.server -d build/html 8000
 # open http://localhost:8000

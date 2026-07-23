@@ -1,0 +1,70 @@
+# Elements of Style — base conda environment
+#
+# One environment that runs the whole curriculum on:
+#   - your laptop (macOS / Windows Git Bash / Linux),
+#   - Google Cloud Shell (https://shell.cloud.google.com/),
+#   - Lifebit CloudOS (https://cloudos.lifebit.ai/).
+#
+# Bootstrap once:
+#     conda env create -f eos.yml
+#     conda activate eos
+#     python -m bash_kernel.install
+#     R -e 'IRkernel::installspec(name="ir", displayname="R")'
+#
+# The last two lines register the Bash and R Jupyter kernels so
+# the .ipynb walkthroughs open with the correct kernel.
+#
+# Docker is intentionally NOT installed here — it needs the system
+# package manager (Docker Desktop on macOS/Windows, `apt`/`dnf` on Linux,
+# already present on Lifebit compute).  See lessons/containers/README.md.
+name: eos
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  # ---- Python + Jupyter ----
+  - python=3.11
+  - jupyterlab
+  - ipykernel
+
+  # ---- R + IRkernel + common tidyverse used by walkthroughs ----
+  - r-base
+  - r-irkernel
+  - r-tibble
+  - r-dplyr
+  - r-ggplot2
+  - r-docopt          # for the Rscript CLI walkthrough
+
+  # ---- Tools every reader will reach for ----
+  - git
+  - gh                # GitHub CLI
+  - nextflow          # workflow engine
+  - curl
+  - wget
+
+  # ---- Python libraries used by the starter notebooks + case studies ----
+  - pandas
+  - numpy
+  - matplotlib
+  - typer             # for the reusable-clis walkthrough
+  - pydantic          # for the publishing-for-agents walkthrough
+
+  # ---- Sphinx docs toolchain (build this site locally) ----
+  # Pins against Sphinx 9+ which breaks myst-parser and myst-nb.
+  - sphinx>=7,<7.3
+  - sphinx-rtd-theme
+  - "myst-parser>=2,<4"
+  - "myst-nb<1.2"
+  - sphinx-copybutton
+  - sphinx-design
+  - linkify-it-py
+  - nbstripout
+
+  # ---- pip-only extras ----
+  - pip
+  - pip:
+      # Bash kernel is PyPI-only; register with:
+      #   python -m bash_kernel.install
+      - bash_kernel

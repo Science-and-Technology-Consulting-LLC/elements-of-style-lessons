@@ -61,7 +61,7 @@ elements-of-style-lessons/
 ├── data/                           shared sample / test fixtures
 ├── docs/                           Sphinx source → GitHub Pages
 ├── pyproject.toml                  console-script manifest
-├── environment.yml                 conda env (eos-lessons)
+├── eos.yml                         conda env (eos) — works on laptop, Google Cloud Shell, Lifebit
 └── .github/workflows/{docs,ci}.yml
 ```
 
@@ -85,8 +85,8 @@ elements-of-style-lessons/
 ## Build locally
 
 ```bash
-conda env create -f environment.yml
-conda activate eos-lessons
+conda env create -f eos.yml
+conda activate eos
 cd docs && make html
 python -m http.server -d build/html 8000
 # open http://localhost:8000
