@@ -217,6 +217,12 @@ You should see `notes.md` listed, and `pwd` should report a path ending in
 `/elements-of-style-practice/day-1`. If yes — congratulations, you've just
 created a project folder. Step 2 will turn it into a Git repo.
 
+## In-depth walkthroughs
+
+- [`using-the-command-line.md`](using-the-command-line.md) —
+  the seven-command walkthrough (adapted from the NICHD Kids First / INCLUDE
+  course), each command in a fenced shell block.
+
 ## Further reading
 
 - [ExplainShell](https://explainshell.com/) — paste any command, see what each flag means

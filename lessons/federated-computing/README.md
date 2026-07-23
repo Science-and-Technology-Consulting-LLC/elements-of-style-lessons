@@ -127,13 +127,13 @@ they're the structural argument for federation:
 
 The four notebooks worth opening:
 
-- [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb)
+- [`federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/federated_analysis_simulation_3x3.ipynb)
   — the end-to-end federated story.
-- [`ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/LinearRegression_vs_CNN_HeadToHead.ipynb)
+- [`LinearRegression_vs_CNN_HeadToHead.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/LinearRegression_vs_CNN_HeadToHead.ipynb)
   — the centralised baseline the federation is compared against.
-- [`ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb)
+- [`LASSO_ElasticNet_Autoantibody_CPeptide.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/LASSO_ElasticNet_Autoantibody_CPeptide.ipynb)
   — the interpretable-linear iteration.
-- [`ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/EffectSizes_and_PowerAnalysis_Extended.ipynb)
+- [`EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/EffectSizes_and_PowerAnalysis_Extended.ipynb)
   — the power-vs-cohort-size argument that motivates federation.
 
 Open the federated notebook first. Don't read the code; read the
@@ -174,7 +174,7 @@ The full federated simulation lives in
 
 ```bash
 # In the oadr-autoantibody workspace on Lifebit:
-jupyter notebook ipynb/federated_analysis_simulation_3x3.ipynb
+jupyter notebook federated_analysis_simulation_3x3.ipynb
 # 30-60 min from cold; results cache so re-renders are seconds.
 ```
 
@@ -204,6 +204,7 @@ every time you propose a federated design:
 
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Lifebit Federated Data and Learning Fabric](https://lifebit.ai/products/federated-fabric)
 - [Kairouz et al. — *Advances and Open Problems in Federated Learning* (2019)](https://arxiv.org/abs/1912.04977)
 - [oadr-autoantibody repo](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody) — the worked example

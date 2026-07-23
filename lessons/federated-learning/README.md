@@ -97,7 +97,7 @@ open the notebook:
    round 4 with mean prediction error 0.245 — *matching lasso's single
    round to two decimal places.*
 
-The notebook to open: [`ipynb/federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/ipynb/federated_analysis_simulation_3x3.ipynb).
+The notebook to open: [`federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/federated_analysis_simulation_3x3.ipynb).
 
 ### Why the autoencoder result is the most important
 
@@ -158,6 +158,7 @@ let the word *federated* do work that *private* should be doing.
 
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [McMahan et al. — Federated Averaging (2016)](https://arxiv.org/abs/1602.05629) — the foundational paper
 - [Flower framework](https://flower.ai/) — an open FL framework
 - [PySyft](https://github.com/OpenMined/PySyft) — privacy-preserving ML

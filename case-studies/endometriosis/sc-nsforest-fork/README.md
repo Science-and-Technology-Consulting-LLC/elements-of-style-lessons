@@ -48,7 +48,7 @@ git clone https://github.com/[your-github-name]/sc-nsforest-qc-nf.git
 cd sc-nsforest-qc-nf
 
 # 3. Add upstream remote (stay in sync with the fork of the NIH-NLM lying here in this instructional fork)
-git remote add upstream https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf.git
+git remote add upstream https://github.com/NIH-NLM/sc-nsforest-qc-nf.git
 
 # 4. Create a branch for our change
 git checkout -b redirect-publish-to-local

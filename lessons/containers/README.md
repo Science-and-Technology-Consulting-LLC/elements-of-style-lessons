@@ -223,8 +223,18 @@ smoke-test command you can paste into any README. Once you have that,
 [Nextflow](nextflow-workflows.md) becomes trivial — it's just wiring boxes
 together.
 
+## In-depth walkthrough
+
+- [`building-dockerfiles.md`](building-dockerfiles.md) —
+  build two real single-purpose images end-to-end: `fastqc` and `multiqc`.
+  The NICHD Kids First / INCLUDE course walks through both step by step; the
+  finished images become the two pipeline steps in the
+  [`multiqc-workflow`](../../case-studies/multiqc-workflow/README.md) case
+  study.
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Docker documentation](https://docs.docker.com/)
 - [Dockerfile reference](https://docs.docker.com/reference/dockerfile/) — every instruction
 - [Open Container Initiative](https://opencontainers.org/) — the spec containers implement

@@ -30,7 +30,7 @@ Your fork and the original (upstream) start identical, then diverge
 as each side makes changes.
 
 ```
-upstream (Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf)     your fork (adeslatt/sc-nsforest-qc-nf)
+upstream (NIH-NLM/sc-nsforest-qc-nf)     your fork (adeslatt/sc-nsforest-qc-nf)
          |                                          |
          v                                          v
     commit A                                   commit A
@@ -53,13 +53,13 @@ git remote -v
 # origin  https://github.com/adeslatt/sc-nsforest-qc-nf.git (push)
 
 # Add the institution's repo as 'upstream'
-git remote add upstream https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf.git
+git remote add upstream https://github.com/NIH-NLM/sc-nsforest-qc-nf.git
 
 git remote -v
 # origin    https://github.com/adeslatt/sc-nsforest-qc-nf.git (fetch)
 # origin    https://github.com/adeslatt/sc-nsforest-qc-nf.git (push)
-# upstream  https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf.git (fetch)
-# upstream  https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf.git (push)
+# upstream  https://github.com/NIH-NLM/sc-nsforest-qc-nf.git (fetch)
+# upstream  https://github.com/NIH-NLM/sc-nsforest-qc-nf.git (push)
 ```
 
 **Your fork will diverge from upstream. Plan for it.**
@@ -77,7 +77,7 @@ Forking is easy. The hard question is: **how do you customise a fork
 for your own use while still benefiting from upstream improvements?**
 
 This is not hypothetical. During development of this book we ran
-`adeslatt/sc-nsforest-qc-nf` — a fork of `Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf` —
+`adeslatt/sc-nsforest-qc-nf` — a fork of `NIH-NLM/sc-nsforest-qc-nf` —
 against the JAX endometriosis dataset. The pipeline needed one change:
 publish results to *our* repository, not NIH-NLM's.
 

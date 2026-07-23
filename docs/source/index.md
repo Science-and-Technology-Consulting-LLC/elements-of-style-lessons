@@ -55,24 +55,24 @@ the right place.
 
 | Position | Lesson | What you take away |
 |----------|--------|--------------------|
-| Set the stage | [Introduction](lessons/introduction.md) | The why |
-| Set the stage | [The Rules](lessons/elements-of-style-rules.md) | A few Pithy phrases |
-| Foundation | [Command line, with Git Bash](lessons/command-line-and-git-bash.md) | A terminal that's the same on Mac, Windows, and Lifebit |
-| Foundation | [Version control with Git](lessons/version-control.md) | A repo your code survives in |
-| Foundation | [Reproducible environments with Conda](lessons/conda-environments.md) | The clean dry workbench |
-| Foundation | [Interactive computing with Jupyter](lessons/interactive-computing.md) | Notebooks demystified and a way to work out the specification of your workflow |
-| Build | [Building reusable command-line tools](lessons/reusable-clis.md) | Typer (Python) + Rscript (R) |
-| Build | [Containers](lessons/containers.md) | One container, one set of CLIs |
-| Build | [Nextflow modules](lessons/nextflow-modules.md) | One `.nf` per CLI verb |
-| Build | [Nextflow workflows](lessons/nextflow-workflows.md) | Compose modules into a pipeline |
-| Durable | [Documentation](lessons/documentation.md) | Sphinx + MyST; this site is the worked example |
-| Durable | [Continuous integration](lessons/continuous-integration.md) | GitHub Actions guards every commit |
-| Scale | [Federated computing](lessons/federated-computing.md) | Compute travels to data |
-| Scale | [Federated learning](lessons/federated-learning.md) | Model parameters travel; data stays put |
-| Agent | [MCP server](lessons/mcp-server.md) | An AI agent can drive your CLI |
-| Agent | [Agentic harness](lessons/agentic-harness.md) | Configure the agent to work with your repo |
-| Agent | [Publishing for agents](lessons/publishing-for-agents.md) | Findable, callable, agent-ready |
-| Run | [Platforms](lessons/platforms.md) | A transport-layer protocol for science as a service |
+| Set the stage | [Introduction](lessons/introduction/index.md) | The why |
+| Set the stage | [The Rules](lessons/elements-of-style-rules/index.md) | A few Pithy phrases |
+| Foundation | [Command line, with Git Bash](lessons/command-line-and-git-bash/index.md) | A terminal that's the same on Mac, Windows, and Lifebit |
+| Foundation | [Version control with Git](lessons/version-control/index.md) | A repo your code survives in |
+| Foundation | [Reproducible environments with Conda](lessons/conda-environments/index.md) | The clean dry workbench |
+| Foundation | [Interactive computing with Jupyter](lessons/interactive-computing/index.md) | Notebooks demystified and a way to work out the specification of your workflow |
+| Build | [Building reusable command-line tools](lessons/reusable-clis/index.md) | Typer (Python) + Rscript (R) |
+| Build | [Containers](lessons/containers/index.md) | One container, one set of CLIs |
+| Build | [Nextflow modules](lessons/nextflow-modules/index.md) | One `.nf` per CLI verb |
+| Build | [Nextflow workflows](lessons/nextflow-workflows/index.md) | Compose modules into a pipeline |
+| Durable | [Documentation](lessons/documentation/index.md) | Sphinx + MyST; this site is the worked example |
+| Durable | [Continuous integration](lessons/continuous-integration/index.md) | GitHub Actions guards every commit |
+| Scale | [Federated computing](lessons/federated-computing/index.md) | Compute travels to data |
+| Scale | [Federated learning](lessons/federated-learning/index.md) | Model parameters travel; data stays put |
+| Agent | [MCP server](lessons/mcp-server/index.md) | An AI agent can drive your CLI |
+| Agent | [Agentic harness](lessons/agentic-harness/index.md) | Configure the agent to work with your repo |
+| Agent | [Publishing for agents](lessons/publishing-for-agents/index.md) | Findable, callable, agent-ready |
+| Run | [Platforms](lessons/platforms/index.md) | A transport-layer protocol for science as a service |
 
 ## What's special about this site
 
@@ -86,8 +86,8 @@ habits that make code easy for a collaborator to rerun next year make
 it easy for an agent to use it on the researcher's behalf next week.
 
 That connection is made explicit in
-[MCP server](lessons/mcp-server.md) and
-[Publishing for agents](lessons/publishing-for-agents.md).
+[MCP server](lessons/mcp-server/index.md) and
+[Publishing for agents](lessons/publishing-for-agents/index.md).
 
 ## Working in a constrained environment?
 
@@ -100,25 +100,25 @@ keep work versioned even when copy/paste is the only road across.
 :hidden:
 :caption: Lessons
 
-lessons/introduction
-lessons/elements-of-style-rules
-lessons/command-line-and-git-bash
-lessons/version-control
+lessons/introduction/index
+lessons/elements-of-style-rules/index
+lessons/command-line-and-git-bash/index
+lessons/version-control/index
 lessons/git-survival-guide
-lessons/conda-environments
-lessons/interactive-computing
-lessons/reusable-clis
-lessons/containers
-lessons/nextflow-modules
-lessons/nextflow-workflows
-lessons/documentation
-lessons/continuous-integration
-lessons/federated-computing
-lessons/federated-learning
-lessons/mcp-server
-lessons/agentic-harness
-lessons/publishing-for-agents
-lessons/platforms
+lessons/conda-environments/index
+lessons/interactive-computing/index
+lessons/reusable-clis/index
+lessons/containers/index
+lessons/nextflow-modules/index
+lessons/nextflow-workflows/index
+lessons/documentation/index
+lessons/continuous-integration/index
+lessons/federated-computing/index
+lessons/federated-learning/index
+lessons/mcp-server/index
+lessons/agentic-harness/index
+lessons/publishing-for-agents/index
+lessons/platforms/index
 ```
 
 ```{toctree}

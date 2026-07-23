@@ -106,6 +106,6 @@ version-controlled sync, on whatever timeline suits you.
 
 If you'd like to graduate from these patterns into native Git use on
 platforms that allow it, head back to
-[Version control with Git](../lessons/version-control.md). The same
+[Version control with Git](../lessons/version-control/index.md). The same
 Git habits work everywhere; the bridge patterns are just the version for
 environments where the front door is locked.
