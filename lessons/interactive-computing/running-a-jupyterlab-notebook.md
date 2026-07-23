@@ -7,9 +7,9 @@ the [interactive-computing](README.md) lesson.*
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
-- **In a terminal** — on your laptop, Lifebit, or CAVATICA Data Studio.
+- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`running-a-jupyterlab-notebook.ipynb`](../ipynb/running-a-jupyterlab-notebook.ipynb) — every code cell
+- **In the paired notebook** [`running-a-jupyterlab-notebook.ipynb`](running-a-jupyterlab-notebook.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the

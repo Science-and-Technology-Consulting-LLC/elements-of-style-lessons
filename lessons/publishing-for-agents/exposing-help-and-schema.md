@@ -8,7 +8,7 @@ lesson.*
 
 - **In a terminal** — copy each shell block into your terminal; copy each
   Python block into `python -` or your editor.
-- **In the paired notebook** [`exposing-help-and-schema.ipynb`](../ipynb/exposing-help-and-schema.ipynb) — every Python
+- **In the paired notebook** [`exposing-help-and-schema.ipynb`](exposing-help-and-schema.ipynb) — every Python
   cell is executed by a dedicated Jupyter **Python 3** kernel. Run the
   shell blocks in a terminal FIRST to create the env and register the
   kernel; then pick that kernel when you open the notebook.

@@ -7,9 +7,9 @@ the [introduction](README.md) lesson.*
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
-- **In a terminal** — on your laptop, Lifebit, or CAVATICA Data Studio.
+- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`pre-training.ipynb`](../ipynb/pre-training.ipynb) — every code cell
+- **In the paired notebook** [`pre-training.ipynb`](pre-training.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -72,22 +72,59 @@ by the time you begin Chapter 3, no time is lost on Day 1.
 |---|---|
 | 11:00–11:10 | Welcome — motivation and rationale |
 | 11:10–11:30 | Registration procedures |
-| 11:30–11:50 | Kids First, INCLUDE, and CAVATICA registrations |
+| 11:30–11:50 | Register the essential accounts (see below) |
 | 11:50–12:00 | Wrap-up and preview of the five course days |
 
 ## Accounts to register for
 
-- **[GitHub](https://github.com/)** — code hosting and version control.
-- **[Zenodo](https://zenodo.org/)** — DOI-assignable data + notebook
-  archive. Free.
-- **[ORCID](https://orcid.org/)** — a persistent researcher identifier.
-  Every account below can be linked to your ORCID.
-- **[Kids First DRC](https://kidsfirstdrc.org/)** — pediatric-data
-  Data Resource Center.
-- **[INCLUDE Data Hub](https://portal.includedcc.org/)** — Down-syndrome-cohort
-  Data Hub.
-- **[CAVATICA](https://cavatica.sbgenomics.com/)** — the compute platform
-  the Kids First / INCLUDE walkthrough uses.
+The elements-of-style lessons run on your **laptop**, in
+**[Google Cloud Shell](https://shell.cloud.google.com/)** (a free
+browser-based terminal that needs only a Google account), or on
+**[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs
+to scale. Register the accounts below in that order — the first three
+are essential; the rest are conditional.
+
+### Essential — for every reader
+
+- **GitHub** — code hosting and version control.
+  Sign up: <https://github.com/signup>. Sign in: <https://github.com/login>.
+  Followed up in [version-control/why-git-and-setup.md](../version-control/why-git-and-setup.md).
+- **ORCID** — a persistent researcher identifier. Every account below can
+  be linked to your ORCID.
+  Sign up: <https://orcid.org/register>. Sign in: <https://orcid.org/signin>.
+- **Zenodo** — DOI-assignable data + notebook archive. Free.
+  Sign in via ORCID (recommended) or GitHub at
+  <https://zenodo.org/login/>.
+
+### If you'll run anything in a browser terminal or federated
+
+- **Google Cloud Shell** — a free browser terminal that ships with `git`,
+  `conda`, `docker`, and enough compute for the early lessons.
+  Sign in with any Google account at <https://shell.cloud.google.com/>.
+- **Lifebit CloudOS** — federated computing platform (headline platform in
+  [platforms/README.md](../platforms/README.md)).
+  Sign up: <https://cloudos.lifebit.ai/register>. Institutional-access
+  requests: <https://lifebit.ai/contact>. Sign in:
+  <https://cloudos.lifebit.ai/login>.
+
+### If you're doing NICHD Kids First / INCLUDE work
+
+The elements-of-style examples themselves don't use CAVATICA — the
+Kids First / INCLUDE course does. Register these three only if you'll
+work in that ecosystem:
+
+- **Kids First DRC** — pediatric-data Data Resource Center.
+  Sign up: <https://portal.kidsfirstdrc.org/> → *Create your account* →
+  connect via **NIH Researcher Authentication Service (RAS)**.
+- **INCLUDE Data Hub** — Down-syndrome-cohort Data Hub.
+  Sign up: <https://portal.includedcc.org/> → *Sign Up* → connect via
+  **ORCID** (recommended) or Google.
+- **CAVATICA** — the compute platform Kids First / INCLUDE runs on.
+  Sign up + sign in: <https://cavatica.sbgenomics.com/> → *Create an
+  account* or *Log in with eRA Commons*. Full walkthroughs live in
+  [platforms/creating-a-cavatica-account.md](../platforms/creating-a-cavatica-account.md)
+  and its siblings under the `platforms` lesson.
+
 
 ## Cloud credits and office hours
 
@@ -98,8 +135,10 @@ the NICHD site.
 
 ## What comes next
 
-→ [`lets-dive-in.md`](lets-dive-in.md) — Day-1 opener: create a CAVATICA
-account and log in.
+→ [`lets-dive-in.md`](lets-dive-in.md) — Day-1 opener: get a terminal
+open on your laptop, in Google Cloud Shell, or on Lifebit.
 
-→ [`pre-training-creating-kids-first-and-other-accounts.md`](../platforms/pre-training-creating-kids-first-and-other-accounts.md) —
-the account-creation click-by-click (in the `platforms` lesson).
+→ Kids First / INCLUDE readers only:
+[`pre-training-creating-kids-first-and-other-accounts.md`](../platforms/pre-training-creating-kids-first-and-other-accounts.md)
+— the CAVATICA-flavoured account-creation click-by-click (in the
+`platforms` lesson).

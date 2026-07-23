@@ -8,7 +8,7 @@ lesson — an R-kernel version of the JupyterLab walkthroughs.*
 
 - **In a terminal / RStudio** — copy each R block into `R` or an RStudio
   console; copy shell blocks into your terminal.
-- **In the paired notebook** [`exploring-an-r-notebook.ipynb`](../ipynb/exploring-an-r-notebook.ipynb) — every R cell
+- **In the paired notebook** [`exploring-an-r-notebook.ipynb`](exploring-an-r-notebook.ipynb) — every R cell
   is executed by the Jupyter **R (IRkernel)** kernel. Run the shell
   blocks in a terminal FIRST to install R + IRkernel; then pick the R
   kernel when you open the notebook.

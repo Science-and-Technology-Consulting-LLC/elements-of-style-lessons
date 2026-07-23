@@ -7,9 +7,9 @@ the [introduction](README.md) lesson.*
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
-- **In a terminal** — on your laptop, Lifebit, or CAVATICA Data Studio.
+- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`lets-dive-in.ipynb`](../ipynb/lets-dive-in.ipynb) — every code cell
+- **In the paired notebook** [`lets-dive-in.ipynb`](lets-dive-in.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -60,47 +60,55 @@ done
 ```
 
 
-## Get a machine up before the reasoning starts
+## Get a terminal open before the reasoning starts
 
-Before we spend any time on the *"how does a workflow work"* discussion, we
-get a notebook running. Once it's up it stays up for about 30 minutes of
-idle time, which is exactly the window Day 1 fills.
+Before we spend any time on the *"how does a workflow work"* discussion,
+get a terminal open. Every subsequent chapter assumes one.
 
-## Fast-track — CAVATICA account (if you're new)
+The elements-of-style lessons use **your laptop first**. If you don't
+have a laptop terminal handy, **Google Cloud Shell** is a free
+browser-based terminal that needs only a Google account. **Lifebit
+CloudOS** is what you reach for when the work needs to scale.
 
-If you haven't registered yet:
-
-1. Go to [https://cavatica.sbgenomics.com/](https://cavatica.sbgenomics.com/).
-2. Click **Create an account** or **Log in with eRA Commons**.
-3. NICHD training runs one support hour after each daily class — use it.
-
-Full click-by-click walkthroughs live in the
-[platforms](../platforms/README.md) lesson:
-
-- [`creating-a-cavatica-account.md`](../platforms/creating-a-cavatica-account.md)
-- [`logging-into-cavatica-step-by-step.md`](../platforms/logging-into-cavatica-step-by-step.md)
-
-## Log in and start a notebook
-
-Once your account exists, the two-step opener is:
-
-1. Log in to CAVATICA.
-2. Create a project → **Data Studio → New Analysis → JupyterLab → Start**.
-
-That drops you into a browser-based JupyterLab session with a terminal,
-`git`, `conda`, `docker`, and `nextflow` pre-installed.
-
-## If you're on your laptop instead
-
-Same idea, less clicking:
+## On your laptop (recommended for lessons 1–8)
 
 ```bash
 conda activate eos-lessons
 jupyter lab
 ```
 
-The rest of Chapter 3 onwards works identically whether the terminal is
-CAVATICA's, Lifebit's, or your laptop's.
+That opens a browser-based JupyterLab with a terminal, `git`, `conda`,
+`docker`, and `nextflow` on your PATH. If any of those is missing,
+[conda-environments](../conda-environments/README.md) walks the install.
+
+## In Google Cloud Shell (free, browser-based)
+
+1. Open <https://shell.cloud.google.com/> and sign in with any Google
+   account.
+2. You land in a fully-provisioned bash terminal with `git`, `conda`,
+   `docker` pre-installed.
+3. If it's your first time, run through
+   [conda-environments/creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md)
+   to bootstrap `conda` and the `eos` environment.
+
+## On Lifebit CloudOS (when the work scales)
+
+1. Sign up at <https://cloudos.lifebit.ai/register>.
+2. Sign in at <https://cloudos.lifebit.ai/login>.
+3. Create a workspace; open its JupyterLab terminal.
+
+See [platforms/README.md](../platforms/README.md) for the fuller
+Lifebit story.
+
+## If you're doing NICHD Kids First / INCLUDE work
+
+The elements-of-style examples don't use CAVATICA — but the Kids First /
+INCLUDE course does. Full CAVATICA walkthroughs live in the
+[platforms](../platforms/README.md) lesson:
+
+- [`creating-a-cavatica-account.md`](../platforms/creating-a-cavatica-account.md)
+- [`logging-into-cavatica-step-by-step.md`](../platforms/logging-into-cavatica-step-by-step.md)
+- [`starting-a-jupyter-lab-notebook.md`](../interactive-computing/starting-a-jupyter-lab-notebook.md)
 
 ## Where to next
 
