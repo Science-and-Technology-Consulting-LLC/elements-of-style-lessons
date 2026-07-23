@@ -8,7 +8,7 @@ R sibling of [`typer-cli-in-fifteen-minutes`](typer-cli-in-fifteen-minutes.md).*
 
 - **In a terminal / RStudio** — copy each R block into `R` or an RStudio
   console; copy shell blocks into your terminal.
-- **In the paired notebook** [`rscript-cli-in-fifteen-minutes.ipynb`](../ipynb/rscript-cli-in-fifteen-minutes.ipynb) — every R cell
+- **In the paired notebook** [`rscript-cli-in-fifteen-minutes.ipynb`](rscript-cli-in-fifteen-minutes.ipynb) — every R cell
   is executed by the Jupyter **R (IRkernel)** kernel. Run the shell
   blocks in a terminal FIRST to install R + IRkernel; then pick the R
   kernel when you open the notebook.

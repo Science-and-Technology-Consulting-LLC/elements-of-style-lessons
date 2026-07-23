@@ -74,14 +74,20 @@ where it fits; don't conflate it with the cloud platforms.
 
 ## Get on Lifebit (the institutional-login path)
 
+- **Sign up:** <https://cloudos.lifebit.ai/register>
+- **Sign in:** <https://cloudos.lifebit.ai/login>
+- **Institutional access requests:** <https://lifebit.ai/contact>
+  (if your institution's SSO isn't on the list yet)
+
 ::::{tab-set}
 
 :::{tab-item} Mac / Windows browser
 :sync: web
 
-1. Go to **[lifebit.ai](https://lifebit.ai)** and choose
+1. Go to **<https://cloudos.lifebit.ai/register>** and choose
    *Sign in with institutional login*.
 2. Pick your institution from the SSO list (NIH, your university, etc.).
+   Not listed? Ask via <https://lifebit.ai/contact>.
 3. Create a workspace; pick the *biomedical analysis* template.
 4. Open the workspace's JupyterLab. You're in.
 :::

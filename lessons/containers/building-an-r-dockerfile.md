@@ -8,7 +8,7 @@ sibling of [`building-dockerfiles`](building-dockerfiles.md).*
 
 - **In a terminal / RStudio** — copy each R block into `R` or an RStudio
   console; copy shell blocks into your terminal.
-- **In the paired notebook** [`building-an-r-dockerfile.ipynb`](../ipynb/building-an-r-dockerfile.ipynb) — every R cell
+- **In the paired notebook** [`building-an-r-dockerfile.ipynb`](building-an-r-dockerfile.ipynb) — every R cell
   is executed by the Jupyter **R (IRkernel)** kernel. Run the shell
   blocks in a terminal FIRST to install R + IRkernel; then pick the R
   kernel when you open the notebook.
