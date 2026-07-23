@@ -22,7 +22,7 @@ environment* below once, then run the steps top-to-bottom.
 ### One time — install R and register IRkernel
 
 ```bash
-conda activate eos-lessons        # or any env dedicated to R work
+conda activate eos        # or any env dedicated to R work
 conda install -c conda-forge r-base r-irkernel -y
 R -e 'IRkernel::installspec(name="ir", displayname="R")'
 ```
