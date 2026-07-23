@@ -45,7 +45,7 @@ Every push to `main` triggers `.github/workflows/docs.yml`, which:
    <https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/>.
 
 The pattern is borrowed (with thanks) from the sibling project
-[`Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf`](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf).
+[`NIH-NLM/sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf).
 
 ## Add a new page
 
@@ -85,7 +85,7 @@ iteration informed the structure of this site.
 The pattern of *every container ships a CLI, every Nextflow module
 wraps that CLI, every workflow composes the modules* is descended from
 the sibling project
-[`sc-nsforest-qc-nf`](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf)
+[`sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf)
 — which itself is the production-grade version of what this site
 teaches.
 

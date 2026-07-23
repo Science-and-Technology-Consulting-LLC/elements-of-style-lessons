@@ -162,8 +162,27 @@ workflows, untangling mistakes — is in the full
 
 Read it when you hit a situation this page doesn't cover.
 
+## In-depth walkthroughs
+
+Five short walkthroughs adapted from the NICHD Kids First / INCLUDE
+course, each covering one moment in the Git lifecycle:
+
+1. [`why-git-and-setup.md`](why-git-and-setup.md) —
+   why Git, why GitHub, and one-time terminal setup (`nano`, `conda`, `gh`,
+   `git config`).
+2. [`workspace-setup.md`](workspace-setup.md) —
+   pick a workspace (laptop / Lifebit / CAVATICA) and the cost-vs-convenience
+   trade-offs.
+3. [`github-authenticate.md`](github-authenticate.md) —
+   generate a Personal Access Token and sign in with `gh auth login`.
+4. [`the-add-push-git-routine.md`](the-add-push-git-routine.md) —
+   the daily `edit → status → add → commit → push → pull request` loop.
+5. [`keeping-your-repository-fork-in-sync.md`](keeping-your-repository-fork-in-sync.md) —
+   forking, cloning, and keeping a fork up to date with upstream.
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Pro Git book](https://git-scm.com/book/en/v2) — Scott Chacon, free
 - [GitHub Docs](https://docs.github.com/) — for the platform side (PRs, issues, Actions)
 - [GitHub CLI manual](https://cli.github.com/manual/) — `gh` command reference

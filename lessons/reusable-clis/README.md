@@ -268,6 +268,7 @@ agents — without changes.
 
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Typer](https://typer.tiangolo.com/) — modern Python CLI framework
 - [Click](https://click.palletsprojects.com/) — the library Typer is built on
 - [Command Line Interface Guidelines](https://clig.dev/) — comprehensive design guide

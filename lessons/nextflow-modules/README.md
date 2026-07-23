@@ -84,8 +84,16 @@ nextflow run main-hello-py-greet.nf -profile lifebit --name elements-of-style
 
 ::::
 
+## In-depth walkthrough
+
+- [`preamble.md`](preamble.md) — the *"before you
+  write a module, publish the container"* loop (build → tag → push), for both
+  GHCR and the CAVATICA registry. Adapted from the NICHD Kids First / INCLUDE
+  course.
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Nextflow documentation](https://www.nextflow.io/docs/latest/)
 - [nf-core module standards](https://nf-co.re/docs/contributing/modules) — community conventions
 - [Nextflow process reference](https://www.nextflow.io/docs/latest/process.html)

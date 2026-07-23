@@ -129,12 +129,14 @@ Pages. The deploy takes about two minutes. Details in the
   callouts.
 - Use `sphinx-design` tabs when a command differs by platform.
 - Reference notebooks by relative path from the README —
-  `[notebook](notebooks/python.ipynb)`.
+  `[notebook](python.ipynb)` (only where a notebook actually
+  exists — currently only in the `interactive-computing` lesson).
 - End every lesson with a **Further reading** section (see below) and
   a **Where to next** link.
 
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Sphinx documentation](https://www.sphinx-doc.org/en/master/) — the
   authoritative reference.
 - [MyST-parser guide](https://myst-parser.readthedocs.io/en/latest/) —

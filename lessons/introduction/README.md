@@ -87,8 +87,20 @@ is the discipline that turns AI from hazard into collaborator. See
 - Use just the artefacts — every container ships a CLI, every Nextflow
   module wraps that CLI, every workflow composes the modules.
 
+## In-depth walkthroughs
+
+Two short pages adapted from the NICHD Kids First / INCLUDE course, useful
+for the very first day of a class or as an on-ramp for a new student:
+
+- [`pre-training.md`](pre-training.md) — the
+  one-hour "get the accounts registered before Day 1" agenda.
+- [`lets-dive-in.md`](lets-dive-in.md) — Day-1
+  opener: get a JupyterLab notebook up (CAVATICA, Lifebit, or laptop) so
+  the reasoning discussion has something to run on.
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Strunk & White — *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
 - [Kernighan & Ritchie — *The C Programming Language*](https://en.wikipedia.org/wiki/The_C_Programming_Language)
 - [Kernighan & Plauger — *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)

@@ -170,8 +170,17 @@ Push, watch the Actions tab, iterate.
 - Use `act` (a local CLI) to run workflows on your laptop:
   <https://github.com/nektos/act>.
 
+## In-depth walkthrough
+
+- [`github-actions-for-maintenance-testing.md`](github-actions-for-maintenance-testing.md) —
+  the maintenance-testing pattern (test + docker-publish workflows) adapted
+  from the NICHD Kids First / INCLUDE course, using the same containers you
+  built in [containers](../containers/README.md) and the same pipelines from
+  [nextflow-workflows](../nextflow-workflows/README.md).
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [GitHub Actions documentation](https://docs.github.com/en/actions) —
   authoritative reference.
 - [Workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) —

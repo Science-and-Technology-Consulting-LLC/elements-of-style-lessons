@@ -160,6 +160,13 @@ in your head; the AI fills in the keystrokes.
 GitHub Actions for CI/CD. The sooner you find the broken thing, the
 cheaper it is to fix.
 
+## In-depth walkthrough
+
+- [`a-few-simple-rules.md`](a-few-simple-rules.md) —
+  Kernighan & Plauger's 55 pithy rules, in their original form, with Annie's
+  annotations of which ones still bite in the containerised, workflow-driven,
+  agentic-AI era. Adapted from the NICHD Kids First / INCLUDE course.
+
 ## Further reading
 
 - [Strunk & White — *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)

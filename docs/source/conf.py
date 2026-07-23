@@ -70,8 +70,14 @@ exclude_patterns = [
     "jupyter_execute",
 ]
 
-# Suppress warnings about heading levels skipping (common with MyST-NB).
-suppress_warnings = ["myst.header"]
+# Suppress:
+#   myst.header       — heading-level jumps (common with MyST-NB includes)
+#   myst.xref_missing — a relative link inside a canonical README/walkthrough
+#                       (e.g. "../../case-studies/foo/README.md") doesn't
+#                       resolve to a Sphinx document. These links work on
+#                       GitHub — the canonical browsing view — and render as
+#                       plain text on the Pages site; the warning is noise.
+suppress_warnings = ["myst.header", "myst.xref_missing"]
 
 # -- HTML output -------------------------------------------------------------
 

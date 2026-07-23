@@ -152,6 +152,17 @@ which python         # full path tells you where you are
 If the path doesn't include `envs/eos`, you forgot to `conda activate eos`.
 Happens to everyone.
 
+## In-depth walkthroughs
+
+Two walkthroughs adapted from the NICHD Kids First / INCLUDE course:
+
+- [`creating-a-conda-environment.md`](creating-a-conda-environment.md) —
+  install Miniconda from scratch in Google Cloud Shell (or any Bash terminal),
+  create and activate an `eos` environment.
+- [`recap-workspace-setup.md`](recap-workspace-setup.md) —
+  a Day-1 + Day-2 checkpoint: navigating a git clone, the `..` shortcut, and
+  the classic *"wipe the local tangle and re-clone"* recovery move.
+
 ## Further reading
 
 - [Miniforge](https://github.com/conda-forge/miniforge) — installer

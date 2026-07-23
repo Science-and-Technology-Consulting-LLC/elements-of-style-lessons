@@ -91,8 +91,8 @@ notebook URL the platform gave you when the workspace started. No
 Open these from JupyterLab's file tree. They live in this lessons repo
 under `ipynb/`:
 
-- [`ipynb/starter_python.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/interactive-computing/notebooks/python.ipynb)
-- [`ipynb/starter_r.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/interactive-computing/notebooks/r.ipynb)
+- [`python.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/python.ipynb)
+- [`r.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/r.ipynb)
 
 Each one is short on purpose. The goal is to give you a runnable artefact
 that demystifies the basics, not to teach you pandas or tidyverse — those
@@ -126,6 +126,17 @@ left output that *looks* legitimate.
 **Kernel → Restart Kernel and Run All Cells**. If the notebook still
 produces the same output, it's reproducible. If it doesn't, you've just
 caught a problem — better now than in a paper review.
+
+## In-depth walkthroughs
+
+Two walkthroughs adapted from the NICHD Kids First / INCLUDE course:
+
+- [`starting-a-jupyter-lab-notebook.md`](starting-a-jupyter-lab-notebook.md) —
+  launch JupyterLab on your laptop, on Lifebit, or on CAVATICA Data Studio,
+  including the *network-access* toggle CAVATICA needs.
+- [`running-a-jupyterlab-notebook.md`](running-a-jupyterlab-notebook.md) —
+  clone a real R notebook (`exampleVolcanoPlotNotebook`, origin at
+  `adeslatt/`), pick the R kernel, and Restart-and-Run-All.
 
 ## A note for the All of Us Researcher Workbench
 

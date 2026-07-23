@@ -111,8 +111,29 @@ built, every container you wrote, every Nextflow module you composed —
 they all run on one of these platforms. The [MCP server](mcp-server.md)
 lesson is what makes them agent-driveable.
 
+## In-depth walkthroughs
+
+Five short pages adapted from the NICHD Kids First / INCLUDE course, covering
+the CAVATICA-and-friends account-and-run path in click-by-click detail:
+
+- [`pre-training-creating-kids-first-and-other-accounts.md`](pre-training-creating-kids-first-and-other-accounts.md) —
+  register for Kids First, INCLUDE, and CAVATICA; the GA4GH framing behind
+  the rules.
+- [`creating-a-cavatica-account.md`](creating-a-cavatica-account.md) —
+  the two account-creation paths (email vs. eRA Commons) and what to have
+  ready.
+- [`logging-into-cavatica-step-by-step.md`](logging-into-cavatica-step-by-step.md) —
+  the eRA-Commons → Gen3 → CAVATICA-dashboard login flow.
+- [`authenticating-on-cavatica.md`](authenticating-on-cavatica.md) —
+  the developer token, `docker login` for the CAVATICA image registry, and
+  the `~/.sevenbridges/credentials` file for the Python client.
+- [`working-with-apps-on-cavatica.md`](working-with-apps-on-cavatica.md) —
+  browse and execute the ~703 public apps; import Zenodo data; run
+  `fastqc` end-to-end.
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Lifebit](https://lifebit.ai/) — federated computing platform (this lesson's headline)
 - [Seven Bridges CAVATICA](https://www.cavatica.org/) — pediatric research platform
 - [All of Us Researcher Workbench](https://www.researchallofus.org/data-tools/workbench/)

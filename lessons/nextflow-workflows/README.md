@@ -251,8 +251,25 @@ A `main.nf` you wrote yourself, with one or two modules and one or two
 add modules, swap in real data, and graduate to running on a
 [platform](platforms.md) — but the muscle is built.
 
+## In-depth walkthroughs
+
+Three walkthroughs adapted from the NICHD Kids First / INCLUDE course:
+
+- [`building-a-nextflow-workflow.md`](building-a-nextflow-workflow.md) —
+  the classic `fastqc → multiqc` pipeline as one monolithic Nextflow script,
+  with a graduation note pointing at the containers / modules / `main-*.nf`
+  refactor used in the [`multiqc-workflow`](../../case-studies/multiqc-workflow/README.md)
+  case study. Origin: [`adeslatt/Building-A-Nextflow-Script`](https://github.com/adeslatt/Building-A-Nextflow-Script).
+- [`building-a-cwl-workflow.md`](building-a-cwl-workflow.md) —
+  the exact same pipeline in CWL, running under `cwltool`. Same containers,
+  different composition language. Origin: [`adeslatt/Building-A-CWL-Script`](https://github.com/adeslatt/Building-A-CWL-Script).
+- [`shared-structure-nextflow-vs-cwl.md`](shared-structure-nextflow-vs-cwl.md) —
+  the *why* — what Nextflow and CWL share, and how the container-level
+  discipline lets you switch between them.
+
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Nextflow documentation](https://www.nextflow.io/docs/latest/)
 - [Nextflow patterns](https://nextflow-io.github.io/patterns/) — common workflow idioms
 - [nf-core pipelines](https://nf-co.re/pipelines) — production examples

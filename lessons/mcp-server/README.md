@@ -109,11 +109,12 @@ discussion will land here.*
 
 ## Further reading
 
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
 - [Model Context Protocol specification](https://modelcontextprotocol.io/)
 - [Anthropic MCP quickstart](https://modelcontextprotocol.io/quickstart)
 - [Official MCP server registry](https://github.com/modelcontextprotocol/servers)
 - [Claude Code MCP integration](https://docs.claude.com/en/docs/claude-code/mcp)
-- [nsforest-cli](https://github.com/Science-and-Technology-Consulting-LLC/sc-nsforest-qc-nf) — the CLI wrapped in this lesson's example
+- [nsforest-cli](https://github.com/NIH-NLM/sc-nsforest-qc-nf) — the CLI wrapped in this lesson's example
 
 
 ## Where to next
