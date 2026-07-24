@@ -1,4 +1,4 @@
-# 4.3 Git Survival Guide for Multi-Remote Biomedical Workflows
+Git Survival Guide for Multi-Remote Biomedical Workflows
 
 *Every example in this section happened during real development of
 the NIH-NLM sc-nsforest-qc-nf single-cell quality control pipeline.
