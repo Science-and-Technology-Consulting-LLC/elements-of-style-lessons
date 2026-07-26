@@ -118,17 +118,34 @@ html_context = {
 # overridden `_templates/breadcrumbs.html` uses it when present.
 
 def _canonical_edit_path_for(pagename: str) -> str | None:
-    """Return the canonical file path (relative to repo root) for a shim
-    page, or None if this page isn't a shim that needs overriding.
+    """Return the canonical repo-relative file path for a shim page,
+    or None if this page isn't a shim that needs overriding.
+
+    Shim layout after the flatten:
+      docs/source/lessons/<topic>/index.md          → shim for lessons/<topic>/README.md
+      docs/source/lessons/<topic>/<walkthrough>.md  → shim for lessons/<topic>/<walkthrough>.md
+
+    pagename (no extension) matches one of:
+      "lessons/<topic>/index"
+      "lessons/<topic>/<walkthrough>"
+      "lessons/git-survival-guide"      (legacy flat sub-asset)
     """
     if not pagename.startswith("lessons/"):
         return None
-    # The git-survival-guide page is a sub-asset of the version-control lesson
+
+    # git-survival-guide lives at the version-control lesson root
     if pagename == "lessons/git-survival-guide":
         return "lessons/version-control/git-survival-guide.md"
-    # Standard lesson shim
-    topic = pagename.split("/", 1)[1]
-    return f"lessons/{topic}/README.md"
+
+    rest = pagename[len("lessons/"):]
+    if rest.endswith("/index"):
+        topic = rest[:-len("/index")]
+        return f"lessons/{topic}/README.md"
+    if "/" in rest:
+        # A walkthrough shim: docs/source/lessons/<topic>/<name>.md
+        return f"lessons/{rest}.md"
+    # Legacy flat form — shouldn't occur post-flatten, but safe.
+    return f"lessons/{rest}/README.md"
 
 
 def _add_canonical_edit_path(app, pagename, templatename, context, doctree):

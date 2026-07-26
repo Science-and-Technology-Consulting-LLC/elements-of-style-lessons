@@ -9,11 +9,3 @@
 
 ```{include} ../../../../lessons/elements-of-style-rules/README.md
 ```
-
-
-```{toctree}
-:hidden:
-:maxdepth: 1
-
-a-few-simple-rules
-```
