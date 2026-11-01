@@ -37,7 +37,7 @@ Pin the env once and your work stays runnable for years.
 Miniforge is a clean Conda install that defaults to the `conda-forge`
 channel — which is what you want for biomedical work.
 
-- **macOS / Linux:** https://github.com/conda-forge/miniforge#install
+- **macOS / Linux:** https://conda-forge.org/download/ (or https://github.com/conda-forge/miniforge#install)
 - **Windows (with Git Bash):** download the Windows `.exe` from the same
   page and run it. Reopen Git Bash afterward.
 
@@ -105,7 +105,7 @@ conda activate eos
 
 ```bash
 # 1. Download Miniforge3-Windows-x86_64.exe from
-#    https://github.com/conda-forge/miniforge#install and run it.
+#    https://conda-forge.org/download/ and run it.
 #    Then reopen Git Bash so PATH picks up conda.
 conda --version
 
