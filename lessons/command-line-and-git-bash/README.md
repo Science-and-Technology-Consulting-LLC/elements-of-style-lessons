@@ -46,7 +46,7 @@ by typing one command.
 
 **Windows — one installer for both git and the shell:**
 
-1. Go to <https://git-scm.com/download/win> and download the installer.
+1. Go to <https://git-scm.com/install/windows> and download the installer.
 2. Run it. Accept the defaults — they're sensible.
 3. After install, find **Git Bash** in the Start menu and open it.
 
@@ -226,7 +226,7 @@ created a project folder. Step 2 will turn it into a Git repo.
 ## Further reading
 
 - [ExplainShell](https://explainshell.com/) — paste any command, see what each flag means
-- [Git for Windows](https://git-scm.com/download/win) — the installer that includes Git Bash
+- [Git for Windows](https://git-scm.com/install/windows) — the installer that includes Git Bash
 - [Miniforge](https://github.com/conda-forge/miniforge) — the terminal-friendly conda installer
 - [The Linux Command Line](https://linuxcommand.org/tlcl.php) — William Shotts' free book
 - [Bash Reference Manual](https://www.gnu.org/software/bash/manual/) — the definitive source

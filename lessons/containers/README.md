@@ -98,13 +98,18 @@ That's it. Four sections, four reasons:
 
 ## Install Docker
 
+Docker is only for building and testing on your own machine. When you push
+to GitHub, the GitHub Actions job builds and pushes the image for you (see
+[Continuous integration](../continuous-integration/README.md)), so you can skip
+Docker Desktop if you do not have admin rights.
+
 ::::{tab-set}
 
 :::{tab-item} macOS
 :sync: mac
 
 ```bash
-# Docker Desktop for Mac: https://docs.docker.com/desktop/install/mac-install/
+# Docker Desktop for Mac: https://docs.docker.com/desktop/setup/install/mac-install/
 # After install, run it once so the engine starts.
 docker --version
 ```
@@ -114,7 +119,7 @@ docker --version
 :sync: win
 
 ```bash
-# Docker Desktop for Windows: https://docs.docker.com/desktop/install/windows-install/
+# Docker Desktop for Windows: https://docs.docker.com/desktop/setup/install/windows-install/
 # Enable WSL2 backend when prompted. Restart, then:
 docker --version
 ```
