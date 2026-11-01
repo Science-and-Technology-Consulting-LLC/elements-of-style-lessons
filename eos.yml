@@ -59,6 +59,7 @@ dependencies:
   - "myst-nb<1.2"
   - sphinx-copybutton
   - sphinx-design
+  - sphinx-autobuild        # `sphinx-autobuild source build/html` = live reload while editing
   - linkify-it-py
   - nbstripout
 
