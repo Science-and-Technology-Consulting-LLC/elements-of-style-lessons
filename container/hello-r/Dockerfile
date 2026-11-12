@@ -11,7 +11,8 @@ RUN R -e "install.packages(c('docopt'), repos='https://cloud.r-project.org')" \
  && R CMD INSTALL /opt/hello-r/
 
 # Put the Rscript on PATH so `hello-r-greet` resolves anywhere
-RUN ln -s /usr/local/lib/R/site-library/helloR/scripts/hello-r-greet /usr/local/bin/hello-r-greet
+RUN chmod +x /usr/local/lib/R/site-library/helloR/scripts/hello-r-greet \
+ && ln -s /usr/local/lib/R/site-library/helloR/scripts/hello-r-greet /usr/local/bin/hello-r-greet
 
 ENTRYPOINT ["hello-r-greet"]
 CMD ["--help"]

@@ -13,6 +13,12 @@ app = typer.Typer(
     add_completion=False,
 )
 
+
+@app.callback()
+def main() -> None:
+    """Keep `greet` a subcommand. With one command, Typer would make it the main command."""
+
+
 # Register subcommands. Each verb lives in its own file under this package.
 app.command(name="greet")(_greet.greet)
 

@@ -18,10 +18,10 @@ tools and patterns *applied to one real biological question* end-to-end.
 endometriosis/
 ├── README.md                              (this page)
 ├── notebooks/
-│   ├── 01_explore_metadata.ipynb          Python — metadata exploration (ENA API)
+│   ├── explore_metadata.ipynb          Python — metadata exploration (ENA API)
 │   └── deseq2-rmd/                        R notebooks — pseudobulk DE + cross-validation
 ├── eye-candy/
-│   └── 01_volcano_teaser.ipynb            R — DESeq2 volcano plot
+│   └── volcano_teaser.ipynb            R — DESeq2 volcano plot
 ├── data/
 │   └── sra_explorer_metadata.tsv          61-sample export from sra-explorer.info
 └── sc-nsforest-fork/                      Fork of NIH-NLM/sc-nsforest-qc-nf used in the case study

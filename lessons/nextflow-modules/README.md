@@ -67,7 +67,11 @@ nextflow run main-hello-py-greet.nf -profile docker --name elements-of-style
 :::{tab-item} macOS / Windows (no Docker — test profile)
 :sync: test
 
+The test profile uses no container, so the command must be installed
+first:
+
 ```bash
+pip install -e container/hello-py/context
 nextflow run main-hello-py-greet.nf -profile test --name elements-of-style
 ```
 :::

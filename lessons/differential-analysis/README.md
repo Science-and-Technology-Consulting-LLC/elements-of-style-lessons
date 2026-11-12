@@ -17,10 +17,10 @@ is nothing to copy by hand. The first download is about 1 GB.
 
 ## Run them in order
 
-1. [`02_pseudobulk_limma_voom.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/02_pseudobulk_limma_voom.ipynb)
+1. [`pseudobulk_limma_voom.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/pseudobulk_limma_voom.ipynb)
    (Python 3 kernel). Downloads the h5ad, sums raw counts per cell type,
    donor and condition, and writes CSVs to `pseudobulk/`.
-2. [`03_limma_voom_de.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/03_limma_voom_de.ipynb)
+2. [`limma_voom_de.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/limma_voom_de.ipynb)
    (R kernel). Reads those CSVs, runs limma-voom for each cell type, and
    draws the volcano plots.
 
