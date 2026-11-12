@@ -37,6 +37,18 @@ dependencies:
   - r-ggplot2
   - r-docopt          # for the Rscript CLI walkthrough
 
+  # ---- R packages for the differential-analysis and endometriosis notebooks ----
+  - r-purrr
+  - r-readr
+  - r-tidyr
+  - r-ggrepel
+  - r-patchwork
+  - r-pheatmap
+  - r-ggvenndiagram
+  - bioconductor-limma
+  - bioconductor-edger
+  - bioconductor-enhancedvolcano
+
   # ---- Tools every reader will reach for ----
   - git
   - gh                # GitHub CLI
@@ -48,6 +60,10 @@ dependencies:
   - pandas
   - numpy
   - matplotlib
+  - scipy
+  - seaborn
+  - requests
+  - "scanpy>=1.10"    # also installs anndata; unpinned, the solver picks scanpy 1.4
   - typer             # for the reusable-clis walkthrough
   - pydantic          # for the publishing-for-agents walkthrough
 
