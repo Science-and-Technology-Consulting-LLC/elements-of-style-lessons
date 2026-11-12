@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-3-containerization/recap-workspace-setup/)) — woven into
-the [conda-environments](README.md) lesson.*
+the [conda-environments](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`recap-workspace-setup.ipynb`](recap-workspace-setup.ipynb) — every code cell
+- **In the paired notebook** [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -64,16 +64,16 @@ done
 
 ### Day 1 — reasoning
 
-- Met the [Elements of Style](../elements-of-style-rules/README.md) approach.
-- Opened a JupyterLab notebook (on CAVATICA in the NICHD course, or on your
-  laptop / Lifebit here). See [interactive-computing](../interactive-computing/README.md).
+- Met the [Elements of Style](../elements-of-style-rules/index.md) approach.
+- Opened a JupyterLab notebook (on your
+  laptop or Lifebit). See [interactive-computing](../interactive-computing/index.md).
 - Inspected a real R notebook — `exampleVolcanoPlot.ipynb`.
 
 ### Day 2 — code versioning
 
 - Learned what Git, GitHub, version control, and attribution give you.
 - Forked, cloned, edited, staged, committed, pushed, and opened a pull
-  request. See the [version-control walkthroughs](../../version-control/ipynb/).
+  request. See the [version-control walkthroughs](../version-control/index.md).
 
 ## The missing pieces in the volcano-plot notebook
 
@@ -89,7 +89,7 @@ before it runs cleanly:
 These fixes are in the upstream copy at
 [`adeslatt/exampleVolcanoPlotNotebook`](https://github.com/adeslatt/exampleVolcanoPlotNotebook),
 and — if you've synced your fork with `NIH-NICHD/exampleVolcanoPlotNotebook`
-per the [`keeping-your-repository-fork-in-sync`](../../version-control/ipynb/keeping-your-repository-fork-in-sync.ipynb)
+per the [`keeping-your-repository-fork-in-sync`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb)
 walkthrough — into your fork too.
 
 ## Navigate to the right directory
@@ -172,4 +172,4 @@ restart the kernel (*Kernel → Restart Kernel*), and re-run.
 ## Where to next
 
 You now have git + conda + the courage to blow away a broken clone and start
-over. Time for [containers](../containers/README.md).
+over. Time for [containers](../containers/index.md).

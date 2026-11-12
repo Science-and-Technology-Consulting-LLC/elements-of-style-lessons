@@ -1,7 +1,7 @@
 # Federated learning
 
 
-> *In the book: Chapter 14 — Federated learning.*
+> *In the book: Sections 10.2.3 and 10.2.4 — Federated Learning; Median-of-Coefficients Aggregation.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -19,7 +19,7 @@ key result of this lesson. Reference it from this README as
 `![overview](assets/overview.png){width=520}` once captured.*
 :::
 
-A specific application of [federated computing](federated-computing.md):
+A specific application of [federated computing](../federated-computing/index.md):
 train (or fine-tune) a model where the training data lives in many
 places that cannot share raw data. **The model travels; the data stays
 put.**
@@ -53,7 +53,7 @@ trustworthy transport and you have a federation.
 ## The worked example — `oadr-autoantibody`
 
 The headline worked example, *the same one* introduced in
-[federated computing](federated-computing.md), is the federated
+[federated computing](../federated-computing/index.md), is the federated
 beta-cell-function predictor in **[Science-and-Technology-Consulting-LLC/oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)**.
 
 This time, focus on the **learning** half of the story.
@@ -125,8 +125,8 @@ You'll be able to:
 
 ## The natural pairing
 
-Federated learning is the case study where [MCP](mcp-server.md) +
-[Platforms](platforms.md) (Lifebit) get *especially* interesting:
+Federated learning is the case study where [MCP](../mcp-server/index.md) +
+[Platforms](../platforms/index.md) (Lifebit) get *especially* interesting:
 
 > A researcher describes a model-training intent in chat. The agent
 > (Claude / ChatGPT) reads the MCP-exposed CLI's `--help`, infers the
@@ -158,7 +158,7 @@ let the word *federated* do work that *private* should be doing.
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [McMahan et al. — Federated Averaging (2016)](https://arxiv.org/abs/1602.05629) — the foundational paper
 - [Flower framework](https://flower.ai/) — an open FL framework
 - [PySyft](https://github.com/OpenMined/PySyft) — privacy-preserving ML
@@ -167,5 +167,5 @@ let the word *federated* do work that *private* should be doing.
 
 ## Where to next
 
-→ [MCP server](mcp-server.md) — wrap the federated-learning CLI in MCP
+→ [MCP server](../mcp-server/index.md) — wrap the federated-learning CLI in MCP
 and let an agent drive it on Lifebit.

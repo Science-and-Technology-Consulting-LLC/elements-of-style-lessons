@@ -1,6 +1,6 @@
 # Agentic harness
 
-> *In the book: Chapter 16 — Agentic harness.*
+> *In the book: Sections 11.5.3 and 11.5.4 — The Agentic Harness; Wiring a Claude Code Loop.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -26,7 +26,7 @@ running with a project skill invoked. Reference it as
 
 ## Why an agentic harness
 
-The [MCP server](mcp-server.md) lesson taught the *tool-facing* side:
+The [MCP server](../mcp-server/index.md) lesson taught the *tool-facing* side:
 wrap a CLI so an agent can call it. This lesson teaches the
 *agent-facing* side: configure the agent so it works well with your
 repo, your rules, your tools.
@@ -80,7 +80,7 @@ detects the skill is relevant, it loads and follows the instructions.
 Good candidates for this repo:
 
 - `.claude/skills/elements-of-style-review/` — evaluate a lesson or
-  notebook against the [eight canonical principles](elements-of-style-rules.md).
+  notebook against the [eight canonical principles](../elements-of-style-rules/index.md).
 - `.claude/skills/lesson-scaffold/` — create a new lesson with the
   standard shape (README + notebooks + eye-candy + assets).
 - `.claude/skills/build-verify/` — run `make html -W` and report
@@ -220,5 +220,5 @@ per workspace; the harness in the repo picks up automatically.
 
 ## Where to next
 
-→ [Publishing for agents](publishing-for-agents.md) — make your work
+→ [Publishing for agents](../publishing-for-agents/index.md) — make your work
 findable by *other* agents, not just your own.

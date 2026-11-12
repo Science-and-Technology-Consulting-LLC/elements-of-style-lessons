@@ -1,6 +1,6 @@
 # Exposing `--help` and schema — the two things an agent reads first
 
-*Companion walkthrough to the [publishing-for-agents](README.md)
+*Companion walkthrough to the [publishing-for-agents](index.md)
 lesson.*
 
 :::{admonition} Two ways to run this walkthrough
@@ -8,7 +8,7 @@ lesson.*
 
 - **In a terminal** — copy each shell block into your terminal; copy each
   Python block into `python -` or your editor.
-- **In the paired notebook** [`exposing-help-and-schema.ipynb`](exposing-help-and-schema.ipynb) — every Python
+- **In the paired notebook** [`exposing-help-and-schema.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/publishing-for-agents/exposing-help-and-schema.ipynb) — every Python
   cell is executed by a dedicated Jupyter **Python 3** kernel. Run the
   shell blocks in a terminal FIRST to create the env and register the
   kernel; then pick that kernel when you open the notebook.
@@ -22,7 +22,7 @@ environment* below once, then run the steps top-to-bottom.
 ### Once per walkthrough — a dedicated conda env + Jupyter kernel
 
 Isolating the walkthrough in its own env means nothing you install here
-leaks out. See [conda-environments](../conda-environments/README.md).
+leaks out. See [conda-environments](../conda-environments/index.md).
 
 ```bash
 conda create -n exposing-help-and-schema -y python=3.11 ipykernel
@@ -117,7 +117,7 @@ without cloning the repo.
 
 ## Where to next
 
-→ Back to the [publishing-for-agents lesson](README.md).
+→ Back to the [publishing-for-agents lesson](index.md).
 
-→ [mcp-server](../mcp-server/README.md) — the MCP protocol that
+→ [mcp-server](../mcp-server/index.md) — the MCP protocol that
 consumes these schemas as tool declarations.

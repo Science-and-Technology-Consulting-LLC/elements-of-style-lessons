@@ -1,7 +1,7 @@
 # Federated computing
 
 
-> *In the book: Chapter 13 — Federated computing.*
+> *In the book: Section 10.2.1 — Federated Computing: Compute Travels to Data.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -154,10 +154,10 @@ You'll be able to:
 
 Federated computing pairs cleanly with three other lessons:
 
-- [Nextflow](nextflow-workflows.md) — one pipeline, many environments.
-- [Platforms](platforms.md) — Lifebit and others provide the federation
+- [Nextflow](../nextflow-workflows/index.md) — one pipeline, many environments.
+- [Platforms](../platforms/index.md) — Lifebit and others provide the federation
   transport.
-- [Federated learning](federated-learning.md) — the special case where
+- [Federated learning](../federated-learning/index.md) — the special case where
   the per-site phase is *training a model* and the coordinator phase is
   *aggregating model weights*. The oadr-autoantibody example is exactly
   this case.
@@ -204,7 +204,7 @@ every time you propose a federated design:
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Lifebit Federated Data and Learning Fabric](https://lifebit.ai/products/federated-fabric)
 - [Kairouz et al. — *Advances and Open Problems in Federated Learning* (2019)](https://arxiv.org/abs/1912.04977)
 - [oadr-autoantibody repo](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody) — the worked example
@@ -213,5 +213,5 @@ every time you propose a federated design:
 
 ## Where to next
 
-→ [Federated learning](federated-learning.md) — where the per-site phase
+→ [Federated learning](../federated-learning/index.md) — where the per-site phase
 becomes model training, and the oadr-autoantibody example continues.

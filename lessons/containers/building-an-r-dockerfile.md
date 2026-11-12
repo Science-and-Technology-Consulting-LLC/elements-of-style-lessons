@@ -1,6 +1,6 @@
 # Building an R Dockerfile
 
-*Companion walkthrough to the [containers](README.md) lesson — the R
+*Companion walkthrough to the [containers](index.md) lesson — the R
 sibling of [`building-dockerfiles`](building-dockerfiles.md).*
 
 :::{admonition} Two ways to run this walkthrough
@@ -8,7 +8,7 @@ sibling of [`building-dockerfiles`](building-dockerfiles.md).*
 
 - **In a terminal / RStudio** — copy each R block into `R` or an RStudio
   console; copy shell blocks into your terminal.
-- **In the paired notebook** [`building-an-r-dockerfile.ipynb`](building-an-r-dockerfile.ipynb) — every R cell
+- **In the paired notebook** [`building-an-r-dockerfile.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-an-r-dockerfile.ipynb) — every R cell
   is executed by the Jupyter **R (IRkernel)** kernel. Run the shell
   blocks in a terminal FIRST to install R + IRkernel; then pick the R
   kernel when you open the notebook.
@@ -102,7 +102,7 @@ FROM bioconductor/bioconductor_docker:RELEASE_3_19
 ```
 
 Rocker + Bioconductor cover 99% of what shows up in the
-[case-studies/endometriosis](../../case-studies/endometriosis/README.md)
+[case-studies/endometriosis](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/endometriosis/README.md)
 and
 [`container/limma-voom/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/container/limma-voom)
 worked examples.
@@ -119,7 +119,7 @@ docker push ghcr.io/science-and-technology-consulting-llc/hello-r:0.1.0
 
 ## Where to next
 
-→ Back to [containers](README.md).
+→ Back to [containers](index.md).
 
-→ [nextflow-modules](../nextflow-modules/README.md) — wrap this
+→ [nextflow-modules](../nextflow-modules/index.md) — wrap this
 container as a `.nf` module.

@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-3-containerization/creating-a-conda-environment/)) — woven into
-the [conda-environments](README.md) lesson.*
+the [conda-environments](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`creating-a-conda-environment.ipynb`](creating-a-conda-environment.ipynb) — every code cell
+- **In the paired notebook** [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -72,7 +72,7 @@ what is or isn't installed becomes explicit. Without it you inherit whatever
 happens to be on the shared machine — a common cause of *"works on my
 machine, breaks in the container."*
 
-When we later build a Docker image (see [containers](../containers/README.md))
+When we later build a Docker image (see [containers](../containers/index.md))
 we typically start `FROM` a conda base image, so the same tool follows us
 from laptop → container → workflow → federated node.
 
@@ -81,7 +81,7 @@ from laptop → container → workflow → federated node.
 The NICHD walkthrough uses a free browser terminal — [Google Cloud Shell](https://shell.cloud.google.com/).
 It's ephemeral (small disk, wiped between sessions), which makes it a good
 sandbox for practising the install steps. The same commands work on your
-laptop, on Lifebit, and on CAVATICA Data Studio.
+laptop and on Lifebit.
 
 ## Anaconda's package search
 
@@ -115,8 +115,7 @@ First, confirm which OS + architecture we're on:
 uname -a
 ```
 
-For Linux x86_64 (Google Cloud Shell, most Lifebit hosts, most Cavatica
-compute), we grab the matching installer:
+For Linux x86_64 (Google Cloud Shell, most Lifebit hosts), we grab the matching installer:
 
 ```bash
 which wget
@@ -191,9 +190,9 @@ You just:
 
 ## Where to next
 
-→ [`recap-workspace-setup.ipynb`](recap-workspace-setup.ipynb) — a
+→ [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) — a
 Day-1 + Day-2 recap that puts conda into context alongside the earlier
 notebook and git work.
 
-→ Then on to [containers](../containers/README.md), where the conda
+→ Then on to [containers](../containers/index.md), where the conda
 environment becomes the seed for a Docker image.

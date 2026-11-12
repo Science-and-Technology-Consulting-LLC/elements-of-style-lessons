@@ -1,7 +1,7 @@
 # Version control with Git
 
 
-> *In the book: Chapter 4 — Version control with Git.*
+> *In the book: Sections 4.1 to 4.4 — Code Versioning.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -30,7 +30,7 @@ each one.
 If you're on the **All of Us Researcher Workbench** or another platform that
 doesn't let you `git pull` directly, **don't skip this step.** You still
 benefit from versioning your code locally, and the
-[Bridge patterns](../bridges/index.md) page shows you how to keep your work
+[Bridge patterns](../../bridges/index.md) page shows you how to keep your work
 versioned even when copy/paste is the only road across.
 :::
 
@@ -46,7 +46,7 @@ GitHub — but GitHub is where most collaboration happens.
 ## Install / verify Git
 
 The full install walk-through is in the
-[command line + Git Bash](command-line-and-git-bash.md) lesson. Quick
+[command line + Git Bash](../command-line-and-git-bash/index.md) lesson. Quick
 reminder of where `git` actually comes from:
 
 - **macOS:** *not* pre-installed. Typing `git --version` on a fresh Mac
@@ -158,7 +158,7 @@ Refresh GitHub — your file is now there. Make another local commit, then
 This page gives you the floor. The ceiling — branches, forks, multi-remote
 workflows, untangling mistakes — is in the full
 **Git Survival Guide**, which lives in the book companion repo as
-[`chapters/version-control-as-survival/01_git_survival_guide.md`](git-survival-guide.md).
+[`chapters/version-control-as-survival/01_git_survival_guide.md`](../git-survival-guide.md).
 
 Read it when you hit a situation this page doesn't cover.
 
@@ -171,7 +171,7 @@ course, each covering one moment in the Git lifecycle:
    why Git, why GitHub, and one-time terminal setup (`nano`, `conda`, `gh`,
    `git config`).
 2. [`workspace-setup.md`](workspace-setup.md) —
-   pick a workspace (laptop / Lifebit / CAVATICA) and the cost-vs-convenience
+   pick a workspace (laptop / Lifebit) and the cost-vs-convenience
    trade-offs.
 3. [`github-authenticate.md`](github-authenticate.md) —
    generate a Personal Access Token and sign in with `gh auth login`.
@@ -182,7 +182,7 @@ course, each covering one moment in the Git lifecycle:
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Pro Git book](https://git-scm.com/book/en/v2) — Scott Chacon, free
 - [GitHub Docs](https://docs.github.com/) — for the platform side (PRs, issues, Actions)
 - [GitHub CLI manual](https://cli.github.com/manual/) — `gh` command reference
@@ -192,4 +192,4 @@ course, each covering one moment in the Git lifecycle:
 
 ## Where to next
 
-→ Next lesson: [Reproducible environments with Conda](conda-environments.md)
+→ Next lesson: [Reproducible environments with Conda](../conda-environments/index.md)

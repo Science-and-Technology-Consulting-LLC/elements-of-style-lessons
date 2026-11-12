@@ -1,13 +1,13 @@
 # A Typer CLI in fifteen minutes
 
-*Companion walkthrough to the [reusable-clis](README.md) lesson.*
+*Companion walkthrough to the [reusable-clis](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — copy each shell block into your terminal; copy each
   Python block into `python -` or your editor.
-- **In the paired notebook** [`typer-cli-in-fifteen-minutes.ipynb`](typer-cli-in-fifteen-minutes.ipynb) — every Python
+- **In the paired notebook** [`typer-cli-in-fifteen-minutes.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb) — every Python
   cell is executed by a dedicated Jupyter **Python 3** kernel. Run the
   shell blocks in a terminal FIRST to create the env and register the
   kernel; then pick that kernel when you open the notebook.
@@ -21,7 +21,7 @@ environment* below once, then run the steps top-to-bottom.
 ### Once per walkthrough — a dedicated conda env + Jupyter kernel
 
 Isolating the walkthrough in its own env means nothing you install here
-leaks out. See [conda-environments](../conda-environments/README.md).
+leaks out. See [conda-environments](../conda-environments/index.md).
 
 ```bash
 conda create -n typer-cli-in-fifteen-minutes -y python=3.11 ipykernel
@@ -136,7 +136,7 @@ Get this pattern into your fingers and the rest of the curriculum unlocks.
 
 ## Where to next
 
-→ Back to the [reusable-clis lesson](README.md).
+→ Back to the [reusable-clis lesson](index.md).
 
-→ [containers](../containers/README.md) — wrap this CLI in a Docker
+→ [containers](../containers/index.md) — wrap this CLI in a Docker
 image.

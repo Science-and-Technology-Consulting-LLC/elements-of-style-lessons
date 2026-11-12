@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 (https://nih-nichd.github.io/classes/day-1-reasoning/using-the-command-line/) — woven into
-the [command-line-and-git-bash](README.md) lesson.*
+the [command-line-and-git-bash](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`using-the-command-line.ipynb`](using-the-command-line.ipynb) — every code cell
+- **In the paired notebook** [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -115,10 +115,11 @@ cp README.md duplicated_README.md
 ls -l README.md duplicated_README.md
 ```
 
-View a file's contents with `more` or `less`:
+View a file's contents with `more` or `less` in a terminal; they page, and `q` quits.
+`head` prints the first lines and also works in a notebook:
 
 ```bash
-more README.md
+head README.md
 ```
 
 ## 4. `rm` — delete a file
@@ -150,8 +151,7 @@ ls -l
 
 ## 7. `wget` — download a file from a link
 
-`wget` retrieves a file from a public URL. In the original NICHD lesson the
-target was a Cavatica workspace path with a Zenodo file; that same file works
+`wget` retrieves a file from a public URL. The example file is on Zenodo; it works
 anywhere:
 
 ```bash
@@ -161,7 +161,7 @@ ls -l deseq2_5k.csv
 
 The file contains DESeq2 results from an RNA-seq experiment
 (*p*-values < 0.05, fold difference > 1.5). It reappears in the
-[interactive-computing](../interactive-computing/README.md) lesson as the
+[interactive-computing](../interactive-computing/index.md) lesson as the
 input for a volcano-plot exercise.
 
 ## Where to next
@@ -170,7 +170,7 @@ You now have `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r`, and `wget` — the seven
 commands you need to navigate a working directory, create and destroy files,
 and pull data from the web.
 
-→ Continue with the [command-line-and-git-bash lesson](README.md) proper
+→ Continue with the [command-line-and-git-bash lesson](index.md) proper
 for the git-focused ten-command tour.
 
-→ Then on to [version-control](../version-control/README.md).
+→ Then on to [version-control](../version-control/index.md).

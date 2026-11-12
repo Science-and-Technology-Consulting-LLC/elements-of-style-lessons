@@ -35,7 +35,7 @@ endometriosis/
 | Bulk volcano teaser | [interactive-computing](../../lessons/interactive-computing/README.md) | R notebook with DESeq2 |
 | Pseudobulk DE | [containers](../../lessons/containers/README.md) + [nextflow-workflows](../../lessons/nextflow-workflows/README.md) | `container/limma-voom/` (5 CLI verbs) + `main-bulk-de.nf` |
 | Single-cell markers | [nextflow-workflows](../../lessons/nextflow-workflows/README.md) | `sc-nsforest-fork/` |
-| Cross-validation | (Annie's chapter — to-be-written) | Bulk DE genes vs. NSForest markers |
+| Cross-validation | (not yet written) | Bulk DE genes vs. NSForest markers |
 
 ## The driving question
 

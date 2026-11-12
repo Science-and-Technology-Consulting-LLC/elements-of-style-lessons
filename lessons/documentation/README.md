@@ -1,6 +1,6 @@
 # Documentation
 
-> *In the book: Chapter 11 — Documentation.*
+> *In the book: Section 4.6 — Documentation as a Website.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -27,9 +27,9 @@ once captured.*
 A tool your collaborator cannot understand is a tool your collaborator
 cannot use. Documentation is what turns a script into a *tool.* It is
 also what turns a tool into something an AI agent can use ([MCP
-server](mcp-server.md)).
+server](../mcp-server/index.md)).
 
-The rule from [The Rules](elements-of-style-rules.md):
+The rule from [The Rules](../elements-of-style-rules/index.md):
 
 > **Document data and functions.** Every column has units. Every
 > function has a purpose. Every CLI flag has a meaning.
@@ -119,7 +119,7 @@ python -m http.server -d build/html 8000
 Every push to `main` triggers `.github/workflows/docs.yml`, which
 installs Sphinx, runs `sphinx-build`, and pushes the HTML to GitHub
 Pages. The deploy takes about two minutes. Details in the
-[Continuous integration](continuous-integration.md) lesson.
+[Continuous integration](../continuous-integration/index.md) lesson.
 
 ## Writing conventions
 
@@ -136,7 +136,7 @@ Pages. The deploy takes about two minutes. Details in the
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Sphinx documentation](https://www.sphinx-doc.org/en/master/) — the
   authoritative reference.
 - [MyST-parser guide](https://myst-parser.readthedocs.io/en/latest/) —
@@ -154,5 +154,5 @@ Pages. The deploy takes about two minutes. Details in the
 
 ## Where to next
 
-→ [Continuous integration](continuous-integration.md) — automate the
+→ [Continuous integration](../continuous-integration/index.md) — automate the
 build + deploy of this site (and everything else) with GitHub Actions.

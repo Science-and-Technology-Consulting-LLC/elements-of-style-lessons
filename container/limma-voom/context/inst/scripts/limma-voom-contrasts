@@ -4,18 +4,26 @@
 Applies the contrast matrix and writes the DE results table.
 
 Usage:
-  limma-voom-contrasts --fit=<path> --design=<path> --out=<path>
+  limma-voom-contrasts --fit=<path> --design=<path> --out=<path> [--fdr=<x>] [--logfc=<x>]
   limma-voom-contrasts (-h | --help)
 
 Options:
   --fit=<path>         Path to .rds from fit-lm.
   --design=<path>      Path to .rds from make-design.
   --out=<path>         Output .csv (RFC 4180) DE results table.
+  --fdr=<x>            Adjusted p-value threshold [default: 0.05].
+  --logfc=<x>          Absolute log2 fold-change threshold [default: 1].
   -h --help            Show this help.
 " -> doc
 suppressPackageStartupMessages({ library(docopt); library(limmaVoomCLI) })
 args <- docopt(doc)
 fit        <- readRDS(args[["--fit"]])
 design_obj <- readRDS(args[["--design"]])
-tbl <- contrasts_table(fit = fit, contrasts = design_obj$contrasts)
+tbl <- contrasts_table(
+  fit       = fit,
+  contrasts = design_obj$contrasts,
+  cell_type = design_obj$cell_type,
+  fdr       = as.numeric(args[["--fdr"]]),
+  logfc     = as.numeric(args[["--logfc"]])
+)
 write.csv(tbl, file = args[["--out"]], row.names = FALSE)

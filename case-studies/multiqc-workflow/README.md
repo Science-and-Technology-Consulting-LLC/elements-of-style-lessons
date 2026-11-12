@@ -18,8 +18,8 @@ walkthrough.
   [`building-a-nextflow-workflow`](../../lessons/nextflow-workflows/walkthroughs/building-a-nextflow-workflow.md)
   walkthrough to the **`container/` + `modules/` + `main-*.nf`** structure
   used by [`NIH-NLM/sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf).
-- The same computation runnable identically on your laptop, on Lifebit, on
-  CAVATICA, and inside a GitHub Actions CI job.
+- The same computation runnable identically on your laptop, on Lifebit, and inside
+  a GitHub Actions CI job.
 
 ## The two containers behind the workflow
 

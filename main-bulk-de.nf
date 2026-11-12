@@ -20,7 +20,7 @@ include { LIMMA_VOOM_FIT_LM       } from './modules/limma-voom/fit_lm.nf'
 include { LIMMA_VOOM_CONTRASTS    } from './modules/limma-voom/contrasts.nf'
 
 params.samplesheet = 'data/test-data/bulk-de-samplesheet.csv'
-params.contrast    = 'CF-Control'
+params.contrast    = 'EuE-Control'
 
 workflow {
     // Read one row per cell type, with the path to its h5ad.

@@ -1,6 +1,6 @@
 # Exploring an R notebook
 
-*Companion walkthrough to the [interactive-computing](README.md)
+*Companion walkthrough to the [interactive-computing](index.md)
 lesson — an R-kernel version of the JupyterLab walkthroughs.*
 
 :::{admonition} Two ways to run this walkthrough
@@ -8,7 +8,7 @@ lesson — an R-kernel version of the JupyterLab walkthroughs.*
 
 - **In a terminal / RStudio** — copy each R block into `R` or an RStudio
   console; copy shell blocks into your terminal.
-- **In the paired notebook** [`exploring-an-r-notebook.ipynb`](exploring-an-r-notebook.ipynb) — every R cell
+- **In the paired notebook** [`exploring-an-r-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/exploring-an-r-notebook.ipynb) — every R cell
   is executed by the Jupyter **R (IRkernel)** kernel. Run the shell
   blocks in a terminal FIRST to install R + IRkernel; then pick the R
   kernel when you open the notebook.
@@ -61,7 +61,7 @@ an "R" tile next to "Python 3".
 ## Open this notebook's R half
 
 In the JupyterLab file browser, open
-[`ipynb/exploring-an-r-notebook.ipynb`](exploring-an-r-notebook.ipynb)
+[`ipynb/exploring-an-r-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/exploring-an-r-notebook.ipynb)
 (the file you're reading was generated from).
 
 ## A tiny worked example
@@ -115,7 +115,7 @@ same, you have a reproducible R notebook.
 
 ## Where to next
 
-→ Back to [interactive-computing](README.md).
+→ Back to [interactive-computing](index.md).
 
 → [`running-a-jupyterlab-notebook.md`](running-a-jupyterlab-notebook.md)
 — walking a real R notebook (Wellstein lab's volcano plot).

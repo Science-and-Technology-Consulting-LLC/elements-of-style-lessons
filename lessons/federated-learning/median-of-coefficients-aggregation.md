@@ -1,13 +1,13 @@
 # Median-of-coefficients aggregation — the smallest FedAvg variant
 
-*Companion walkthrough to the [federated-learning](README.md) lesson.*
+*Companion walkthrough to the [federated-learning](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — copy each shell block into your terminal; copy each
   Python block into `python -` or your editor.
-- **In the paired notebook** [`median-of-coefficients-aggregation.ipynb`](median-of-coefficients-aggregation.ipynb) — every Python
+- **In the paired notebook** [`median-of-coefficients-aggregation.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb) — every Python
   cell is executed by a dedicated Jupyter **Python 3** kernel. Run the
   shell blocks in a terminal FIRST to create the env and register the
   kernel; then pick that kernel when you open the notebook.
@@ -21,7 +21,7 @@ environment* below once, then run the steps top-to-bottom.
 ### Once per walkthrough — a dedicated conda env + Jupyter kernel
 
 Isolating the walkthrough in its own env means nothing you install here
-leaks out. See [conda-environments](../conda-environments/README.md).
+leaks out. See [conda-environments](../conda-environments/index.md).
 
 ```bash
 conda create -n median-of-coefficients-aggregation -y python=3.11 ipykernel
@@ -94,13 +94,13 @@ that kind of shape-mismatched site.
 - Rounds: repeat *train → send weights → aggregate → broadcast* until the
   global loss stops moving.
 
-The [oadr-cpep](../../case-studies/oadr-cpep/README.md) package
+The [oadr-cpep](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/oadr-cpep/README.md) package
 implements exactly this loop for C-Peptide AUC prediction across four
 Type-1-Diabetes cohorts.
 
 ## Where to next
 
-→ Back to the [federated-learning lesson](README.md).
+→ Back to the [federated-learning lesson](index.md).
 
-→ The [oadr-autoantibody notebook](../../case-studies/oadr-autoantibody/README.md)
-and its productised sibling [oadr-cpep](../../case-studies/oadr-cpep/README.md).
+→ The [oadr-autoantibody notebook](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/oadr-autoantibody/README.md)
+and its productised sibling [oadr-cpep](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/oadr-cpep/README.md).

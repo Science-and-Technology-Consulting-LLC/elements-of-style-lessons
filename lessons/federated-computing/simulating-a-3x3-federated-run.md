@@ -1,6 +1,6 @@
 # Simulating a 3×3 federated run
 
-*Companion walkthrough to the [federated-computing](README.md) lesson.
+*Companion walkthrough to the [federated-computing](index.md) lesson.
 This is the mechanical shape behind the oadr-autoantibody design
 notebook.*
 
@@ -9,7 +9,7 @@ notebook.*
 
 - **In a terminal** — copy each shell block into your terminal; copy each
   Python block into `python -` or your editor.
-- **In the paired notebook** [`simulating-a-3x3-federated-run.ipynb`](simulating-a-3x3-federated-run.ipynb) — every Python
+- **In the paired notebook** [`simulating-a-3x3-federated-run.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-computing/simulating-a-3x3-federated-run.ipynb) — every Python
   cell is executed by a dedicated Jupyter **Python 3** kernel. Run the
   shell blocks in a terminal FIRST to create the env and register the
   kernel; then pick that kernel when you open the notebook.
@@ -23,7 +23,7 @@ environment* below once, then run the steps top-to-bottom.
 ### Once per walkthrough — a dedicated conda env + Jupyter kernel
 
 Isolating the walkthrough in its own env means nothing you install here
-leaks out. See [conda-environments](../conda-environments/README.md).
+leaks out. See [conda-environments](../conda-environments/index.md).
 
 ```bash
 conda create -n simulating-a-3x3-federated-run -y python=3.11 ipykernel
@@ -68,6 +68,7 @@ python - <<'PY'
 import numpy as np, pandas as pd, os
 rng = np.random.default_rng(0)
 for site in ["siteA", "siteB", "siteC"]:
+    os.makedirs(f"sites/{site}", exist_ok=True)
     n = 200
     X = rng.normal(size=(n, 3))
     y = X @ np.array([1.5, -2.0, 0.3]) + rng.normal(scale=0.5, size=n)
@@ -121,8 +122,8 @@ PY
 
 ## Where to next
 
-→ Back to the [federated-computing lesson](README.md).
+→ Back to the [federated-computing lesson](index.md).
 
-→ [`case-studies/oadr-autoantibody/`](../../case-studies/oadr-autoantibody/README.md) —
+→ [`case-studies/oadr-autoantibody/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/oadr-autoantibody/README.md) —
 the real biomedical version with four cohorts (SDY524, SDY569, SDY797,
 SDY1737) and a proper coordinator.

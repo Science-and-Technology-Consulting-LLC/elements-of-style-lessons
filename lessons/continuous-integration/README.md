@@ -1,6 +1,6 @@
 # Continuous integration
 
-> *In the book: Chapter 12 — Continuous integration.*
+> *In the book: Section 4.5 — Continuous Integration with GitHub Actions.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -25,7 +25,7 @@ tab of this repo with a green build. Reference it as
 
 ## Why CI
 
-The rule from [The Rules](elements-of-style-rules.md):
+The rule from [The Rules](../elements-of-style-rules/index.md):
 
 > **Fail fast.** The sooner you find the broken thing, the cheaper it
 > is to fix.
@@ -175,12 +175,12 @@ Push, watch the Actions tab, iterate.
 - [`github-actions-for-maintenance-testing.md`](github-actions-for-maintenance-testing.md) —
   the maintenance-testing pattern (test + docker-publish workflows) adapted
   from the NICHD Kids First / INCLUDE course, using the same containers you
-  built in [containers](../containers/README.md) and the same pipelines from
-  [nextflow-workflows](../nextflow-workflows/README.md).
+  built in [containers](../containers/index.md) and the same pipelines from
+  [nextflow-workflows](../nextflow-workflows/index.md).
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [GitHub Actions documentation](https://docs.github.com/en/actions) —
   authoritative reference.
 - [Workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) —
@@ -198,6 +198,6 @@ Push, watch the Actions tab, iterate.
 
 ## Where to next
 
-→ [Federated computing](federated-computing.md) — take the
+→ [Federated computing](../federated-computing/index.md) — take the
 containers + workflows + CI you've built and run them across
 institutions.

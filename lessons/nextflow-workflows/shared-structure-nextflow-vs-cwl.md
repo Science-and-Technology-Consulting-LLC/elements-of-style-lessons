@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-4-workflow-development/NextflowCommonWorkFlowLanguageSharedStructureSharedElements/)) — woven into
-the [nextflow-workflows](README.md) lesson.*
+the [nextflow-workflows](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`shared-structure-nextflow-vs-cwl.ipynb`](shared-structure-nextflow-vs-cwl.ipynb) — every code cell
+- **In the paired notebook** [`shared-structure-nextflow-vs-cwl.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/shared-structure-nextflow-vs-cwl.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -94,7 +94,7 @@ containers are identical.
 
 ```groovy
 process fastqc {
-    container 'pgc-images.sbgenomics.com/<userid>/fastqc:v0.11.9'
+    container 'ghcr.io/<owner>/fastqc:v0.11.9'
     input:
       path reads
     output:
@@ -113,7 +113,7 @@ class: CommandLineTool
 id: fastqc
 requirements:
   - class: DockerRequirement
-    dockerPull: 'pgc-images.sbgenomics.com/<userid>/fastqc:v0.11.9'
+    dockerPull: 'ghcr.io/<owner>/fastqc:v0.11.9'
 baseCommand: fastqc
 inputs:
   input_reads: { type: 'File[]', inputBinding: { position: 99 } }
@@ -133,8 +133,8 @@ Different syntax. **Same container. Same command. Same intent.**
 - **Cleaner, testable components.** Each container can be `--help`'d and
   smoke-tested independent of any workflow engine.
 - **Reusable in other workflows.** The container you built for a Nextflow
-  step drops straight into someone else's CWL pipeline — or the CAVATICA
-  Common Workflow Language runner, or Snakemake, or a plain shell script.
+  step drops straight into someone else's CWL pipeline — or a Common
+  Workflow Language runner, or Snakemake, or a plain shell script.
 
 This is why the elements-of-style curriculum spends so much time on the
 **containers** and **reusable-clis** lessons before ever touching a `.nf`
@@ -143,9 +143,9 @@ composition layer on top.
 
 ## Where to next
 
-→ Back to the [nextflow-workflows lesson](README.md) for the framework's
+→ Back to the [nextflow-workflows lesson](index.md) for the framework's
 own graduation from monolithic scripts to `modules/` + `main-*.nf`.
 
-→ [`case-studies/multiqc-workflow/`](../../case-studies/multiqc-workflow/README.md)
+→ [`case-studies/multiqc-workflow/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
 — the fastqc → multiqc pipeline in the graduated container / module /
 workflow structure, with Nextflow-first orchestration.

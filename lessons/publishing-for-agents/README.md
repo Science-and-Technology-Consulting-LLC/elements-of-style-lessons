@@ -1,7 +1,7 @@
 # Publishing for agents
 
 
-> *In the book: Chapter 17 — Publishing for agents.*
+> *In the book: Sections 11.5.5 and 11.5.6 — Publishing for Agents; Exposing Help and Schema.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -52,7 +52,7 @@ By the end you'll be able to:
 1. Take one of your CLIs and publish it as an agent-ready package.
 2. Write a README that an agent can act on — not just a human.
 3. Tag a release that downstream agents can pin against.
-4. Hand the resulting package to the [MCP server](mcp-server.md) lesson
+4. Hand the resulting package to the [MCP server](../mcp-server/index.md) lesson
    for the agent-driving demo.
 
 ## The agent-ready checklist
@@ -67,11 +67,11 @@ tool.
    Not "this is a tool for..." but "this tool takes X and produces Y."
    An agent's first scan is for I/O shape.
 3. **A conda environment file** (e.g. `eos.yml` — see
-   [conda-environments](../conda-environments/README.md)) that pins every
+   [conda-environments](../conda-environments/index.md)) that pins every
    dependency. An agent has to reproduce your environment to call your tool.
 4. **A single entry-point CLI** (`pyproject.toml` `[project.scripts]`
    entry), so `pip install` produces a real command. See
-   [Reusable CLIs](reusable-clis.md).
+   [Reusable CLIs](../reusable-clis/index.md).
 5. **`--help` that doesn't lie.** Every subcommand, every flag, every
    default — accurate and self-explanatory.
 6. **At least one test that the CI runs on every push.** The test
@@ -83,10 +83,10 @@ tool.
    that finds your tool a year from now should be able to pin to a
    specific version that still works.
 9. **A `Dockerfile` or `Containerfile`** (see
-   [Containers](containers.md)) that runs the CLI. Many agents will
+   [Containers](../containers/index.md)) that runs the CLI. Many agents will
    prefer to invoke through a container than to install dependencies.
 10. **Optional but powerful: an MCP server manifest** that exposes the
-    CLI's subcommands as MCP tools. See [MCP server](mcp-server.md)
+    CLI's subcommands as MCP tools. See [MCP server](../mcp-server/index.md)
     for the worked example.
 
 If you can answer "yes" to 1–9, your tool is agent-ready *before* you
@@ -195,12 +195,12 @@ a `--help` that tells the truth.
 One of your CLIs, published under your name or your org, with a
 structured README, a tagged release, a CI badge that's green, and a
 container image you (or an agent) can pull. From there,
-[MCP server](mcp-server.md) is the final step that lets an agent
-discover it and run it on a [platform](platforms.md).
+[MCP server](../mcp-server/index.md) is the final step that lets an agent
+discover it and run it on a [platform](../platforms/index.md).
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Python Packaging User Guide](https://packaging.python.org/)
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)
@@ -211,7 +211,7 @@ discover it and run it on a [platform](platforms.md).
 
 ## Where to next
 
-→ [Platforms — a transport-layer protocol for science](platforms.md)
+→ [Platforms — a transport-layer protocol for science](../platforms/index.md)
 
-← Back to the [home](../index.md), or jump to the
-[book companion](../chapters/index.md) for full worked examples.
+← Back to the [home](../../index.md), or jump to the
+[book companion](../../chapters/index.md) for full worked examples.

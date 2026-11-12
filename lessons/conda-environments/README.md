@@ -1,7 +1,7 @@
 # Reproducible environments with Conda
 
 
-> *In the book: Chapter 5 — Reproducible environments with Conda.*
+> *In the book: Sections 5.2 and 5.3 — Introduction to Anaconda and Packages; Creating a Conda Environment.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -76,7 +76,7 @@ curriculum. When resolved it gives you:
 
 Docker is *not* installed by `eos.yml` — it needs the system package
 manager (Docker Desktop on macOS/Windows, `apt`/`dnf` on Linux; it's
-already on Lifebit compute). See [containers](../containers/README.md).
+already on Lifebit compute). See [containers](../containers/index.md).
 
 ## Create the `eos` environment — per venue
 
@@ -223,4 +223,4 @@ Two walkthroughs adapted from the NICHD Kids First / INCLUDE course:
 
 ## Where to next
 
-→ Next lesson: [Interactive computing with Jupyter](interactive-computing.md)
+→ Next lesson: [Interactive computing with Jupyter](../interactive-computing/index.md)

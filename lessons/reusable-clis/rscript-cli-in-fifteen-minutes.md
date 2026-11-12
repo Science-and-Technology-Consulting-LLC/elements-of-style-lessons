@@ -1,6 +1,6 @@
 # An Rscript CLI in fifteen minutes
 
-*Companion walkthrough to the [reusable-clis](README.md) lesson — the
+*Companion walkthrough to the [reusable-clis](index.md) lesson — the
 R sibling of [`typer-cli-in-fifteen-minutes`](typer-cli-in-fifteen-minutes.md).*
 
 :::{admonition} Two ways to run this walkthrough
@@ -8,7 +8,7 @@ R sibling of [`typer-cli-in-fifteen-minutes`](typer-cli-in-fifteen-minutes.md).*
 
 - **In a terminal / RStudio** — copy each R block into `R` or an RStudio
   console; copy shell blocks into your terminal.
-- **In the paired notebook** [`rscript-cli-in-fifteen-minutes.ipynb`](rscript-cli-in-fifteen-minutes.ipynb) — every R cell
+- **In the paired notebook** [`rscript-cli-in-fifteen-minutes.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/rscript-cli-in-fifteen-minutes.ipynb) — every R cell
   is executed by the Jupyter **R (IRkernel)** kernel. Run the shell
   blocks in a terminal FIRST to install R + IRkernel; then pick the R
   kernel when you open the notebook.
@@ -145,12 +145,12 @@ block, and from an AI agent through MCP.
 
 - Same *one job, one CLI verb* rule as the Typer/Python walkthrough.
 - Same Nextflow-module wrap-shape: one `.nf` per CLI verb, container
-  from [containers](../containers/README.md) supplies R + docopt +
+  from [containers](../containers/index.md) supplies R + docopt +
   package.
 
 ## Where to next
 
-→ Back to [reusable-clis](README.md).
+→ Back to [reusable-clis](index.md).
 
 → [`building-an-r-dockerfile.md`](../containers/building-an-r-dockerfile.md)
 — wrap this CLI in an R container.

@@ -2,14 +2,14 @@
 %
 % The canonical source lives at:
 %
-%     lessons/platforms/authenticating-on-cavatica.md
+%     lessons/platforms/running-a-pipeline-on-cloudos.md
 %
 % Edit THAT file (not this one). This shim carries the page
 % title for Sphinx's toctree, then includes the walkthrough
 % body (starting after its own h1 to avoid a duplicate title).
 
-# Authenticating on CAVATICA
+# Running a pipeline on CloudOS
 
-```{include} ../../../../lessons/platforms/authenticating-on-cavatica.md
+```{include} ../../../../lessons/platforms/running-a-pipeline-on-cloudos.md
 :start-line: 1
 ```

@@ -1,7 +1,7 @@
 # MCP server — the agentic AI portion
 
 
-> *In the book: Chapter 15 — MCP server — the agentic AI portion.*
+> *In the book: Sections 11.5.1 and 11.5.2 — The MCP Server; Wrapping a Typer Command-Line Interface as an MCP Server.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -40,9 +40,6 @@ researcher talking to the agent in natural language:
 The agent reads the MCP-exposed `--help`, asks any clarifying questions,
 and runs the workflow on Lifebit. The researcher never types a Nextflow
 command. *That's* the agentic AI portion of the book.
-
-TBD: will extend this lesson this week with how this pattern lands
-inside enterprise settings (auth, audit, data-residency).
 :::
 
 ## What this lesson builds
@@ -61,10 +58,10 @@ with MCP, **available to an AI agent**. The work doesn't change. The
 
 ## The natural pairing
 
-MCP + [Platforms](platforms.md) (especially Lifebit) is the combination
+MCP + [Platforms](../platforms/index.md) (especially Lifebit) is the combination
 that delivers on the agentic-AI-for-science promise: agents drive CLIs,
 CLIs run on the transport-layer, results come back. See
-[Platforms](platforms.md) for the framing.
+[Platforms](../platforms/index.md) for the framing.
 
 ## The deliverable
 
@@ -101,15 +98,14 @@ cat ~/.claude/config.json
 
 The Lifebit pattern: the MCP server runs *inside* a Lifebit workspace
 exposing nsforest-cli; the agent (Claude / ChatGPT) connects to that
-workspace's URL with the appropriate auth. TBD:  enterprise-settings
-discussion will land here.*
+workspace's URL with the appropriate auth.*
 :::
 
 ::::
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Model Context Protocol specification](https://modelcontextprotocol.io/)
 - [Anthropic MCP quickstart](https://modelcontextprotocol.io/quickstart)
 - [Official MCP server registry](https://github.com/modelcontextprotocol/servers)
@@ -119,4 +115,4 @@ discussion will land here.*
 
 ## Where to next
 
-→ [Agentic harness](agentic-harness.md) — configure the agent that will call your MCP server.
+→ [Agentic harness](../agentic-harness/index.md) — configure the agent that will call your MCP server.

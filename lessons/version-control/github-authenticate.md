@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-2-code-versioning/github-authenticate/)) — woven into
-the [version-control](README.md) lesson.*
+the [version-control](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`github-authenticate.ipynb`](github-authenticate.ipynb) — every code cell
+- **In the paired notebook** [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -69,7 +69,7 @@ who you are. The GitHub CLI (`gh`) does this in one step, but it needs a
 
 `gh` came from the [Anaconda package library](https://anaconda.org/anaconda/repo)
 (the same source we use for `conda install` in
-[conda-environments](../conda-environments/README.md)). **CLI** stands for
+[conda-environments](../conda-environments/index.md)). **CLI** stands for
 *Command Line Interface* — the shell-driven applications we've been using for
 two lessons now.
 
@@ -106,6 +106,6 @@ If everything worked, `gh` prints a happy checkmark and you are ready to
 
 ## Where to next
 
-→ [`the-add-push-git-routine.ipynb`](the-add-push-git-routine.ipynb) — the
+→ [`the-add-push-git-routine.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/the-add-push-git-routine.ipynb) — the
 daily `add → commit → push` loop that turns work-in-progress into a shared
 record.

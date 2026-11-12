@@ -72,12 +72,12 @@ exclude_patterns = [
 
 # Suppress:
 #   myst.header       — heading-level jumps (common with MyST-NB includes)
-#   myst.xref_missing — a relative link inside a canonical README/walkthrough
-#                       (e.g. "../../case-studies/foo/README.md") doesn't
-#                       resolve to a Sphinx document. These links work on
-#                       GitHub — the canonical browsing view — and render as
-#                       plain text on the Pages site; the warning is noise.
-suppress_warnings = ["myst.header", "myst.xref_missing"]
+#
+# myst.xref_missing is NOT suppressed: a lesson link that does not resolve to
+# a Sphinx document is a dead link on the site, and the build should say so.
+# Lesson links use "../<topic>/index.md" for lessons, "<page>.md" for sibling
+# pages, and full GitHub URLs for files outside docs/.
+suppress_warnings = ["myst.header"]
 
 # -- HTML output -------------------------------------------------------------
 
@@ -87,7 +87,7 @@ html_title = "Elements of Style — Lessons"
 html_short_title = "Elements of Style — Lessons"
 html_baseurl = "https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/"
 
-# Theme options chosen for parity with Annie's MkDocs ReadTheDocs theme.
+# Theme options chosen for parity with the MkDocs ReadTheDocs theme of the sibling sites.
 html_theme_options = {
     "navigation_depth": 3,
     "collapse_navigation": False,

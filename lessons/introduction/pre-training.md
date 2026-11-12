@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/pre-training/pre-training/)) — woven into
-the [introduction](README.md) lesson.*
+the [introduction](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`pre-training.ipynb`](pre-training.ipynb) — every code cell
+- **In the paired notebook** [`pre-training.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/pre-training.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -102,16 +102,15 @@ are essential; the rest are conditional.
   `conda`, `docker`, and enough compute for the early lessons.
   Sign in with any Google account at <https://shell.cloud.google.com/>.
 - **Lifebit CloudOS** — federated computing platform (headline platform in
-  [platforms/README.md](../platforms/README.md)).
+  [platforms/README.md](../platforms/index.md)).
   Sign up: <https://cloudos.lifebit.ai/register>. Institutional-access
   requests: <https://lifebit.ai/contact>. Sign in:
   <https://cloudos.lifebit.ai/login>.
 
 ### If you're doing NICHD Kids First / INCLUDE work
 
-The elements-of-style examples themselves don't use CAVATICA — the
-Kids First / INCLUDE course does. Register these three only if you'll
-work in that ecosystem:
+Register these two only if you'll work in the Kids First / INCLUDE
+ecosystem:
 
 - **Kids First DRC** — pediatric-data Data Resource Center.
   Sign up: <https://portal.kidsfirstdrc.org/> → *Create your account* →
@@ -119,11 +118,6 @@ work in that ecosystem:
 - **INCLUDE Data Hub** — Down-syndrome-cohort Data Hub.
   Sign up: <https://portal.includedcc.org/> → *Sign Up* → connect via
   **ORCID** (recommended) or Google.
-- **CAVATICA** — the compute platform Kids First / INCLUDE runs on.
-  Sign up + sign in: <https://cavatica.sbgenomics.com/> → *Create an
-  account* or *Log in with eRA Commons*. Full walkthroughs live in
-  [platforms/creating-a-cavatica-account.md](../platforms/creating-a-cavatica-account.md)
-  and its siblings under the `platforms` lesson.
 
 
 ## Cloud credits and office hours
@@ -140,5 +134,4 @@ open on your laptop, in Google Cloud Shell, or on Lifebit.
 
 → Kids First / INCLUDE readers only:
 [`pre-training-creating-kids-first-and-other-accounts.md`](../platforms/pre-training-creating-kids-first-and-other-accounts.md)
-— the CAVATICA-flavoured account-creation click-by-click (in the
-`platforms` lesson).
+— the Kids First and INCLUDE registrations (in the `platforms` lesson).

@@ -1,13 +1,13 @@
 # Wiring a Claude Code loop around your tools
 
-*Companion walkthrough to the [agentic-harness](README.md) lesson.*
+*Companion walkthrough to the [agentic-harness](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`wiring-a-claude-code-loop.ipynb`](wiring-a-claude-code-loop.ipynb) — every code cell
+- **In the paired notebook** [`wiring-a-claude-code-loop.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/agentic-harness/wiring-a-claude-code-loop.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -35,13 +35,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -107,8 +107,8 @@ add / commit / push`. The *"agent driving your tools"* loop, in real life.
 
 An agentic harness isn't magic. It is:
 
-1. Your CLIs — [reusable-clis](../reusable-clis/README.md).
-2. Wrapped as MCP servers — [mcp-server](../mcp-server/README.md).
+1. Your CLIs — [reusable-clis](../reusable-clis/index.md).
+2. Wrapped as MCP servers — [mcp-server](../mcp-server/index.md).
 3. Registered with a client — this walkthrough.
 4. Driven from natural-language chat — the client.
 
@@ -117,7 +117,7 @@ Every step is small, well-documented, and testable in isolation. The
 
 ## Where to next
 
-→ Back to the [agentic-harness lesson](README.md).
+→ Back to the [agentic-harness lesson](index.md).
 
-→ [publishing-for-agents](../publishing-for-agents/README.md) — how
+→ [publishing-for-agents](../publishing-for-agents/index.md) — how
 your tools become discoverable *without* someone adding them by hand.

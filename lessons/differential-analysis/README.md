@@ -1,6 +1,6 @@
 # Differential analysis, single-cell to pseudobulk
 
-> *In the book: Chapter 3 (the dataset) and Chapter 9 (pseudobulk and limma-voom).*
+> *In the book: Sections 3.10 to 3.12 (the dataset) and Section 9.2.8 (pseudobulk and limma-voom).*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -35,11 +35,11 @@ then applies.
 
 ## The same steps as a workflow
 
-The five limma-voom modules in [`modules/limma-voom/`](../../modules/limma-voom/)
-and the stitched [`main-bulk-de.nf`](../../main-bulk-de.nf) run this analysis
-as a Nextflow workflow. See [Nextflow workflows](../nextflow-workflows/README.md).
+The five limma-voom modules in [`modules/limma-voom/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/modules/limma-voom)
+and the stitched [`main-bulk-de.nf`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/main-bulk-de.nf) run this analysis
+as a Nextflow workflow. See [Nextflow workflows](../nextflow-workflows/index.md).
 
 ## Where to go next
 
 The case study that this lesson draws on is in
-[`case-studies/endometriosis/`](../../case-studies/endometriosis/README.md).
+[`case-studies/endometriosis/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/endometriosis/README.md).

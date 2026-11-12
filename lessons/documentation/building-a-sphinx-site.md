@@ -1,13 +1,13 @@
 # Building a Sphinx site — the local build/deploy loop
 
-*Companion walkthrough to the [documentation](README.md) lesson.*
+*Companion walkthrough to the [documentation](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-a-sphinx-site.ipynb`](building-a-sphinx-site.ipynb) — every code cell
+- **In the paired notebook** [`building-a-sphinx-site.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -35,24 +35,22 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
 ```bash
 for cmd in bash git conda gh docker nextflow python3; do
   if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
+    printf "  %-10s %s\n" "$cmd" "$(command -v "$cmd")"
   else
-    printf "  %-10s MISSING
-" "$cmd"
+    printf "  %-10s MISSING\n" "$cmd"
   fi
 done
 ```
@@ -66,8 +64,10 @@ site.
 
 ## Install the toolchain
 
+Run this in the `eos` environment: `conda activate eos` in a terminal,
+then start JupyterLab from it.
+
 ```bash
-conda activate eos   # or a fresh env
 pip install sphinx sphinx-rtd-theme myst-parser myst-nb \
             sphinx-copybutton sphinx-design linkify-it-py
 ```
@@ -75,12 +75,13 @@ pip install sphinx sphinx-rtd-theme myst-parser myst-nb \
 ## Scaffold a docs tree
 
 ```bash
-mkdir -p docs/source && cd docs
+mkdir -p docs/source
 ```
 
-Create `docs/source/conf.py`:
+Write `docs/source/conf.py`:
 
-```python
+```bash
+cat > docs/source/conf.py <<'EOF'
 project = "My Lessons"
 author = "Your Name"
 
@@ -93,11 +94,13 @@ extensions = [
 myst_enable_extensions = ["colon_fence", "deflist", "linkify"]
 
 html_theme = "sphinx_rtd_theme"
+EOF
 ```
 
-Create `docs/source/index.md`:
+Write `docs/source/index.md`:
 
-```markdown
+````bash
+cat > docs/source/index.md <<'EOF'
 # My Lessons
 
 Welcome.
@@ -107,14 +110,17 @@ Welcome.
 
 intro
 ```
-```
+EOF
+````
 
 And `docs/source/intro.md`:
 
-```markdown
+```bash
+cat > docs/source/intro.md <<'EOF'
 # Intro
 
 First page.
+EOF
 ```
 
 ## Build
@@ -122,8 +128,14 @@ First page.
 ```bash
 cd docs
 sphinx-build -W -b html source build/html
+cd ..
+```
+
+Serve the pages from a terminal, then open <http://localhost:8000>. The server
+runs until you stop it with Ctrl-C, so it is not a notebook cell:
+
+```text
 python -m http.server -d build/html 8000
-# open http://localhost:8000
 ```
 
 The `-W` flag treats warnings as errors — the discipline that keeps a
@@ -160,7 +172,7 @@ live at `https://<user>.github.io/<repo>/` in about two minutes.
 
 ## Where to next
 
-→ Back to the [documentation lesson](README.md).
+→ Back to the [documentation lesson](index.md).
 
-→ [continuous-integration](../continuous-integration/README.md) — for
+→ [continuous-integration](../continuous-integration/index.md) — for
 the maintenance-testing pattern that runs alongside the docs deploy.

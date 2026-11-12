@@ -1,7 +1,7 @@
 # Building reusable command-line tools
 
 
-> *In the book: Chapter 7 — Building reusable command-line tools.*
+> *In the book: Section 5.4 — Building Reusable Command-Line Tools.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -239,11 +239,11 @@ process SCANPY_QC {
 
 No `bin/` script needed. No Python boilerplate. The Nextflow process
 just calls your CLI the same way you would from the terminal — and the
-same way an AI agent will, in the [MCP server](mcp-server.md) lesson.
+same way an AI agent will, in the [MCP server](../mcp-server/index.md) lesson.
 
 ## The agent-readiness payoff
 
-The whole reason this lesson is here, before [MCP server](mcp-server.md),
+The whole reason this lesson is here, before [MCP server](../mcp-server/index.md),
 is that **an agent's primary interface to your tool is `--help`.**
 
 When you write good Typer CLIs:
@@ -268,7 +268,7 @@ agents — without changes.
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Typer](https://typer.tiangolo.com/) — modern Python CLI framework
 - [Click](https://click.palletsprojects.com/) — the library Typer is built on
 - [Command Line Interface Guidelines](https://clig.dev/) — comprehensive design guide
@@ -279,4 +279,4 @@ agents — without changes.
 
 ## Where to next
 
-→ [Containers](containers.md) — take your CLI and put it in a single-purpose container.
+→ [Containers](../containers/index.md) — take your CLI and put it in a single-purpose container.

@@ -2,14 +2,14 @@
 %
 % The canonical source lives at:
 %
-%     lessons/platforms/creating-a-cavatica-account.md
+%     lessons/platforms/logging-into-cloudos.md
 %
 % Edit THAT file (not this one). This shim carries the page
 % title for Sphinx's toctree, then includes the walkthrough
 % body (starting after its own h1 to avoid a duplicate title).
 
-# Creating a CAVATICA account
+# Logging into CloudOS
 
-```{include} ../../../../lessons/platforms/creating-a-cavatica-account.md
+```{include} ../../../../lessons/platforms/logging-into-cloudos.md
 :start-line: 1
 ```

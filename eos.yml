@@ -30,7 +30,7 @@ dependencies:
   - ipykernel
 
   # ---- R + IRkernel + common tidyverse used by walkthroughs ----
-  - r-base
+  - r-base=4.4           # R 4.5 builds of the Bioconductor core crash on load (osx-arm64, tested)
   - r-irkernel
   - r-tibble
   - r-dplyr
@@ -48,6 +48,9 @@ dependencies:
   - bioconductor-limma
   - bioconductor-edger
   - bioconductor-enhancedvolcano
+  - bioconductor-singlecellexperiment   # limma-voom CLI: read h5ad, pseudobulk
+  - bioconductor-scuttle
+  - bioconductor-zellkonverter
 
   # ---- Tools every reader will reach for ----
   - git

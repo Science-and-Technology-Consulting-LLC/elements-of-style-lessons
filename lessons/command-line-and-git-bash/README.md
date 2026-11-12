@@ -1,7 +1,7 @@
 # The command line, with Git Bash
 
 
-> *In the book: Chapter 3 — Command line + Git Bash.*
+> *In the book: Section 3.7 — The Command Line with Git Bash.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -234,4 +234,4 @@ created a project folder. Step 2 will turn it into a Git repo.
 
 ## Where to next
 
-→ Next lesson: [Version control with Git](version-control.md)
+→ Next lesson: [Version control with Git](../version-control/index.md)

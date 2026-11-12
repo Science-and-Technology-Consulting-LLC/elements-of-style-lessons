@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/pre-training/pre-training-creating-kids-first-and-other-accounts/)) — woven into
-the [platforms](README.md) lesson.*
+the [platforms](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`pre-training-creating-kids-first-and-other-accounts.ipynb`](pre-training-creating-kids-first-and-other-accounts.ipynb) — every code cell
+- **In the paired notebook** [`pre-training-creating-kids-first-and-other-accounts.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/pre-training-creating-kids-first-and-other-accounts.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -62,7 +62,7 @@ done
 
 ## What this session sets up
 
-Before the five-day course starts, three data-hub accounts are worth
+Before the five-day course starts, two data-hub accounts are worth
 having in place. Each takes minutes to register, and each links to the
 same NIH identity so authorisation flows through.
 
@@ -85,24 +85,18 @@ same NIH identity so authorisation flows through.
    path — it doubles as your authoritative researcher identifier.)
    *eRA Commons login for INCLUDE is on the roadmap.*
 
-## CAVATICA
-
-Register per [`creating-a-cavatica-account.md`](creating-a-cavatica-account.md).
-Both Kids First and INCLUDE let you connect a CAVATICA project as your
-compute workspace once your CAVATICA account exists.
-
 ## GA4GH — the framework behind the rules
 
 Pediatric data and human data are **sensitive data**. The **Global Alliance
 for Genomics & Health ([GA4GH](https://www.ga4gh.org/))** is the policy-framing
 and technical-standards organisation whose mission is *responsible genomic
-data sharing within a human-rights framework.* The three accounts above are
+data sharing within a human-rights framework.* The two accounts above are
 implementations of pieces of that framework.
 
 ## Where to next
 
-→ [`creating-a-cavatica-account.md`](creating-a-cavatica-account.md).
+→ [`creating-a-cloudos-account.md`](creating-a-cloudos-account.md).
 
-→ [`logging-into-cavatica-step-by-step.md`](logging-into-cavatica-step-by-step.md).
+→ [`logging-into-cloudos.md`](logging-into-cloudos.md).
 
-→ Back to the [platforms lesson](README.md).
+→ Back to the [platforms lesson](index.md).

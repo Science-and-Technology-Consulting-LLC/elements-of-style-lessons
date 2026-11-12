@@ -13,6 +13,7 @@ Imports:
     docopt,
     limma,
     edgeR,
+    SummarizedExperiment,
     SingleCellExperiment,
     scuttle,
     zellkonverter

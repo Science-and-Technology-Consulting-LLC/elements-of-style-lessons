@@ -1,13 +1,13 @@
 # Wrap a Typer CLI as an MCP server
 
-*Companion walkthrough to the [mcp-server](README.md) lesson.*
+*Companion walkthrough to the [mcp-server](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — copy each shell block into your terminal; copy each
   Python block into `python -` or your editor.
-- **In the paired notebook** [`wrap-a-typer-cli-as-an-mcp-server.ipynb`](wrap-a-typer-cli-as-an-mcp-server.ipynb) — every Python
+- **In the paired notebook** [`wrap-a-typer-cli-as-an-mcp-server.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb) — every Python
   cell is executed by a dedicated Jupyter **Python 3** kernel. Run the
   shell blocks in a terminal FIRST to create the env and register the
   kernel; then pick that kernel when you open the notebook.
@@ -21,7 +21,7 @@ environment* below once, then run the steps top-to-bottom.
 ### Once per walkthrough — a dedicated conda env + Jupyter kernel
 
 Isolating the walkthrough in its own env means nothing you install here
-leaks out. See [conda-environments](../conda-environments/README.md).
+leaks out. See [conda-environments](../conda-environments/index.md).
 
 ```bash
 conda create -n wrap-a-typer-cli-as-an-mcp-server -y python=3.11 ipykernel
@@ -114,11 +114,11 @@ returns `"Hello, Annie!"`.
 - The MCP server is a *thin* wrapper around your existing Typer CLI —
   no duplication of logic.
 - Every container in this repo can be exposed the same way — see the
-  `mcp-nsforest-server` container in [containers](../containers/README.md).
+  `mcp-nsforest-server` container in [containers](../containers/index.md).
 
 ## Where to next
 
-→ Back to the [mcp-server lesson](README.md).
+→ Back to the [mcp-server lesson](index.md).
 
-→ [publishing-for-agents](../publishing-for-agents/README.md) — the
+→ [publishing-for-agents](../publishing-for-agents/index.md) — the
 schemas + docs that make your tools discoverable.

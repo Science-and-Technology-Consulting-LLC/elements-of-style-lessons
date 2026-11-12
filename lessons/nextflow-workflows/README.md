@@ -1,7 +1,7 @@
 # From notebooks toward Nextflow
 
 
-> *In the book: Chapter 10 — Nextflow workflows.*
+> *In the book: Sections 6.2 and 7.3 — Introduction to Workflow Languages; Building a Nextflow Script.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -46,9 +46,9 @@ anyone can run" tends to look like this:
 4. **Move those functions into a small package** — install once, import
    everywhere.
 5. **Expose each package function as a CLI step** — see
-   [Reusable CLIs](reusable-clis.md).
+   [Reusable CLIs](../reusable-clis/index.md).
 6. **Wire the CLI steps together as Nextflow modules** — see
-   [Nextflow modules](nextflow-modules.md). Each module is one process
+   [Nextflow modules](../nextflow-modules/index.md). Each module is one process
    with documented inputs and outputs.
 7. **Connect the modules into a workflow** — `main.nf` orchestrates the
    modules and runs them, with provenance, on whatever compute you point
@@ -84,7 +84,7 @@ Three things to notice before you read any code:
 1. **`main.nf` is short.** The orchestrator does almost nothing
    itself — it imports modules and connects channels.
 2. **Each module is one file with one process.** That isn't an
-   accident — that's the rule from [containers](containers.md) applied
+   accident — that's the rule from [containers](../containers/index.md) applied
    to workflow steps.
 3. **The actual Python lives in `bin/build_h5ad.py`.** Not inside the
    `.nf` file. That separation is the most important thing to internalize
@@ -117,7 +117,7 @@ process BUILD_H5AD {
 Four things going on:
 
 - **`container`** — the image to run this process in. Single-purpose
-  image from the [containers](containers.md) lesson. The container
+  image from the [containers](../containers/index.md) lesson. The container
   carries the dependencies; the `.nf` carries the contract.
 - **`input:`** — the data this process needs, declared in the same
   shape Nextflow channels will deliver it.
@@ -205,14 +205,18 @@ workflow. That's the payoff.
 ```bash
 nextflow run main-bulk-de.nf -profile docker \
     --samplesheet data/test-data/bulk-de-samplesheet.csv \
-    --contrast 'CF-Control'
+    --contrast 'EuE-Control'
 ```
 :::
 
 :::{tab-item} macOS / Windows (test profile)
 :sync: test
 
+The test profile uses no container, so install the R package first. The test data are synthetic: two cell types, four control and four case donors each, with 20 genes raised on purpose. A working pipeline finds those 20 genes (`scripts/make_synthetic_test_data.py` makes them).
+
 ```bash
+R CMD INSTALL container/limma-voom/context
+export PATH="$(Rscript -e 'cat(system.file("scripts", package="limmaVoomCLI"))'):$PATH"
 nextflow run main-bulk-de.nf -profile test
 ```
 :::
@@ -225,7 +229,7 @@ nextflow run main-bulk-de.nf -profile test
 # Same command, different config — that's the payoff.
 nextflow run main-bulk-de.nf -profile lifebit \
     --samplesheet s3://my-bucket/bulk-de-samplesheet.csv \
-    --contrast 'CF-Control'
+    --contrast 'EuE-Control'
 ```
 :::
 
@@ -249,7 +253,7 @@ Be honest about the cost. Don't reach for Nextflow when:
 A `main.nf` you wrote yourself, with one or two modules and one or two
 `bin/` scripts, running on test data on your laptop. From there you can
 add modules, swap in real data, and graduate to running on a
-[platform](platforms.md) — but the muscle is built.
+[platform](../platforms/index.md) — but the muscle is built.
 
 ## In-depth walkthroughs
 
@@ -258,7 +262,7 @@ Three walkthroughs adapted from the NICHD Kids First / INCLUDE course:
 - [`building-a-nextflow-workflow.md`](building-a-nextflow-workflow.md) —
   the classic `fastqc → multiqc` pipeline as one monolithic Nextflow script,
   with a graduation note pointing at the containers / modules / `main-*.nf`
-  refactor used in the [`multiqc-workflow`](../../case-studies/multiqc-workflow/README.md)
+  refactor used in the [`multiqc-workflow`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
   case study. Origin: [`adeslatt/Building-A-Nextflow-Script`](https://github.com/adeslatt/Building-A-Nextflow-Script).
 - [`building-a-cwl-workflow.md`](building-a-cwl-workflow.md) —
   the exact same pipeline in CWL, running under `cwltool`. Same containers,
@@ -269,7 +273,7 @@ Three walkthroughs adapted from the NICHD Kids First / INCLUDE course:
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Nextflow documentation](https://www.nextflow.io/docs/latest/)
 - [Nextflow patterns](https://nextflow-io.github.io/patterns/) — common workflow idioms
 - [nf-core pipelines](https://nf-co.re/pipelines) — production examples
@@ -278,4 +282,4 @@ Three walkthroughs adapted from the NICHD Kids First / INCLUDE course:
 
 ## Where to next
 
-→ [Documentation](documentation.md) — write a Sphinx site for the workflow you just built.
+→ [Documentation](../documentation/index.md) — write a Sphinx site for the workflow you just built.

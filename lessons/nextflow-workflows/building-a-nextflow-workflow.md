@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-4-workflow-development/building-a-nextflow-workflow/)) — woven into
-the [nextflow-workflows](README.md) lesson.*
+the [nextflow-workflows](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-a-nextflow-workflow.ipynb`](building-a-nextflow-workflow.ipynb) — every code cell
+- **In the paired notebook** [`building-a-nextflow-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -63,18 +63,18 @@ done
 ## Prerequisites
 
 - Two container images from
-  [`building-dockerfiles.ipynb`](../../containers/ipynb/building-dockerfiles.ipynb),
-  published per [`preamble.ipynb`](../../nextflow-modules/ipynb/preamble.ipynb).
+  [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb),
+  published per [`preamble.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/preamble.ipynb).
 - Conda from
-  [`creating-a-conda-environment.ipynb`](../../conda-environments/ipynb/creating-a-conda-environment.ipynb),
+  [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb),
   active as `eos`.
-- Docker on your PATH (see [containers](../containers/README.md)).
+- Docker on your PATH (see [containers](../containers/index.md)).
 
 ## Clone the NICHD example
 
 You have two equally-valid clone sources:
 
-```bash
+```text
 # The NICHD teaching fork (unchanged for the course):
 git clone https://github.com/NIH-NICHD/Building-A-Nextflow-Script.git
 
@@ -83,6 +83,7 @@ git clone https://github.com/adeslatt/Building-A-Nextflow-Script.git
 ```
 
 Either works — the two are typically in sync during the training week.
+The next block clones the upstream origin.
 
 ```bash
 git clone https://github.com/adeslatt/Building-A-Nextflow-Script.git
@@ -123,7 +124,7 @@ directive names the image *from the registry* the step will run inside.
 ```groovy
 process fastqc {
     publishDir "results", mode: 'copy'
-    container 'pgc-images.sbgenomics.com/<userid>/fastqc:v0.11.9'
+    container 'ghcr.io/<owner>/fastqc:v0.11.9'
 
     input:
       path reads
@@ -164,7 +165,7 @@ a step that operates on *all* the results at once (like `multiqc`):
 ```groovy
 process multiqc {
     publishDir "results", mode: 'copy'
-    container 'pgc-images.sbgenomics.com/<userid>/multiqc:v1.0dev0'
+    container 'ghcr.io/<owner>/multiqc:v1.0.0'
 
     input:
       path fastqc_results
@@ -189,7 +190,7 @@ profiles for different platforms (test / docker / lifebit).
 ## Run it
 
 Give Nextflow some FASTQs to work on (the same tiny test files the
-[CWL walkthrough](building-a-cwl-workflow.ipynb) uses):
+[CWL walkthrough](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) uses):
 
 ```bash
 wget -q https://zenodo.org/record/7025773/files/test.20k_reads_1.fastq.gz
@@ -208,12 +209,12 @@ and one aggregated `multiqc_report.html`.
 
 ## Where to next
 
-→ [`building-a-cwl-workflow.ipynb`](building-a-cwl-workflow.ipynb) — the
+→ [`building-a-cwl-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) — the
 same two steps written in Common Workflow Language for comparison.
 
-→ [`shared-structure-nextflow-vs-cwl.ipynb`](shared-structure-nextflow-vs-cwl.ipynb) —
+→ [`shared-structure-nextflow-vs-cwl.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/shared-structure-nextflow-vs-cwl.ipynb) —
 what the two languages agree on and why that matters for platform independence.
 
-→ [`case-studies/multiqc-workflow/`](../../case-studies/multiqc-workflow/README.md)
+→ [`case-studies/multiqc-workflow/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
 — the same pipeline reorganised into the container / module / workflow
 graduation structure.

@@ -16,6 +16,7 @@ RUN R CMD INSTALL /opt/limma-voom/
 
 # Expose the 5 Rscript entries as commands on PATH
 RUN for verb in prep-counts make-design run-voom fit-lm contrasts; do \
+        chmod +x /usr/local/lib/R/site-library/limmaVoomCLI/scripts/limma-voom-${verb}; \
         ln -s /usr/local/lib/R/site-library/limmaVoomCLI/scripts/limma-voom-${verb} /usr/local/bin/limma-voom-${verb}; \
     done
 

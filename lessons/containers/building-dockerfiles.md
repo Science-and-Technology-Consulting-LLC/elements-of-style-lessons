@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-3-containerization/building-dockerfiles/)) — woven into
-the [containers](README.md) lesson.*
+the [containers](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-dockerfiles.ipynb`](building-dockerfiles.ipynb) — every code cell
+- **In the paired notebook** [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -62,7 +62,7 @@ done
 
 ## Prerequisites
 
-You've completed [conda-environments](../conda-environments/README.md) — you
+You've completed [conda-environments](../conda-environments/index.md) — you
 know how to make a clean environment and install packages into it. This
 walkthrough builds on that: instead of installing tools *into your machine*,
 we install them *into a Docker image* — a portable, reproducible bundle you
@@ -71,7 +71,7 @@ will behave the same everywhere.
 
 We're going to build **two** small container images — `fastqc` and `multiqc`
 — that will reappear in the
-[`case-studies/multiqc-workflow/`](../../case-studies/multiqc-workflow/README.md)
+[`case-studies/multiqc-workflow/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
 worked example.
 
 ## What a Docker image and a Dockerfile are
@@ -91,7 +91,7 @@ A **Docker image** is the finished, portable bundle produced by running
 ## Setup
 
 Activate your conda environment (from
-[`creating-a-conda-environment.ipynb`](../../conda-environments/ipynb/creating-a-conda-environment.ipynb)):
+[`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb)):
 
 ```bash
 conda activate eos
@@ -190,8 +190,8 @@ Breakdown:
 - `fastqc -h` (last) — the command to run inside the container.
 
 If you saw the fastqc help text scroll past, congratulations: you have a
-portable fastqc that will now run identically on your laptop, on Lifebit, on
-CAVATICA, and inside any Nextflow module that names this container.
+portable fastqc that will now run identically on your laptop, on Lifebit, and inside
+any Nextflow module that names this container.
 
 ### Push the source to GitHub
 
@@ -322,15 +322,15 @@ Both:
   use on your laptop — the pattern is portable).
 - Live in their own GitHub repo (`fastqc-docker`, `multiqc-docker`).
 - Ship a working CLI verb (`fastqc`, `multiqc`) that a
-  [Nextflow module](../nextflow-modules/README.md) can call directly.
+  [Nextflow module](../nextflow-modules/index.md) can call directly.
 
-The [multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md)
+The [multiqc-workflow case study](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
 composes them into a two-step pipeline: **fastqc → multiqc**.
 
 ## Where to next
 
-→ Back to the [containers lesson](README.md) for the theoretical framing
+→ Back to the [containers lesson](index.md) for the theoretical framing
 (one container, one job, one CLI).
 
-→ Then [nextflow-modules](../nextflow-modules/README.md) — wrap each of
+→ Then [nextflow-modules](../nextflow-modules/index.md) — wrap each of
 these containers in a `.nf` module.

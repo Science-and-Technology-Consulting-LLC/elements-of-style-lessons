@@ -1,7 +1,7 @@
 # Containers
 
 
-> *In the book: Chapter 8 — Containers.*
+> *In the book: Sections 5.5 and 5.6 — What Is a Docker Image and a Dockerfile; Building and Testing Dockerfiles.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -94,13 +94,13 @@ That's it. Four sections, four reasons:
    you have two containers.
 4. **`ENTRYPOINT`.** When someone runs your image with no arguments,
    they get the actual tool — with `--help` if you wrote it that way
-   (see [Reusable CLIs](reusable-clis.md)).
+   (see [Reusable CLIs](../reusable-clis/index.md)).
 
 ## Install Docker
 
 Docker is only for building and testing on your own machine. When you push
 to GitHub, the GitHub Actions job builds and pushes the image for you (see
-[Continuous integration](../continuous-integration/README.md)), so you can skip
+[Continuous integration](../continuous-integration/index.md)), so you can skip
 Docker Desktop if you do not have admin rights.
 
 ::::{tab-set}
@@ -225,7 +225,7 @@ reason — `nsforest` and `scanpy-qc` both run on Apple-Silicon laptops
 A single-purpose `Dockerfile`, a built image tagged with a real version,
 a pushed image at a registry your collaborator can pull from, and a
 smoke-test command you can paste into any README. Once you have that,
-[Nextflow](nextflow-workflows.md) becomes trivial — it's just wiring boxes
+[Nextflow](../nextflow-workflows/index.md) becomes trivial — it's just wiring boxes
 together.
 
 ## In-depth walkthrough
@@ -234,12 +234,12 @@ together.
   build two real single-purpose images end-to-end: `fastqc` and `multiqc`.
   The NICHD Kids First / INCLUDE course walks through both step by step; the
   finished images become the two pipeline steps in the
-  [`multiqc-workflow`](../../case-studies/multiqc-workflow/README.md) case
+  [`multiqc-workflow`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md) case
   study.
 
 ## Further reading
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Docker documentation](https://docs.docker.com/)
 - [Dockerfile reference](https://docs.docker.com/reference/dockerfile/) — every instruction
 - [Open Container Initiative](https://opencontainers.org/) — the spec containers implement
@@ -250,4 +250,4 @@ together.
 
 ## Where to next
 
-→ [Nextflow modules](nextflow-modules.md) — wrap each CLI verb as a `.nf` module.
+→ [Nextflow modules](../nextflow-modules/index.md) — wrap each CLI verb as a `.nf` module.

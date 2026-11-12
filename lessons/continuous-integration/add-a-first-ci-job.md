@@ -1,6 +1,6 @@
 # Add a first CI job to an empty repo
 
-*Companion walkthrough to the [continuous-integration](README.md)
+*Companion walkthrough to the [continuous-integration](index.md)
 lesson — a minimal "green badge" CI setup you can graduate from.*
 
 :::{admonition} Two ways to run this walkthrough
@@ -8,7 +8,7 @@ lesson — a minimal "green badge" CI setup you can graduate from.*
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`add-a-first-ci-job.ipynb`](add-a-first-ci-job.ipynb) — every code cell
+- **In the paired notebook** [`add-a-first-ci-job.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/add-a-first-ci-job.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -36,13 +36,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -127,5 +127,5 @@ That's the feedback loop CI gives you — cheap, fast, honest.
 
 ## Where to next
 
-→ Back to the [continuous-integration lesson](README.md) for the
+→ Back to the [continuous-integration lesson](index.md) for the
 richer patterns (matrix testing, container publish, docs deploy).

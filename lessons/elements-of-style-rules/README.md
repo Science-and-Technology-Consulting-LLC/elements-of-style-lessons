@@ -1,6 +1,6 @@
 # The Rules
 
-> *In the book: Chapter 2 — The Rules.*
+> *In the book: Section 3.1 — The Rules.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -134,26 +134,26 @@ once beats a beautiful 200-line one you haven't.
 ### 2. Containerize
 
 Docker + Conda at the process level. One container, one job, one CLI.
-*([Containers](containers.md).)*
+*([Containers](../containers/index.md).)*
 
 ### 3. Use workflow languages
 
 Nextflow (or CWL / WDL — Nextflow first for biomedical work).
 Parallelisation comes free. Same workflow runs on laptop, cluster, and
 cloud.
-*([Nextflow modules](nextflow-modules.md) → [Nextflow workflows](nextflow-workflows.md).)*
+*([Nextflow modules](../nextflow-modules/index.md) → [Nextflow workflows](../nextflow-workflows/index.md).)*
 
 ### 4. Version control
 
 GitHub for everything. If it's worth running once, it's worth
 committing once.
-*([Version control](version-control.md).)*
+*([Version control](../version-control/index.md).)*
 
 ### 5. AI wisely
 
 Syntax help — yes. Architecture design — no. You hold the design idea
 in your head; the AI fills in the keystrokes.
-*([MCP server](mcp-server.md), [Publishing for agents](publishing-for-agents.md).)*
+*([MCP server](../mcp-server/index.md), [Publishing for agents](../publishing-for-agents/index.md).)*
 
 ### 6. Fail fast
 
@@ -170,4 +170,4 @@ cheaper it is to fix.
 
 ## Where to next
 
-→ [Command line, with Git Bash](command-line-and-git-bash.md)
+→ [Command line, with Git Bash](../command-line-and-git-bash/index.md)

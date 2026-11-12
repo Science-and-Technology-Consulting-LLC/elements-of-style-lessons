@@ -1,7 +1,7 @@
 # Interactive computing with Jupyter
 
 
-> *In the book: Chapter 6 — Interactive computing with Jupyter.*
+> *In the book: Section 3.8 — Interactive Computing with JupyterLab.*
 
 :::{admonition} What you'll learn
 :class: tip
@@ -132,8 +132,7 @@ caught a problem — better now than in a paper review.
 Two walkthroughs adapted from the NICHD Kids First / INCLUDE course:
 
 - [`starting-a-jupyter-lab-notebook.md`](starting-a-jupyter-lab-notebook.md) —
-  launch JupyterLab on your laptop, on Lifebit, or on CAVATICA Data Studio,
-  including the *network-access* toggle CAVATICA needs.
+  launch JupyterLab on your laptop or on Lifebit.
 - [`running-a-jupyterlab-notebook.md`](running-a-jupyterlab-notebook.md) —
   clone a real R notebook (`exampleVolcanoPlotNotebook`, origin at
   `adeslatt/`), pick the R kernel, and Restart-and-Run-All.
@@ -144,7 +143,7 @@ The All of Us Workbench gives you Jupyter natively — Python, R, and
 Nextflow are all supported. What it *doesn't* give you is a direct
 `git pull` from GitHub. That doesn't have to stop you from versioning your
 notebooks; it just changes the workflow. See
-[Bridge patterns](../bridges/index.md) for the gentle approach.
+[Bridge patterns](../../bridges/index.md) for the gentle approach.
 
 ## Further reading
 
@@ -157,4 +156,4 @@ notebooks; it just changes the workflow. See
 
 ## Where to next
 
-→ [Building reusable command-line tools](reusable-clis.md)
+→ [Building reusable command-line tools](../reusable-clis/index.md)

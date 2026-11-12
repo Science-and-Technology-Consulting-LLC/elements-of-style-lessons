@@ -10,4 +10,9 @@ data/
 └── test-data/     Tiny inputs for `-profile test` runs
 ```
 
+`test-data/` holds synthetic data for `main-bulk-de.nf`, made by
+`scripts/make_synthetic_test_data.py`: two cell types, eight samples each, with
+20 genes raised on purpose.
+
+
 Case-study-specific data lives under each `case-studies/<name>/data/`.

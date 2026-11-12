@@ -74,7 +74,7 @@ iteration informed the structure of this site.
 
 | Date | Setting | Platform / Partner |
 |------|---------|--------------------|
-| Dec 2020 | 5-day course — *the origin* | Jackson Laboratory + Lifebit (co-taught with Christina Chatzipiantzou) |
+| Dec 2020 | 5-day course — *the origin* | Jackson Laboratory + Lifebit (co-taught with Christina Chatzipantsiou) |
 | Fall 2021 | 3-hour ISCB Academy course | Lifebit |
 | Mar 2022 | 3-hour NICHD Scholar course | INCLUDE platform / Seven Bridges CAVATICA |
 | Jul 2022 | 1-hour presentation | Univ Colorado — Data Science for Diverse Scholars (Down Syndrome) |
@@ -91,7 +91,7 @@ teaches.
 
 ## Acknowledgements
 
-- **Christina Chatzipiantzou** and the **Lifebit** team — origin of
+- **Christina Chatzipantsiou** and the **Lifebit** team — origin of
   the course, December 2020.
 - The **NICHD Scholar** programmes (Kids First, INCLUDE) for hosting
   the iterations that sharpened the curriculum.

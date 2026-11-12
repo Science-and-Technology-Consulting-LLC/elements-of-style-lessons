@@ -2,9 +2,6 @@
 //
 // Demonstrates the smallest possible Nextflow workflow that uses a module.
 // `nextflow run main-hello-py-greet.nf -profile test --name Annie`
-//
-// For Lifebit: if the platform requires a main.nf filename, copy this file
-// to main.nf at deploy time. Annie will confirm.
 
 nextflow.enable.dsl = 2
 

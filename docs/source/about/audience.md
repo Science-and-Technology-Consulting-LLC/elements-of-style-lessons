@@ -41,7 +41,7 @@ adaptation.
   have time to detour into infrastructure for its own sake. Every
   tool here earns its place by saving time later.
 - **People who move between platforms** — laptop, ADAPTS, the All of
-  Us Workbench, Biowulf, a CAVATICA project, a JupyterHub somewhere.
+  Us Workbench, Biowulf, a CloudOS workspace, a JupyterHub somewhere.
   The lessons are designed so the muscle memory transfers.
 - **People at every skill level**, from "this is my first terminal
   session" to "I've shipped Nextflow pipelines to production." The

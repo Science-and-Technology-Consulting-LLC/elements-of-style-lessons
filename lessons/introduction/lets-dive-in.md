@@ -2,14 +2,14 @@
 
 *Adapted from the NICHD Kids First / INCLUDE course
 ([source](https://nih-nichd.github.io/classes/day-1-reasoning/lets-dive-in/)) — woven into
-the [introduction](README.md) lesson.*
+the [introduction](index.md) lesson.*
 
 :::{admonition} Two ways to run this walkthrough
 :class: tip
 
 - **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
   Copy each shell block below into your terminal.
-- **In the paired notebook** [`lets-dive-in.ipynb`](lets-dive-in.ipynb) — every code cell
+- **In the paired notebook** [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) — every code cell
   is a shell command executed by the Jupyter **Bash** kernel.
 
 The walkthrough is **self-contained**. Work through *Set up the
@@ -37,13 +37,13 @@ fails, the linked lesson has the install instructions.
 
 | Tool | Check | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/README.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/README.md) |
+| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
+| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
 | GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/README.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/README.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/README.md) |
+| Docker | `docker --version` | [containers](../containers/index.md) |
+| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
+| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
 
 Run them all at once:
 
@@ -72,14 +72,16 @@ CloudOS** is what you reach for when the work needs to scale.
 
 ## On your laptop (recommended for lessons 1–8)
 
-```bash
+In a terminal (JupyterLab runs until you stop it, so it is not a notebook cell):
+
+```text
 conda activate eos
 jupyter lab
 ```
 
 That opens a browser-based JupyterLab with a terminal, `git`, `conda`,
 `docker`, and `nextflow` on your PATH. If any of those is missing,
-[conda-environments](../conda-environments/README.md) walks the install.
+[conda-environments](../conda-environments/index.md) walks the install.
 
 ## In Google Cloud Shell (free, browser-based)
 
@@ -97,19 +99,17 @@ That opens a browser-based JupyterLab with a terminal, `git`, `conda`,
 2. Sign in at <https://cloudos.lifebit.ai/login>.
 3. Create a workspace; open its JupyterLab terminal.
 
-See [platforms/README.md](../platforms/README.md) for the fuller
+See [platforms/README.md](../platforms/index.md) for the fuller
 Lifebit story.
 
-## If you're doing NICHD Kids First / INCLUDE work
+## Running on CloudOS
 
-The elements-of-style examples don't use CAVATICA — but the Kids First /
-INCLUDE course does. Full CAVATICA walkthroughs live in the
-[platforms](../platforms/README.md) lesson:
+The CloudOS walkthroughs live in the [platforms](../platforms/index.md) lesson:
 
-- [`creating-a-cavatica-account.md`](../platforms/creating-a-cavatica-account.md)
-- [`logging-into-cavatica-step-by-step.md`](../platforms/logging-into-cavatica-step-by-step.md)
+- [`creating-a-cloudos-account.md`](../platforms/creating-a-cloudos-account.md)
+- [`logging-into-cloudos.md`](../platforms/logging-into-cloudos.md)
 - [`starting-a-jupyter-lab-notebook.md`](../interactive-computing/starting-a-jupyter-lab-notebook.md)
 
 ## Where to next
 
-→ [Chapter 3 — command-line-and-git-bash](../command-line-and-git-bash/README.md).
+→ [Chapter 3 — command-line-and-git-bash](../command-line-and-git-bash/index.md).

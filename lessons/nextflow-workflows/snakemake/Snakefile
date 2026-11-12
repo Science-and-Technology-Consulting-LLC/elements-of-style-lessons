@@ -1,0 +1,36 @@
+# The FastQC / MultiQC pipeline of the CWL lesson, written for Snakemake.
+# Same two containers, same two commands, same two test files.
+#
+#   snakemake -n                  # dry run: shows what would run
+#   snakemake --cores 2 --software-deployment-method apptainer
+
+SAMPLES = ["test.20k_reads_1", "test.20k_reads_2"]
+
+FASTQC_IMAGE  = "docker://ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9"
+MULTIQC_IMAGE = "docker://ghcr.io/science-and-technology-consulting-llc/multiqc:v1.0.0"
+
+rule all:
+    input:
+        "multiqc/report.multiqc.html"
+
+rule fastqc:
+    input:
+        "{sample}.fastq.gz"
+    output:
+        html="fastqc/{sample}_fastqc.html",
+        zip="fastqc/{sample}_fastqc.zip"
+    container:
+        FASTQC_IMAGE
+    threads: 2
+    shell:
+        "fastqc --noextract --threads {threads} --outdir fastqc {input}"
+
+rule multiqc:
+    input:
+        expand("fastqc/{sample}_fastqc.zip", sample=SAMPLES)
+    output:
+        "multiqc/report.multiqc.html"
+    container:
+        MULTIQC_IMAGE
+    shell:
+        "multiqc --flat --filename report.multiqc --outdir multiqc fastqc"

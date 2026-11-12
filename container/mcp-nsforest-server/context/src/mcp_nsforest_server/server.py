@@ -4,9 +4,7 @@ This is the agentic-AI worked example. The MCP server exposes nsforest-cli
 verbs as MCP tools so an AI agent (Claude, ChatGPT, …) can drive them in
 natural language.
 
-PLACEHOLDER. The actual MCP server wiring will land once Annie pins down
-the MCP SDK version and the enterprise-settings discussion she wants to
-add to the mcp-server lesson.
+PLACEHOLDER. The MCP server wiring is not written yet.
 """
 import typer
 
