@@ -25,7 +25,7 @@ rows = []
 for seed, cell_type in enumerate(["TypeA", "TypeB"], start=1):
     rng = np.random.default_rng(seed)
     blocks, obs = [], []
-    for condition in ["Control", "EuE"]:
+    for condition in ["Ctrl", "EuE"]:
         for d in range(DONORS):
             mu = base.copy()
             if condition == "EuE":

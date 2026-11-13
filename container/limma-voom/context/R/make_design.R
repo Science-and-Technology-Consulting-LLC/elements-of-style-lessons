@@ -2,7 +2,7 @@
 #'
 #' One column for each condition (a model without an intercept) and one
 #' contrast, "test minus control". The contrast is written "Test-Control",
-#' for example "EuE-Control".
+#' for example "EuE-Ctrl".
 #'
 #' Each condition needs at least `min_replicates` pseudobulk samples. Fewer
 #' samples cannot give a usable variance estimate, and the step stops
@@ -18,7 +18,7 @@
 make_design <- function(coldata, contrast, min_replicates = 3) {
   parts <- strsplit(contrast, "-", fixed = TRUE)[[1]]
   if (length(parts) != 2 || any(parts == "")) {
-    stop("contrast must be 'Test-Control', for example 'EuE-Control'. Got: ",
+    stop("contrast must be 'Test-Control', for example 'EuE-Ctrl'. Got: ",
          contrast)
   }
   test <- parts[1]; control <- parts[2]

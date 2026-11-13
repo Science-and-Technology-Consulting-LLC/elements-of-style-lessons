@@ -205,7 +205,7 @@ workflow. That's the payoff.
 ```bash
 nextflow run main-bulk-de.nf -profile docker \
     --samplesheet data/test-data/bulk-de-samplesheet.csv \
-    --contrast 'EuE-Control'
+    --contrast 'EuE-Ctrl'
 ```
 :::
 
@@ -229,7 +229,7 @@ nextflow run main-bulk-de.nf -profile test
 # Same command, different config — that's the payoff.
 nextflow run main-bulk-de.nf -profile lifebit \
     --samplesheet s3://my-bucket/bulk-de-samplesheet.csv \
-    --contrast 'EuE-Control'
+    --contrast 'EuE-Ctrl'
 ```
 :::
 

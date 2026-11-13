@@ -10,7 +10,7 @@ Usage:
 
 Options:
   --coldata=<path>     Path to the .rds emitted by prep-counts.
-  --contrast=<spec>    Contrast 'Test-Control', e.g., 'EuE-Control'.
+  --contrast=<spec>    Contrast 'Test-Control', e.g., 'EuE-Ctrl'.
   --min-replicates=<n> Fewest samples per condition [default: 3].
   --out=<path>         Output .rds with list(design, contrasts).
   -h --help            Show this help.

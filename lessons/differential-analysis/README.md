@@ -11,9 +11,13 @@
 :::
 
 The data are the public endometriosis single-cell atlas from The Jackson
-Laboratory (Tan et al., 2022, *Nature Cell Biology*, PMID 35864314). Both
+Laboratory (Tan et al., 2022, *Nature Cell Biology*, PMID 35864314). The
 notebooks download what they need from the JAX Single Cell Portal, so there
-is nothing to copy by hand. The first download is about 1 GB.
+is nothing to copy by hand. The global file is 8.17 GB. The stromal and
+lymphocyte subtype files that the first notebook also fetches add about
+3.1 GB and 1.1 GB. Allow the disk space and some time. In the data, the
+control group is labelled `Ctrl` and the patients' eutopic endometrium
+`EuE`; the notebooks and the workflow use the same labels.
 
 ## Run them in order
 
@@ -25,6 +29,24 @@ is nothing to copy by hand. The first download is about 1 GB.
    draws the volcano plots.
 
 Run the first before the second. Use "Restart and Run All" in each.
+
+A third notebook stands apart. [`make_test_data.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/make_test_data.ipynb)
+(Python 3 kernel) cuts the large file down to a small h5ad per cell type.
+Those small files are the input for the `-profile test` runs of the
+workflow below. You choose the cell types in Step 4.
+
+## What the run looks like
+
+On a laptop, with nine eutopic endometriosis donors (EuE) and three
+control donors (Ctrl), 13 of the 18 cell types had enough donors in both
+groups to test. The figure shows one volcano plot for each of them. Grey
+points pass neither threshold. Coloured points have an adjusted p value
+below 0.05 and an absolute log2 fold change above 1.
+
+![Pseudobulk limma-voom, EuE versus Ctrl, one panel per cell type](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/main/lessons/differential-analysis/images/limma_voom_de_01.png)
+
+The same analysis for the stromal and lymphocyte subtypes is in
+`images/limma_voom_de_02.png` and `images/limma_voom_de_03.png`.
 
 ## Why pseudobulk
 

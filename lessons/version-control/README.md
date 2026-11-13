@@ -158,7 +158,7 @@ Refresh GitHub — your file is now there. Make another local commit, then
 This page gives you the floor. The ceiling — branches, forks, multi-remote
 workflows, untangling mistakes — is in the full
 **Git Survival Guide**, which lives in the book companion repo as
-[`chapters/version-control-as-survival/01_git_survival_guide.md`](../git-survival-guide.md).
+[`git-survival-guide.md`](../git-survival-guide.md).
 
 Read it when you hit a situation this page doesn't cover.
 
