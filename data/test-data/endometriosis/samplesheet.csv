@@ -1,0 +1,3 @@
+cell_type,h5ad
+stromal,data/test-data/endometriosis/endometriosis_stromal.h5ad
+lymphocytes,data/test-data/endometriosis/endometriosis_lymphocytes.h5ad

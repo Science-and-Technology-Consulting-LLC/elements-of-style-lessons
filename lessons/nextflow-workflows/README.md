@@ -219,6 +219,14 @@ R CMD INSTALL container/limma-voom/context
 export PATH="$(Rscript -e 'cat(system.file("scripts", package="limmaVoomCLI"))'):$PATH"
 nextflow run main-bulk-de.nf -profile test
 ```
+
+To run the same workflow on real cells (stromal and lymphocytes from the
+endometriosis atlas, cut down to a laptop size), add the samplesheet:
+
+```bash
+nextflow run main-bulk-de.nf -profile test \
+    --samplesheet data/test-data/endometriosis/samplesheet.csv
+```
 :::
 
 :::{tab-item} Lifebit
