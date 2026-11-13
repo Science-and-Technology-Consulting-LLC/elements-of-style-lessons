@@ -1,17 +1,11 @@
 # Pre-training
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/pre-training/pre-training/)) — woven into
-the [introduction](index.md) lesson.*
+Lets begin:  
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+In a web browser navigate to:
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`pre-training.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/pre-training.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
 
+[`pre-training.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/pre-training.ipynb)
 The walkthrough is **self-contained**. Work through *Set up the
 environment* below once, then run the steps top-to-bottom.
 :::
