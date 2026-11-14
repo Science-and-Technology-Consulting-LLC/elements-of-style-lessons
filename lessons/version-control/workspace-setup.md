@@ -30,21 +30,21 @@ You will check your computer and start JupyterLab in your own Bash terminal. Thi
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Your workspace
+### Your workspace
 
 A **workspace** is the computer and terminal where you type commands. Use your own laptop terminal. It costs nothing extra, it is always available, and it suits every lesson in the first part of the course. A cloud workspace is covered in [Other places to run these lessons](../introduction/other-places-to-run.md), for when your work outgrows a laptop.
 
 **What you should see:** nothing yet. This step is reading only.
 
-### Step 2. Know the cost
+### Know the cost
 
 Your laptop costs nothing extra. If you later use a cloud computer, it charges by the hour while it runs. Develop and debug on small files. Once the code is right, run it across the hundreds or thousands of files. This costs less and catches bugs earlier.
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 3. Start your notebook
+### Start your notebook
 
 In a terminal, go to the course folder and run `jupyter lab`. A browser tab opens with JupyterLab.
 

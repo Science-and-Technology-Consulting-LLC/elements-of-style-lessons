@@ -17,7 +17,7 @@ None. This is the first lesson.
    cd elements-of-style-lessons
    ```
 
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, the walkthrough's Step 1 shows how to install it.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, the walkthrough's *Install a terminal and Git* section shows how to install it.
 3. **Open the notebook** `lessons/introduction/lets-dive-in.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`. Then open [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) and run each cell in order, top to bottom. You can also read the same steps as a web page: [Let's dive in](lets-dive-in.md).
 
 ## What you should see

@@ -30,7 +30,7 @@ You will write a short program that lets an AI assistant call your command-line 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`wrap-a-typer-cli-as-an-mcp-server.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb) and run each cell in order, top to bottom.
 
-## Step 1. Make a clean environment for this walkthrough (in a terminal)
+## Make a clean environment for this walkthrough (in a terminal)
 
 Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
@@ -46,7 +46,7 @@ python -m ipykernel install --user \
 
 > **Check:** the `ipykernel` kernel installed here has no `mcp`. Which environment should the notebook run in, this one or the one in the next step?
 
-## Step 2. Check which Python this notebook uses
+## Check which Python this notebook uses
 
 Why: the walkthrough runs the commands below in a terminal, but it is good to know which Python and tools your notebook sees.
 
@@ -59,11 +59,11 @@ for cmd in ["conda", "pip", "git", "docker"]:
 
 **What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `docker` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `docker` is fine.
 
-## Step 3. What we build
+## What we build
 
 A minimal MCP server that offers the `greet` verb of the `hello-py` Typer CLI (see [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md)) as an MCP *tool*. A *tool* is one action an assistant is allowed to call. Once the server runs, any MCP-aware assistant (Claude Desktop, Cursor, the `mcp` command) can call it.
 
-## Step 4. Install the MCP package (in a terminal)
+## Install the MCP package (in a terminal)
 
 Why: `mcp` is the official Python package for writing MCP servers, and Typer is the library behind the CLI. Run these lines in a **terminal**, not in a notebook cell:
 
@@ -75,9 +75,9 @@ pip install "mcp[cli]" typer
 
 **What you should see:** conda prints a plan and returns to the prompt, which now starts with `(mcp-demo)`. Then `pip` prints `Successfully installed` with a long list of package names that includes `mcp` and `typer`.
 
-> **Check:** step 1 and step 4 make two different environments. Please confirm which environment the server should run in. The server only needs the `mcp-demo` one.
+> **Check:** *Make a clean environment for this walkthrough (in a terminal)* and *Install the MCP package (in a terminal)* make two different environments. Please confirm which environment the server should run in. The server only needs the `mcp-demo` one.
 
-## Step 5. Write the server
+## Write the server
 
 Why: the server is a short Python file. `FastMCP("hello-py-mcp")` creates a server with a name. `@mcp.tool()` marks a function as a tool the assistant may call. The text in triple quotes under `def greet` is the tool's description, and the assistant reads it to decide when to use the tool.
 
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 **What you should see:** a file named `hello_mcp_server.py` in the folder, with those lines. To check, run `ls hello_mcp_server.py` in a terminal.
 
-## Step 6. Run the server
+## Run the server
 
 Why: this proves the file has no mistakes. In your terminal, with `(mcp-demo)` active, run:
 
@@ -111,7 +111,7 @@ The server talks the MCP protocol over *stdio* (the terminal's input and output)
 
 **What you should see:** the terminal prints nothing and does not return to the prompt. That is normal: the server is waiting for a message. Press Ctrl-C to stop it. A Python error message instead means a typo in the file or a missing package (see below).
 
-## Step 7. Register the server with an assistant (Claude Desktop example)
+## Register the server with an assistant (Claude Desktop example)
 
 Why: the assistant has to be told where your server is. For Claude Desktop, edit `~/Library/Application Support/Claude/claude_desktop_config.json` on macOS, or the equivalent file on Linux or Windows. Add this, with the real path to your file:
 
@@ -136,7 +136,7 @@ Restart Claude Desktop. In a new chat, type: *"Use the hello-py MCP tool to gree
 
 > **Check:** `"command": "python"` uses whichever `python` Claude Desktop finds. If that is not the `mcp-demo` environment's Python, the `mcp` package will not be found. Should the config give the full path to the environment's `python`?
 
-## Step 8. Why this pattern matters
+## Why this pattern matters
 
 - The tool's description, its parameter names and its docstring *are* the API for the assistant. Good docstrings make usable tools.
 - The MCP server is a thin wrapper around your existing Typer CLI. No logic is repeated.

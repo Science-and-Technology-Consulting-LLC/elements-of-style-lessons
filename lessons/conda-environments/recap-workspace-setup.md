@@ -31,9 +31,9 @@ You will review what you built in Days 1 and 2, then practise moving around a Gi
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. See what you have built so far
+### See what you have built so far
 
 **Day 1, reasoning**
 
@@ -48,7 +48,7 @@ This notebook runs shell commands with the Bash kernel and uses tools such as `g
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 2. Know what the volcano-plot notebook is missing
+### Know what the volcano-plot notebook is missing
 
 The R notebook `Reading-data-and-plotting-in-R.ipynb` needs three things before it runs cleanly:
 
@@ -60,9 +60,9 @@ These fixes are in the copy at [`adeslatt/exampleVolcanoPlotNotebook`](https://g
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 3. Go to your practice folder and get the project
+### Go to your practice folder and get the project
 
-You keep practice work in `~/eos-practice`. `~` means your home folder. The next cell makes the folder if needed, moves into it, and clones the project only if the folder `exampleVolcanoPlotNotebook` is not already there. **If you already have a folder with that name here, it must hold nothing you have not pushed.** Step 10 deletes it.
+You keep practice work in `~/eos-practice`. `~` means your home folder. The next cell makes the folder if needed, moves into it, and clones the project only if the folder `exampleVolcanoPlotNotebook` is not already there. **If you already have a folder with that name here, it must hold nothing you have not pushed.** *Wipe the tangled clone* deletes it.
 
 ```bash
 mkdir -p ~/eos-practice
@@ -72,7 +72,7 @@ cd ~/eos-practice
 
 **What you should see:** `Cloning into 'exampleVolcanoPlotNotebook'...` and lines ending in `done.`. If the folder was already there, nothing prints.
 
-### Step 4. Check whether this folder is a Git repository
+### Check whether this folder is a Git repository
 
 `git status` only works inside a Git project. The cell prints a friendly message if you are not in one.
 
@@ -89,7 +89,7 @@ Not a Git repository here: you are one level too high.
 
 That message is expected here. If `git status` complains like this when you meant to be in a project, you are one level too high.
 
-### Step 5. List what is around you
+### List what is around you
 
 `ls -l` lists the files and folders here, one per line. A line that starts with `d` is a folder.
 
@@ -99,7 +99,7 @@ ls -l
 
 **What you should see:** a list that includes a line for `exampleVolcanoPlotNotebook`, starting with `d`.
 
-### Step 6. Go into the project and check it
+### Go into the project and check it
 
 `cd` means "change directory". Then `git status` reports on the project.
 
@@ -117,7 +117,7 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-### Step 7. See what has changed
+### See what has changed
 
 `git diff` shows every line you changed since the last commit.
 
@@ -127,7 +127,7 @@ git diff
 
 **What you should see:** nothing, if you have not edited any file. If you have, Git prints the changed lines, with `-` before removed lines and `+` before added lines. Press `q` to leave the viewer.
 
-### Step 8. Learn the two shortcuts
+### Learn the two shortcuts
 
 Sometimes your local copy has drifted from GitHub in ways that are not worth untangling. If, and **only** if, your work is already safely pushed to GitHub, the fastest fix is to wipe the local folder and clone it again. For that you need two shortcuts:
 
@@ -143,7 +143,7 @@ ls -l
 
 **What you should see:** the contents of the project folder, including `README.md`, `Reading-data-and-plotting-in-R.ipynb` and `install_dependencies.R`.
 
-### Step 9. Move up one level
+### Move up one level
 
 ```bash
 cd ..
@@ -152,7 +152,7 @@ ls -l
 
 **What you should see:** the list now includes `exampleVolcanoPlotNotebook` as one entry. You are back in `~/eos-practice`.
 
-### Step 10. Wipe the tangled clone
+### Wipe the tangled clone
 
 **This deletes the folder and everything in it. It cannot be undone.** Only run it when everything you care about is pushed. `rm` removes. `-f` forces it without asking. `-R` goes into subfolders. See [ExplainShell](https://explainshell.com/explain?cmd=rm+-f+-R) for the breakdown.
 
@@ -162,7 +162,7 @@ rm -f -R exampleVolcanoPlotNotebook
 
 **What you should see:** nothing. Run `ls` and the folder is gone.
 
-### Step 11. Clone a fresh copy
+### Clone a fresh copy
 
 The origin is `adeslatt/exampleVolcanoPlotNotebook`. `NIH-NICHD/exampleVolcanoPlotNotebook` is a fork of it for teaching, and either works. The `adeslatt` copy is where fixes land first.
 
@@ -174,11 +174,11 @@ git clone https://github.com/adeslatt/exampleVolcanoPlotNotebook.git
 
 > **Picture to add:** JupyterLab with the fresh `exampleVolcanoPlotNotebook` folder in the file browser (save as assets/recap-workspace-setup-step-11.png)
 
-### Step 12. Open the notebook and run it fresh
+### Open the notebook and run it fresh
 
 In JupyterLab, open `Reading-data-and-plotting-in-R.ipynb` from the new folder. Choose **Edit**, then **Clear All Outputs**. Choose **Kernel**, then **Restart Kernel**. Then run the cells again.
 
-**What you should see:** the outputs disappear, then come back as the cells run. Cells may stop with errors until you add the data and packages (Step 2).
+**What you should see:** the outputs disappear, then come back as the cells run. Cells may stop with errors until you add the data and packages (*Know what the volcano-plot notebook is missing*).
 
 ## If something goes wrong
 

@@ -33,7 +33,7 @@ Run the first before the second. Use "Restart and Run All" in each.
 A third notebook stands apart. [`make_test_data.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/make_test_data.ipynb)
 (Python 3 kernel) cuts the large file down to a small h5ad per cell type.
 Those small files are the input for the `-profile test` runs of the
-workflow below. You choose the cell types in Step 4.
+workflow below. You choose the cell types in the notebook itself.
 
 ## What the run looks like
 

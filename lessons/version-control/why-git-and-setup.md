@@ -33,9 +33,9 @@ You will set up the tools that record your work, and tell Git who you are. This 
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Make a practice folder
+### Make a practice folder
 
 You will keep all practice files in one folder, `~/eos-practice`, so they stay apart from the course files. `~` means your home folder. `pwd` prints the folder you are in.
 
@@ -47,7 +47,7 @@ pwd
 
 **What you should see:** one line ending in `eos-practice`, for example `/Users/you/eos-practice`.
 
-### Step 2. Write a file with `nano` (in a terminal)
+### Write a file with `nano` (in a terminal)
 
 [`nano`](https://www.nano-editor.org/) is a simple text editor that runs inside the terminal. A notebook cell cannot run it, so use a real terminal for this step (see item 2 of Before you begin).
 
@@ -73,7 +73,7 @@ hello Git
 
 If you did not use nano, you will see `head: hello.txt: No such file or directory`. Go back and make the file first.
 
-### Step 3. Create a conda environment called `eos`
+### Create a conda environment called `eos`
 
 A **conda environment** is a separate folder of installed programs. Putting the course tools in one named environment keeps them from clashing with anything else on your computer. The [conda-environments lesson](../conda-environments/README.md) explains this in full.
 
@@ -107,7 +107,7 @@ conda activate eos
 
 **What you should see:** no message. In a terminal, the prompt now starts with `(eos)`.
 
-### Step 4. Install the GitHub CLI
+### Install the GitHub CLI
 
 The GitHub CLI (`gh`) is a program that signs you in to GitHub from the terminal. **CLI** means *command-line interface*: a program you control by typing. `conda install` downloads it from the [conda-forge](https://conda-forge.org/) package channel.
 
@@ -131,7 +131,7 @@ If you prefer `emacs` to `nano`, install it. It is a large download, so skip thi
 conda install -c conda-forge emacs -y
 ```
 
-### Step 5. Tell Git who you are
+### Tell Git who you are
 
 Every Git **commit** (a saved snapshot of your work) records who made it. Git reads your name and email from its settings. You set them once, with `--global`, and every future commit uses them.
 
@@ -151,7 +151,7 @@ git config --global --get user.email
 
 **What you should see:** your name on one line and your email on the next.
 
-### Step 4. Choose your editor for Git messages (optional)
+### Choose your editor for Git messages (optional)
 
 Git sometimes opens a text editor. This setting says which one. The first line below picks `nano`. The commented lines (they start with `#`) show how to pick `emacs` or `vim` instead.
 
@@ -169,7 +169,7 @@ git config --global core.editor nano
 - **`conda: command not found`.** Conda is not installed, or this terminal was opened before you installed it. Close the terminal, open a new one, and try again. If it still fails, follow [creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md).
 - **`conda activate eos` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one, then run `conda activate eos` again. In a notebook cell this command may not work. Run it in a terminal instead.
 - **`git: command not found` on a Mac.** Type `git --version` in Terminal. A window offers to install the Xcode Command Line Tools. Accept it. On Windows, install [Git for Windows](https://gitforwindows.org/), which also gives you Git Bash.
-- **`python: command not found` when you register the Bash kernel (Step 4 of [Let's dive in](../introduction/lets-dive-in.md)).** Try `python3` in place of `python`, or finish the [conda lesson](../conda-environments/README.md) first.
+- **`python: command not found` when you register the Bash kernel (the *Register the Bash kernel* step of [Let's dive in](../introduction/lets-dive-in.md)).** Try `python3` in place of `python`, or finish the [conda lesson](../conda-environments/README.md) first.
 
 ## Next
 

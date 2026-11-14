@@ -33,13 +33,13 @@ You will import a pipeline, start a job on CloudOS from your terminal, and fetch
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. Test locally first
+## Test locally first
 
 Why: it is much faster to fix a mistake on your own machine than on the platform. Test the pipeline on your own computer first, with its `-profile test` and the small test data. Then run it on CloudOS.
 
-## Step 2. List your projects and workflows
+## List your projects and workflows
 
 Why: this confirms your profile works and shows what is already in your workspace.
 
@@ -50,7 +50,7 @@ cloudos workflow list --profile my_profile
 
 **What you should see:** two tables. The first lists your projects. The second lists the workflows (pipelines) available to you. An empty second table is normal in a new workspace.
 
-## Step 3. Import a pipeline from GitHub
+## Import a pipeline from GitHub
 
 Why: CloudOS needs its own copy of the pipeline's address before it can run it. Replace `<owner>`, `<repository>` and `<name>` with your own values. This cell will not run as written, because those are placeholders.
 
@@ -67,7 +67,7 @@ cloudos workflow import --profile my_profile \
 
 > **Picture to add:** the platform's import-workflow screen (save as assets/running-a-pipeline-on-cloudos-step-2.png)
 
-## Step 4. Submit a job
+## Submit a job
 
 Why: this starts the pipeline on the platform's computers. The worked example is `rnatoy`, a small pipeline on public data. `--parameter` passes one named input. `--resumable` lets you resume the job later if it stops.
 
@@ -83,9 +83,9 @@ cloudos job run \
 
 **What you should see:** a message that the job was submitted, with a *job ID*, the code that names your job. Copy it. Only jobs started with `--resumable` can be resumed. For many parameters, put them in a JSON or YAML file and pass it with `--params-file`.
 
-## Step 5. Check the job and get the results
+## Check the job and get the results
 
-Why: the job runs on its own. These commands ask how it is doing and where the output went. Replace `<JOB_ID>` with the ID from step 6. This cell will not run as written, because `<JOB_ID>` is a placeholder.
+Why: the job runs on its own. These commands ask how it is doing and where the output went. Replace `<JOB_ID>` with the ID from *Best practices*. This cell will not run as written, because `<JOB_ID>` is a placeholder.
 
 ```bash
 cloudos job status --profile my_profile --job-id <JOB_ID>
@@ -96,7 +96,7 @@ cloudos job results --profile my_profile --job-id <JOB_ID>
 
 > **Picture to add:** the job's page in the platform showing its status and result files (save as assets/running-a-pipeline-on-cloudos-step-4.png)
 
-## Step 6. Best practices
+## Best practices
 
 - **Daily GitHub commits** of the scripts and configuration you use. The worked-example scripts belong in a repository, not only on the platform.
 - **Reproducible workflow steps.** Every step containerised, every container tagged.

@@ -31,13 +31,13 @@ You will create two data-hub accounts, one at Kids First and one at INCLUDE, bef
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. Why these accounts
+## Why these accounts
 
 Why: before the five-day course starts, two data-hub accounts are worth having. Each takes minutes to register, and each links to the same NIH identity so authorisation flows through.
 
-## Step 2. Create your Kids First DRC account
+## Create your Kids First DRC account
 
 Why: you need an account to see which Kids First data you may access.
 
@@ -54,7 +54,7 @@ Why: you need an account to see which Kids First data you may access.
 
 > **Picture to add:** the Kids First Portal Dashboard after the account is created (save as assets/pre-training-creating-kids-first-and-other-accounts-step-1b.png)
 
-## Step 3. Create your INCLUDE Data Hub account
+## Create your INCLUDE Data Hub account
 
 Why: INCLUDE is a second data hub. It is tied to your identity in the same way.
 
@@ -66,7 +66,7 @@ Why: INCLUDE is a second data hub. It is tied to your identity in the same way.
 
 > **Picture to add:** the INCLUDE sign-up page with the Google and ORCID options (save as assets/pre-training-creating-kids-first-and-other-accounts-step-2.png)
 
-## Step 4. GA4GH, the framework behind the rules
+## GA4GH, the framework behind the rules
 
 Pediatric data and human data are *sensitive data*. The **Global Alliance for Genomics & Health ([GA4GH](https://www.ga4gh.org/))** sets policy and technical standards. Its mission is *responsible genomic data sharing within a human-rights framework*. The two accounts above implement pieces of that framework.
 

@@ -16,7 +16,7 @@ You will connect your own tool to Claude Code, an AI coding assistant that runs 
 - [Claude Code](https://docs.claude.com/en/docs/claude-code), installed. See its [setup page](https://docs.claude.com/en/docs/claude-code/setup).
 - An MCP server ready to register. The one from [wrap a Typer CLI as an MCP server](../mcp-server/wrap-a-typer-cli-as-an-mcp-server.md) is enough. Know the full path to its `hello_mcp_server.py` file.
 - A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-- [Git](https://git-scm.com/), a repository you own and `gh` signed in, because the last request in step 7 asks Claude to push. See [version-control](../version-control/why-git-and-setup.md).
+- [Git](https://git-scm.com/), a repository you own and `gh` signed in, because the last request in *Try the loop* asks Claude to push. See [version-control](../version-control/why-git-and-setup.md).
 - [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
 
 ## Before you begin
@@ -33,13 +33,13 @@ You will connect your own tool to Claude Code, an AI coding assistant that runs 
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. What we build
+## What we build
 
 A reproducible Claude Code setup (Cursor or any MCP-aware client works too) that uses one of your own MCP servers as a tool. This is the shape Chapter 17 of the book calls the *agentic harness*.
 
-## Step 2. Install Claude Code and have a server ready
+## Install Claude Code and have a server ready
 
 Why: Claude Code is the assistant, and the MCP server is the tool it will call.
 
@@ -48,7 +48,7 @@ Why: Claude Code is the assistant, and the MCP server is the tool it will call.
 
 **What you should see:** in a terminal, `claude --version` prints a version number. If it prints `command not found`, the install did not finish (see below).
 
-## Step 3. Add the MCP server
+## Add the MCP server
 
 Why: registering tells Claude Code that a tool called `hello-py` exists, and how to start it. Run this from a project directory. Replace the path with the full path to your server file, then run it **in a terminal** (this is a text block, not a notebook cell):
 
@@ -60,7 +60,7 @@ claude mcp add hello-py python /absolute/path/to/hello_mcp_server.py
 
 **What you should see:** a short message that the server `hello-py` was added.
 
-## Step 4. Confirm it registered
+## Confirm it registered
 
 Why: it is better to see the server in the list now than to wonder later why Claude cannot find it. The cell below lists every MCP server Claude Code knows.
 
@@ -68,9 +68,9 @@ Why: it is better to see the server in the list now than to wonder later why Cla
 claude mcp list
 ```
 
-**What you should see:** a list that includes a line for `hello-py` and the `python` command with your path. Servers you registered earlier are listed too. If `hello-py` is missing, run step 5 again.
+**What you should see:** a list that includes a line for `hello-py` and the `python` command with your path. Servers you registered earlier are listed too. If `hello-py` is missing, run *Try the loop* again.
 
-## Step 5. Try the loop
+## Try the loop
 
 Why: this is the point of the whole walkthrough. Start Claude Code in this directory. Run this **in a terminal, not in a notebook cell**. It opens an interactive chat that a notebook cannot drive:
 
@@ -88,7 +88,7 @@ Then type this in the chat:
 
 > **Picture to add:** the Claude Code chat after the request, showing the greet tool call and the git commands (save as assets/wiring-a-claude-code-loop-step-5.png)
 
-## Step 6. The harness is the whole point
+## The harness is the whole point
 
 An agentic harness is not magic. It is four plain parts:
 
@@ -102,7 +102,7 @@ Each part is small, documented and testable alone. The "agentic" part comes from
 ## If something goes wrong
 
 - **`claude: command not found`.** Claude Code is not installed, or your terminal does not see it. Follow the [setup page](https://docs.claude.com/en/docs/claude-code/setup), then open a new terminal window. On Windows use *Git Bash*.
-- **`hello-py` is not in the list, or shows as failed.** The path in step 5 is wrong, or `python` there is not the environment that has the `mcp` package. Check the path with `ls`, and see [wrap-a-typer-cli-as-an-mcp-server](../mcp-server/wrap-a-typer-cli-as-an-mcp-server.md).
+- **`hello-py` is not in the list, or shows as failed.** The path in *Try the loop* is wrong, or `python` there is not the environment that has the `mcp` package. Check the path with `ls`, and see [wrap-a-typer-cli-as-an-mcp-server](../mcp-server/wrap-a-typer-cli-as-an-mcp-server.md).
 - **Claude says the push failed.** The folder is not a repository you can push to. Use a repository you own, such as the practice one from the [continuous-integration](../continuous-integration/README.md) lesson.
 
 ## Next

@@ -27,15 +27,15 @@ You will compare one pipeline step written in Nextflow and in the Common Workflo
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1: Read the goal
+## Read the goal
 
 *Why:* everything in this course serves one aim. Make our science *as platform-independent and workflow-independent as possible*, in service of open, reproducible science.
 
 **What you should take away:** the aim is not a particular tool. It is work that survives a change of tool.
 
-## Step 2: Read the strategy
+## Read the strategy
 
 *Why:* one habit makes the aim real. **Containerise at the logical, single-purpose level.** A **container** is a sealed box with a program and everything it needs. One container does one job and has one command-line interface. Do that, and the same container fits into a Nextflow module, a CWL step, a Snakemake rule, or a plain `docker run` on your laptop. The computation stays identical. Only the language that joins the steps changes.
 
@@ -43,7 +43,7 @@ The Elements of Style calls this the *fan-in* shape: many workflow languages, al
 
 **What you should take away:** the container is the stable part. The workflow language is the replaceable part.
 
-## Step 3: See what Nextflow and CWL share
+## See what Nextflow and CWL share
 
 *Why:* once you see the shared parts, a new workflow language looks familiar. Both languages describe the same three things:
 
@@ -55,7 +55,7 @@ They differ in *syntax* and in *how data moves between steps*: Nextflow uses cha
 
 **What you should take away:** three shared primitives, and one real difference, the wiring.
 
-## Step 4: Compare one FastQC step side by side
+## Compare one FastQC step side by side
 
 *Why:* seeing the two versions next to each other makes the shared structure concrete. Match up the lines: the container, the command, the input and the output appear in both.
 
@@ -95,7 +95,7 @@ outputs:
 
 **What you should see:** different syntax, **same container, same command, same intent.** `<owner>` stands for your own registry name.
 
-## Step 5: Read why this discipline pays off
+## Read why this discipline pays off
 
 - **Reproducible science.** The container fixes the tool version. The workflow language only organises the steps.
 - **Cleaner, testable parts.** Each container can be run with `--help` and smoke-tested without any workflow engine.
@@ -105,8 +105,8 @@ This is why the curriculum spends so much time on the **containers** and **reusa
 
 ## If something goes wrong
 
-- **A tool shows `MISSING` in the tool check (Step 6 of [Let's dive in](../introduction/lets-dive-in.md)).** This walkthrough does not need it. If you want it, the lesson linked in the table explains how to install it.
-- **The Bash tile is missing in JupyterLab.** Repeat Step 4 of [Let's dive in](../introduction/lets-dive-in.md) and restart JupyterLab.
+- **A tool shows `MISSING` in the tool check (the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md)).** This walkthrough does not need it. If you want it, the lesson linked in the table explains how to install it.
+- **The Bash tile is missing in JupyterLab.** Repeat the *Register the Bash kernel* step of [Let's dive in](../introduction/lets-dive-in.md) and restart JupyterLab.
 
 ## Next
 

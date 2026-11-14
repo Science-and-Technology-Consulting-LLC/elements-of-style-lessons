@@ -31,9 +31,9 @@ You will run the same two-step pipeline as in the Nextflow lesson, FastQC then M
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1: Go to the lesson folder
+## Go to the lesson folder
 
 *Why:* the CWL files and the Snakefile are in the lessons repository, in `lessons/nextflow-workflows`. All the commands below work from that folder. `ls` lists what is in it.
 
@@ -66,7 +66,7 @@ pwd
 
 > **Check:** When the notebook is opened in JupyterLab, does the Bash kernel start in the repository folder or in the notebook's own folder? The `cd lessons/nextflow-workflows` cell works only from the repository folder.
 
-## Step 2: Install `cwltool`, the reference runner
+## Install `cwltool`, the reference runner
 
 *Why:* CWL is a **specification**: a written description of tools and workflows. To run a description you need a program that reads it. `cwltool` is the reference one. Any terminal will do, including the one in JupyterLab.
 
@@ -79,7 +79,7 @@ cwltool --version
 
 **What you should see:** pip installs `cwltool` and its helpers. The last line prints a path to `cwltool` and a version number.
 
-## Step 3: Check that each file is valid CWL
+## Check that each file is valid CWL
 
 *Why:* it is quicker to find a typo now than after a long run. `--validate` reads a file and checks it without running anything.
 
@@ -93,7 +93,7 @@ cwltool --validate cwl/fastqc_multiqc_wf.cwl
 
 **What you should see:** for each of the three files, a line saying the file is valid CWL. No errors.
 
-## Step 4: Look at the layout
+## Look at the layout
 
 *Why:* three CWL files do the work: two tools and one workflow that joins them.
 
@@ -106,7 +106,7 @@ snakemake/
   Snakefile                  the same pipeline for Snakemake
 ```
 
-## Step 5: Read a CWL tool: `cwl/fastqc.cwl`
+## Read a CWL tool: `cwl/fastqc.cwl`
 
 *Why:* a CWL tool says which container to use, which command to run, what goes in and what comes out. Read it; do not change it.
 
@@ -149,7 +149,7 @@ outputs:
 
 Notice: **the same container image** that the Nextflow module pulls. The science container is portable across workflow languages. `multiqc.cwl` has the same shape and is in the [repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/cwl/multiqc.cwl).
 
-## Step 6: Download the test data
+## Download the test data
 
 *Why:* two tiny FASTQ files (raw sequencing reads, 20,000 reads each) give the tools something to work on.
 
@@ -162,7 +162,7 @@ wget -q https://zenodo.org/record/7025773/files/test.20k_reads_2.fastq.gz
 
 **What you should see:** no output. Check with `ls`: the files `test.20k_reads_1.fastq.gz` and `test.20k_reads_2.fastq.gz` are in the folder.
 
-## Step 7: Test each tool on its own
+## Test each tool on its own
 
 *Why:* test the parts before you join them. First **fastqc alone**. The first run downloads the container image, so allow a few minutes. Docker Desktop must be running.
 
@@ -188,7 +188,7 @@ cwltool cwl/multiqc.cwl --fastqc_results results
 
 **What you should see:** the same kind of log, ending in `INFO Final process status is success`, and a MultiQC report in your folder.
 
-## Step 8: Read the workflow that joins them: `cwl/fastqc_multiqc_wf.cwl`
+## Read the workflow that joins them: `cwl/fastqc_multiqc_wf.cwl`
 
 *Why:* a **workflow** in CWL lists steps and says how each step's output feeds the next step's input. Read it; do not change it.
 
@@ -241,7 +241,7 @@ Read three things:
 2. **`steps:`**: the two `run:` references. Each step names the tool and wires its `in:` and `out:`.
 3. **Wiring between steps**: `fastqc/fastqc_results` means *take the `fastqc_results` output of the `fastqc` step and feed it in here.* That is CWL's version of a Nextflow channel.
 
-## Step 9: Run the whole workflow
+## Run the whole workflow
 
 *Why:* one command now runs both steps in order.
 
@@ -255,7 +255,7 @@ cwltool cwl/fastqc_multiqc_wf.cwl \
 
 **What you should see:** `cwltool` runs the `fastqc` step, then the `multiqc` step, and ends with `INFO Final process status is success`. The output block lists `fastqc_results`, `multiqc_zip` and `multiqc_html`.
 
-## Step 10: Change a default when you run
+## Change a default when you run
 
 *Why:* every input with a default can be overridden on the command line. Here we send the FastQC output to a folder called `custom_results`.
 
@@ -270,7 +270,7 @@ cwltool cwl/fastqc_multiqc_wf.cwl \
 
 **What you should see:** the same run, ending in `INFO Final process status is success`, with the FastQC reports in a folder named `custom_results`.
 
-## Step 11: The same pipeline in Snakemake
+## The same pipeline in Snakemake
 
 *Why:* [Snakemake](https://snakemake.readthedocs.io/) is a third workflow tool. It writes the pipeline as **rules**. Each rule names its input files, its output files and the command. The order follows from the files: a rule runs once another rule has made its input. This is `snakemake/Snakefile`. Read it:
 
@@ -346,7 +346,7 @@ Check the current documentation of each before you rely on these points. The too
 
 ## If something goes wrong
 
-- **`cwltool: command not found`.** Step 2 did not finish, or the environment is not active. Run `pip install cwltool` again in the terminal you are using.
+- **`cwltool: command not found`.** *Install `cwltool`, the reference runner* did not finish, or the environment is not active. Run `pip install cwltool` again in the terminal you are using.
 - **`Cannot connect to the Docker daemon`, or the image cannot be pulled.** Docker Desktop is not running, or the image address in the `dockerPull` line is not one you can download. Start Docker Desktop, or put your own pushed image address in the `dockerPull` lines.
 - **`wget: command not found`.** Mac and Git Bash do not include `wget`. Use `curl -L -O <the same web address>` for each file, or install it with `conda install wget`.
 - **`No such file or directory` for `cwl/fastqc.cwl`.** You are in the wrong folder. Run `pwd`; the path must end in `lessons/nextflow-workflows`.

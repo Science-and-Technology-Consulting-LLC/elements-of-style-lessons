@@ -30,9 +30,9 @@ You will install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Know what conda is
+### Know what conda is
 
 `conda` is the program we use to control our software and manage installs. A **conda environment** is an isolated bubble: its own Python or R, and its own set of installed packages. Nothing you install into an environment leaks out and disturbs the rest of the computer.
 
@@ -42,19 +42,19 @@ When we build a Docker image later (see [containers](../containers/README.md)), 
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 2. Choose where to run this
+### Choose where to run this
 
-The steps below use a Linux Bash terminal. Practise installs in a folder you can delete, so a mistake costs nothing. On a Mac or Windows, stop at Step 5 and use the Miniforge installer instead.
+The steps below use a Linux Bash terminal. Practise installs in a folder you can delete, so a mistake costs nothing. On a Mac or Windows, stop at *Find out what computer you have* and use the Miniforge installer instead.
 
 **What you should see:** nothing. This step is a choice.
 
-### Step 3. Know where to look up packages
+### Know where to look up packages
 
 When you need to install *thing X*, search the web for `anaconda thing-X`, or use the [anaconda.org search](https://anaconda.org/search). Alongside packages you find tutorials, sample data and hosted notebooks, such as [JupyterLab basics](https://anaconda.org/ijstokes/open-data-science-with-anaconda/notebook).
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 4. Look at your folder first
+### Look at your folder first
 
 Look at what is in your folder before you start. `ls -l` lists the files in a folder, one per line. `ls -la` adds the hidden files, whose names start with a dot.
 
@@ -70,7 +70,7 @@ ls -la      # -a also shows hidden files (dotfiles)
 
 Not sure what a command's flags mean? Paste the command into [ExplainShell](https://explainshell.com), for example [`ls -la`](https://explainshell.com/explain?cmd=ls+-la).
 
-### Step 5. Find out what computer you have
+### Find out what computer you have
 
 We install **Miniconda**, the minimal conda installer from Anaconda. The full Anaconda includes many extras we do not need. First, confirm your operating system and architecture. `uname -a` prints them.
 
@@ -78,11 +78,11 @@ We install **Miniconda**, the minimal conda installer from Anaconda. The full An
 uname -a
 ```
 
-**What you should see:** one long line. On most Linux machines it starts with `Linux` and contains `x86_64`. The next steps are for that case. If the line starts with `Darwin` (a Mac) or you are on Windows, stop here and install [Miniforge](https://conda-forge.org/download/) instead, then go on at Step 10.
+**What you should see:** one long line. On most Linux machines it starts with `Linux` and contains `x86_64`. The next steps are for that case. If the line starts with `Darwin` (a Mac) or you are on Windows, stop here and install [Miniforge](https://conda-forge.org/download/) instead, then go on at *Create your first clean environment*.
 
 > **Picture to add:** a Linux terminal after `uname -a`, showing the Linux and x86_64 words (save as assets/creating-a-conda-environment-step-5.png)
 
-### Step 6. Check that `wget` is installed
+### Check that `wget` is installed
 
 `wget` is a program that downloads files from a web address. `which` prints where a program lives, or nothing if it is missing.
 
@@ -92,7 +92,7 @@ which wget
 
 **What you should see:** one line, for example `/usr/bin/wget`. If nothing prints, `wget` is missing. See "If something goes wrong".
 
-### Step 7. Download the installer
+### Download the installer
 
 For Linux x86_64, we download the matching Miniconda installer. The second line lists the file so you can confirm it arrived.
 
@@ -103,7 +103,7 @@ ls -l Miniconda3-latest-Linux-x86_64.sh
 
 **What you should see:** a progress bar that ends with a line saying the file was saved, then one `ls -l` line that shows the file name `Miniconda3-latest-Linux-x86_64.sh` and its size.
 
-### Step 8. Run the installer (in a terminal)
+### Run the installer (in a terminal)
 
 The installer asks you questions and waits for typed answers, so a notebook cell cannot run it. **Open a terminal and type the command there**, in the same folder as the downloaded file. The cell below shows the command.
 
@@ -124,7 +124,7 @@ To skip all questions, you can run `bash Miniconda3-latest-Linux-x86_64.sh -b -p
 
 > **Picture to add:** the installer asking "Do you wish the installer to initialize Miniconda3" (save as assets/creating-a-conda-environment-step-8.png)
 
-### Step 9. Restart the shell so `conda` is found
+### Restart the shell so `conda` is found
 
 The command `exec -l bash` restarts your shell, so it re-reads your settings and finds `conda`. Run it in a **terminal**, not in a notebook cell, because it replaces the shell itself. Then check where `conda` lives.
 
@@ -138,9 +138,9 @@ which conda
 
 **What you should see:** a path such as `/home/you/miniconda3/bin/conda`, and your terminal prompt now starts with `(base)`. `base` is conda's built-in starting environment.
 
-### Step 10. Create your first clean environment
+### Create your first clean environment
 
-Name the environment for the project. This course is *Elements of Style*, so `eos` is a natural short name. `-n eos` sets the name, and `-y` answers "yes" to conda's questions. If `eos` already exists, creating it again replaces it, so check `conda env list` first (Step 12).
+Name the environment for the project. This course is *Elements of Style*, so `eos` is a natural short name. `-n eos` sets the name, and `-y` answers "yes" to conda's questions. If `eos` already exists, creating it again replaces it, so check `conda env list` first (*List every environment*).
 
 ```bash
 conda create -n eos -y
@@ -148,7 +148,7 @@ conda create -n eos -y
 
 **What you should see:** conda prints the folder it will use, then `done`, and a note on how to activate it.
 
-### Step 11. Activate it
+### Activate it
 
 To **activate** an environment is to start using it.
 
@@ -160,7 +160,7 @@ conda activate eos
 
 > **Picture to add:** a terminal prompt that starts with (eos) (save as assets/creating-a-conda-environment-step-11.png)
 
-### Step 12. List every environment
+### List every environment
 
 This shows all environments on the machine. The active one has a star.
 

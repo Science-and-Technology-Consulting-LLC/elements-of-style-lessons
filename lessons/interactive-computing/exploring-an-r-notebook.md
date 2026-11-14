@@ -29,7 +29,7 @@ You will run a small R notebook that builds a table, summarises it and draws a b
 
 ## Steps
 
-### Step 1. Install R and register the R kernel (one time)
+### Install R and register the R kernel (one time)
 
 [IRkernel](https://irkernel.github.io/) lets Jupyter run R. Run these three lines in a **terminal**, not in a notebook cell. The first turns on the `eos` environment (or use any environment you keep for R). The second installs R and IRkernel from [conda-forge](https://conda-forge.org/). The third registers R with Jupyter, so the Launcher shows an *R* tile next to *Python 3*.
 
@@ -45,7 +45,7 @@ Restart JupyterLab, then reopen this notebook and choose the *R* kernel.
 
 > **Picture to add:** the JupyterLab Launcher with the Python 3, Bash and R tiles (save as assets/exploring-an-r-notebook-step-1.png)
 
-### Step 2. Check which tools this notebook can see
+### Check which tools this notebook can see
 
 This R cell asks the computer where each of five programs lives. It prints the location, or `MISSING`.
 
@@ -70,7 +70,7 @@ for (cmd in c("R", "Rscript", "git", "docker", "conda")) {
 
 `MISSING` is fine for `docker` at this stage. This notebook needs only `R`.
 
-### Step 3. Build a small table
+### Build a small table
 
 A **data frame** is a table with rows and columns. The next cell makes one by hand. It holds five samples, their condition, and the millions of sequence reads each produced. Writing the last line, `df`, makes the notebook show the table.
 
@@ -94,7 +94,7 @@ df
 5 S05       treated   38.2
 ```
 
-### Step 4. Average the reads for each condition
+### Average the reads for each condition
 
 `aggregate` splits the table by `condition` and takes the mean of `reads_millions` in each group.
 
@@ -110,7 +110,7 @@ aggregate(reads_millions ~ condition, data = df, FUN = mean)
 2   treated       41.26667
 ```
 
-### Step 5. Draw a bar chart
+### Draw a bar chart
 
 `barplot` draws one bar for each condition.
 
@@ -126,7 +126,7 @@ barplot(means$reads_millions,
 
 > **Picture to add:** the bar chart under the cell, with two bars (save as assets/exploring-an-r-notebook-step-5.png)
 
-### Step 6. Print your environment
+### Print your environment
 
 When a notebook stops working months from now, the first thing you will want is the answer to "what was I running?" This cell prints R's version, your folder, your locale (language and region settings), and the version of five R packages. Save its output and paste it into a bug report.
 
@@ -155,13 +155,13 @@ edgeR      4.4.0
 limma      3.62.1
 ```
 
-### Step 7. Try it yourself
+### Try it yourself
 
 Add a sixth sample to `df`, run the two summary cells again, then choose **Kernel**, then **Restart Kernel and Run All Cells**. If the output is the same as before (apart from your new sample), you have a reproducible R notebook.
 
 ## If something goes wrong
 
-- **The kernel says "R" is not found, or there is no R tile.** Step 1 has not been done in the same environment that runs JupyterLab. Redo Step 1, then restart JupyterLab.
+- **The kernel says "R" is not found, or there is no R tile.** *Install R and register the R kernel (one time)* has not been done in the same environment that runs JupyterLab. Redo *Install R and register the R kernel (one time)*, then restart JupyterLab.
 - **`conda: command not found`.** See [conda-environments](../conda-environments/README.md).
 - **`DESeq2 (not installed)`.** This is expected. It is a larger Bioconductor package that you install later when a lesson needs it.
 

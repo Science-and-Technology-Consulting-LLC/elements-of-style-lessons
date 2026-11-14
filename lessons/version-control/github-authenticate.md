@@ -11,7 +11,7 @@ You will prove to GitHub who you are, from the terminal. This matters because Gi
 **What you need:**
 
 - A free [GitHub account](https://github.com/signup).
-- The `gh` program. Install it with [why-git-and-setup.md](why-git-and-setup.md) (Step 4).
+- The `gh` program. Install it with [why-git-and-setup.md](why-git-and-setup.md) (the *Install the GitHub CLI* section).
 
 ## Before you begin
 
@@ -29,9 +29,9 @@ You will prove to GitHub who you are, from the terminal. This matters because Gi
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Know why you sign in
+### Know why you sign in
 
 To contribute to any GitHub repository, even one you own, you first prove who you are. `gh` does this in one step, but it needs a **Personal Access Token (PAT)**. A PAT is a private secret key that tells GitHub that this computer is acting for you. Treat it like a password: never paste it into a notebook cell, an email or a chat.
 
@@ -39,7 +39,7 @@ To contribute to any GitHub repository, even one you own, you first prove who yo
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 2. Create a Personal Access Token
+### Create a Personal Access Token
 
 You do this in a web browser, on GitHub's [token page](https://github.com/settings/tokens).
 
@@ -56,7 +56,7 @@ You do this in a web browser, on GitHub's [token page](https://github.com/settin
 
 **What you should see:** a green banner with a long string that starts with `ghp_`. That string is your token.
 
-### Step 3. Sign in with `gh auth login`
+### Sign in with `gh auth login`
 
 `gh auth login` asks you questions and waits for your answers, so a notebook cell cannot run it. **Open a terminal and type the command there** (item 2 of Before you begin). The cell below is the same command, for reference.
 
@@ -75,7 +75,7 @@ Answer the questions like this:
 
 > **Picture to add:** the terminal after a successful `gh auth login`, with the check mark line (save as assets/github-authenticate-step-3.png)
 
-### Step 4. Check that you are signed in
+### Check that you are signed in
 
 This command reports who `gh` thinks you are. It changes nothing.
 

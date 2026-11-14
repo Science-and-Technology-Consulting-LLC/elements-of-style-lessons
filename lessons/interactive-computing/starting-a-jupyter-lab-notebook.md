@@ -29,9 +29,9 @@ You will start [JupyterLab](https://jupyterlab.readthedocs.io/) on your laptop a
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Know what JupyterLab is
+### Know what JupyterLab is
 
 Before you can *run* a notebook you need one to run. **JupyterLab** is a web page that lets you open notebooks, files and terminals side by side. It runs on a computer (yours, or a Lifebit server) and shows up in your browser.
 
@@ -39,7 +39,7 @@ You will start it in one of two places, described in the next two steps.
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 2. On your laptop: start JupyterLab
+### On your laptop: start JupyterLab
 
 Finish the [conda-environments lesson](../conda-environments/README.md) first. Then, in a **terminal** (not in a notebook cell), type these two commands, one per line, and press `Enter` after each. The first one turns on the `eos` environment. The second one starts JupyterLab. JupyterLab keeps running until you stop it, so it cannot run as a notebook cell.
 
@@ -52,9 +52,9 @@ jupyter lab
 
 > **Picture to add:** the terminal after `jupyter lab`, with the localhost address line (save as assets/starting-a-jupyter-lab-notebook-step-2.png)
 
-### Step 3. Optional: start JupyterLab on Lifebit instead
+### Optional: start JupyterLab on Lifebit instead
 
-Skip this step if you started JupyterLab on your laptop in Step 2. It needs a Lifebit account: see [Other places to run these lessons](../introduction/other-places-to-run.md).
+Skip this step if you started JupyterLab on your laptop in *On your laptop: start JupyterLab*. It needs a Lifebit account: see [Other places to run these lessons](../introduction/other-places-to-run.md).
 
 [Lifebit](https://lifebit.ai/)'s notebook servers have JupyterLab already installed.
 
@@ -68,7 +68,7 @@ The terminal is under **File**, **New**, **Terminal**.
 
 **What you should see:** a new browser tab with JupyterLab in it.
 
-### Step 4. Recognise the screen
+### Recognise the screen
 
 However you got here, you now see:
 

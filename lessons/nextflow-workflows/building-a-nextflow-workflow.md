@@ -12,7 +12,7 @@ You will run a two-step pipeline, first FastQC on sequencing files and then Mult
 
 - [Docker Desktop](https://docs.docker.com/get-started/get-docker/), installed and running. See the [containers lesson](../containers/README.md).
 - [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
-- [Nextflow](https://www.nextflow.io/docs/latest/install.html) (Step 2 installs it with conda).
+- [Nextflow](https://www.nextflow.io/docs/latest/install.html) (*Install Nextflow* installs it with conda).
 - A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
 - An internet connection. The test files come from [Zenodo](https://zenodo.org/records/7025773), and Docker downloads two small tool images on the first run.
 
@@ -32,9 +32,9 @@ You do not need the images from the earlier lessons. The script below uses publi
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1: Get the example files
+## Get the example files
 
 *Why:* the example repository holds a small pipeline and test data. First go to your home folder, so that the clone does not land inside the course folder.
 
@@ -59,7 +59,7 @@ ls -l
 
 **What you should see:** `Cloning into 'Building-A-Nextflow-Script'...`, progress lines, then a listing that includes `README.md`, `cwl_tools`, `fastqc.nf`, `fastqc_multiqc_wf.cwl`, `fastqc_multiqc_wf.nf`, `nextflow.config`, `params_reads.nf` and `testdata`.
 
-## Step 2: Install Nextflow
+## Install Nextflow
 
 *Why:* Nextflow is the program that reads your script and runs the steps. The first line installs it with conda into the active environment. The other two lines show where it is and which version you have.
 
@@ -80,9 +80,9 @@ nextflow -version
       version 26.10.5 build 14654
 ```
 
-## Step 3: Read the anatomy of a Nextflow script
+## Read the anatomy of a Nextflow script
 
-*Why:* a Nextflow script has five moving parts. Learn them once and every workflow you meet becomes readable. Nothing to run in this step. The snippets show the shape; the script you run is in Step 5.
+*Why:* a Nextflow script has five moving parts. Learn them once and every workflow you meet becomes readable. Nothing to run in this step. The snippets show the shape; the script you run is in *Write the script and run it*.
 
 ### 1. Parameters: the workflow's inputs
 
@@ -155,7 +155,7 @@ workflow {
 
 The file `nextflow.config` is where you set the container engine, resource limits, and **profiles** (named sets of settings) for different platforms: test, docker and lifebit.
 
-## Step 4: Download two test files
+## Download two test files
 
 *Why:* FASTQ files hold raw sequencing reads. These two are tiny (20,000 reads each) and are the same files the [CWL walkthrough](building-a-cwl-workflow.md) uses.
 
@@ -168,7 +168,7 @@ wget -q https://zenodo.org/record/7025773/files/test.20k_reads_2.fastq.gz
 
 **What you should see:** no output (`-q` means quiet). Check with `ls`: the files `test.20k_reads_1.fastq.gz` and `test.20k_reads_2.fastq.gz` are in the folder.
 
-## Step 5: Write the script and run it
+## Write the script and run it
 
 *Why:* the repository's own script is written in the older DSL1 style, and its container images sit in a private registry, so it does not run with current Nextflow. The next cell writes a small DSL2 version of the same two steps to `main.nf`, using public container images, and runs it. The first run downloads the two images, so allow a few minutes.
 
@@ -227,7 +227,7 @@ nextflow run main.nf --reads 'test.20k_reads_{1,2}.fastq.gz' -with-docker
 
 > **Picture to add:** the terminal output of the finished nextflow run, with both steps at 100% (save as assets/building-a-nextflow-workflow-step-5.png)
 
-## Step 6: Look at the results
+## Look at the results
 
 *Why:* `publishDir "results"` told Nextflow to copy each step's outputs into a folder called `results`.
 
@@ -244,9 +244,9 @@ ls results
 ## If something goes wrong
 
 - **`wget: command not found`.** Mac and Git Bash do not include `wget`. Use `curl -L -O <the same web address>` for each file, or install it with `conda install wget`.
-- **`Cannot connect to the Docker daemon`, or `docker: command not found`.** Docker Desktop is not running or not installed. Open it, wait until it says it is running, and run Step 5 again.
-- **`nextflow: command not found`.** The environment is not active. Close JupyterLab, run `conda activate eos` in a terminal, start JupyterLab again from that terminal, and repeat Step 2.
-- **`Cannot find script file: main.nf`.** You are in the wrong folder. Run `pwd`; it must end in `Building-A-Nextflow-Script`. If it does not, run `cd ~/Building-A-Nextflow-Script` and run the Step 5 cell again.
+- **`Cannot connect to the Docker daemon`, or `docker: command not found`.** Docker Desktop is not running or not installed. Open it, wait until it says it is running, and run *Write the script and run it* again.
+- **`nextflow: command not found`.** The environment is not active. Close JupyterLab, run `conda activate eos` in a terminal, start JupyterLab again from that terminal, and repeat *Install Nextflow*.
+- **`Cannot find script file: main.nf`.** You are in the wrong folder. Run `pwd`; it must end in `Building-A-Nextflow-Script`. If it does not, run `cd ~/Building-A-Nextflow-Script` and run the *Write the script and run it* cell again.
 
 ## Next
 

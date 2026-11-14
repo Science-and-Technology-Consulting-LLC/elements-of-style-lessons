@@ -30,9 +30,9 @@ You will copy a real R notebook from GitHub, open it in JupyterLab, and run it f
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Know the project
+### Know the project
 
 *Project Jupyter is a non-profit, open-source project, born out of the IPython Project in 2014.* Its mission is interactive computing across programming languages. JupyterLab supports roughly 40 language **kernels** (the programs that run your code) through community plugins. Python and R are the two this course uses most.
 
@@ -40,13 +40,13 @@ This walkthrough uses `exampleVolcanoPlotNotebook`, a small R notebook that read
 
 **What you should see:** nothing. This step is reading only.
 
-### Step 2. Open the project page
+### Open the project page
 
 In your browser, open [https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook).
 
 **What you should see:** a GitHub page with a file list that includes `README.md` and `Reading-data-and-plotting-in-R.ipynb`.
 
-### Step 3. Copy the clone address
+### Copy the clone address
 
 Click the green **Code** button, then **HTTPS**, then the copy icon. The address looks like `https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git`.
 
@@ -54,7 +54,7 @@ Click the green **Code** button, then **HTTPS**, then the copy icon. The address
 
 **What you should see:** a small box with the address and a copy icon.
 
-### Step 4. Go to your practice folder
+### Go to your practice folder
 
 You keep practice work in `~/eos-practice`. `~` means your home folder. The next cell makes the folder and moves into it.
 
@@ -66,7 +66,7 @@ pwd
 
 **What you should see:** one line ending in `eos-practice`.
 
-### Step 5. Clone the project
+### Clone the project
 
 To **clone** is to copy a GitHub project onto your computer. You can also do this in a JupyterLab terminal (*File*, *New*, *Terminal*). The command is the same.
 
@@ -86,7 +86,7 @@ Resolving deltas: 100% (6/6), done.
 
 (The sizes may differ.)
 
-### Step 6. Look inside the project
+### Look inside the project
 
 `cd` moves into the new folder. `ls` lists what is in it.
 
@@ -101,7 +101,7 @@ ls
 README.md  Reading-data-and-plotting-in-R.ipynb  install_dependencies.R
 ```
 
-### Step 7. Open the notebook
+### Open the notebook
 
 In the JupyterLab file browser (left side), open `eos-practice`, then `exampleVolcanoPlotNotebook`, and double-click `Reading-data-and-plotting-in-R.ipynb`.
 
@@ -111,7 +111,7 @@ If JupyterLab does not offer the *R* kernel, either you need to register [IRkern
 
 **What you should see:** the notebook opens in a new tab, and the top right corner says *R*.
 
-### Step 8. Run every cell, top to bottom
+### Run every cell, top to bottom
 
 Press `Shift-Enter` to run the current cell and move to the next one. When you finish exploring, use the habit that proves a notebook works:
 
@@ -139,7 +139,7 @@ If the notebook gives the same output, it is *reproducible*. If not, you found a
 
 - **`destination path 'exampleVolcanoPlotNotebook' already exists`.** You already cloned it. Skip the clone and run `cd exampleVolcanoPlotNotebook`.
 - **No R kernel in the Launcher.** See [exploring-an-r-notebook.md](exploring-an-r-notebook.md) to install and register it.
-- **An error such as "there is no package called ..." or a missing data file.** The notebook needs its packages and data. See Step 0 above and the [recap-workspace-setup lesson](../conda-environments/recap-workspace-setup.md).
+- **An error such as "there is no package called ..." or a missing data file.** The notebook needs its packages and data. See the setup at the top of this notebook and the [recap-workspace-setup lesson](../conda-environments/recap-workspace-setup.md).
 
 ## Next
 

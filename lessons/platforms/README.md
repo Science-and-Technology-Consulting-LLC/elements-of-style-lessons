@@ -18,7 +18,7 @@ Do [publishing-for-agents](../publishing-for-agents/README.md) first. The accoun
    ```
 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/platforms/creating-a-cloudos-account.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/creating-a-cloudos-account.ipynb)) and run each cell in order, top to bottom. The first page needs no kernel. The later ones are Bash notebooks (their step 1 sets up the Bash kernel).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/platforms/creating-a-cloudos-account.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/creating-a-cloudos-account.ipynb)) and run each cell in order, top to bottom. The first page needs no kernel. The later ones are Bash notebooks (each has a *Check your setup* section for it).
 
 ## What you should see
 

@@ -12,7 +12,7 @@ You will build a small command-line tool in R that prints its own help screen, s
 
 - A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
 - [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
-- [R](https://www.r-project.org/) (Step 1 installs it with conda) and [JupyterLab](https://jupyter.org/install).
+- [R](https://www.r-project.org/) (*Install R and register the R kernel (once)* installs it with conda) and [JupyterLab](https://jupyter.org/install).
 - A plain text editor. JupyterLab has one: choose *File*, then *New*, then *Text File*.
 
 You do not need an account for this lesson.
@@ -31,7 +31,7 @@ You do not need an account for this lesson.
 
 > **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The boxes with a *Run the next cell* instruction are notebook cells that use the R kernel. Keep your terminal open next to this page.
 
-## Step 1: Install R and register the R kernel (once)
+## Install R and register the R kernel (once)
 
 *Why:* a **kernel** is the program that runs the code in a notebook cell. JupyterLab needs the R kernel, called IRkernel, before it can run R cells.
 
@@ -49,7 +49,7 @@ Restart JupyterLab. The Launcher now shows an **R** tile. Open this notebook wit
 
 > **Picture to add:** the JupyterLab Launcher with the R tile visible (save as assets/rscript-cli-step-1.png)
 
-## Step 2: Check that R can see its tools
+## Check that R can see its tools
 
 *Why:* this cell finds each program and prints where it lives, or `MISSING`. `docker` and `conda` are not used in the steps below, so `MISSING` for them is fine today.
 
@@ -80,7 +80,7 @@ for (cmd in c("R", "Rscript", "git", "docker", "conda")) {
 
 A single R command, `hello-r`, with two commands, `greet` and `version`. It uses [`docopt`](https://github.com/docopt/docopt.R) to read what you type. The shape matches the Typer tool in the Python walkthrough.
 
-## Step 3: Create a project folder
+## Create a project folder
 
 *Why:* all the files for this tool should live together in one new folder.
 
@@ -91,9 +91,9 @@ mkdir hello-r-cli && cd hello-r-cli
 pwd
 ```
 
-**What you should see:** a path that ends in `hello-r-cli`. Keep this terminal open. You will use it again in Step 5.
+**What you should see:** a path that ends in `hello-r-cli`. Keep this terminal open. You will use it again in *Write the tool as one script*.
 
-## Step 4: Install `docopt` (once)
+## Install `docopt` (once)
 
 *Why:* `docopt` reads a usage message written in plain text and turns it into the options your script receives. It saves you writing argument-parsing code. `install.packages` is R's installer for packages.
 
@@ -105,7 +105,7 @@ install.packages("docopt", repos = "https://cloud.r-project.org")
 
 **What you should see:** R downloads and installs the package. The output ends with lines like `Updating HTML index of packages in '.Library'`, `Making 'packages.html' ... done`. If `docopt` is already installed, R reinstalls it and prints the same lines.
 
-## Step 5: Write the tool as one script
+## Write the tool as one script
 
 *Why:* the usage message at the top is the help screen and the instructions for `docopt` at the same time. A **script** is a plain text file of R code that you can run from the terminal.
 
@@ -146,7 +146,7 @@ chmod +x hello-r.R
 
 > **Picture to add:** the terminal showing the three commands and their output (save as assets/rscript-cli-step-5.png)
 
-## Step 6: Put the logic in an R function
+## Put the logic in an R function
 
 *Why:* a function in its own file can be tested from a notebook, and the command-line script only has to call it. The
 [`NIH-NLM/sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf)
@@ -179,7 +179,7 @@ greet("Annie")
 
 The cell that defined `greet` prints nothing. That is normal: it only stores the function.
 
-## Step 7: Read the thin command-line script
+## Read the thin command-line script
 
 *Why:* this is what `inst/scripts/hello-r` looks like once the logic lives in a package. Read it; do not run it yet.
 
@@ -214,9 +214,9 @@ The function `greet()` can now be used from any R code (a notebook, a test). The
 
 ## If something goes wrong
 
-- **`Rscript: command not found`, or `R` shows `MISSING` in Step 2.** The environment with R is not active. Run `conda activate eos`, start JupyterLab again from that terminal, and repeat Step 2.
+- **`Rscript: command not found`, or `R` shows `MISSING` in *Check that R can see its tools*.** The environment with R is not active. Run `conda activate eos`, start JupyterLab again from that terminal, and repeat *Check that R can see its tools*.
 - **`Permission denied` when you run `./hello-r.R`.** Run `chmod +x hello-r.R` first. On Windows Git Bash, if the script still will not start, run `Rscript hello-r.R greet --name Annie` instead.
-- **`there is no package called 'docopt'`.** Step 4 did not finish. Run the Step 4 cell again and read its last lines for an error. You also need an internet connection.
+- **`there is no package called 'docopt'`.** *Install `docopt` (once)* did not finish. Run the *Install `docopt` (once)* cell again and read its last lines for an error. You also need an internet connection.
 
 ## Next
 

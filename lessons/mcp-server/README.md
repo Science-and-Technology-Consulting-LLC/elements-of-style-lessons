@@ -18,7 +18,7 @@ Do [federated learning](../federated-learning/README.md) first. You also need th
    ```
 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its step 1 makes a conda environment first.
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first section makes a conda environment.
 
 ## What you should see
 

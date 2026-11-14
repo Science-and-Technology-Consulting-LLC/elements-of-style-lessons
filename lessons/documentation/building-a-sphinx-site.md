@@ -32,9 +32,9 @@ You will build a small documentation website on your own computer and see how Gi
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. Check which folder you are in
+## Check which folder you are in
 
 Why: the next steps create a folder called `docs`. You want it next to this notebook, not inside the repository's own `docs` folder.
 
@@ -44,7 +44,7 @@ pwd
 
 **What you should see:** a path that ends in `lessons/documentation`. If it ends in `elements-of-style-lessons` instead, stop. The next steps would write into the repository's real `docs` folder. Close the notebook and open it again from JupyterLab's file browser, or run `cd lessons/documentation` in your terminal first.
 
-## Step 2. Install Sphinx and its add-ons
+## Install Sphinx and its add-ons
 
 Why: [Sphinx](https://www.sphinx-doc.org/) turns text files into a website. The add-ons let it read [Markdown](https://myst-parser.readthedocs.io/) pages and notebooks, use the Read the Docs look, and add a copy button to code blocks.
 
@@ -57,7 +57,7 @@ pip install sphinx sphinx-rtd-theme myst-parser myst-nb \
 
 **What you should see:** many lines of text. Lines that start with `Requirement already satisfied` mean the package was already there. At the end you should see `Successfully installed` followed by package names, or only `already satisfied` lines. Any line that starts with `ERROR` is a problem (see below).
 
-## Step 3. Make the folders for the site
+## Make the folders for the site
 
 Why: Sphinx wants all the page files in one folder. The `-p` flag makes the parent folder too and does not complain if it already exists.
 
@@ -67,7 +67,7 @@ mkdir -p docs/source
 
 **What you should see:** nothing. No message means it worked.
 
-## Step 4. Write the settings file
+## Write the settings file
 
 Why: `conf.py` tells Sphinx the name of the site, which add-ons to load and which look to use. The cell writes the file for you. `cat > file <<'EOF'` is a shell trick that sends the lines below it into a file, up to the line `EOF`.
 
@@ -90,7 +90,7 @@ EOF
 
 **What you should see:** nothing. To check the file is there, run `ls docs/source` in a terminal. You should see `conf.py`.
 
-## Step 5. Write the home page
+## Write the home page
 
 Why: every Sphinx site needs a home page. This one lists the other pages in a table of contents (`toctree`).
 
@@ -110,7 +110,7 @@ EOF
 
 **What you should see:** nothing.
 
-## Step 6. Write a second page
+## Write a second page
 
 Why: the home page points at a page called `intro`. This file is that page.
 
@@ -124,7 +124,7 @@ EOF
 
 **What you should see:** nothing.
 
-## Step 7. Build the site
+## Build the site
 
 Why: this turns the three files into HTML pages. The `-W` flag treats warnings as errors. That is a good habit, because it keeps broken links out of the site.
 
@@ -136,7 +136,7 @@ cd ..
 
 **What you should see:** a stream of lines that starts with `Running Sphinx v7.2.6` (your version number may differ). Near the end you should see `building [html]: targets for 2 source files that are out of date`, then the lines `reading sources`, `checking consistency` and `preparing documents`. The last lines are `build succeeded.` and `The HTML pages are in build/html.` That means it worked.
 
-## Step 8. Look at the site
+## Look at the site
 
 Why: seeing the real page is the point of the build. This command starts a small web server. It keeps running until you stop it with Ctrl-C, so it is not a notebook cell. Open a terminal, go to this folder, and run:
 
@@ -151,7 +151,7 @@ Then open <http://localhost:8000> in your browser. When you are done, go back to
 
 > **Picture to add:** the finished site in the browser at localhost:8000 (save as assets/building-a-sphinx-site-step-8.png)
 
-## Step 7. Publish the site with GitHub Pages (optional)
+## Publish the site with GitHub Pages (optional)
 
 Why: GitHub can rebuild and publish your site every time you push. You tell it how in a file called `.github/workflows/docs.yml`. A *workflow* is a list of jobs that GitHub runs for you. You need a [GitHub account](https://github.com/signup) and a repository for this step. The next lesson, [continuous integration](../continuous-integration/README.md), explains workflows in more detail.
 
@@ -187,10 +187,10 @@ Then push the file to GitHub. On the repository's page open **Settings**, then *
 
 ## If something goes wrong
 
-- **`sphinx-build: command not found`.** The install in step 4 went into a different Python. Run `conda activate eos` in the terminal, start JupyterLab from there, and run step 4 again.
-- **Build stops with `WARNING` and `build finished with problems`.** `-W` makes any warning an error. Read the line above it. It names the file and the problem, usually a typo in `conf.py` or `index.md`. Fix the file and run step 9 again.
+- **`sphinx-build: command not found`.** The install in *Write the settings file* went into a different Python. Run `conda activate eos` in the terminal, start JupyterLab from there, and run *Write the settings file* again.
+- **Build stops with `WARNING` and `build finished with problems`.** `-W` makes any warning an error. Read the line above it. It names the file and the problem, usually a typo in `conf.py` or `index.md`. Fix the file and run *Build the site* again.
 - **`bash: conda: command not found` on Windows.** Open *Git Bash*, not PowerShell, and see [conda-environments](../conda-environments/README.md).
-- **The page at localhost:8000 does not load.** The server from step 10 is not running, or another program uses port 8000. Run the command in step 10 again, or change `8000` to `8001` in both the command and the address.
+- **The page at localhost:8000 does not load.** The server from *Look at the site* is not running, or another program uses port 8000. Run the command in *Look at the site* again, or change `8000` to `8001` in both the command and the address.
 
 ## Next
 

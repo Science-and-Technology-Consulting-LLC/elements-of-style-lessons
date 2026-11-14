@@ -18,7 +18,7 @@ Make sure you have a conda environment named `eos`. See [conda-environments](../
    ```
 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/documentation/building-a-sphinx-site.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb)) and run each cell in order, top to bottom. Step 1 of the notebook registers the Bash kernel the first time.
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/documentation/building-a-sphinx-site.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb)) and run each cell in order, top to bottom. The notebook has a *Check your setup* section at the top for the Bash kernel.
 
 ## What you should see
 

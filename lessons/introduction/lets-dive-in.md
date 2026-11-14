@@ -11,10 +11,10 @@ In this walkthrough you set up your computer and run your first notebook. Every 
 **What you need:**
 
 - A computer: a Mac, Windows with Git Bash, or Linux. No computer of your own? See [Other places to run these lessons](other-places-to-run.md).
-- [Git](https://git-scm.com/), the program that tracks changes to files. Step 1 installs it. If `git --version` fails, do Step 1 first, then come back to "Before you begin".
-- [Miniforge](https://github.com/conda-forge/miniforge), the installer for conda. Step 2 installs it.
+- [Git](https://git-scm.com/), the program that tracks changes to files. *Install a terminal and Git* installs it. If `git --version` fails, do *Install a terminal and Git* first, then come back to "Before you begin".
+- [Miniforge](https://github.com/conda-forge/miniforge), the installer for conda. *Install Miniforge* installs it.
 - A free [GitHub account](https://github.com/signup). You first need it in the [version control lesson](../version-control/README.md).
-- A good internet connection. Step 3 downloads a few hundred packages.
+- A good internet connection. *Create the `eos` environment* downloads a few hundred packages.
 
 ## Before you begin
 
@@ -30,7 +30,7 @@ In this walkthrough you set up your computer and run your first notebook. Every 
 
 ## The steps
 
-### Step 1. Install a terminal and Git
+### Install a terminal and Git
 
 A *terminal* is a window where you type instructions instead of clicking. *Bash* is the language those instructions are written in. Using Bash everywhere means a Mac, a Windows PC and a cloud machine all behave the same way.
 
@@ -50,7 +50,7 @@ git --version
 
 The [command line lesson](../command-line-and-git-bash/README.md) covers this step in more detail.
 
-### Step 2. Install Miniforge
+### Install Miniforge
 
 *Conda* is a program that installs other programs into a private folder, so one project cannot break another. *Miniforge* is the small installer that gives you conda.
 
@@ -65,7 +65,7 @@ conda --version
 
 **What you should see:** the word `conda` followed by a version number.
 
-### Step 3. Create the `eos` environment
+### Create the `eos` environment
 
 An *environment* is a private folder of programs. The file `eos.yml` in the repository is the recipe. It lists Python, JupyterLab, Git, the GitHub command line (`gh`), [Nextflow](https://www.nextflow.io/) and more. You are already inside the repository folder from "Before you begin".
 
@@ -80,7 +80,7 @@ The first line takes several minutes the first time. Conda downloads and sorts o
 
 **What you should see:** a long list of packages, then a prompt that starts with `(eos)`. The `(eos)` means the environment is active. Run `conda activate eos` in every new terminal before you start a lesson.
 
-### Step 4. Register the Bash kernel
+### Register the Bash kernel
 
 A *kernel* is the engine that runs the code in a notebook. This notebook uses the Bash kernel. You register it once. Running it again does no harm.
 
@@ -93,7 +93,7 @@ python -m bash_kernel.install
 
 **What you should see:** a stream of lines that start with `Requirement already satisfied` or `Collecting`, and a last line that says `Installing IPython kernel spec`.
 
-### Step 5. Start JupyterLab
+### Start JupyterLab
 
 *JupyterLab* is the program that opens notebooks in your web browser. Start it from a terminal where `(eos)` is active. It is not a notebook cell, because it keeps running until you stop it.
 
@@ -107,7 +107,7 @@ Restart it if it was already running, so it sees the new Bash kernel. To stop it
 
 > **Picture to add:** the JupyterLab Launcher with the Bash tile visible (save as assets/lets-dive-in-step-5.png)
 
-### Step 6. Check your tools
+### Check your tools
 
 This cell asks your computer where each program lives. Where a program is missing, the cell says `MISSING`. Only `bash`, `git` and `python3` must be present today. The other lessons tell you when they need the rest.
 
@@ -143,21 +143,21 @@ done
   docker     MISSING
 ```
 
-The exact paths on your computer will differ. If you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `docker` may show `MISSING` until Step 7.
+The exact paths on your computer will differ. If you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `docker` may show `MISSING` until *Install Docker later*.
 
-### Step 7. Install Docker later
+### Install Docker later
 
 [Docker](https://docs.docker.com/get-docker/) runs *containers*, which are sealed boxes holding a program and everything it needs. Conda does not install Docker. You need it from the [containers lesson](../containers/README.md) on. Skip it today.
 
-### Step 8. Other places to run the lessons
+### Other places to run the lessons
 
 Your own Bash terminal is the main way to follow these lessons. If you cannot use one, or later when the work grows, see [Other places to run these lessons](other-places-to-run.md). It covers Google Cloud Shell and Lifebit.
 
 ## If something goes wrong
 
 - **`git: command not found` or `conda: command not found`.** On Windows, make sure you opened *Git Bash*, not Command Prompt or PowerShell. After installing Miniforge, close the terminal and open a new one.
-- **No Bash tile in JupyterLab.** You registered the kernel outside the `eos` environment. Run `conda activate eos`, repeat Step 4, then restart JupyterLab (Step 5).
-- **A tool shows `MISSING`.** Compare it with the table in Step 6. Run `conda activate eos` and run the cell again. Docker is the one tool you install by hand.
+- **No Bash tile in JupyterLab.** You registered the kernel outside the `eos` environment. Run `conda activate eos`, repeat *Register the Bash kernel*, then restart JupyterLab (*Start JupyterLab*).
+- **A tool shows `MISSING`.** Compare it with the table in *Check your tools*. Run `conda activate eos` and run the cell again. Docker is the one tool you install by hand.
 
 ## Next
 

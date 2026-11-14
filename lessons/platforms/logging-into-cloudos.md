@@ -30,9 +30,9 @@ You will sign in to CloudOS, create a workspace and open JupyterLab inside it. T
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. Open the login page
+## Open the login page
 
 Why: this is the front door of the platform. Open <https://cloudos.lifebit.ai/login> in a browser.
 
@@ -40,7 +40,7 @@ Why: this is the front door of the platform. Open <https://cloudos.lifebit.ai/lo
 
 > **Picture to add:** the CloudOS login page (save as assets/logging-into-cloudos-step-2.png)
 
-## Step 2. Use institutional login
+## Use institutional login
 
 Why: you made your account this way, so you sign in this way.
 
@@ -48,7 +48,7 @@ Choose *Sign in with institutional login* and pick your institution from the lis
 
 **What you should see:** your institution's sign-in page, and after you sign in, the CloudOS home page.
 
-## Step 3. Create a workspace
+## Create a workspace
 
 Why: a *workspace* is a private area with its own files and tools for your project.
 
@@ -60,7 +60,7 @@ Create a workspace and pick the *biomedical analysis* template.
 
 > **Check:** which button or menu creates a workspace, and how long does a new workspace take to start?
 
-## Step 4. Open JupyterLab
+## Open JupyterLab
 
 Why: JupyterLab is where you run notebooks, like this one.
 
@@ -73,7 +73,7 @@ Open the workspace's JupyterLab. Then continue with [starting-a-jupyter-lab-note
 ## If something goes wrong
 
 - **Your institution is not in the list.** Ask at <https://lifebit.ai/contact>.
-- **You sign in but see no workspace.** Create one in step 5. A new account starts with none.
+- **You sign in but see no workspace.** Create one in *Create a workspace*. A new account starts with none.
 - **The JupyterLab tab opens blank or is blocked.** Allow pop-ups for `cloudos.lifebit.ai` in your browser and try again.
 
 ## Next

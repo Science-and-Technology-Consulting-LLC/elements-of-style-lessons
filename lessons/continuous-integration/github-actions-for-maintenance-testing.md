@@ -32,9 +32,9 @@ You will read three real GitHub Actions workflows that keep a research pipeline 
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. Understand why a research repository needs CI
+## Understand why a research repository needs CI
 
 Why: *continuous integration* (CI) means a computer re-runs your checks on every change. Software drifts. Packages update, containers are rebuilt and workflow runners change. Automating the question "does this still run?" is how a [Nextflow](https://www.nextflow.io/) pipeline survives six months of that drift.
 
@@ -49,7 +49,7 @@ The pattern has four parts:
 
 **What you should see:** nothing to run here. You now have the pattern. The next steps show it in real files.
 
-## Step 2. Read a real test workflow
+## Read a real test workflow
 
 Why: this shape is used by [Sheynkman-Lab/Long-Read-Proteogenomics](https://github.com/Sheynkman-Lab/Long-Read-Proteogenomics) and, with small edits, by nearly every [nf-core](https://nf-co.re/) pipeline.
 
@@ -96,7 +96,7 @@ Read three things in it:
 
 **What you should see:** you can point to the three lines above in the file. If you can, you can read any test workflow.
 
-## Step 3. Read the version used in this repository
+## Read the version used in this repository
 
 Why: this repository uses a slightly newer form of the same idea. Save it as `.github/workflows/ci.yml` in your own repository to use it.
 
@@ -129,13 +129,13 @@ jobs:
           nextflow run main-bulk-de.nf -profile test
 ```
 
-Two small differences from the step 4 example: `actions/checkout@v4` (a newer version) and Nextflow installed with `curl` instead of `wget`. Both work.
+Two small differences from the *Read the Docker publish workflow* example: `actions/checkout@v4` (a newer version) and Nextflow installed with `curl` instead of `wget`. Both work.
 
 **What you should see:** three steps in the job. First it gets your code, then it installs Nextflow, then it runs the pipelines with `-profile test`.
 
 > **Picture to add:** the Actions tab of this repository showing a passing CI run (save as assets/github-actions-for-maintenance-testing-step-3.png)
 
-## Step 4. Read the Docker publish workflow
+## Read the Docker publish workflow
 
 Why: GitHub Actions can also build and publish Docker images. Every push to `main` builds each image in `container/<name>/`, tags it with `:latest` and with the Git commit ID, and uploads it to GHCR (GitHub's container registry).
 
@@ -180,7 +180,7 @@ Every module that names `ghcr.io/.../scanpy-qc:latest` in its `container:` line 
 
 **What you should see:** one `matrix` list of four image names. The job runs once for each name, so one workflow builds four images.
 
-## Step 5. Recap
+## Recap
 
 - **CI catches drift before you feel it.**
 - **Testing is `nextflow run ... -profile test` in a fresh virtual machine.** GitHub provides the machine.
@@ -190,7 +190,7 @@ Every module that names `ghcr.io/.../scanpy-qc:latest` in its `container:` line 
 
 - **The workflow never runs.** The `on:` section did not match what you did. A push to a branch not listed under `branches:` does nothing. Check the branch name.
 - **A workflow fails with a YAML error.** YAML cares about spaces. Use spaces, never tabs, and keep each level indented the same amount as in the examples.
-- **Docker publish fails with `denied` or `permission`.** The job needs `packages: write` under `permissions:` (as in step 6), and the repository must allow Actions to write packages. See [GitHub's container registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
+- **Docker publish fails with `denied` or `permission`.** The job needs `packages: write` under `permissions:` (as in *Read the Docker publish workflow*), and the repository must allow Actions to write packages. See [GitHub's container registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 
 ## Next
 

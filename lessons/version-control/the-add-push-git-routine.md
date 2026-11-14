@@ -30,9 +30,9 @@ You will make one change to a file and send it to GitHub, then offer it to the o
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Go to your practice folder
+### Go to your practice folder
 
 You keep practice work in `~/eos-practice`, away from the course files. `~` means your home folder. `mkdir -p` makes the folder if it is not there yet.
 
@@ -44,7 +44,7 @@ pwd
 
 **What you should see:** one line ending in `eos-practice`.
 
-### Step 2. Make a folder with your GitHub user name
+### Make a folder with your GitHub user name
 
 This is your own place, so file names never collide with another student's. **Edit the next cell first.** Replace `<your-github-username>`, including the angle brackets, with your real GitHub user name. Run it as written and the shell reports a syntax error.
 
@@ -55,7 +55,7 @@ cd <your-github-username>
 
 **What you should see:** nothing, if it worked. `pwd` should now end with your user name.
 
-### Step 3. Fork the practice project
+### Fork the practice project
 
 A **fork** is your own copy of someone else's project on GitHub. You can change your fork freely. You do this in the browser.
 
@@ -67,7 +67,7 @@ A **fork** is your own copy of someone else's project on GitHub. You can change 
 
 **What you should see:** the page changes to `<your-github-username>/exampleVolcanoPlotNotebook`, with a line "forked from NIH-NICHD/exampleVolcanoPlotNotebook". There is more about forks in [keeping-your-repository-fork-in-sync.md](keeping-your-repository-fork-in-sync.md).
 
-### Step 4. Clone your fork
+### Clone your fork
 
 To **clone** is to copy a GitHub project onto your computer. **Edit the next cell first**: replace `<your-github-username>` in the web address with your own.
 
@@ -78,7 +78,7 @@ cd exampleVolcanoPlotNotebook
 
 **What you should see:** lines such as `Cloning into 'exampleVolcanoPlotNotebook'...` and `Receiving objects: 100%`, ending with `done.`. List the files with `ls` if you like: you should find `README.md`, `Reading-data-and-plotting-in-R.ipynb` and `install_dependencies.R`.
 
-### Step 5. Run `git status`
+### Run `git status`
 
 `git status` tells you what changed in your local copy since the last commit (the last saved snapshot). You will use it every day.
 
@@ -95,7 +95,7 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-### Step 6. Edit a file
+### Edit a file
 
 Add one line to `README.md`: `Learn about Zenodo here: https://zenodo.org`. Use one of these two ways.
 
@@ -118,7 +118,7 @@ tail -n 3 README.md
 
 **What you should see:** the line `Learn about Zenodo here: https://zenodo.org` in one of the two outputs, depending on where you put it.
 
-### Step 7. Run `git status` again
+### Run `git status` again
 
 ```bash
 git status
@@ -137,7 +137,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" to update)
 ```
 
-### Step 8. Stage the change with `git add`
+### Stage the change with `git add`
 
 `git add` moves the change from "unstaged" to "staged", which means it is chosen for the next commit.
 
@@ -147,7 +147,7 @@ git add README.md
 
 **What you should see:** nothing. Run `git status` and the file now appears under "Changes to be committed".
 
-### Step 9. Save it locally with `git commit`
+### Save it locally with `git commit`
 
 A **commit message** is a note to your future self about what changed and why. Write it in the present tense, short and specific.
 
@@ -164,7 +164,7 @@ git commit -m 'added Zenodo pointer to README'
 
 (The short code will differ.)
 
-### Step 10. Send it to GitHub with `git push`
+### Send it to GitHub with `git push`
 
 `git push` uploads your commits from your computer to your fork on GitHub. It uses the sign-in you made in [github-authenticate.md](github-authenticate.md).
 
@@ -174,7 +174,7 @@ git push
 
 **What you should see:** lines about counting and writing objects, ending with `main -> main`. Refresh your fork's page on GitHub: it shows your commit message next to `README.md`.
 
-### Step 11. Confirm all is quiet
+### Confirm all is quiet
 
 ```bash
 git status
@@ -189,7 +189,7 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-### Step 12. Open a pull request
+### Open a pull request
 
 A **pull request** (PR) asks the owner of the original project to take your change. You do this in the browser.
 
@@ -217,9 +217,9 @@ You walked the whole loop:
 
 ## If something goes wrong
 
-- **`Author identity unknown` when you commit.** Git does not know your name yet. Set it as in [why-git-and-setup.md](why-git-and-setup.md) (Step 5), then commit again.
+- **`Author identity unknown` when you commit.** Git does not know your name yet. Set it as in [why-git-and-setup.md](why-git-and-setup.md) (the *Tell Git who you are* section), then commit again.
 - **`Permission denied` or "could not read Username" when you push.** Either you cloned the original project instead of your fork, or you are not signed in. Check the clone address has your user name in it, and run `gh auth status`.
-- **`syntax error near unexpected token` in Steps 4 or 6.** You left `<your-github-username>` as it was. Replace it with your user name, angle brackets included.
+- **`syntax error near unexpected token` in the commands that contain `<your-github-username>`.** You left `<your-github-username>` as it was. Replace it with your user name, angle brackets included.
 - **`destination path already exists` when you clone.** You already cloned it. Run `cd exampleVolcanoPlotNotebook` instead.
 
 ## Next

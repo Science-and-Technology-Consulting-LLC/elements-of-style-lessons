@@ -30,9 +30,9 @@ In this walkthrough you type seven commands that move, make, copy, delete and do
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-### Step 1. Make a practice folder
+### Make a practice folder
 
 The next steps create and delete files. Doing that in a folder of its own keeps the lesson files safe. `mkdir -p practice` makes a folder called `practice`. `cd practice` moves you into it. You meet both commands again below.
 
@@ -44,7 +44,7 @@ pwd
 
 **What you should see:** one line, a path that ends in `/command-line-and-git-bash/practice`. Every later cell now runs inside that folder.
 
-### Step 2. `ls` lists the files in a folder
+### `ls` lists the files in a folder
 
 *Folder* and *directory* mean the same thing. `ls` lists what is in the current folder. The `-l` option gives the long form: permissions, owner, size and date. An *option* (or *flag*) changes how a command works.
 
@@ -56,7 +56,7 @@ ls -l
 
 You can paste any command you do not understand into [ExplainShell](https://explainshell.com/). It explains each part.
 
-### Step 3. `pwd` prints your location
+### `pwd` prints your location
 
 `pwd` stands for *print working directory*. It shows the full address of the folder you are in. A path that starts at the top of the disk (like `/home/annie/work`) is an *absolute* path. A path that starts from where you are now (like `../data`) is a *relative* path. [This page](https://linuxfoundation.org/blog/classic-sysadmin-absolute-path-vs-relative-path-in-linux-unix/) explains the difference.
 
@@ -64,9 +64,9 @@ You can paste any command you do not understand into [ExplainShell](https://expl
 pwd
 ```
 
-**What you should see:** the same path as in Step 1, ending in `/practice`.
+**What you should see:** the same path as in *Make a practice folder*, ending in `/practice`.
 
-### Step 4. `echo` and `>` create a file
+### `echo` and `>` create a file
 
 `echo` prints text. The `>` sign sends that text into a file instead of the screen. If the file does not exist, it is created. If it exists, it is replaced. Here the new file is named `README.md`.
 
@@ -83,7 +83,7 @@ ls -l README.md
 
 Your name and the date will differ.
 
-### Step 5. `cp` copies a file
+### `cp` copies a file
 
 `cp` takes the file to copy, then the name for the copy.
 
@@ -94,7 +94,7 @@ ls -l README.md duplicated_README.md
 
 **What you should see:** two lines, both 40 bytes, one for `README.md` and one for `duplicated_README.md`.
 
-### Step 6. `head` shows the start of a file
+### `head` shows the start of a file
 
 `head` prints the first lines of a file. To read a long file one page at a time in a terminal, use `less` and press `q` to quit. `less` does not work inside a notebook, but `head` does.
 
@@ -108,7 +108,7 @@ head README.md
 I am the header of your first README.md
 ```
 
-### Step 7. `rm` deletes a file
+### `rm` deletes a file
 
 `rm` removes the file you name. The terminal has no trash bin. The file is gone for good, so check the name before you press Return.
 
@@ -119,7 +119,7 @@ ls -l
 
 **What you should see:** only `README.md` is left. The copy is gone.
 
-### Step 8. `mkdir` makes a folder
+### `mkdir` makes a folder
 
 `mkdir` stands for *make directory*.
 
@@ -134,7 +134,7 @@ ls -l
 drwxr-xr-x  2 you  staff  64 Nov 13 15:33 new_folder
 ```
 
-### Step 9. `rm -r` deletes a folder
+### `rm -r` deletes a folder
 
 The `-r` option means *recursive*. It removes the folder and everything inside it. Use it with care.
 
@@ -145,7 +145,7 @@ ls -l
 
 **What you should see:** `new_folder` is gone. Only `README.md` is left.
 
-### Step 10. `wget` downloads a file
+### `wget` downloads a file
 
 `wget` fetches a file from a web address. This file is a table of results from an RNA-seq experiment (a count of how active each gene is), analysed with DESeq2. It lists genes with *p*-values below 0.05 and a fold change above 1.5. The [interactive computing lesson](../interactive-computing/README.md) uses it again for a volcano plot. The `-q` option keeps `wget` quiet.
 
@@ -164,8 +164,8 @@ You have now used `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r` and `wget`. The fold
 ## If something goes wrong
 
 - **`wget: command not found`.** Neither a Mac nor Git Bash comes with `wget`. The `eos` environment does. Close JupyterLab, run `conda activate eos` in a terminal, start `jupyter lab` again and rerun the cell. As a stopgap, `curl -O https://zenodo.org/record/4302133/files/deseq2_5k.csv` does the same job.
-- **`ls: cannot access` or `No such file`.** You skipped a step, or you are in the wrong folder. Run `pwd` and compare with Step 3. Then run the steps again from the top.
-- **The notebook asks you to choose a kernel.** Choose **Bash**. If it is not listed, repeat the kernel registration in Step 4 of [Let's dive in](../introduction/lets-dive-in.md) with `eos` active, then restart JupyterLab.
+- **`ls: cannot access` or `No such file`.** You skipped a step, or you are in the wrong folder. Run `pwd` and compare with *`pwd` prints your location*. Then run the steps again from the top.
+- **The notebook asks you to choose a kernel.** Choose **Bash**. If it is not listed, repeat the kernel registration in the *Register the Bash kernel* step of [Let's dive in](../introduction/lets-dive-in.md) with `eos` active, then restart JupyterLab.
 
 ## Next
 

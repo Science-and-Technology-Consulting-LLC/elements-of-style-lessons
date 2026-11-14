@@ -29,9 +29,9 @@ You will tag your two images with a full registry address and push them to GitHu
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1: Choose a registry
+## Choose a registry
 
 *Why:* a **registry** is a website that stores container images so that other computers can download them. There are two common choices.
 
@@ -42,7 +42,7 @@ This notebook runs shell commands with the Bash kernel and uses tools such as `g
 
 The [containers lesson](../containers/README.md) uses **GHCR**. Pick one per repository and stay with it.
 
-## Step 2: Go to your home folder
+## Go to your home folder
 
 *Why:* the next cell uses the folder names `fastqc-docker` and `multiqc-docker`, so it must start in the folder that holds both. That is the home folder if you followed [building Dockerfiles](../containers/building-dockerfiles.md).
 
@@ -55,7 +55,7 @@ ls
 
 **What you should see:** a list that includes `fastqc-docker` and `multiqc-docker`. If either is missing, go back to [building Dockerfiles](../containers/building-dockerfiles.md).
 
-## Step 3: Rebuild the images (recap)
+## Rebuild the images (recap)
 
 *Why:* this makes sure both images exist and are current. Because Docker remembers each step, the rebuild is fast if nothing changed.
 
@@ -70,7 +70,7 @@ cd ../multiqc-docker && docker build -t multiqc .
 
 **What you should see:** for each image, build lines ending without `ERROR`. Most steps say `CACHED` if you built the images before.
 
-## Step 4: Tag, log in and push to GHCR
+## Tag, log in and push to GHCR
 
 *Why:* each image needs a *fully qualified* tag: `<registry>/<user>/<image>:<version>`. A **tag** is the name Docker uses for an image. Including a version means you can always get back the exact image that produced a result.
 
@@ -105,7 +105,7 @@ The registry address is now the *portable address* of your image. Your Nextflow 
 
 - **`denied: permission_denied` on push.** The address names an organisation you are not in. Use your own lowercase GitHub user name in the address. Also check that your token has the `write:packages` permission.
 - **`unauthorized`, or another error at the login line.** The user name or token is wrong or empty. Run `echo "$GHCR_USER"` to check the user name, set both variables again, and rerun the cell.
-- **`cd: fastqc-docker: No such file or directory`.** You are not in the folder that holds the two image folders. Run Step 2 again.
+- **`cd: fastqc-docker: No such file or directory`.** You are not in the folder that holds the two image folders. Run *Go to your home folder* again.
 
 ## Next
 

@@ -29,9 +29,9 @@ You do not need an account for this lesson.
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`typer-cli-in-fifteen-minutes.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb) and run each cell in order, top to bottom.
 
-> **Where to type the commands.** The gray command boxes in this lesson run in your **terminal**, not in a notebook cell. The only notebook cell is in Step 2. Keep your terminal open next to this page.
+> **Where to type the commands.** The gray command boxes in this lesson run in your **terminal**, not in a notebook cell. The only notebook cell is in *Check that Python is the one you expect*. Keep your terminal open next to this page.
 
-## Step 1: Make a clean environment (once)
+## Make a clean environment (once)
 
 *Why:* an **environment** is a private box of programs. Anything you install here stays here and cannot break your other work. A **kernel** is the program that runs the code in a notebook cell; the last command gives this environment its own kernel so you can pick it in JupyterLab. The [conda environments lesson](../conda-environments/README.md) explains the idea in full.
 
@@ -51,7 +51,7 @@ Lesson-specific `pip install` commands appear in the steps below. They land in t
 
 > **Picture to add:** a terminal whose prompt shows `(typer-cli-in-fifteen-minutes)` (save as assets/typer-cli-step-1.png)
 
-## Step 2: Check that Python is the one you expect
+## Check that Python is the one you expect
 
 *Why:* if the wrong Python runs your commands, nothing else in this lesson works. The next cell prints where Python lives and whether four other tools are found. `MISSING` for `docker` is fine here; this lesson does not use it.
 
@@ -64,7 +64,7 @@ for cmd in ["conda", "pip", "git", "docker"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
-**What you should see:** a line for `python` that contains `typer-cli-in-fifteen-minutes` (if your notebook uses the kernel from Step 1), then a path or `MISSING` for each other tool.
+**What you should see:** a line for `python` that contains `typer-cli-in-fifteen-minutes` (if your notebook uses the kernel from *Make a clean environment (once)*), then a path or `MISSING` for each other tool.
 
 > **Check:** The notebook cell above runs in whichever kernel the notebook uses. If it prints a path without the environment name, choose *Kernel*, then *Change Kernel*, then *Python (typer-cli-in-fifteen-minutes)*. Please confirm that this is the menu path in your JupyterLab version.
 
@@ -79,7 +79,7 @@ hello-py --help
 
 and get a properly formatted help screen. This is the same help an AI agent will read later in the [MCP server lesson](../mcp-server/README.md).
 
-## Step 3: Create a project folder
+## Create a project folder
 
 *Why:* all the files for this tool should live together in one new folder. A **command-line interface** (CLI) is a program you control by typing its name and options.
 
@@ -92,7 +92,7 @@ pwd
 
 **What you should see:** a path that ends in `hello-py-cli`.
 
-## Step 4: Install Typer
+## Install Typer
 
 *Why:* [Typer](https://typer.tiangolo.com/) is the Python library that turns an ordinary function into a command with options and a help screen. `pip` is Python's installer.
 
@@ -104,7 +104,7 @@ The quotes matter on a Mac. Without them the default Mac shell (zsh) stops with 
 
 **What you should see:** pip ends with `Successfully installed` followed by a list that includes `typer`. If pip also warns that Typer does not provide the extra `all`, you can ignore the warning.
 
-## Step 5: Write the tool
+## Write the tool
 
 *Why:* this is the whole tool. The function `greet` becomes a command, and the options and help text come from the function itself, so the help cannot drift away from the code. A **decorator** (the line starting with `@`) marks a function as a command.
 
@@ -138,7 +138,7 @@ if __name__ == "__main__":
 
 > **Picture to add:** the JupyterLab file browser showing hello_py/main.py open in the editor (save as assets/typer-cli-step-5.png)
 
-## Step 6: Run it before you install it
+## Run it before you install it
 
 *Why:* `python -m hello_py.main` runs the file as a module, so you can test the tool before you package it. Run both commands from inside `hello-py-cli`.
 
@@ -151,7 +151,7 @@ python -m hello_py.main --help
 
 > **Picture to add:** the terminal showing the `--help` screen with the two commands (save as assets/typer-cli-step-6.png)
 
-## Step 7: Make it installable
+## Make it installable
 
 *Why:* the file `pyproject.toml` tells Python the name of your tool, what it needs, and which function starts it. The line under `[project.scripts]` says: make a command called `hello-py` that runs `app` in `hello_py/main.py`.
 
@@ -182,7 +182,7 @@ The dot means "the folder I am in".
 
 **What you should see:** pip finishes with a line like `Successfully installed hello-py-0.1.0`.
 
-## Step 8: Use your new command
+## Use your new command
 
 *Why:* the tool is now a real command on your `PATH`, the list of folders your terminal searches for programs.
 
@@ -192,7 +192,7 @@ hello-py version
 hello-py --help
 ```
 
-**What you should see:** `Hello, Annie!`, then `hello-py 0.1.0`, then the same help screen as in Step 6, now headed by `hello-py` instead of `python -m hello_py.main`. Try it from another folder: it still works.
+**What you should see:** `Hello, Annie!`, then `hello-py 0.1.0`, then the same help screen as in *Run it before you install it*, now headed by `hello-py` instead of `python -m hello_py.main`. Try it from another folder: it still works.
 
 ## Why this shape reappears everywhere
 

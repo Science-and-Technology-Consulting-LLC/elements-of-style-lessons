@@ -12,7 +12,7 @@ You will put the `hello-r` command-line tool into a container, so that it runs t
 
 - The `hello-r.R` script from [the Rscript CLI walkthrough](../reusable-clis/rscript-cli-in-fifteen-minutes.md). Finish that lesson first.
 - [Docker Desktop](https://docs.docker.com/get-started/get-docker/), installed and running. See the install notes in the [containers lesson](README.md).
-- [R](https://www.r-project.org/) and the R kernel for JupyterLab (Step 1).
+- [R](https://www.r-project.org/) and the R kernel for JupyterLab (*Install R and register the R kernel (once)*).
 - A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
 - For the optional publish step: a [GitHub account](https://github.com/signup) and a personal access token (a password that only works for chosen tasks) with the `write:packages` permission. See [GitHub's guide to the container registry](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 
@@ -28,9 +28,9 @@ You will put the `hello-r` command-line tool into a container, so that it runs t
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-an-r-dockerfile.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-an-r-dockerfile.ipynb) and run each cell in order, top to bottom.
 
-> **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The one notebook cell (Step 2) uses the R kernel.
+> **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The one notebook cell (*Check that R can see its tools*) uses the R kernel.
 
-## Step 1: Install R and register the R kernel (once)
+## Install R and register the R kernel (once)
 
 *Why:* a **kernel** is the program that runs the code in a notebook cell. JupyterLab needs the R kernel, called IRkernel, before it can run R cells.
 
@@ -48,7 +48,7 @@ Restart JupyterLab. The Launcher now shows an **R** tile.
 
 > **Picture to add:** the JupyterLab Launcher with the R tile visible (save as assets/building-an-r-dockerfile-step-1.png)
 
-## Step 2: Check that R can see its tools
+## Check that R can see its tools
 
 *Why:* this cell finds each program and prints where it lives, or `MISSING`. For this lesson `docker` must be found.
 
@@ -79,7 +79,7 @@ A single-purpose R container that ships the `hello-r` tool from [the Rscript CLI
 
 > **Note for Podman users.** The Lifebit platform runs containers with [Podman](https://podman.io/), which reads the same Dockerfile. In the `docker build` and `docker run` commands below, you can type `podman` instead of `docker`. Podman may need a registry prefix in front of a short image name, such as `docker.io/library/`.
 
-## Step 3: Create a clean build directory
+## Create a clean build directory
 
 *Why:* a **build directory** is the folder Docker reads when it builds. Docker looks for a file named exactly `Dockerfile` in it. A new folder keeps the build small.
 
@@ -93,7 +93,7 @@ touch Dockerfile
 
 **What you should see:** no output. Check with `pwd`: the path ends in `hello-r-docker`.
 
-## Step 4: Copy your script into the build directory
+## Copy your script into the build directory
 
 *Why:* the Dockerfile copies `hello-r.R` into the image, and Docker can only copy files from the build directory. Without this step the build stops with a `COPY failed` error.
 
@@ -108,7 +108,7 @@ If you made `hello-r-cli` somewhere else, copy `hello-r.R` by hand.
 
 **What you should see:** `Dockerfile` and `hello-r.R` listed.
 
-## Step 5: Fill in the Dockerfile
+## Fill in the Dockerfile
 
 *Why:* the Dockerfile is the recipe. Open `Dockerfile` in an editor and paste:
 
@@ -141,7 +141,7 @@ What the lines mean:
 
 Save the file.
 
-## Step 6: Build the image
+## Build the image
 
 *Why:* `docker build` turns the Dockerfile into an image. `-t hello-r` names it `hello-r`. The dot means: build in this folder. The first build takes several minutes because Docker downloads R and installs packages.
 
@@ -156,7 +156,7 @@ docker images | head
 
 **What you should see:** many progress lines, ending without `ERROR`. Then a table whose first row has `hello-r` under `REPOSITORY` and `latest` under `TAG`.
 
-## Step 7: Smoke-test the image
+## Smoke-test the image
 
 *Why:* a smoke test is the cheapest check that the tool works inside the container.
 
@@ -169,7 +169,7 @@ docker run --rm hello-r greet --name Annie
 
 **What you should see:** first the help screen from your usage text (the `greet` and `version` lines), then `Hello, Annie!`.
 
-## Step 8: The Bioconductor variant (read only)
+## The Bioconductor variant (read only)
 
 *Why:* for real biomedical R work you will want Bioconductor packages such as DESeq2, limma and edgeR. To get them, swap the base image:
 
@@ -179,7 +179,7 @@ FROM bioconductor/bioconductor_docker:RELEASE_3_19
 
 [Bioconductor](https://bioconductor.org/) images and Rocker images cover most of what shows up in the [endometriosis case study](../../case-studies/endometriosis/README.md) and the [`container/limma-voom/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/container/limma-voom) worked example.
 
-## Step 9 (optional): Push to a registry
+## Push to a registry (optional)
 
 *Why:* a registry is a website that stores images so other people and other computers can pull them. GitHub's registry, GHCR, is the default for this course. You need a token with `write:packages` first (see What you need). Set `GHCR_USER` to your GitHub user name and `GHCR_TOKEN` to the token. Replace the organisation name in the last two lines with your own lowercase user name unless you belong to that organisation.
 
@@ -193,7 +193,7 @@ docker push ghcr.io/science-and-technology-consulting-llc/hello-r:0.1.0
 
 ## If something goes wrong
 
-- **`COPY failed: file not found`.** `hello-r.R` is not in the build folder. Repeat Step 4 and run `ls`.
+- **`COPY failed: file not found`.** `hello-r.R` is not in the build folder. Repeat *Copy your script into the build directory* and run `ls`.
 - **`Cannot connect to the Docker daemon`.** Docker Desktop is not running. Open it, wait until it says it is running, and build again.
 - **`denied` when you push.** You do not have permission for that organisation name. Use `ghcr.io/<your-lowercase-github-name>/hello-r:0.1.0` in both the `tag` and `push` lines.
 

@@ -32,9 +32,9 @@ You will sign up for a free account on CloudOS, the Lifebit platform that runs p
 
 ## Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Step 1. Open the sign-up page
+## Open the sign-up page
 
 Why: this is where you make your account. Open <https://cloudos.lifebit.ai/register> in your browser.
 
@@ -42,7 +42,7 @@ Why: this is where you make your account. Open <https://cloudos.lifebit.ai/regis
 
 > **Picture to add:** the CloudOS registration page with the institutional login option (save as assets/creating-a-cloudos-account-step-2.png)
 
-## Step 2. Choose institutional login
+## Choose institutional login
 
 Why: institutional login (also called *single sign-on*) lets you use your university or NIH sign-in. You do not make a new password.
 
@@ -50,7 +50,7 @@ Click *Sign in with institutional login*.
 
 **What you should see:** a list or search box of institutions.
 
-## Step 3. Pick your institution
+## Pick your institution
 
 Why: this sends you to your own institution's sign-in page.
 
@@ -60,7 +60,7 @@ Pick your institution from the list (NIH, your university, and so on). If it is 
 
 > **Picture to add:** the institution list on the CloudOS sign-up page (save as assets/creating-a-cloudos-account-step-2.png)
 
-## Step 4. Know your tier
+## Know your tier
 
 The free tier is *Lifebit Start*.
 
