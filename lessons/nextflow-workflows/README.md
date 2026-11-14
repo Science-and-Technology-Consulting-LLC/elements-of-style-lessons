@@ -1,98 +1,86 @@
 # From notebooks toward Nextflow
 
+> *In the book: Sections 6.2 and 7.3, Introduction to Workflow Languages; Building a Nextflow Script.*
 
-> *In the book: Sections 6.2 and 7.3 — Introduction to Workflow Languages; Building a Nextflow Script.*
+This lesson shows you how to run a two-step pipeline in Nextflow and in CWL, and how a notebook grows into a workflow you can rerun on any machine.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- Compose modules into a runnable pipeline (`main-bulk-de.nf` as the model).
-- Use channels to connect step outputs to the next step's inputs.
-- Run the same workflow locally, in Docker, and on Lifebit.
-:::
+The previous lesson is [Nextflow modules](../nextflow-modules/README.md).
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the code.** In a terminal, run:
 
-A notebook is a *thinking* tool. A Nextflow workflow is a *doing*
-tool — something you (or a teammate, or CI, or an AI agent) can rerun
-identically a year from now on a different machine. This lesson is the
-arc between the two.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-:::{admonition} The rule
-:class: tip
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook** `lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb). Run each cell in order, top to bottom.
 
-You earn the right to write a workflow by having a notebook that *works
-end-to-end* first. Don't reach for Nextflow before you have the
-single-step version running. The notebook is your spec.
-:::
+## What you should see
 
-## The progression
+A finished `fastqc` then `multiqc` run: a `results` folder with FastQC reports for each test file and one `multiqc_report.html`. The CWL walkthrough repeats the run and ends with `INFO Final process status is success`.
 
-The arc from "I have a working analysis" to "I have a reusable pipeline
-anyone can run" tends to look like this:
+> **Picture to add:** the MultiQC report open in a browser (save as assets/overview.png)
 
-1. **One R script** (or one Python script) — works on your machine, lives
-   in a folder.
-2. **The same script inside RStudio or Jupyter** — interactive, easy to
-   share as a notebook.
-3. **Break the notebook into functions** — each function does one thing
-   well.
-4. **Move those functions into a small package** — install once, import
-   everywhere.
-5. **Expose each package function as a CLI step** — see
-   [Reusable CLIs](../reusable-clis/index.md).
-6. **Wire the CLI steps together as Nextflow modules** — see
-   [Nextflow modules](../nextflow-modules/index.md). Each module is one process
-   with documented inputs and outputs.
-7. **Connect the modules into a workflow** — `main.nf` orchestrates the
-   modules and runs them, with provenance, on whatever compute you point
-   it at.
+## Where the files are
 
-The point isn't to do all seven at once. The point is to *know which
-step you're on* and *what the next step is*. Most working scientists
-live in step 2 forever. You only have to climb the ladder when the
-analysis matters enough to need to be rerun.
+- The lesson folder is [`lessons/nextflow-workflows`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/nextflow-workflows).
+- The CWL tool and workflow files are in its `cwl/` folder. The Snakemake version is in `snakemake/Snakefile`.
+- The Nextflow walkthrough clones its example into `~/Building-A-Nextflow-Script` and writes `main.nf` and `results/` there.
 
-## The worked example — `workflows/geo-to-h5ad/`
+## Notebooks in order
 
-Open this in another tab right now:
-**[`workflows/geo-to-h5ad/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/workflows/geo-to-h5ad)**
+1. [Building a Nextflow workflow](building-a-nextflow-workflow.md) (notebook: `building-a-nextflow-workflow.ipynb`). The classic `fastqc` then `multiqc` pipeline as one Nextflow script. Source repository: [`adeslatt/Building-A-Nextflow-Script`](https://github.com/adeslatt/Building-A-Nextflow-Script). The same pipeline, split into containers, modules and `main-*.nf`, is the [multiqc-workflow case study](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md).
+2. [Building a CWL workflow](building-a-cwl-workflow.md) (notebook: `building-a-cwl-workflow.ipynb`). The same pipeline in CWL, run with `cwltool`. Same containers, different language. Source repository: [`adeslatt/Building-A-CWL-Script`](https://github.com/adeslatt/Building-A-CWL-Script).
+3. [Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md) (notebook: `shared-structure-nextflow-vs-cwl.ipynb`). What the two languages share, and why container discipline lets you switch between them.
 
-It has the shape we're aiming for. Everything in this lesson refers
-back to it.
+## Next
 
-```
+[Documentation](../documentation/README.md): write a Sphinx site for the workflow you just built.
+
+## Background
+
+A notebook is a *thinking* tool. A Nextflow workflow is a *doing* tool: you, a teammate, CI or an AI agent can rerun it identically a year from now on a different machine.
+
+**The rule:** you earn the right to write a workflow by having a notebook that works from start to finish. The notebook is your spec.
+
+### The progression
+
+1. One R or Python script that works on your machine.
+2. The same script in RStudio or Jupyter, easy to share.
+3. Break the notebook into functions, each doing one thing.
+4. Move the functions into a small package.
+5. Expose each function as a CLI step ([reusable CLIs](../reusable-clis/README.md)).
+6. Wire the CLI steps together as Nextflow modules ([Nextflow modules](../nextflow-modules/README.md)).
+7. Connect the modules into a workflow: `main.nf` runs them, with provenance, on whatever compute you choose.
+
+You do not do all seven at once. Know which step you are on and what comes next. Most working scientists stay at step 2, and that is fine until the analysis matters enough to rerun.
+
+### The worked example, `workflows/geo-to-h5ad/`
+
+[`workflows/geo-to-h5ad/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/workflows/geo-to-h5ad) has the shape we aim for:
+
+```text
 workflows/geo-to-h5ad/
 ├── main.nf              # orchestrator: declares the workflow
 ├── nextflow.config      # profiles, defaults, container declarations
 ├── modules/
-│   ├── download_geo_h5.nf      # one process — download
-│   └── build_h5ad.nf           # one process — convert
+│   ├── download_geo_h5.nf      # one process: download
+│   └── build_h5ad.nf           # one process: convert
 ├── bin/
 │   └── build_h5ad.py    # the actual Python work
 └── samplesheet.csv      # example input
 ```
 
-Three things to notice before you read any code:
+> **Check:** The `workflows/geo-to-h5ad` folder is not in the lessons repository I have. Does it exist, and at which address?
 
-1. **`main.nf` is short.** The orchestrator does almost nothing
-   itself — it imports modules and connects channels.
-2. **Each module is one file with one process.** That isn't an
-   accident — that's the rule from [containers](../containers/index.md) applied
-   to workflow steps.
-3. **The actual Python lives in `bin/build_h5ad.py`.** Not inside the
-   `.nf` file. That separation is the most important thing to internalize
-   in this lesson.
+Notice three things: `main.nf` is short; each module is one file with one process; and the real code lives in `bin/`, not in the `.nf` file.
 
-## The anatomy of a Nextflow process
-
-A `.nf` module is, in its bones, this:
+### The anatomy of a Nextflow process
 
 ```groovy
 process BUILD_H5AD {
@@ -114,42 +102,11 @@ process BUILD_H5AD {
 }
 ```
 
-Four things going on:
+`container` names the image. `input:` and `output:` declare the data in the shape channels deliver it. `script:` is what runs, and it should call a script in `bin/` rather than hold inline code. A bug in a `bin/` script can be reproduced from your terminal in seconds, linted by your editor and imported by tests. A bug inside a `.nf` text block can only be reproduced by running the whole pipeline. **Put the work in `bin/`. Put the contract in the `.nf`.**
 
-- **`container`** — the image to run this process in. Single-purpose
-  image from the [containers](../containers/index.md) lesson. The container
-  carries the dependencies; the `.nf` carries the contract.
-- **`input:`** — the data this process needs, declared in the same
-  shape Nextflow channels will deliver it.
-- **`output:`** — the data this process *produces*, declared in the
-  same shape the next process will consume.
-- **`script:`** — what to actually run. **Always call a script in
-  `bin/`** rather than writing inline code. The next section explains
-  why.
+### Channels
 
-## Why `bin/` scripts beat inline `script:` blocks
-
-Imagine you find a bug in your QC code. Compare:
-
-**Inline script.** The bug lives inside a triple-quoted Bash block
-inside a `.nf` file. You can't test it without running the whole
-Nextflow pipeline. You can't lint it. Your editor doesn't syntax-
-highlight it. You can't import its functions into a notebook.
-
-**`bin/` script.** The bug lives in `bin/build_h5ad.py`. You can
-`python bin/build_h5ad.py --input test.h5 --sample S01 --output
-/tmp/out.h5ad` from your terminal and reproduce the bug in seconds.
-Your editor lints it. Your test suite imports it. The Nextflow process
-is just *one of several callers* of the script.
-
-Workflows you can test are workflows that survive. **Put the work in
-`bin/`. Put the contract in the `.nf`.**
-
-## Channels — the one Nextflow concept that takes a minute to click
-
-A Nextflow channel is a pipe that carries items, one at a time, between
-processes. The orchestrator's job is to set up channels and connect
-process inputs to channel outputs.
+A channel is a pipe that carries items, one at a time, between processes.
 
 ```groovy
 workflow {
@@ -164,17 +121,9 @@ workflow {
 }
 ```
 
-Two cells of intuition that pay off forever:
+Channels are lazy (nothing runs until something downstream pulls), and reusable (one channel can fan out to two processes, and their outputs can be joined by a third).
 
-1. **Channels are lazy.** They don't compute anything until something
-   downstream pulls on them.
-2. **Channels are reusable.** The *same* channel can fan out to two
-   processes that run in parallel; their outputs can be joined back
-   together by a third.
-
-## Running it
-
-In the worked example, three runs you'll do in this lesson:
+### Running it
 
 ```bash
 # 1. Local laptop, test data, default profile
@@ -192,10 +141,9 @@ nextflow run main.nf -profile docker \
     --outdir      s3://my-bucket/results/
 ```
 
-The same `main.nf` runs on all three. The *config* changes, not the
-workflow. That's the payoff.
+The same `main.nf` runs in all three. The config changes, not the workflow.
 
-## Run the stitched workflow — three ways
+### Run the stitched workflow, three ways
 
 ::::{tab-set}
 
@@ -220,8 +168,7 @@ export PATH="$(Rscript -e 'cat(system.file("scripts", package="limmaVoomCLI"))')
 nextflow run main-bulk-de.nf -profile test
 ```
 
-To run the same workflow on real cells (stromal and lymphocytes from the
-endometriosis atlas, cut down to a laptop size), add the samplesheet:
+To run the same workflow on real cells (stromal and lymphocytes from the endometriosis atlas, cut down to a laptop size), add the samplesheet:
 
 ```bash
 nextflow run main-bulk-de.nf -profile test \
@@ -234,7 +181,7 @@ nextflow run main-bulk-de.nf -profile test \
 
 ```bash
 # On Lifebit, dispatch to AWS Batch via the lifebit profile.
-# Same command, different config — that's the payoff.
+# Same command, different config.
 nextflow run main-bulk-de.nf -profile lifebit \
     --samplesheet s3://my-bucket/bulk-de-samplesheet.csv \
     --contrast 'EuE-Ctrl'
@@ -243,51 +190,16 @@ nextflow run main-bulk-de.nf -profile lifebit \
 
 ::::
 
-## When NOT to use Nextflow
+### When not to use Nextflow
 
-Be honest about the cost. Don't reach for Nextflow when:
+- Your analysis is one notebook that runs in 10 minutes on your laptop. "Restart and Run All" is enough.
+- You have one data file. Nextflow pays off when the *same* code runs on *many* inputs in parallel.
+- You are still changing the analysis logic. Nextflow rewards stable steps.
 
-- Your analysis is one notebook that runs in 10 minutes on your
-  laptop. A notebook with a clear "Restart and Run All" is already
-  enough.
-- You have one data file. Nextflow's value comes from running the
-  *same* code against *many* inputs in parallel; one input doesn't
-  pay back the setup cost.
-- You're still actively changing the analysis logic. Nextflow rewards
-  stable steps; if the science is unsettled, stay in the notebook.
+### Further reading
 
-## What you'll have at the end
-
-A `main.nf` you wrote yourself, with one or two modules and one or two
-`bin/` scripts, running on test data on your laptop. From there you can
-add modules, swap in real data, and graduate to running on a
-[platform](../platforms/index.md) — but the muscle is built.
-
-## In-depth walkthroughs
-
-Three walkthroughs adapted from the NICHD Kids First / INCLUDE course:
-
-- [`building-a-nextflow-workflow.md`](building-a-nextflow-workflow.md) —
-  the classic `fastqc → multiqc` pipeline as one monolithic Nextflow script,
-  with a graduation note pointing at the containers / modules / `main-*.nf`
-  refactor used in the [`multiqc-workflow`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
-  case study. Origin: [`adeslatt/Building-A-Nextflow-Script`](https://github.com/adeslatt/Building-A-Nextflow-Script).
-- [`building-a-cwl-workflow.md`](building-a-cwl-workflow.md) —
-  the exact same pipeline in CWL, running under `cwltool`. Same containers,
-  different composition language. Origin: [`adeslatt/Building-A-CWL-Script`](https://github.com/adeslatt/Building-A-CWL-Script).
-- [`shared-structure-nextflow-vs-cwl.md`](shared-structure-nextflow-vs-cwl.md) —
-  the *why* — what Nextflow and CWL share, and how the container-level
-  discipline lets you switch between them.
-
-## Further reading
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Nextflow documentation](https://www.nextflow.io/docs/latest/)
-- [Nextflow patterns](https://nextflow-io.github.io/patterns/) — common workflow idioms
-- [nf-core pipelines](https://nf-co.re/pipelines) — production examples
-- [Nextflow Tower / Seqera Platform](https://cloud.seqera.io/) — orchestration and monitoring
-
-
-## Where to next
-
-→ [Documentation](../documentation/index.md) — write a Sphinx site for the workflow you just built.
+- [Nextflow patterns](https://nextflow-io.github.io/patterns/)
+- [nf-core pipelines](https://nf-co.re/pipelines)
+- [Seqera Platform](https://cloud.seqera.io/)

@@ -1,104 +1,80 @@
 # Publishing for agents
 
+*In the book: Sections 11.5.5 and 11.5.6, Publishing for Agents; Exposing Help and Schema.*
 
-> *In the book: Sections 11.5.5 and 11.5.6 — Publishing for Agents; Exposing Help and Schema.*
+This lesson shows you how to publish a command-line tool so AI agents (and people) can find it, understand it and use it. The earlier lessons make your work run. This one makes it findable.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- The ten-item agent-ready checklist (and what each item buys you).
-- Write a README an agent can act on, not just read.
-- Tag a SemVer release and publish under NIH-NLM / Scitechcon-LLC conventions.
-:::
+Do [agentic-harness](../agentic-harness/README.md) first. You also need the `hello-py` tool from [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md).
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the course repository.** In a terminal, run:
 
-This is where the discipline of every earlier lesson pays off. The
-lessons up to this point are about making your work **runnable** — by
-you, by a teammate, by CI, by Nextflow. This lesson is about making
-your work **findable and usable by AI agents** — Claude, ChatGPT, and
-the generation that's already coming.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-:::{admonition} The headline
-:class: tip
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/publishing-for-agents/exposing-help-and-schema.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/publishing-for-agents/exposing-help-and-schema.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its step 1 makes a conda environment first.
 
-A well-documented CLI is an API for AI agents. An MCP server is the
-politest introduction your tool can make.
+## What you should see
 
-If you've been doing the lessons in order, every habit you've already
-formed contributes:
+You read the `--help` pages of `hello-py` and write a JSON schema of the `greet` input into `schemas/greet.schema.json`. The schema lists one property, `name`, with the description `Who to greet.`.
 
-- A repo on **GitHub** is an address an agent can read.
-- A pinned **conda env** lets an agent reproduce your setup.
+> **Picture to add:** the `schemas/greet.schema.json` file printed in a terminal (save a screenshot of the finished schema) (save as assets/overview.png)
+
+## Where the files are
+
+- `lessons/publishing-for-agents/exposing-help-and-schema.ipynb` and `.md`: the walkthrough.
+- `schemas/greet.schema.json`: created when you follow the walkthrough.
+- `lessons/publishing-for-agents/assets/`: pictures for this lesson.
+
+## Notebooks in order
+
+1. [`exposing-help-and-schema.md`](exposing-help-and-schema.md) — give a CLI a truthful `--help` and a JSON schema
+
+## Next
+
+[Platforms](../platforms/README.md): where published tools run.
+
+## Background
+
+A well-documented CLI is an API for AI agents. An MCP server is the politest introduction your tool can make. Every habit from the earlier lessons helps:
+
+- A repository on **GitHub** is an address an agent can read.
+- A pinned **conda environment** lets an agent reproduce your setup.
 - A clean **notebook** tells the agent what the analysis does.
-- A **Nextflow module** gives the agent a known I/O contract.
-- A **Typer CLI** lets the agent invoke a step without reading the
-  source — `--help` is the API.
+- A **Nextflow module** gives the agent a known input and output contract.
+- A **Typer CLI** lets the agent run a step without reading the source. `--help` is the API.
 
-This lesson is the checklist that turns those individual habits into a
-published, agent-ready tool.
-:::
+### What you will be able to do
 
-## What this lesson teaches
+1. Publish one of your CLIs as an agent-ready package.
+2. Write a README an agent can act on.
+3. Tag a release that others can pin to.
+4. Hand the package to the [MCP server](../mcp-server/README.md) lesson.
 
-By the end you'll be able to:
+### The agent-ready checklist
 
-1. Take one of your CLIs and publish it as an agent-ready package.
-2. Write a README that an agent can act on — not just a human.
-3. Tag a release that downstream agents can pin against.
-4. Hand the resulting package to the [MCP server](../mcp-server/index.md) lesson
-   for the agent-driving demo.
+1. **A GitHub repository at a stable URL.** Ideally under an organisation, not a personal account.
+2. **A README that starts with one sentence naming inputs and outputs.** Not "this is a tool for..." but "this tool takes X and produces Y."
+3. **A conda environment file** (for example `eos.yml`, see [conda-environments](../conda-environments/README.md)) that pins every dependency.
+4. **One entry-point CLI** (`[project.scripts]` in `pyproject.toml`), so `pip install` gives a real command. See [Reusable CLIs](../reusable-clis/README.md).
+5. **A `--help` that does not lie.** Every subcommand, flag and default is accurate.
+6. **At least one test that CI runs on every push**, using the CLI the way users and agents will.
+7. **A licence file.** Without one, in many places nobody may use your tool. MIT or BSD-3-Clause are common for academic work.
+8. **A tagged release** with semantic versioning (`v1.0.0`).
+9. **A `Dockerfile`** that runs the CLI. See [Containers](../containers/README.md).
+10. **Optional: an MCP server manifest** that exposes the subcommands as tools. See [MCP server](../mcp-server/README.md).
 
-## The agent-ready checklist
+If you can say yes to 1 to 9, your tool is agent-ready before you write the MCP server.
 
-When you're about to publish a tool, walk this list. It's the same
-list a thoughtful agent will (implicitly) walk when it discovers your
-tool.
+### A README an agent can act on
 
-1. **GitHub repo at a stable URL.** Ideally under an organisation
-   (your lab, your school, your company) rather than a personal account.
-2. **README starts with one sentence that names the inputs and outputs.**
-   Not "this is a tool for..." but "this tool takes X and produces Y."
-   An agent's first scan is for I/O shape.
-3. **A conda environment file** (e.g. `eos.yml` — see
-   [conda-environments](../conda-environments/index.md)) that pins every
-   dependency. An agent has to reproduce your environment to call your tool.
-4. **A single entry-point CLI** (`pyproject.toml` `[project.scripts]`
-   entry), so `pip install` produces a real command. See
-   [Reusable CLIs](../reusable-clis/index.md).
-5. **`--help` that doesn't lie.** Every subcommand, every flag, every
-   default — accurate and self-explanatory.
-6. **At least one test that the CI runs on every push.** The test
-   should exercise the CLI the way users (and agents) will.
-7. **A licence file.** Without one, in many legal regimes nobody is
-   allowed to use your tool. MIT or BSD-3-Clause are reasonable
-   defaults for academic work.
-8. **A tagged release** with semantic versioning (`v1.0.0`). An agent
-   that finds your tool a year from now should be able to pin to a
-   specific version that still works.
-9. **A `Dockerfile` or `Containerfile`** (see
-   [Containers](../containers/index.md)) that runs the CLI. Many agents will
-   prefer to invoke through a container than to install dependencies.
-10. **Optional but powerful: an MCP server manifest** that exposes the
-    CLI's subcommands as MCP tools. See [MCP server](../mcp-server/index.md)
-    for the worked example.
-
-If you can answer "yes" to 1–9, your tool is agent-ready *before* you
-even write the MCP server.
-
-## Writing a README an agent can act on
-
-The single most-leveraged thing you can do is write a README that's
-structured rather than free-text. Agents do well with predictable
-shape; humans do too.
-
-A template that works:
+Structure beats free text. A template that works:
 
 ```markdown
 # my-tool
@@ -140,78 +116,38 @@ A template that works:
 MIT.
 ```
 
-That structure isn't beautiful prose. It's *parseable*. An agent (or a
-new teammate) reading it can answer "what does this do, how do I run
-it, what does it produce?" in under a minute.
+### The Company publishing path
 
-## The Company publishing path
+Publishing to [`github.com/Science-and-Technology-Consulting-LLC`](https://github.com/Science-and-Technology-Consulting-LLC/) makes your tool part of the organisation's findable surface. Conventions from the existing repositories:
 
-For team work, publishing to **[`github.com/Science-and-Technology-Consulting-LLC`](https://github.com/Science-and-Technology-Consulting-LLC/)**
-makes your tool part of the organisation's discoverable surface.
-
-A couple of conventions worth borrowing from the existing repos:
-
-- Repo names are hyphen-separated and topic-named (e.g.,
-  `sc-nsforest-qc-nf`, `cellxgene-harvester`).
-- The README has a one-sentence summary visible above the fold.
+- Repository names are hyphen-separated and named for the topic (`sc-nsforest-qc-nf`, `cellxgene-harvester`).
+- The README has a one-sentence summary above the fold.
 - The default branch is `main`.
-- `.github/workflows/` has at least a CI workflow (lint + test) and,
-  if the tool is documented, a docs deploy workflow.
-- Tagged releases are SemVer (`v1.0.0`, `v1.1.0`).
+- `.github/workflows/` has a CI workflow (lint and test) and, if the tool is documented, a docs deploy workflow.
+- Tagged releases use SemVer (`v1.0.0`, `v1.1.0`).
 
-Even if your tool is mature, commit it regularly to the repository.  Working in a team environment - to a branch - and manage merging through review and pull requests. 
+Commit often, work on a branch in a team, and merge through review and pull requests.
 
-## Semantic versioning, briefly
+### Semantic versioning, briefly
 
-When you are ready to release, this is when you tag a release, follow `MAJOR.MINOR.PATCH`:
+When you tag a release, follow `MAJOR.MINOR.PATCH`:
 
-- `1.0.0 → 1.0.1` — bug fix, no behaviour change. Safe upgrade.
-- `1.0.1 → 1.1.0` — new feature, no behaviour change. Safe upgrade.
-- `1.1.0 → 2.0.0` — breaking change. Document what broke.
+- `1.0.0` to `1.0.1`: bug fix, no behaviour change. Safe upgrade.
+- `1.0.1` to `1.1.0`: new feature, no behaviour change. Safe upgrade.
+- `1.1.0` to `2.0.0`: breaking change. Document what broke.
 
-Agents that pin to `~=1.0` get safe upgrades automatically. Agents
-that pin to `==1.0.1` get exact reproducibility. Both patterns are
-common; both work; both depend on you tagging *honestly*.
+Agents that pin to `~=1.0` get safe upgrades. Agents that pin to `==1.0.1` get exact reproducibility. Both work, and both depend on you tagging honestly.
 
-## Why this matters more than it used to
+### Why this matters more than it used to
 
-A year ago, "publishing" a tool meant making it usable by a person who
-might find your README. That's still true — but it's no longer the
-ceiling.
+A well-published tool is usable by a person who finds your README, and also by an AI agent doing literature-driven analysis, an automated pipeline run that picked your tool from a manifest, a federated workflow that needs your container at each site, and you in six months. All four want structure, honesty and a `--help` that tells the truth.
 
-A well-published tool today is *also* usable by:
+### Further reading
 
-- An AI agent doing literature-driven analysis on a researcher's behalf.
-- An autonomous pipeline run that selected your tool from a manifest.
-- A federated workflow that needs your container at each site.
-- A future you who, six months from now, has forgotten the details and
-  re-discovers your tool through search.
-
-All four of those readers want the same thing: structure, honesty, and
-a `--help` that tells the truth.
-
-## What you'll have at the end
-
-One of your CLIs, published under your name or your org, with a
-structured README, a tagged release, a CI badge that's green, and a
-container image you (or an agent) can pull. From there,
-[MCP server](../mcp-server/index.md) is the final step that lets an agent
-discover it and run it on a [platform](../platforms/index.md).
-
-## Further reading
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Python Packaging User Guide](https://packaging.python.org/)
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)
 - [GitHub Container Registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
-- [Zenodo](https://zenodo.org/) — long-term citable DOI for a GitHub release
-- [NIH-NLM GitHub](https://github.com/NIH-NLM) — publication conventions to mirror
-
-
-## Where to next
-
-→ [Platforms — a transport-layer protocol for science](../platforms/index.md)
-
-← Back to the [home](../../index.md), or jump to the
-[book companion](../../chapters/index.md) for full worked examples.
+- [Zenodo](https://zenodo.org/): a citable DOI for a GitHub release
+- [NIH-NLM GitHub](https://github.com/NIH-NLM)

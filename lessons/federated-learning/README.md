@@ -1,64 +1,60 @@
 # Federated learning
 
+*In the book: Sections 10.2.3 and 10.2.4, Federated Learning; Median-of-Coefficients Aggregation.*
 
-> *In the book: Sections 10.2.3 and 10.2.4 — Federated Learning; Median-of-Coefficients Aggregation.*
+*Federated learning* trains a model when the training data lives in many places that cannot share it. The model travels and the data stays put. This lesson gives you the loop and a tiny experiment that shows why the way you combine sites matters.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- The federated learning loop: send model → train locally → aggregate → repeat.
-- Why naïve CNN federation hurts, and why autoencoder pretraining rescues it.
-- Read the oadr-autoantibody notebooks and explain each headline finding.
-:::
+Do [federated computing](../federated-computing/README.md) first.
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the course repository.** In a terminal, run:
 
-A specific application of [federated computing](../federated-computing/index.md):
-train (or fine-tune) a model where the training data lives in many
-places that cannot share raw data. **The model travels; the data stays
-put.**
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-For biomedical work, this is the only viable path for many cell-type
-classifiers, batch-correction models, and patient-stratification models
-that need to learn across institutions whose data-use agreements forbid
-pooling.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/federated-learning/median-of-coefficients-aggregation.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its steps 1 and 2 make a conda environment first.
 
-## The federated learning loop
+## What you should see
 
-The basic loop is short enough to keep in your head:
+You compare the mean and the median of coefficients from five sites, one of them far off. You see `mean  : [ 4.2  -5.6   0.85]` against `median: [ 1.5  -2.    0.35]`: the median ignores the odd site.
 
-1. The coordinator sends a model (architecture + current weights) to
-   each participating site.
-2. Each site trains the model on its own data for some number of local
-   epochs.
-3. Each site returns *only the updated weights* (or only the weight
-   deltas), not the data, to the coordinator.
-4. The coordinator aggregates the returned weights — typically by
-   averaging, by taking the median, or by something more elaborate like
-   FedAvg or FedProx.
-5. The aggregated weights become the next round's starting point.
-   Repeat from step 1 until convergence or until the round-over-round
-   improvement is too small to matter.
+> **Picture to add:** the notebook's output showing the mean and median lines (save a screenshot of the finished run) (save as assets/overview.png)
 
-The lesson is in the **loop**. Pick any one box, run it on real data,
-and you have a single-institution model. Wire the boxes together with a
-trustworthy transport and you have a federation.
+## Where the files are
 
-## The worked example — `oadr-autoantibody`
+- `lessons/federated-learning/median-of-coefficients-aggregation.ipynb` and `.md`: the experiment.
+- `lessons/federated-learning/assets/`: pictures for this lesson.
+- [`oadr-autoantibody` notebooks](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/tree/main/ipynb): the real federated learning example.
 
-The headline worked example, *the same one* introduced in
-[federated computing](../federated-computing/index.md), is the federated
-beta-cell-function predictor in **[Science-and-Technology-Consulting-LLC/oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)**.
+## Notebooks in order
 
-This time, focus on the **learning** half of the story.
+1. [`median-of-coefficients-aggregation.md`](median-of-coefficients-aggregation.md) — compare mean and median aggregation with one outlier site
 
-### Five methods, one federation protocol
+## Next
+
+[MCP server](../mcp-server/README.md): wrap the federated-learning command-line tool so an AI agent can drive it on Lifebit.
+
+## Background
+
+For biomedical work this is often the only way to build cell-type classifiers, batch-correction models and patient-stratification models across institutions whose data-use agreements forbid pooling. It is a special case of [federated computing](../federated-computing/README.md).
+
+### The federated learning loop
+
+1. The coordinator sends a model (design plus current weights) to each site.
+2. Each site trains it on its own data for some local epochs (passes over the data).
+3. Each site returns only the updated weights, or the changes in weights. The data stays.
+4. The coordinator combines the weights: usually the mean, the median, or something like FedAvg or FedProx.
+5. The combined weights start the next round. Repeat until the improvement is too small to matter.
+
+### The worked example: `oadr-autoantibody`
+
+The same example as in [federated computing](../federated-computing/README.md): the federated beta-cell-function predictor in [oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody). This time, look at the learning half.
 
 | Method | Family | Interpretable? |
 |--------|--------|----------------|
@@ -66,106 +62,39 @@ This time, focus on the **learning** half of the story.
 | Lasso regression | Linear, L1-penalised feature selection | yes (non-zero coefficients) |
 | Random Forest (used for regression) | Tree ensemble, non-linear | yes (feature importance) |
 | Convolutional neural network | Non-linear deep model | no (latent layers) |
-| Convolutional network with autoencoder pretraining | Two-stage: unsupervised representation + supervised head | no (latent layers) |
+| Convolutional network with autoencoder pretraining | Two stages: unsupervised representation, then supervised head | no (latent layers) |
 
-All five are evaluated under the same federation protocol: train at each
-site, share parameters with the coordinator, aggregate by *median across
-sites*, redistribute, repeat.
+All five use the same protocol: train at each site, share parameters, combine by the *median across sites*, send back, repeat.
 
-### What the experiment showed
+What the experiment showed:
 
-These four results are the lesson — read them out loud once before you
-open the notebook:
+1. **Linear, lasso and Random Forest improve with more institutions.** Linear regression drops from 1.03 (average of solo runs) to 0.33 at four institutions. Lasso: 0.45 to 0.24. Random Forest: 0.37 to 0.25.
+2. **A plain CNN gets worse.** Solo CNN: 0.36. Four-institution federated: 0.41. Median-combining independently trained network weights breaks the model, because each site's network settles into a different arrangement of weights.
+3. **An autoencoder fixes it.** Pretrain an autoencoder at each site, federate that first, then attach a small supervised head. Result: about 0.31, stable across cohort sizes and improving with iteration.
+4. **More rounds help, but the curve matters.** The plain CNN drops sharply from round 1 to 2, then gets worse from round 3. The autoencoder plus head improves steadily and levels off at round 4 with mean error 0.245, matching lasso's single round to two decimals.
 
-1. **For interpretable methods (linear, lasso, Random Forest), federation
-   across more institutions sharply reduces prediction error.** Linear
-   regression drops from 1.03 (averaged across solo runs) to 0.33 at
-   four institutions. Lasso: 0.45 → 0.24. Random Forest: 0.37 → 0.25.
-2. **For a naïve CNN, federation actively *hurts*.** Solo CNN: 0.36;
-   four-institution federated: 0.41. Median-aggregating independently
-   trained neural-network weights breaks the model because per-site
-   networks settle into incompatible parameterisations.
-3. **An autoencoder rescues neural-network federation.** Pretrain a
-   per-institution autoencoder, federate *that* first, *then* attach a
-   small supervised prediction head. The shared representation makes
-   the heads compatible. Result: ~0.31, stable across cohort sizes and
-   improving with iteration.
-4. **Multi-round federation extracts further benefit, but the curve
-   matters.** The plain CNN drops sharply between round 1 and 2 (warm
-   start fixes the random init), then degrades from round 3 on. The
-   autoencoder + head shows clean monotonic improvement, plateauing at
-   round 4 with mean prediction error 0.245 — *matching lasso's single
-   round to two decimal places.*
+Open [`federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/federated_analysis_simulation_3x3.ipynb).
 
-The notebook to open: [`federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/federated_analysis_simulation_3x3.ipynb).
+**Why the autoencoder result matters most:** federated learning of deep models needs a shared representation first. Without it, every site's network ends up in a different region of weight space, and averaging gives nonsense. Whenever you want to federate a deep model directly, ask whether there is a representation you can federate first.
 
-### Why the autoencoder result is the most important
+### Pairs well with
 
-It is the cleanest demonstration that **federated learning of deep models
-needs a shared representation first.** Without that, every site's
-network ends up in a different region of weight space, and averaging
-those weights produces nonsense. With it, every site's *encoder* lives
-in roughly the same place, and the small supervised head added at the
-end has compatible inputs everywhere.
+[MCP](../mcp-server/README.md) and [Platforms](../platforms/README.md) (Lifebit). A researcher describes a training goal in chat. The agent reads the MCP-exposed `--help`, infers the inputs and sends the federated training to Lifebit, which runs each site. Results return to the chat.
 
-This pattern generalises. Whenever you're tempted to federate a deep
-model directly: ask if there's a representation you can federate first.
+### Honest framing
 
-## What you'll have at the end
+"Federated" does not mean "private". Keep three things apart:
 
-You'll be able to:
+- **Federation:** data does not move between sites. Only parameters or summaries do.
+- **Differential privacy:** a mathematical limit on how much any one subject can change the released parameters. It needs calibrated noise.
+- **Secure aggregation:** a cryptographic way for the coordinator to compute the combined result without seeing any one site's update.
 
-- Diagram a federated learning round and name what flows on each arrow.
-- Explain why median (or FedAvg) of model weights works for linear models
-  and tree ensembles, and why it tends to fail for naïve deep models.
-- Recognise when an autoencoder (or other shared-representation pretrain)
-  is the right move.
-- Read the four oadr-autoantibody notebooks and explain each headline
-  finding to a colleague.
+Federation without the other two is still a big gain over pooling in most biomedical settings. Say which guarantees you have and which you do not.
 
-## The natural pairing
+### Further reading
 
-Federated learning is the case study where [MCP](../mcp-server/index.md) +
-[Platforms](../platforms/index.md) (Lifebit) get *especially* interesting:
-
-> A researcher describes a model-training intent in chat. The agent
-> (Claude / ChatGPT) reads the MCP-exposed CLI's `--help`, infers the
-> right inputs, and dispatches the federated training to Lifebit, which
-> orchestrates per-site execution. Results return to the researcher's
-> chat window. The researcher never writes a config file.
-
-The oadr-autoantibody pipeline is exactly the kind of workflow that
-benefits from this stack.
-
-## Honest framing
-
-"Federated" is *not* the same as "private." Three things to keep
-mentally separated:
-
-- **Federation** — data does not move between sites; only model
-  parameters or aggregates do.
-- **Differential privacy** — a mathematical guarantee that the
-  contribution of any one subject to the released parameters is bounded.
-  Requires adding calibrated noise.
-- **Secure aggregation** — a cryptographic guarantee that the
-  coordinator can compute the aggregate of the site-level updates
-  *without* seeing any individual site's update.
-
-A federated workflow without DP and without secure aggregation is still
-a major improvement over centralisation in most biomedical contexts —
-but call out which guarantees you have and which you don't have. Don't
-let the word *federated* do work that *private* should be doing.
-
-## Further reading
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [McMahan et al. — Federated Averaging (2016)](https://arxiv.org/abs/1602.05629) — the foundational paper
-- [Flower framework](https://flower.ai/) — an open FL framework
-- [PySyft](https://github.com/OpenMined/PySyft) — privacy-preserving ML
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
+- [McMahan et al., Federated Averaging (2016)](https://arxiv.org/abs/1602.05629)
+- [Flower framework](https://flower.ai/)
+- [PySyft](https://github.com/OpenMined/PySyft)
 - [oadr-autoantibody notebooks](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/tree/main/ipynb)
-
-
-## Where to next
-
-→ [MCP server](../mcp-server/index.md) — wrap the federated-learning CLI in MCP
-and let an agent drive it on Lifebit.

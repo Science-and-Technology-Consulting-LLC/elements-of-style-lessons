@@ -1,51 +1,127 @@
 # Let's dive in
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-1-reasoning/lets-dive-in/)) — woven into
-the [introduction](index.md) lesson.*
+In this walkthrough you set up your computer and run your first notebook. Every later lesson assumes this setup, so it pays to get it right once.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Install the programs the lessons use.
+- Build one [conda environment](../conda-environments/README.md) that holds them all.
+- Open [JupyterLab](https://jupyter.org/) and run two checks inside a notebook.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A computer: a Mac, Windows with Git Bash, or Linux. No computer of your own? See [Other places to run these lessons](other-places-to-run.md).
+- [Git](https://git-scm.com/), the program that tracks changes to files. Step 1 installs it. If `git --version` fails, do Step 1 first, then come back to "Before you begin".
+- [Miniforge](https://github.com/conda-forge/miniforge), the installer for conda. Step 2 installs it.
+- A free [GitHub account](https://github.com/signup). You first need it in the [version control lesson](../version-control/README.md).
+- A good internet connection. Step 3 downloads a few hundred packages.
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
+
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
+
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) and run each cell in order, top to bottom.
+
+## The steps
+
+### Step 1. Install a terminal and Git
+
+A *terminal* is a window where you type instructions instead of clicking. *Bash* is the language those instructions are written in. Using Bash everywhere means a Mac, a Windows PC and a cloud machine all behave the same way.
+
+- **Windows:** download and run the installer from [Git for Windows](https://git-scm.com/download/win). Accept the defaults. Then open **Git Bash** from the Start menu. Git for Windows installs both Git and Git Bash.
+- **Mac:** open **Terminal** (press `Cmd-Space`, type `Terminal`, press Return). Type `git --version` and press Return. If a box offers to install the "command line developer tools", click **Install** and wait a few minutes.
+- **Linux:** Bash is already your terminal. If Git is missing, install it with `sudo apt install git` (or `sudo dnf install git`).
+
+Type this in the terminal, then press Return:
+
+```text
+git --version
+```
+
+**What you should see:** one line that starts with `git version` and ends with a number.
+
+> **Picture to add:** a Mac Terminal window and a Windows Git Bash window, each showing the output of `git --version` (save as assets/lets-dive-in-step-1.png)
+
+The [command line lesson](../command-line-and-git-bash/README.md) covers this step in more detail.
+
+### Step 2. Install Miniforge
+
+*Conda* is a program that installs other programs into a private folder, so one project cannot break another. *Miniforge* is the small installer that gives you conda.
+
+- **Mac:** download the installer for your chip from the [Miniforge page](https://github.com/conda-forge/miniforge#install). Run it in Terminal. For an Apple chip the command is `bash Miniforge3-MacOSX-arm64.sh`. For an Intel chip use the `x86_64` file.
+- **Windows:** download `Miniforge3-Windows-x86_64.exe` from [conda-forge.org/download](https://conda-forge.org/download/) and run it.
+
+When the installer finishes, close your terminal and open a new one. Then type:
+
+```text
+conda --version
+```
+
+**What you should see:** the word `conda` followed by a version number.
+
+### Step 3. Create the `eos` environment
+
+An *environment* is a private folder of programs. The file `eos.yml` in the repository is the recipe. It lists Python, JupyterLab, Git, the GitHub command line (`gh`), [Nextflow](https://www.nextflow.io/) and more. You are already inside the repository folder from "Before you begin".
+
+Type these two lines in the terminal. They are not notebook cells.
+
+```text
+conda env create -f eos.yml
+conda activate eos
+```
+
+The first line takes several minutes the first time. Conda downloads and sorts out a few hundred packages.
+
+**What you should see:** a long list of packages, then a prompt that starts with `(eos)`. The `(eos)` means the environment is active. Run `conda activate eos` in every new terminal before you start a lesson.
+
+### Step 4. Register the Bash kernel
+
+A *kernel* is the engine that runs the code in a notebook. This notebook uses the Bash kernel. You register it once. Running it again does no harm.
+
+Run this cell. If you are working in a terminal instead, type the same two lines there, with `eos` active.
 
 ```bash
 pip install bash_kernel
 python -m bash_kernel.install
 ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+**What you should see:** a stream of lines that start with `Requirement already satisfied` or `Collecting`, and a last line that says `Installing IPython kernel spec`.
 
-### Every time — verify the tools this walkthrough uses
+### Step 5. Start JupyterLab
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+*JupyterLab* is the program that opens notebooks in your web browser. Start it from a terminal where `(eos)` is active. It is not a notebook cell, because it keeps running until you stop it.
 
-| Tool | Check | If missing, see |
+```text
+jupyter lab
+```
+
+Restart it if it was already running, so it sees the new Bash kernel. To stop it later, click in that terminal and press `Ctrl-C`.
+
+**What you should see:** a browser tab opens with JupyterLab. The Launcher has a **Bash** tile.
+
+> **Picture to add:** the JupyterLab Launcher with the Bash tile visible (save as assets/lets-dive-in-step-5.png)
+
+### Step 6. Check your tools
+
+This cell asks your computer where each program lives. Where a program is missing, the cell says `MISSING`. Only `bash`, `git` and `python3` must be present today. The other lessons tell you when they need the rest.
+
+| Tool | Check by hand | If missing, see |
 |---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+| [Bash](https://www.gnu.org/software/bash/) | `bash --version` | [Command line](../command-line-and-git-bash/README.md) |
+| [Git](https://git-scm.com/) | `git --version` | [Command line](../command-line-and-git-bash/README.md) |
+| [Conda](https://docs.conda.io/) | `conda --version` | [Conda environments](../conda-environments/README.md) |
+| [GitHub CLI](https://cli.github.com/) (`gh`) | `gh --version` | [Version control](../version-control/why-git-and-setup.md) |
+| [Docker](https://docs.docker.com/get-docker/) | `docker --version` | [Containers](../containers/README.md) |
+| [Nextflow](https://www.nextflow.io/) | `nextflow -version` | [Nextflow workflows](../nextflow-workflows/README.md) |
+| [Python 3](https://www.python.org/) | `python3 --version` | [Conda environments](../conda-environments/README.md) |
 
-Run them all at once:
+Run all the checks at once:
 
 ```bash
 for cmd in bash git conda gh docker nextflow python3; do
@@ -59,57 +135,30 @@ for cmd in bash git conda gh docker nextflow python3; do
 done
 ```
 
-
-## Get a terminal open before the reasoning starts
-
-Before we spend any time on the *"how does a workflow work"* discussion,
-get a terminal open. Every subsequent chapter assumes one.
-
-The elements-of-style lessons use **your laptop first**. If you don't
-have a laptop terminal handy, **Google Cloud Shell** is a free
-browser-based terminal that needs only a Google account. **Lifebit
-CloudOS** is what you reach for when the work needs to scale.
-
-## On your laptop (recommended for lessons 1–8)
-
-In a terminal (JupyterLab runs until you stop it, so it is not a notebook cell):
+**What you should see:** one line per tool. A tool that is present shows its location. A tool that is missing shows `MISSING`. For example:
 
 ```text
-conda activate eos
-jupyter lab
+  bash       /bin/bash
+  git        /path/to/eos/bin/git
+  docker     MISSING
 ```
 
-That opens a browser-based JupyterLab with a terminal, `git`, `conda`,
-`docker`, and `nextflow` on your PATH. If any of those is missing,
-[conda-environments](../conda-environments/index.md) walks the install.
+The exact paths on your computer will differ. If you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `docker` may show `MISSING` until Step 7.
 
-## In Google Cloud Shell (free, browser-based)
+### Step 7. Install Docker later
 
-1. Open <https://shell.cloud.google.com/> and sign in with any Google
-   account.
-2. You land in a fully-provisioned bash terminal with `git`, `conda`,
-   `docker` pre-installed.
-3. If it's your first time, run through
-   [conda-environments/creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md)
-   to bootstrap `conda` and the `eos` environment.
+[Docker](https://docs.docker.com/get-docker/) runs *containers*, which are sealed boxes holding a program and everything it needs. Conda does not install Docker. You need it from the [containers lesson](../containers/README.md) on. Skip it today.
 
-## On Lifebit CloudOS (when the work scales)
+### Step 8. Other places to run the lessons
 
-1. Sign up at <https://cloudos.lifebit.ai/register>.
-2. Sign in at <https://cloudos.lifebit.ai/login>.
-3. Create a workspace; open its JupyterLab terminal.
+Your own Bash terminal is the main way to follow these lessons. If you cannot use one, or later when the work grows, see [Other places to run these lessons](other-places-to-run.md). It covers Google Cloud Shell and Lifebit.
 
-See [platforms/README.md](../platforms/index.md) for the fuller
-Lifebit story.
+## If something goes wrong
 
-## Running on CloudOS
+- **`git: command not found` or `conda: command not found`.** On Windows, make sure you opened *Git Bash*, not Command Prompt or PowerShell. After installing Miniforge, close the terminal and open a new one.
+- **No Bash tile in JupyterLab.** You registered the kernel outside the `eos` environment. Run `conda activate eos`, repeat Step 4, then restart JupyterLab (Step 5).
+- **A tool shows `MISSING`.** Compare it with the table in Step 6. Run `conda activate eos` and run the cell again. Docker is the one tool you install by hand.
 
-The CloudOS walkthroughs live in the [platforms](../platforms/index.md) lesson:
+## Next
 
-- [`creating-a-cloudos-account.md`](../platforms/creating-a-cloudos-account.md)
-- [`logging-into-cloudos.md`](../platforms/logging-into-cloudos.md)
-- [`starting-a-jupyter-lab-notebook.md`](../interactive-computing/starting-a-jupyter-lab-notebook.md)
-
-## Where to next
-
-→ [Chapter 3 — command-line-and-git-bash](../command-line-and-git-bash/index.md).
+Continue with [The Rules](../elements-of-style-rules/README.md).

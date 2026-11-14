@@ -1,84 +1,75 @@
-# Building a Sphinx site — the local build/deploy loop
+# Building a Sphinx site: the local build and deploy loop
 
-*Companion walkthrough to the [documentation](index.md) lesson.*
+You will build a small documentation website on your own computer and see how GitHub publishes it. Documentation is what turns a script into a tool that someone else can use.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+*Part of the [documentation](README.md) lesson.*
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-a-sphinx-site.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+## What you will do
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+- Install [Sphinx](https://www.sphinx-doc.org/) and the add-ons that read Markdown.
+- Write three small files: a settings file, a home page and one more page.
+- Build the files into a website of HTML pages.
+- Read the workflow file that publishes the site on GitHub Pages.
 
-## Set up the environment
+## What you need
 
-### One time — register the Bash kernel
+- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
+- Python 3 and `pip` inside a conda environment named `eos`. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md).
+- [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
+- A [GitHub account](https://github.com/signup), only for the last step (publishing). You can do every other step without one.
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+## Before you begin
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+1. **Get the code.** In a terminal, run:
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### Every time — verify the tools this walkthrough uses
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-a-sphinx-site.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb) and run each cell in order, top to bottom.
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+## Step 1. Check which folder you are in
+
+Why: the next steps create a folder called `docs`. You want it next to this notebook, not inside the repository's own `docs` folder.
 
 ```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s\n" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING\n" "$cmd"
-  fi
-done
+pwd
 ```
 
+**What you should see:** a path that ends in `lessons/documentation`. If it ends in `elements-of-style-lessons` instead, stop. The next steps would write into the repository's real `docs` folder. Close the notebook and open it again from JupyterLab's file browser, or run `cd lessons/documentation` in your terminal first.
 
-## What we build
+## Step 2. Install Sphinx and its add-ons
 
-A minimal Sphinx-with-MyST site you can render locally, then deploy to
-GitHub Pages via GitHub Actions — the same toolchain that renders *this*
-site.
+Why: [Sphinx](https://www.sphinx-doc.org/) turns text files into a website. The add-ons let it read [Markdown](https://myst-parser.readthedocs.io/) pages and notebooks, use the Read the Docs look, and add a copy button to code blocks.
 
-## Install the toolchain
-
-Run this in the `eos` environment: `conda activate eos` in a terminal,
-then start JupyterLab from it.
+Start JupyterLab from the `eos` environment: run `conda activate eos` in a terminal, then `jupyter lab`.
 
 ```bash
 pip install sphinx sphinx-rtd-theme myst-parser myst-nb \
             sphinx-copybutton sphinx-design linkify-it-py
 ```
 
-## Scaffold a docs tree
+**What you should see:** many lines of text. Lines that start with `Requirement already satisfied` mean the package was already there. At the end you should see `Successfully installed` followed by package names, or only `already satisfied` lines. Any line that starts with `ERROR` is a problem (see below).
+
+## Step 3. Make the folders for the site
+
+Why: Sphinx wants all the page files in one folder. The `-p` flag makes the parent folder too and does not complain if it already exists.
 
 ```bash
 mkdir -p docs/source
 ```
 
-Write `docs/source/conf.py`:
+**What you should see:** nothing. No message means it worked.
+
+## Step 4. Write the settings file
+
+Why: `conf.py` tells Sphinx the name of the site, which add-ons to load and which look to use. The cell writes the file for you. `cat > file <<'EOF'` is a shell trick that sends the lines below it into a file, up to the line `EOF`.
 
 ```bash
 cat > docs/source/conf.py <<'EOF'
@@ -97,7 +88,11 @@ html_theme = "sphinx_rtd_theme"
 EOF
 ```
 
-Write `docs/source/index.md`:
+**What you should see:** nothing. To check the file is there, run `ls docs/source` in a terminal. You should see `conf.py`.
+
+## Step 5. Write the home page
+
+Why: every Sphinx site needs a home page. This one lists the other pages in a table of contents (`toctree`).
 
 ````bash
 cat > docs/source/index.md <<'EOF'
@@ -113,7 +108,11 @@ intro
 EOF
 ````
 
-And `docs/source/intro.md`:
+**What you should see:** nothing.
+
+## Step 6. Write a second page
+
+Why: the home page points at a page called `intro`. This file is that page.
 
 ```bash
 cat > docs/source/intro.md <<'EOF'
@@ -123,7 +122,11 @@ First page.
 EOF
 ```
 
-## Build
+**What you should see:** nothing.
+
+## Step 7. Build the site
+
+Why: this turns the three files into HTML pages. The `-W` flag treats warnings as errors. That is a good habit, because it keeps broken links out of the site.
 
 ```bash
 cd docs
@@ -131,19 +134,28 @@ sphinx-build -W -b html source build/html
 cd ..
 ```
 
-Serve the pages from a terminal, then open <http://localhost:8000>. The server
-runs until you stop it with Ctrl-C, so it is not a notebook cell:
+**What you should see:** a stream of lines that starts with `Running Sphinx v7.2.6` (your version number may differ). Near the end you should see `building [html]: targets for 2 source files that are out of date`, then the lines `reading sources`, `checking consistency` and `preparing documents`. The last lines are `build succeeded.` and `The HTML pages are in build/html.` That means it worked.
+
+## Step 8. Look at the site
+
+Why: seeing the real page is the point of the build. This command starts a small web server. It keeps running until you stop it with Ctrl-C, so it is not a notebook cell. Open a terminal, go to this folder, and run:
 
 ```text
+cd docs
 python -m http.server -d build/html 8000
 ```
 
-The `-W` flag treats warnings as errors — the discipline that keeps a
-site linkable long-term.
+Then open <http://localhost:8000> in your browser. When you are done, go back to the terminal and press Ctrl-C.
 
-## Deploy to GitHub Pages
+**What you should see:** a page titled *My Lessons* with the word *Welcome* and a link to *Intro*. In the terminal you will see lines that start with `GET /`.
 
-Create `.github/workflows/docs.yml`:
+> **Picture to add:** the finished site in the browser at localhost:8000 (save as assets/building-a-sphinx-site-step-8.png)
+
+## Step 7. Publish the site with GitHub Pages (optional)
+
+Why: GitHub can rebuild and publish your site every time you push. You tell it how in a file called `.github/workflows/docs.yml`. A *workflow* is a list of jobs that GitHub runs for you. You need a [GitHub account](https://github.com/signup) and a repository for this step. The next lesson, [continuous integration](../continuous-integration/README.md), explains workflows in more detail.
+
+Create `.github/workflows/docs.yml` with this content. This is a text block to read and copy, not a cell to run.
 
 ```yaml
 name: Deploy docs
@@ -167,12 +179,19 @@ jobs:
       - uses: actions/deploy-pages@v4
 ```
 
-Push. Enable **Settings → Pages → Source: GitHub Actions**. The site is
-live at `https://<user>.github.io/<repo>/` in about two minutes.
+Then push the file to GitHub. On the repository's page open **Settings**, then **Pages**, and set **Source** to **GitHub Actions**.
 
-## Where to next
+**What you should see:** after the push, a new run appears on the repository's **Actions** tab. When it turns green (about two minutes), the site is live at `https://<user>.github.io/<repo>/`. Replace `<user>` with your GitHub name and `<repo>` with the repository name.
 
-→ Back to the [documentation lesson](index.md).
+> **Picture to add:** the repository's Settings, Pages screen with Source set to GitHub Actions (save as assets/building-a-sphinx-site-step-9.png)
 
-→ [continuous-integration](../continuous-integration/index.md) — for
-the maintenance-testing pattern that runs alongside the docs deploy.
+## If something goes wrong
+
+- **`sphinx-build: command not found`.** The install in step 4 went into a different Python. Run `conda activate eos` in the terminal, start JupyterLab from there, and run step 4 again.
+- **Build stops with `WARNING` and `build finished with problems`.** `-W` makes any warning an error. Read the line above it. It names the file and the problem, usually a typo in `conf.py` or `index.md`. Fix the file and run step 9 again.
+- **`bash: conda: command not found` on Windows.** Open *Git Bash*, not PowerShell, and see [conda-environments](../conda-environments/README.md).
+- **The page at localhost:8000 does not load.** The server from step 10 is not running, or another program uses port 8000. Run the command in step 10 again, or change `8000` to `8001` in both the command and the address.
+
+## Next
+
+[Continuous integration](../continuous-integration/README.md): the maintenance-testing pattern that runs next to the docs deploy. Or return to the [documentation lesson](README.md).

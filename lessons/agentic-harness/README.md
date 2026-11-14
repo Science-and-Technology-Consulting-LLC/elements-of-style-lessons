@@ -1,53 +1,61 @@
 # Agentic harness
 
-> *In the book: Sections 11.5.3 and 11.5.4 — The Agentic Harness; Wiring a Claude Code Loop.*
+*In the book: Sections 11.5.3 and 11.5.4, The Agentic Harness; Wiring a Claude Code Loop.*
 
-:::{admonition} What you'll learn
-:class: tip
+An *agentic harness* is the setup on the assistant's side that makes your tools useful when an AI assistant drives them. This lesson explains its four parts and has you connect one of your own tools to Claude Code.
 
-- What an "agentic harness" is — the agent-side configuration that
-  makes your CLIs and workflows productive when driven by an AI agent.
-- The four pieces of a harness: `CLAUDE.md`, skills, sub-agents,
-  hooks.
-- How to configure this repo's harness so an agent can review,
-  validate, and extend the curriculum without breaking anything.
-- The self-modification pattern — because Claude Code can write
-  skills, agents, and hooks for itself, the harness is not a one-time
-  setup.
-:::
+## Before you start
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+Do [mcp-server](../mcp-server/README.md) first. You need the MCP server it builds.
 
-*A screenshot will land at `assets/overview.png` showing Claude Code
-running with a project skill invoked. Reference it as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+## Do this
 
-## Why an agentic harness
+1. **Clone the course repository.** In a terminal, run:
 
-The [MCP server](../mcp-server/index.md) lesson taught the *tool-facing* side:
-wrap a CLI so an agent can call it. This lesson teaches the
-*agent-facing* side: configure the agent so it works well with your
-repo, your rules, your tools.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Without a harness, an agent will improvise. It will guess your
-conventions, sometimes correctly. With a harness, the agent has:
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/agentic-harness/wiring-a-claude-code-loop.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/agentic-harness/wiring-a-claude-code-loop.ipynb)) and run each cell in order, top to bottom.
 
-- A place to *read* what the repo is and how it's organised.
-- A set of on-demand *skills* it can invoke without prompting.
-- Specialised *sub-agents* it can delegate to for specific tasks.
-- Deterministic *hooks* that guard against mistakes before they happen.
+## What you should see
 
-Together, these four pieces are the harness.
+You register your MCP server with Claude Code (`claude mcp add`), see it in `claude mcp list`, then start `claude` and ask it to use your tool. Claude calls `greet`, writes a file and runs `git add`, `git commit` and `git push`.
 
-## The four pieces
+> **Picture to add:** Claude Code in a terminal after the request, showing the tool call and the git commands (save a screenshot of the finished loop) (save as assets/overview.png)
 
-### 1. `CLAUDE.md` — project memory
+## Where the files are
 
-A Markdown file at the repo root. The agent reads it on every session
-in that repo. It's the README your agent needs — one that tells it
-what the repo *is*, how it's organised, and what to do / not do.
+- `lessons/agentic-harness/wiring-a-claude-code-loop.ipynb` and `.md`: the walkthrough.
+- `.claude/` in the repository: this repository's own harness (project memory, skills, agents and hooks).
+- `lessons/agentic-harness/assets/`: pictures for this lesson.
+
+## Notebooks in order
+
+1. [`wiring-a-claude-code-loop.md`](wiring-a-claude-code-loop.md) — register an MCP server with Claude Code and drive it from chat
+
+## Next
+
+[Publishing for agents](../publishing-for-agents/README.md): make your work findable by other agents, not just your own.
+
+## Background
+
+### Why a harness
+
+The [MCP server](../mcp-server/README.md) lesson covered the *tool side*: wrap a CLI so an assistant can call it. This lesson covers the *assistant side*: set the assistant up to work well with your repository, your rules and your tools.
+
+Without a harness the assistant improvises and guesses your conventions. With one it has:
+
+- A place to *read* what the repository is and how it is organised.
+- On-demand *skills* it can invoke.
+- Specialised *sub-agents* it can hand tasks to.
+- Deterministic *hooks* that block mistakes before they happen.
+
+### The four pieces
+
+**1. `CLAUDE.md`: project memory.** A Markdown file at the repository root that the assistant reads at the start of each session. It says what the repository is, how it is organised and what to do or avoid.
 
 ```markdown
 # CLAUDE.md — elements-of-style-lessons
@@ -71,77 +79,27 @@ edited directly.
 - Do not add embellishments to author voice — plain prose only.
 ```
 
-### 2. Skills — packaged instructions on demand
+**2. Skills: packaged instructions on demand.** Skills live under `.claude/skills/`. Each is a folder with a `SKILL.md` that says what it does and when to use it. Good candidates here:
 
-Skills live under `.claude/skills/`. Each is a folder with a
-`SKILL.md` describing what it does and when to use it. When the agent
-detects the skill is relevant, it loads and follows the instructions.
+- `elements-of-style-review`: judge a lesson against the [eight principles](../elements-of-style-rules/README.md).
+- `lesson-scaffold`: create a new lesson with the standard shape.
+- `build-verify`: run `make html -W` and report warnings before a commit.
 
-Good candidates for this repo:
+**3. Sub-agents: specialised roles.** They live under `.claude/agents/`. Each is a Markdown file with front matter that names the agent's tools and system prompt. Useful ones: `code-reviewer`, `data-validator` (opens an `.h5ad` or CSV and checks shape, columns and value ranges), `workflow-linter` (flags inline logic and missing container lines in `.nf` files) and `notebook-runner` (runs a notebook end to end and reports failing cells).
 
-- `.claude/skills/elements-of-style-review/` — evaluate a lesson or
-  notebook against the [eight canonical principles](../elements-of-style-rules/index.md).
-- `.claude/skills/lesson-scaffold/` — create a new lesson with the
-  standard shape (README + notebooks + eye-candy + assets).
-- `.claude/skills/build-verify/` — run `make html -W` and report
-  warnings before committing.
+**4. Hooks: deterministic guards.** They live under `.claude/hooks/`, fire on tool events and can block an action. Useful here:
 
-### 3. Sub-agents — specialised roles
+- `pre-write` on `docs/source/lessons/*.md`: block it, because those are shims. Send the edit to the canonical README.
+- `pre-commit`: run `sphinx-build -W` and block the commit on warnings.
+- `pre-commit`: run `jupyter nbconvert --to notebook --execute` on changed notebooks and block the commit if a cell fails.
 
-Sub-agents live under `.claude/agents/`. Each is a Markdown file with
-frontmatter declaring the agent's tools and system prompt. The main
-agent can delegate to them.
+### The self-modification pattern
 
-Useful sub-agents for biomedical workflow work:
+Claude Code can write its own skills, agents and hooks. That is powerful and risky. **Powerful:** ask it to codify a new pattern as a skill, and next session the skill is there. **Risky:** it can write code that runs in later sessions. Review agent-written harness changes like any code: read the diff, run it on a safe case, and commit only what you would have written yourself. The harness is version-controlled, reviewed and committed like your CLIs.
 
-- `code-reviewer` — reads the diff, checks it against the rules.
-- `data-validator` — opens an `.h5ad` or CSV and checks shape,
-  column names, expected value ranges.
-- `workflow-linter` — reads `.nf` files and flags inline logic,
-  missing container declarations, misnamed channels.
-- `notebook-runner` — executes a notebook end-to-end and reports
-  cells that fail or produce unexpected output.
+### This repository's harness
 
-### 4. Hooks — deterministic guards
-
-Hooks live under `.claude/hooks/` and fire on tool events. They run
-*before* an action completes and can block it if a condition fails.
-
-Useful for this repo:
-
-- `pre-write` on `docs/source/lessons/*.md` — block; those are shims.
-  Route the edit to the canonical README.
-- `pre-commit` — run `sphinx-build -W`. If warnings, block the commit.
-- `pre-commit` — run `jupyter nbconvert --to notebook --execute` on
-  changed notebooks. If a cell fails, block the commit.
-
-## The self-modification pattern
-
-Claude Code can write its own skills, agents, and hooks. This is
-powerful and dangerous.
-
-**Powerful:** the agent extends itself as you teach it your practice.
-Working on a new pattern? Ask the agent to codify it as a skill. It
-adds a folder under `.claude/skills/`. Next session, that skill is
-available.
-
-**Dangerous:** the agent can write code that runs in future sessions.
-Review agent-authored harness additions the same way you review any
-other code:
-
-1. Read the diff.
-2. Run it against a known-safe scenario.
-3. Commit only if you'd write it yourself.
-
-The rule: **the harness is version-controlled, reviewed, and
-committed like any other code**. Nothing is "just an agent's helper" —
-everything gets the same discipline as your CLIs.
-
-## This repo's harness — the worked example
-
-Everything in `.claude/` in this repo is the demo:
-
-```
+```text
 .claude/
 ├── CLAUDE.md                          # project memory
 ├── skills/
@@ -158,67 +116,24 @@ Everything in `.claude/` in this repo is the demo:
     └── pre-commit-nb-execute.sh
 ```
 
-Open any of them and you'll see the pattern applied.
+### Configure Claude Code
 
-## Configure Claude Code — three platforms
-
-::::{tab-set}
-
-:::{tab-item} macOS
-:sync: mac
+On macOS:
 
 ```bash
 # Install Claude Code (one time)
 curl -fsSL https://claude.ai/install.sh | bash
 
-# In the repo:
-cd elements-of-style-lessons
-claude
-# The agent picks up CLAUDE.md, skills, agents, and hooks automatically.
-```
-:::
-
-:::{tab-item} Windows (Git Bash)
-:sync: win
-
-```bash
-# Install Claude Code (one time) — see
-# https://docs.claude.com/en/docs/claude-code/setup
-# for Windows-specific instructions.
-
-# In the repo:
+# In the repository:
 cd elements-of-style-lessons
 claude
 ```
-:::
 
-:::{tab-item} Lifebit
-:sync: lifebit
+On Windows (Git Bash), follow the [Claude Code setup page](https://docs.claude.com/en/docs/claude-code/setup), then run `cd elements-of-style-lessons` and `claude`. The assistant picks up `CLAUDE.md`, skills, agents and hooks automatically.
 
-Claude Code runs in the notebook workspace's terminal. Install once
-per workspace; the harness in the repo picks up automatically.
-:::
+### Further reading
 
-::::
-
-## Further reading
-
-- [Claude Code documentation](https://docs.claude.com/en/docs/claude-code) —
-  authoritative reference.
-- [Skills](https://docs.claude.com/en/docs/claude-code/skills) —
-  packaged instructions the agent picks up on demand.
-- [Sub-agents](https://docs.claude.com/en/docs/claude-code/sub-agents) —
-  specialised roles.
-- [Hooks](https://docs.claude.com/en/docs/claude-code/hooks) —
-  deterministic guards on tool events.
-- [Model Context Protocol](https://modelcontextprotocol.io/) — the
-  standard the harness uses to talk to MCP servers.
-- [Anthropic API documentation](https://docs.anthropic.com/) — for
-  building your own agent instead of using Claude Code.
-- [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook) —
-  worked patterns.
-
-## Where to next
-
-→ [Publishing for agents](../publishing-for-agents/index.md) — make your work
-findable by *other* agents, not just your own.
+- [Claude Code documentation](https://docs.claude.com/en/docs/claude-code)
+- [Skills](https://docs.claude.com/en/docs/claude-code/skills), [sub-agents](https://docs.claude.com/en/docs/claude-code/sub-agents) and [hooks](https://docs.claude.com/en/docs/claude-code/hooks)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Anthropic API documentation](https://docs.anthropic.com/) and [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)

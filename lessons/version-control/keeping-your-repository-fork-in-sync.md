@@ -1,112 +1,123 @@
 # Keeping your repository fork in sync
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-2-code-versioning/keeping-your-repository-fork-in-sync/))
-— woven into the [version-control](index.md) lesson.*
+You will catch your fork up with the original project when the original gets new changes. This matters because a fork does not update itself, and an old fork leads to conflicts.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`keeping-your-repository-fork-in-sync.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Learn four Git words: clone, fork, pull, push.
+- Fork a project and clone your fork.
+- Update your fork from the GitHub website.
+- Update it from the terminal.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A free [GitHub account](https://github.com/signup).
+- Git set up and `gh` signed in: [why-git-and-setup.md](why-git-and-setup.md) and [github-authenticate.md](github-authenticate.md).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
+
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
+
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`keeping-your-repository-fork-in-sync.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb) and run each cell in order, top to bottom.
+
+## Steps
+
+### Check your setup
+
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+### Step 1. Learn the four words
+
+Four verbs come up again and again:
+
+- **Clone**: make a working copy of a repository on your computer.
+- **Fork**: make your own copy of someone else's repository on GitHub, one you will edit and may offer back.
+- **Pull**: bring changes down, from GitHub into your local copy.
+- **Push**: send your local changes up to GitHub.
+
+**What you should see:** nothing. This step is reading only.
+
+### Step 2. Fork the practice project
+
+You do this in a browser.
+
+1. Open [NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook).
+2. Click **Fork** (top right, next to *Edit Pins* and *Watch*). Choose *your own* GitHub account as the owner.
+
+> **Picture to add:** the repository page with the Fork button at the top right (save as assets/keeping-your-repository-fork-in-sync-step-2.png)
+
+**What you should see:** a short "Forking" progress window. When it finishes, the page is named `<your-github-username>/exampleVolcanoPlotNotebook`. If you already forked it in [the-add-push-git-routine.md](the-add-push-git-routine.md), you can reuse that fork.
+
+### Step 3. Go to your practice folder
 
 ```bash
-pip install bash_kernel
-python -m bash_kernel.install
+mkdir -p ~/eos-practice
+cd ~/eos-practice
+pwd
 ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+**What you should see:** one line ending in `eos-practice`.
 
-### Every time — verify the tools this walkthrough uses
+### Step 4. Clone your fork
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
-
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
-
-Run them all at once:
-
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
-
-
-## The vocabulary of Git and GitHub
-
-Four verbs come up over and over:
-
-- **Clone** — make a working copy of someone else's repository.
-- **Fork** — make your own copy of someone else's repository, one you will
-  edit and possibly contribute back to.
-- **Pull** — bring changes down (from a remote into your local copy).
-- **Push** — send your local changes up to the remote.
-
-## Fork the volcano plot repository
-
-**Step 1** — In your browser, go to
-[https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook).
-
-**Step 2** — Click **Fork** (top right, next to *Edit Pins* / *Watch*).
-Choose *your own* GitHub account as the fork destination.
-
-A progress window shows the *Forking* in progress. On success the page
-switches to `<your-github-username>/exampleVolcanoPlotNotebook`.
-
-## Clone your fork
-
-Grab a working copy on the machine where you'll be editing:
+This puts a working copy on the machine where you will edit. **Edit the next cell first**: replace `<your-github-username>` in the web address with your own. If you already cloned your fork in the last lesson, it is in `~/eos-practice/<your-github-username>/exampleVolcanoPlotNotebook`. Skip this step and `cd` into that folder instead.
 
 ```bash
 git clone https://github.com/<your-github-username>/exampleVolcanoPlotNotebook.git
 cd exampleVolcanoPlotNotebook
 ```
 
-## Sync the fork to the upstream
+**What you should see:** `Cloning into 'exampleVolcanoPlotNotebook'...` and, at the end, `done.`.
 
-Time passes. The upstream repository (`NIH-NICHD/exampleVolcanoPlotNotebook`)
-gets new commits. Your fork does not — until you sync it.
+### Step 5. Sync from the GitHub website
 
-**In the GitHub web UI:**
+Time passes. The original project (called **upstream**: `NIH-NICHD/exampleVolcanoPlotNotebook`) gets new commits. Your fork does not, until you sync it. The website is the easiest way.
 
-1. Navigate to your fork's page.
-2. GitHub tells you: *"This branch is N commits behind
-   NIH-NICHD/exampleVolcanoPlotNotebook:main."*
-3. Below the *Code* button, click **Sync fork → Update branch**.
-4. GitHub reports *Successfully fetched and fast-forwarded*.
+1. Open your fork's page.
+2. GitHub says your branch is "N commits behind NIH-NICHD/exampleVolcanoPlotNotebook:main".
+3. Under the *Code* button area, click **Sync fork**, then **Update branch**.
 
-Your fork is now up to date with the upstream `main`.
+> **Picture to add:** the "N commits behind" banner with the Sync fork button (save as assets/keeping-your-repository-fork-in-sync-step-5.png)
 
-**From the terminal** (once you've configured an `upstream` remote — see the
-[git-survival-guide](../git-survival-guide.md) for the setup):
+**What you should see:** GitHub reports that the branch was successfully fetched and fast-forwarded. Your fork now matches upstream `main`. If you have edited files on GitHub *and* on your computer, read the "stash" tip in the [Git survival guide](git-survival-guide.md) first.
+
+### Step 6. Tell your clone where upstream is
+
+For terminal syncing, Git needs to know the address of the original project. You give it the name `upstream`. A **remote** is a named address of a copy of the project on GitHub. Your fork is already a remote named `origin`. The first cell adds `upstream`. The second lists all remotes.
+
+```bash
+git remote add upstream https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git
+```
+
+```bash
+git remote -v
+```
+
+**What you should see:** four lines, two for `origin` (your fork) and two for `upstream`:
+
+```
+origin    https://github.com/<your-github-username>/exampleVolcanoPlotNotebook.git (fetch)
+origin    https://github.com/<your-github-username>/exampleVolcanoPlotNotebook.git (push)
+upstream  https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git (fetch)
+upstream  https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git (push)
+```
+
+If `git remote add` says `remote upstream already exists`, it is already set. Go on.
+
+### Step 7. Sync from the terminal
+
+This does the same job as the website button. The four commands in the next cell do this, in order:
+
+- `git fetch upstream` downloads the new commits from the original project.
+- `git checkout main` switches to your `main` branch (the main line of your work).
+- `git merge upstream/main` combines the new commits into your `main`.
+- `git push origin main` sends the result up to your fork.
 
 ```bash
 git fetch upstream
@@ -115,9 +126,14 @@ git merge upstream/main
 git push origin main
 ```
 
-## Where to next
+**What you should see:** `Already up to date.` if there was nothing new. If there were new commits, Git lists the files that changed, and `git push` ends with `main -> main`.
 
-→ Back to the [version-control lesson](index.md) for the full
-survival guide, including branches, rebasing, and conflict resolution.
+## If something goes wrong
 
-→ Then [conda-environments](../conda-environments/index.md).
+- **`'upstream' does not appear to be a git repository`.** You skipped Step 6. Run the `git remote add upstream` cell, then try again.
+- **A "merge conflict" message.** You and upstream changed the same lines. Do not panic. Nothing is lost. See the conflict section of the [Git survival guide](git-survival-guide.md).
+- **`Permission denied` on push.** You are not signed in, or you cloned the original instead of your fork. Run `gh auth status`, and check the clone address has your user name.
+
+## Next
+
+Back to the [version-control lesson](README.md). Then [conda-environments](../conda-environments/README.md).

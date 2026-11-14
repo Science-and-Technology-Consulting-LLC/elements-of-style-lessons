@@ -1,105 +1,84 @@
-# Building Dockerfiles — fastqc and multiqc
+# Building Dockerfiles: fastqc and multiqc
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-3-containerization/building-dockerfiles/)) — woven into
-the [containers](index.md) lesson.*
+You will build two small container images, one for the sequencing quality tool FastQC and one for MultiQC, so that each tool runs the same way on your laptop, on a cluster and inside a workflow.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Write a `Dockerfile` and an `environment.yml` for [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/).
+- Build the image and test it with `docker run`.
+- Do the same for [MultiQC](https://multiqc.info/).
+- Optionally, publish each folder to GitHub.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- [Docker Desktop](https://docs.docker.com/get-started/get-docker/), installed and running. See the install notes in the [containers lesson](README.md).
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
+- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
+- For the optional GitHub steps: a [GitHub account](https://github.com/signup), the [GitHub CLI](https://cli.github.com/) (`gh`), and the sign-in steps in [GitHub authentication](../version-control/github-authenticate.md).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Check your setup
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+## Step 1: Understand what you are building
 
-Run them all at once:
+*Why:* two new words come up in every step after this one.
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+- A **Dockerfile** is a plain-text file that lists the commands Docker follows to assemble an image: which base operating system to start from, which packages to install, which files to copy in.
+- A **Docker image** is the finished, portable bundle that `docker build` makes from a Dockerfile. A **container** is a running copy of an image.
 
+You will build **two** small images, `fastqc` and `multiqc`. They come back in the [multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md).
 
-## Prerequisites
+> **Warning.** `docker build` copies *every file in the build directory* to Docker. If the folder is huge, the build is huge. Keep the build folder small: only what the image needs. A `.dockerignore` file can exclude files.
 
-You've completed [conda-environments](../conda-environments/index.md) — you
-know how to make a clean environment and install packages into it. This
-walkthrough builds on that: instead of installing tools *into your machine*,
-we install them *into a Docker image* — a portable, reproducible bundle you
-can hand to a colleague, a workflow engine, or a cloud platform and know it
-will behave the same everywhere.
+> **Note for Podman users.** The Lifebit platform runs containers with [Podman](https://podman.io/), which reads the same Dockerfile. In the `docker build` and `docker run` commands below, you can type `podman` instead of `docker`. Podman may need a registry prefix in front of a short image name, such as `docker.io/library/`.
 
-We're going to build **two** small container images — `fastqc` and `multiqc`
-— that will reappear in the
-[`case-studies/multiqc-workflow/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
-worked example.
+## Step 2: Activate your conda environment
 
-## What a Docker image and a Dockerfile are
+*Why:* you made the `eos` environment in the [conda environments lesson](../conda-environments/creating-a-conda-environment.md). Activating it puts its tools on your path.
 
-A **Dockerfile** is a plain-text file listing the commands Docker needs to
-assemble an image: what base OS to start from, what packages to install, what
-files to copy in.
-
-A **Docker image** is the finished, portable bundle produced by running
-`docker build` against that Dockerfile.
-
-> **Warning.** `docker build` copies *every file in the build directory* to
-> the Docker daemon. If the directory is huge, so is the build. Keep the
-> build directory small — only what the image actually needs. Use
-> `.dockerignore` to exclude things explicitly.
-
-## Setup
-
-Activate your conda environment (from
-[`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb)):
+Run the next cell.
 
 ```bash
 conda activate eos
 ```
 
-## Part 1 — the `fastqc` image
+**What you should see:** no output. In a terminal, your prompt now starts with `(eos)`.
 
-### Create a clean build directory
+> **Check:** In a notebook with the Bash kernel, `conda activate` can fail with `CondaError: Run 'conda init' before 'conda activate'`. If you see it, close JupyterLab, activate `eos` in your terminal first, and start JupyterLab from that terminal. Please confirm that this is the right advice for Lifebit as well.
+
+## Step 3: Go to your home folder
+
+*Why:* you will make folders and run `git init` in them. If you do that inside the cloned course folder, you put one Git repository inside another. Your home folder keeps them apart. Both image folders (`fastqc-docker` and `multiqc-docker`) will sit side by side here, which the next lesson expects.
+
+Run the next cell.
+
+```bash
+cd ~
+pwd
+```
+
+**What you should see:** your home folder, for example `/Users/yourname` on a Mac or `/c/Users/yourname` in Git Bash.
+
+## Part 1: the `fastqc` image
+
+## Step 4: Create a clean build directory
+
+*Why:* Docker looks for a file named *exactly* `Dockerfile`, in the folder where you build. A new empty folder keeps the build small.
+
+Run the next cell.
 
 ```bash
 mkdir fastqc-docker
@@ -107,9 +86,11 @@ cd fastqc-docker
 touch Dockerfile
 ```
 
-Docker looks for a file named *exactly* `Dockerfile`. Open it in
-your editor (VS Code, JupyterLab's editor, `nano`, `vim` — whichever) and
-paste:
+**What you should see:** no output. Check with `ls`: you are now inside `fastqc-docker`, and it holds one empty file named `Dockerfile`.
+
+## Step 5: Fill in the Dockerfile
+
+*Why:* this file is the recipe. Open `Dockerfile` in an editor (VS Code, JupyterLab's editor, `nano` or `vim`) and paste:
 
 ```dockerfile
 # Base image: continuumio/miniconda3 comes with conda pre-installed.
@@ -125,19 +106,29 @@ RUN conda env create --quiet --name ${ENV_NAME} --file /environment.yml && conda
 ENV PATH /opt/conda/envs/${ENV_NAME}/bin:$PATH
 ```
 
-Docker understands the directives `FROM`, `LABEL`, `ARG`, `COPY`, `RUN`, and
-`ENV`. Lines starting with `#` are comments. We start `FROM continuumio/miniconda3`
-so we don't have to install conda ourselves — it's already in the base image.
+What the lines mean:
 
-### Create the `environment.yml`
+- `FROM` names the base image. We start from `continuumio/miniconda3` so we do not have to install conda ourselves.
+- `LABEL` attaches a note to the image.
+- `ARG` sets a build-time variable, here the environment name.
+- `COPY` copies a file from your folder into the image.
+- `RUN` runs a command while the image is built.
+- `ENV` sets a variable inside the image, here the search path for programs.
+- Lines that start with `#` are comments.
 
-The Dockerfile refers to a file called `environment.yml`. Create it:
+Save the file.
+
+## Step 6: Create the `environment.yml`
+
+*Why:* the Dockerfile copies a file called `environment.yml`. It lists the packages to install. Create it:
+
+Run the next cell.
 
 ```bash
 touch environment.yml
 ```
 
-Paste this into `environment.yml`:
+Open `environment.yml` and paste:
 
 ```yaml
 name: fastqc
@@ -148,55 +139,75 @@ dependencies:
   - fastqc
 ```
 
-The `bioconda` channel is where community-vetted bioinformatics packages
-live. `fastqc` is the read-QC tool this image will provide.
+The [`bioconda`](https://bioconda.github.io/) channel is where community-vetted bioinformatics packages live. `fastqc` is the read-quality tool this image will provide. Save the file.
 
-### Build the image
+> **Check:** Does `conda env create` find `fastqc` and `multiqc` for Linux ARM when the build runs on an Apple Silicon Mac (M1 to M4)? This lesson was not tested there.
+
+## Step 7: Build the image
+
+*Why:* `docker build` turns the Dockerfile into an image. The `-t fastqc` option **tags** (names) the image `fastqc`. The dot means: build in this folder. This step takes a few minutes the first time.
+
+Make sure Docker Desktop is running before you start.
+
+> **Picture to add:** Docker Desktop open, with the status showing the engine is running (save as assets/building-dockerfiles-step-7.png)
+
+Run the next cell.
 
 ```bash
 docker build -t fastqc .
 ```
 
-The `-t fastqc` tags the built image with the name `fastqc`. The
-`.` says *build in this directory* — Docker reads the `Dockerfile` here.
+**What you should see:** many lines of progress while Docker downloads the base image and installs fastqc. When it finishes without the word `ERROR`, the last lines name the image, for example `naming to docker.io/library/fastqc:latest`.
 
-Confirm the image exists:
+## Step 8: Confirm the image exists
+
+*Why:* `docker images` lists the images on your machine.
+
+Run the next cell.
 
 ```bash
 docker images
 ```
 
-### Test the image
+**What you should see:** a table with the columns `REPOSITORY`, `TAG`, `IMAGE ID`, `CREATED` and `SIZE`. One row has `fastqc` under `REPOSITORY` and `latest` under `TAG`.
 
-Set a variable so we can mount the current directory into the container:
+## Step 9: Test the image
+
+*Why:* a smoke test proves the tool runs inside the container. First, save the current folder's path in a variable so we can mount the folder into the container. To **mount** a folder is to make it visible inside the container.
+
+Run the next cell.
 
 ```bash
 PWD=$(pwd)
 ```
 
-Now run `fastqc -h` **inside** the containerised environment:
+**What you should see:** no output.
+
+Now run `fastqc -h` **inside** the container.
+
+Run the next cell.
 
 ```bash
 docker run -it -v $PWD:$PWD -w $PWD fastqc fastqc -h
 ```
 
-Breakdown:
+**What you should see:** the FastQC help text scrolls past. It starts with a line like `FastQC - A high throughput sequence QC analysis tool`, followed by `SYNOPSIS`.
 
-- `-it` — interactive with a TTY (so stdout is not buffered).
-- `-v $PWD:$PWD` — mount the host's current directory into the container
-  under the same path.
-- `-w $PWD` — set the container's working directory to that same path.
-- `fastqc` (first) — the image name.
-- `fastqc -h` (last) — the command to run inside the container.
+What each part of the command means:
 
-If you saw the fastqc help text scroll past, congratulations: you have a
-portable fastqc that will now run identically on your laptop, on Lifebit, and inside
-any Nextflow module that names this container.
+- `-it`: interactive, with a terminal attached (so output is not held back).
+- `-v $PWD:$PWD`: mount the current folder into the container at the same path.
+- `-w $PWD`: start the container in that same folder.
+- `fastqc` (first): the image name.
+- `fastqc -h` (last): the command to run inside the container.
 
-### Push the source to GitHub
+You now have a portable fastqc that runs the same way on your laptop, on Lifebit, and inside any Nextflow module that names this container.
 
-Best practice — never let a `Dockerfile` live only on one machine. Add a
-`README.md`, initialise the repo, commit, and publish via `gh`:
+## Step 10 (optional): Publish the source to GitHub
+
+*Why:* never let a `Dockerfile` live on only one machine. Skip Steps 12 to 16 if you do not have a GitHub account. The next lessons need the images, not the repositories.
+
+First create a `README.md`. Run the next cell, then open `README.md` and paste the lines shown in the comments.
 
 ```bash
 touch README.md
@@ -208,55 +219,112 @@ touch README.md
 #   docker run -it -v $PWD:$PWD -w $PWD fastqc fastqc -h
 ```
 
+**What you should see:** no output. The file `README.md` now exists.
+
+## Step 11 (optional): Sign in to GitHub
+
+*Why:* `gh` needs permission to create a repository for you. Follow the prompts; see [GitHub authentication](../version-control/github-authenticate.md) for a guided version. This opens a web page where you approve the sign-in.
+
+Run the next cell.
+
 ```bash
 gh auth login   # if you haven't yet — see github-authenticate.ipynb
 ```
+
+**What you should see:** `gh` asks a few questions, then prints a line like `Logged in as your-username`.
+
+## Step 12 (optional): Tell Git who you are
+
+*Why:* Git stamps your name and email on every commit. Edit the two values in the next cell before you run it: use your own email and your GitHub user name.
+
+Run the next cell.
 
 ```bash
 git config --global user.email 'you@example.com'
 git config --global user.name  'your-github-username'
 ```
 
+**What you should see:** no output.
+
+## Step 13 (optional): Commit
+
+*Why:* a **commit** saves a snapshot of your files in Git. `git init` starts a repository in this folder.
+
+Run the next cell.
+
 ```bash
 git init -b main
 git add . && git commit -m 'initial commit'
 ```
 
+**What you should see:** a line like `Initialized empty Git repository`, then a line with `[main (root-commit)` and `initial commit`, and a count of files changed.
+
+## Step 14 (optional): Create the GitHub repository
+
+*Why:* this publishes your folder. `gh repo create` asks questions. Answer: *Push an existing local repository to GitHub*, path `.`, name `fastqc-docker`, *Public*, remote name `origin`, *Yes* to push.
+
+Run the next cell.
+
 ```bash
 gh repo create   # answer: Push an existing local repository → path '.' → name fastqc-docker → Public → origin → Yes push
 ```
 
-On success `gh` prints:
+**What you should see:** on success `gh` prints:
 
-```
+```text
 ✓ Created repository <your-user>/fastqc-docker on GitHub
 ✓ Added remote https://github.com/<your-user>/fastqc-docker.git
 ✓ Pushed commits to https://github.com/<your-user>/fastqc-docker.git
 ```
 
-The upstream reference version of this repo lives at
-[`adeslatt/fastqc-docker`](https://github.com/adeslatt/fastqc-docker).
+> **Picture to add:** your new fastqc-docker repository page on GitHub (save as assets/building-dockerfiles-step-14.png)
 
-## Part 2 — the `multiqc` image
+The reference copy of this repository is [`adeslatt/fastqc-docker`](https://github.com/adeslatt/fastqc-docker).
 
-MultiQC aggregates the per-sample HTML reports fastqc emits into one summary.
-Its Dockerfile is nearly identical.
+## Part 2: the `multiqc` image
 
-Optionally, clone the reference version to compare with yours:
+[MultiQC](https://multiqc.info/) gathers the per-sample reports that FastQC writes into one summary. Its Dockerfile is nearly the same.
+
+## Step 15: Choose one path
+
+*Why:* you can either copy the finished reference version to compare, or build your own. Do **one** of the two. If you do both, `mkdir multiqc-docker` in Step 16 stops with `File exists`.
+
+**Path A (optional): clone the reference version.** Run the next cell. Then type `cd ~/multiqc-docker`, skip Steps 16 and 17, and continue with Step 18. Skip Step 19 too; the clone is already a Git repository.
 
 ```bash
 cd ~
 git clone https://github.com/adeslatt/multiqc-docker.git
 ```
 
-Otherwise, build your own from scratch:
+**What you should see:** `Cloning into 'multiqc-docker'...` and a `done` line. The folder `~/multiqc-docker` now exists.
+
+**Path B: build your own from scratch.** Continue with Step 16.
+
+## Step 16: Go back to your home folder
+
+*Why:* Part 1 left you inside `fastqc-docker`. The new folder must sit next to it, not inside it.
+
+Run the next cell.
+
+```bash
+cd ~
+pwd
+```
+
+**What you should see:** your home folder, the same path as in Step 3.
+
+## Step 17: Create the build directory
+
+Run the next cell.
 
 ```bash
 mkdir multiqc-docker && cd multiqc-docker
 touch Dockerfile
 ```
 
-Paste into `Dockerfile`:
+**What you should see:** no output. You are now inside `multiqc-docker`, which holds one empty `Dockerfile`.
+
+Open `Dockerfile` and paste:
 
 ```dockerfile
 FROM continuumio/miniconda3
@@ -269,7 +337,7 @@ RUN conda env create --quiet --name ${ENV_NAME} --file /environment.yml && conda
 ENV PATH /opt/conda/envs/${ENV_NAME}/bin:$PATH
 ```
 
-And `environment.yml`:
+Then create `environment.yml` in the same folder and paste:
 
 ```yaml
 name: multiqc
@@ -280,7 +348,11 @@ dependencies:
   - multiqc
 ```
 
-Build and test:
+## Step 18: Build and list the image
+
+*Why:* the same two commands as Part 1. The first line creates the (empty) `environment.yml`; if you already made it and pasted the YAML, `touch` leaves it alone. The build takes a few minutes.
+
+Run the next cell.
 
 ```bash
 touch environment.yml   # then paste the YAML above into it
@@ -288,12 +360,20 @@ docker build -t multiqc .
 docker images
 ```
 
+**What you should see:** the build progress, then the `docker images` table. It now has a `multiqc` row as well as the `fastqc` row.
+
+Now test it. Run the next cell.
+
 ```bash
 PWD=$(pwd)
 docker run -it -v $PWD:$PWD -w $PWD multiqc multiqc -h
 ```
 
-Publish it exactly as you did for `fastqc-docker`:
+**What you should see:** the MultiQC help text, starting with a line like `Usage: multiqc [OPTIONS] [ANALYSIS DIRECTORY]`.
+
+## Step 19 (optional): Publish `multiqc-docker`
+
+*Why:* the same routine as Steps 12 to 16. Do this only on Path B. Run the next cell, then answer the `gh repo create` questions: *Push an existing local repository*, path `.`, name `multiqc-docker`, *Public*.
 
 ```bash
 touch README.md   # add a short description + build/run commands
@@ -302,35 +382,33 @@ git add . && git commit -m 'initial commit'
 gh repo create   # answer: Push existing → . → multiqc-docker → Public
 ```
 
-The upstream reference version of this repo lives at
-[`adeslatt/multiqc-docker`](https://github.com/adeslatt/multiqc-docker) and
-becomes the containerised step in the
-[`multiqc-workflow`](https://github.com/Science-and-Technology-Consulting-LLC/multiqc-workflow)
-case study.
+**What you should see:** the same three lines as in Step 14, with `multiqc-docker` in them.
+
+The reference copy of this repository is [`adeslatt/multiqc-docker`](https://github.com/adeslatt/multiqc-docker). It becomes the containerised step in the [multiqc-workflow](https://github.com/Science-and-Technology-Consulting-LLC/multiqc-workflow) case study.
 
 ## Recap
 
 You now have two portable containers:
 
-- **`fastqc`** — per-sample sequencing QC.
-- **`multiqc`** — aggregates fastqc's per-sample reports into one HTML.
+- **`fastqc`**: per-sample sequencing quality control.
+- **`multiqc`**: combines fastqc's per-sample reports into one HTML page.
 
 Both:
 
-- Build from the same base image (`continuumio/miniconda3`).
-- Install their tool via `environment.yml` (the *same* environment.yml you'd
-  use on your laptop — the pattern is portable).
-- Live in their own GitHub repo (`fastqc-docker`, `multiqc-docker`).
-- Ship a working CLI verb (`fastqc`, `multiqc`) that a
-  [Nextflow module](../nextflow-modules/index.md) can call directly.
+- build from the same base image (`continuumio/miniconda3`);
+- install their tool through `environment.yml`, the same file you would use on your laptop;
+- can live in their own GitHub repository (`fastqc-docker`, `multiqc-docker`);
+- offer one command (`fastqc`, `multiqc`) that a [Nextflow module](../nextflow-modules/README.md) can call directly.
 
-The [multiqc-workflow case study](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
-composes them into a two-step pipeline: **fastqc → multiqc**.
+The [multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md) joins them into a two-step pipeline: **fastqc, then multiqc**.
 
-## Where to next
+## If something goes wrong
 
-→ Back to the [containers lesson](index.md) for the theoretical framing
-(one container, one job, one CLI).
+- **`Cannot connect to the Docker daemon`, or `docker: command not found`.** Docker Desktop is not running or not installed. Open Docker Desktop, wait until it says it is running, and try again. See [the containers lesson](README.md) for install links.
+- **`the input device is not a TTY`.** Remove `-it` from the `docker run` command and run it again.
+- **`CondaError: Run 'conda init'`, or `conda: command not found`.** Activate the environment in a terminal first, then start JupyterLab from that terminal (see the Check in Step 2).
+- **`mkdir: multiqc-docker: File exists`.** You already cloned it in Step 15. Use the cloned folder, or delete it and start Path B.
 
-→ Then [nextflow-modules](../nextflow-modules/index.md) — wrap each of
-these containers in a `.nf` module.
+## Next
+
+Back to the [containers lesson](README.md), then [nextflow-modules](../nextflow-modules/README.md): wrap each of these containers in a `.nf` module.

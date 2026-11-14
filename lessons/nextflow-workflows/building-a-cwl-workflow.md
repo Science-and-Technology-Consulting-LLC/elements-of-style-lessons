@@ -1,93 +1,89 @@
 # Building a Common Workflow Language (CWL) workflow
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-4-workflow-development/building-a-cwl-workflow/)). The CWL files
-are now in this repository. Part of the [nextflow-workflows](index.md) lesson.*
+You will run the same two-step pipeline as in the Nextflow lesson, FastQC then MultiQC, written in the Common Workflow Language, so that you see how the same containers work with a different workflow language.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-a-cwl-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Install `cwltool` and check that the CWL files are valid.
+- Run each tool alone, then the two joined as a workflow.
+- Read the same pipeline written for Snakemake.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- The two images `fastqc` and `multiqc`, pushed to a registry as in the [module preamble](../nextflow-modules/preamble.md). The files below name `ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9` and `.../multiqc:v1.0.0`. If you pushed your own, put your address in the `dockerPull` line of each tool.
+- [Docker Desktop](https://docs.docker.com/get-started/get-docker/), installed and running. `cwltool` runs each tool in its container. See the [containers lesson](../containers/README.md).
+- [Python and pip](../conda-environments/README.md), to install [`cwltool`](https://cwltool.readthedocs.io/) and [Snakemake](https://snakemake.readthedocs.io/).
+- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
 
-### One time — register the Bash kernel
+> **Check:** Are the images `ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9` and `.../multiqc:v1.0.0` public? A student who has not pushed their own needs to pull them without logging in.
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+## Before you begin
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+1. **Get the code.** In a terminal, run:
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### Every time — verify the tools this walkthrough uses
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-a-cwl-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) and run each cell in order, top to bottom.
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+## Step 1: Go to the lesson folder
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+*Why:* the CWL files and the Snakefile are in the lessons repository, in `lessons/nextflow-workflows`. All the commands below work from that folder. `ls` lists what is in it.
 
-
-## Prerequisites
-
-- The two container images, `fastqc` and `multiqc`, built in
-  [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb)
-  and pushed to GHCR (see the [module preamble](../nextflow-modules/preamble.md)).
-  The files below name `ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9` and
-  `.../multiqc:v1.0.0`. If you pushed your own, put your address in the `dockerPull` line of each tool.
-- Docker running. `cwltool` runs each tool in its container.
-
-## Get the files
-
-The CWL files and the Snakefile are in the lessons repository, in your fork. Work in this folder:
+Run the next cell.
 
 ```bash
 cd lessons/nextflow-workflows
 ls cwl snakemake
 ```
 
-## Install `cwltool` — the reference runner
+**What you should see:** the contents of the `cwl` and `snakemake` folders:
 
-Any terminal will do, including the one in JupyterLab.
+```text
+cwl:
+fastqc.cwl
+fastqc_multiqc_wf.cwl
+multiqc.cwl
+
+snakemake:
+Snakefile
+```
+
+If the `cd` line prints `No such file or directory`, you are already inside `lessons/nextflow-workflows` (JupyterLab starts a notebook in its own folder). The `ls` line still works. The next cell shows where you are.
+
+```bash
+pwd
+```
+
+**What you should see:** a path that ends in `lessons/nextflow-workflows`.
+
+> **Check:** When the notebook is opened in JupyterLab, does the Bash kernel start in the repository folder or in the notebook's own folder? The `cd lessons/nextflow-workflows` cell works only from the repository folder.
+
+## Step 2: Install `cwltool`, the reference runner
+
+*Why:* CWL is a **specification**: a written description of tools and workflows. To run a description you need a program that reads it. `cwltool` is the reference one. Any terminal will do, including the one in JupyterLab.
+
+Run the next cell.
 
 ```bash
 pip install cwltool
 cwltool --version
 ```
 
-Check that each file is valid CWL before you run anything:
+**What you should see:** pip installs `cwltool` and its helpers. The last line prints a path to `cwltool` and a version number.
+
+## Step 3: Check that each file is valid CWL
+
+*Why:* it is quicker to find a typo now than after a long run. `--validate` reads a file and checks it without running anything.
+
+Run the next cell.
 
 ```bash
 cwltool --validate cwl/fastqc.cwl
@@ -95,7 +91,11 @@ cwltool --validate cwl/multiqc.cwl
 cwltool --validate cwl/fastqc_multiqc_wf.cwl
 ```
 
-## Layout
+**What you should see:** for each of the three files, a line saying the file is valid CWL. No errors.
+
+## Step 4: Look at the layout
+
+*Why:* three CWL files do the work: two tools and one workflow that joins them.
 
 ```text
 cwl/
@@ -106,7 +106,9 @@ snakemake/
   Snakefile                  the same pipeline for Snakemake
 ```
 
-## A CWL tool — `cwl/fastqc.cwl`
+## Step 5: Read a CWL tool: `cwl/fastqc.cwl`
+
+*Why:* a CWL tool says which container to use, which command to run, what goes in and what comes out. Read it; do not change it.
 
 ```yaml
 cwlVersion: v1.0
@@ -145,20 +147,26 @@ outputs:
       glob: $(inputs.outdir)
 ```
 
-Notice: **the same container image** that the Nextflow module pulls. The science container is
-portable across workflow languages. `multiqc.cwl` has the same shape and is in the
-[repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/cwl/multiqc.cwl).
+Notice: **the same container image** that the Nextflow module pulls. The science container is portable across workflow languages. `multiqc.cwl` has the same shape and is in the [repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/cwl/multiqc.cwl).
 
-## Download test data
+## Step 6: Download the test data
+
+*Why:* two tiny FASTQ files (raw sequencing reads, 20,000 reads each) give the tools something to work on.
+
+Run the next cell.
 
 ```bash
 wget -q https://zenodo.org/record/7025773/files/test.20k_reads_1.fastq.gz
 wget -q https://zenodo.org/record/7025773/files/test.20k_reads_2.fastq.gz
 ```
 
-## Test each tool independently
+**What you should see:** no output. Check with `ls`: the files `test.20k_reads_1.fastq.gz` and `test.20k_reads_2.fastq.gz` are in the folder.
 
-**fastqc alone:**
+## Step 7: Test each tool on its own
+
+*Why:* test the parts before you join them. First **fastqc alone**. The first run downloads the container image, so allow a few minutes. Docker Desktop must be running.
+
+Run the next cell.
 
 ```bash
 cwltool cwl/fastqc.cwl \
@@ -166,15 +174,23 @@ cwltool cwl/fastqc.cwl \
   --input_reads test.20k_reads_2.fastq.gz
 ```
 
-Look for `INFO Final process status is success`.
+**What you should see:** `cwltool` logs each step it takes, then a block of text in braces that describes the output, and finally the line `INFO Final process status is success`. A new folder `results` holds the FastQC reports.
 
-**multiqc alone** (using the fastqc output as its input):
+> **Picture to add:** the terminal showing `INFO Final process status is success` after the fastqc run (save as assets/building-a-cwl-workflow-step-7.png)
+
+Next, **multiqc alone**, using the fastqc output as its input.
+
+Run the next cell.
 
 ```bash
 cwltool cwl/multiqc.cwl --fastqc_results results
 ```
 
-## The workflow that stitches them — `cwl/fastqc_multiqc_wf.cwl`
+**What you should see:** the same kind of log, ending in `INFO Final process status is success`, and a MultiQC report in your folder.
+
+## Step 8: Read the workflow that joins them: `cwl/fastqc_multiqc_wf.cwl`
+
+*Why:* a **workflow** in CWL lists steps and says how each step's output feeds the next step's input. Read it; do not change it.
 
 ```yaml
 cwlVersion: v1.0
@@ -221,11 +237,15 @@ steps:
 
 Read three things:
 
-1. **`inputs:`** — the workflow's top-level parameters (like Nextflow's `params`).
-2. **`steps:`** — the two `run:` references. Each step names the tool and wires its `in:` and `out:`.
-3. **Inter-step wiring** — `fastqc/fastqc_results` says *"take the `fastqc_results` output of the `fastqc` step and feed it in here."* That is CWL's equivalent of a Nextflow channel.
+1. **`inputs:`**: the workflow's top-level parameters (like Nextflow's `params`).
+2. **`steps:`**: the two `run:` references. Each step names the tool and wires its `in:` and `out:`.
+3. **Wiring between steps**: `fastqc/fastqc_results` means *take the `fastqc_results` output of the `fastqc` step and feed it in here.* That is CWL's version of a Nextflow channel.
 
-## Execute the workflow
+## Step 9: Run the whole workflow
+
+*Why:* one command now runs both steps in order.
+
+Run the next cell.
 
 ```bash
 cwltool cwl/fastqc_multiqc_wf.cwl \
@@ -233,7 +253,13 @@ cwltool cwl/fastqc_multiqc_wf.cwl \
   --input_reads test.20k_reads_2.fastq.gz
 ```
 
-## Override a default at runtime
+**What you should see:** `cwltool` runs the `fastqc` step, then the `multiqc` step, and ends with `INFO Final process status is success`. The output block lists `fastqc_results`, `multiqc_zip` and `multiqc_html`.
+
+## Step 10: Change a default when you run
+
+*Why:* every input with a default can be overridden on the command line. Here we send the FastQC output to a folder called `custom_results`.
+
+Run the next cell.
 
 ```bash
 cwltool cwl/fastqc_multiqc_wf.cwl \
@@ -242,11 +268,11 @@ cwltool cwl/fastqc_multiqc_wf.cwl \
   --fastqc_outdir custom_results
 ```
 
-## The same pipeline in Snakemake
+**What you should see:** the same run, ending in `INFO Final process status is success`, with the FastQC reports in a folder named `custom_results`.
 
-Snakemake writes the pipeline as rules. Each rule names its input files, its output files and the command. The
-order follows from the files: a rule runs when another rule has made its input. This is
-`snakemake/Snakefile`:
+## Step 11: The same pipeline in Snakemake
+
+*Why:* [Snakemake](https://snakemake.readthedocs.io/) is a third workflow tool. It writes the pipeline as **rules**. Each rule names its input files, its output files and the command. The order follows from the files: a rule runs once another rule has made its input. This is `snakemake/Snakefile`. Read it:
 
 ```python
 SAMPLES = ["test.20k_reads_1", "test.20k_reads_2"]
@@ -281,7 +307,9 @@ rule multiqc:
         "multiqc --flat --filename report.multiqc --outdir multiqc fastqc"
 ```
 
-Install it and ask what it would do, without running anything:
+Now install it and ask what it would do, **without running anything**. The flag `-n` means dry run.
+
+Run the next cell.
 
 ```bash
 pip install snakemake
@@ -291,8 +319,9 @@ snakemake -n
 cd ..
 ```
 
-A dry run lists four jobs: two `fastqc`, one `multiqc` and `all`. To run the containers, Snakemake
-uses Apptainer or Singularity, which run on Linux:
+**What you should see:** a table of jobs and then a plan. A dry run lists four jobs: two `fastqc`, one `multiqc` and `all`. The last line says `This was a dry-run (flag -n).`
+
+To run the containers, Snakemake uses Apptainer or Singularity, which run on Linux:
 
 ```text
 snakemake --cores 2 --software-deployment-method apptainer
@@ -302,15 +331,9 @@ snakemake --cores 2 --software-deployment-method apptainer
 
 The container is the same in all three. What differs is the layer around it.
 
-- **CWL is a specification.** It describes tools and workflows. To run one you need a runner, and
-  `cwltool` is the reference implementation ([cwltool documentation](https://cwltool.readthedocs.io/)).
-  Nextflow is the language and the engine in one system ([Nextflow and CWL, Seqera blog](https://seqera.io/blog/nextflow-and-cwl)).
-- **Snakemake runs containers through Apptainer or Singularity** ([Snakemake documentation](https://snakemake.readthedocs.io/)). Nextflow
-  lets you choose Docker, Apptainer, Podman and others in a configuration profile, and the same
-  script runs on your laptop, on a cluster or on a cloud platform (Section 7.8).
-- **Wiring.** CWL writes each connection down. Snakemake infers the order from file names. Nextflow
-  passes items through channels, so one process runs once for each item that arrives, with no
-  list of files to write (Section 7.6).
+- **CWL is a specification.** It describes tools and workflows. To run one you need a runner, and `cwltool` is the reference implementation ([cwltool documentation](https://cwltool.readthedocs.io/)). Nextflow is the language and the engine in one system ([Nextflow and CWL, Seqera blog](https://seqera.io/blog/nextflow-and-cwl)).
+- **Snakemake runs containers through Apptainer or Singularity** ([Snakemake documentation](https://snakemake.readthedocs.io/)). Nextflow lets you choose Docker, Apptainer, Podman and others in a configuration profile, and the same script runs on your laptop, on a cluster or on a cloud platform (Section 7.8).
+- **Wiring.** CWL writes each connection down. Snakemake infers the order from file names. Nextflow passes items through channels, so one process runs once for each item that arrives, with no list of files to write (Section 7.6).
 
 Check the current documentation of each before you rely on these points. The tools change.
 
@@ -318,13 +341,16 @@ Check the current documentation of each before you rely on these points. The too
 
 - The **same Docker containers** back the Nextflow, CWL and Snakemake versions.
 - Test each tool alone *before* composing them.
-- Inter-step wiring is explicit in CWL, inferred from file names in Snakemake, and carried by channels in Nextflow. The mechanics differ. The intent is the same.
+- Wiring between steps is explicit in CWL, inferred from file names in Snakemake, and carried by channels in Nextflow. The mechanics differ. The intent is the same.
 - Parameters live at the workflow level and are passed to each step.
 
-## Where to next
+## If something goes wrong
 
-→ [`shared-structure-nextflow-vs-cwl.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/shared-structure-nextflow-vs-cwl.ipynb) —
-what the two languages share and how the Elements-of-Style container-level
-discipline lets you switch between them.
+- **`cwltool: command not found`.** Step 2 did not finish, or the environment is not active. Run `pip install cwltool` again in the terminal you are using.
+- **`Cannot connect to the Docker daemon`, or the image cannot be pulled.** Docker Desktop is not running, or the image address in the `dockerPull` line is not one you can download. Start Docker Desktop, or put your own pushed image address in the `dockerPull` lines.
+- **`wget: command not found`.** Mac and Git Bash do not include `wget`. Use `curl -L -O <the same web address>` for each file, or install it with `conda install wget`.
+- **`No such file or directory` for `cwl/fastqc.cwl`.** You are in the wrong folder. Run `pwd`; the path must end in `lessons/nextflow-workflows`.
 
-→ Back to the [nextflow-workflows lesson](index.md).
+## Next
+
+[Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md): what the two languages share, and how the container-level discipline lets you switch between them. Or go back to the [nextflow-workflows lesson](README.md).

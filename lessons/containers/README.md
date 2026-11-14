@@ -1,68 +1,57 @@
 # Containers
 
+> *In the book: Sections 5.5 and 5.6, What Is a Docker Image and a Dockerfile; Building and Testing Dockerfiles.*
 
-> *In the book: Sections 5.5 and 5.6 — What Is a Docker Image and a Dockerfile; Building and Testing Dockerfiles.*
+This lesson shows you how to put one analysis tool in a sealed container, build it, test it and tag it, so that it runs the same way on any computer.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- Read a `Dockerfile` line by line and understand each piece.
-- Build a single-purpose container locally and tag a real version.
-- Recognise when a container is *too much job* — and split it.
-:::
+The previous lesson is [reusable command-line tools](../reusable-clis/README.md). Your container will run one of those tools.
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the code.** In a terminal, run:
 
-A container is a sealed box with everything your code needs to run: the
-OS-level libraries, the language runtime, your specific package
-versions, your script. Hand the container to a collaborator (or to a
-cluster, or to an AI agent), and the work runs the same way it did on
-your laptop.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-:::{admonition} The rule
-:class: tip
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook** `lessons/containers/building-dockerfiles.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb). Run each cell in order, top to bottom.
 
-**One container, one job.** A container that does QC *and* differential
-expression *and* plotting is a container that's hard to test, hard to
-reason about, and hard to slot into a workflow. A container that does
-QC *is one of the LEGO bricks you'll snap together with Nextflow.*
-:::
+## What you should see
 
-## What this lesson teaches
+Two container images on your machine, `fastqc` and `multiqc`, each started with a command such as `docker run ... fastqc -h` that prints the tool's help. The R walkthrough adds a third, `hello-r`.
 
-By the end you'll be able to:
+> **Picture to add:** the output of `docker images` listing the `fastqc` and `multiqc` images (save as assets/overview.png)
 
-1. Read a `Dockerfile` line by line and explain what each line is doing
-   *and why*.
-2. Write a single-purpose `Dockerfile` for a Python or R analysis step.
-3. Build it locally, run a smoke test, and tag it.
-4. Push it to a container registry (GHCR or Docker Hub).
-5. Recognise when a container is *too much job* — and split it.
+## Where the files are
 
-## The two worked examples in the book companion
+- The lesson folder is [`lessons/containers`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/containers).
+- The images you build live in Docker, not in the folder. The files you write (`Dockerfile`, `environment.yml`) are in new folders in your home folder: `fastqc-docker`, `multiqc-docker` and `hello-r-docker`.
+- Two finished example containers are in the book companion repository: [`scanpy-qc`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/container/scanpy-qc) and [`limma-voom`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/container/limma-voom).
 
-Two real, single-purpose containers live in the book companion repo.
-Before you read the rest of this page, open both `Dockerfile`s in two
-tabs and notice they're both well under 50 lines:
+## Notebooks in order
 
-- **[`containers/scanpy-qc/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/containers/scanpy-qc)** —
-  Python 3.11 base, one job: scRNA-seq QC + h5ad conversion.
-- **[`containers/limma-voom/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/containers/limma-voom)** —
-  R base, one job: pseudobulk differential expression.
+1. [Building Dockerfiles: fastqc and multiqc](building-dockerfiles.md) (notebook: `building-dockerfiles.ipynb`). Builds two real single-purpose images. They become the two steps of the [multiqc-workflow case study](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md).
+2. [Building an R Dockerfile](building-an-r-dockerfile.md) (notebook: `building-an-r-dockerfile.ipynb`). Puts the `hello-r` tool in a container.
 
-Each one does exactly one thing. That isn't an accident — that's the
-rule applied.
+## Next
 
-## The anatomy of a single-purpose Dockerfile
+[Nextflow modules](../nextflow-modules/README.md): wrap each container in a `.nf` module.
 
-Here's the scanpy-qc Dockerfile broken into the four things every
-single-purpose Dockerfile does. Yours will follow the same shape.
+## Background
+
+A container is a sealed box with everything your code needs: the system libraries, the language, your package versions and your script. Hand it to a collaborator, a cluster or an AI agent and the work runs the way it did on your laptop.
+
+**The rule: one container, one job.** A container that does QC *and* differential expression *and* plotting is hard to test and hard to fit into a workflow. A container that does QC is one brick you can snap together with Nextflow.
+
+> **Note for Podman users.** The Lifebit platform runs containers with [Podman](https://podman.io/), which reads the same Dockerfile. In the `docker build` and `docker run` commands, you can type `podman` instead of `docker`. Podman may need a registry prefix in front of a short image name, such as `docker.io/library/`.
+
+### The anatomy of a single-purpose Dockerfile
+
+Every single-purpose Dockerfile does four things. This is the scanpy-qc one:
 
 ```dockerfile
 # 1. Pick a small, well-known base.
@@ -83,25 +72,14 @@ RUN chmod +x /opt/scanpy_qc.py
 ENTRYPOINT ["python", "/opt/scanpy_qc.py"]
 ```
 
-That's it. Four sections, four reasons:
+1. **Base image.** Pick a `-slim` Python image or a Bioconductor image for R. Avoid `latest`; pin the version.
+2. **Pinned installs.** Pin every version, and use `--no-cache-dir` to keep the image small.
+3. **One entry-point script.** If you want two, you have two containers.
+4. **`ENTRYPOINT`.** Running the image with no arguments gives the real tool, with `--help` (see [reusable CLIs](../reusable-clis/README.md)).
 
-1. **Base image.** Pick `*-slim` Python or a Bioconductor image for R.
-   Avoid `latest` — pin the major version.
-2. **Pinned installs.** Every version pinned, `--no-cache-dir` so the
-   image stays small. If a package floats, your container is no longer
-   reproducible.
-3. **One entry-point script.** *One.* If you find yourself wanting two,
-   you have two containers.
-4. **`ENTRYPOINT`.** When someone runs your image with no arguments,
-   they get the actual tool — with `--help` if you wrote it that way
-   (see [Reusable CLIs](../reusable-clis/index.md)).
+### Install Docker
 
-## Install Docker
-
-Docker is only for building and testing on your own machine. When you push
-to GitHub, the GitHub Actions job builds and pushes the image for you (see
-[Continuous integration](../continuous-integration/index.md)), so you can skip
-Docker Desktop if you do not have admin rights.
+Docker is only for building and testing on your own machine. When you push to GitHub, a GitHub Actions job can build and push the image for you (see [continuous integration](../continuous-integration/README.md)), so you can skip Docker Desktop if you do not have admin rights.
 
 ::::{tab-set}
 
@@ -137,18 +115,16 @@ docker --version
 
 ::::
 
-## A first build
-
-In Git Bash or your terminal, with Docker Desktop running:
+### A first build
 
 ```bash
 # Move into the directory that has the Dockerfile.
-cd /path/to/containers/scanpy-qc
+cd /path/to/container/scanpy-qc
 
 # Build. Tag with the version, not just `latest`.
 docker build -t scanpy-qc:1.0.0 .
 
-# Smoke test: just run it. With no arguments you should see --help.
+# Smoke test: with no arguments you should see --help.
 docker run --rm scanpy-qc:1.0.0 --help
 
 # Real run: mount your data, pass real arguments.
@@ -159,95 +135,38 @@ docker run --rm \
     --output /data/qc.h5ad
 ```
 
-Two habits to form right now:
+> **Check:** The Dockerfile in the repository is `container/scanpy-qc/Dockerfile` with its files in `context/`. This page used to say `containers/scanpy-qc`. Is the build command run from `container/scanpy-qc` or from `container/scanpy-qc/context`?
 
-- **Always tag.** Never push `:latest` without also pushing `:1.0.0` (or
-  whatever your version is). Six months from now you will need the
-  exact image that produced a specific result.
-- **Mount data, don't `COPY` it.** Data lives outside the image. The
-  image only knows how to *process* data; it doesn't *carry* data.
+Two habits to form now. **Always tag**: never push `:latest` without also pushing a version such as `:1.0.0`. **Mount data, do not `COPY` it**: the image processes data; it does not carry it.
 
-## Pushing to a registry
+### Pushing to a registry
 
-You publish a container so other people (and other clusters, and AI
-agents) can pull it. The most natural place for NIH-NLM work is
-**GitHub Container Registry (GHCR)** because it lives next to the repo
-that built the image.
+A registry stores images so others can pull them. For this work the natural place is GitHub Container Registry (GHCR), next to the repository.
 
 ```bash
-# Log in once (uses your GitHub Personal Access Token with `write:packages`).
+# Log in once (uses your GitHub personal access token with `write:packages`).
 echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
 
-# Tag for GHCR.
+# Tag for GHCR, then push.
 docker tag scanpy-qc:1.0.0 ghcr.io/adeslatt/scanpy-qc:1.0.0
-
-# Push.
 docker push ghcr.io/adeslatt/scanpy-qc:1.0.0
 ```
 
-The book companion's
-[`.github/workflows/docker-publish.yml`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/.github/workflows)
-pattern automates this: every push to `main` builds the image, tags it
-with both `:latest` and `:<git-sha>`, and pushes both to GHCR. Steal
-that pattern.
+The book companion's [`.github/workflows`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/.github/workflows) folder automates this: every push to `main` builds the image, tags it `:latest` and with the git hash, and pushes both.
 
-## The smell test for "too much job"
+### The smell test for "too much job"
 
-You have too much in one container if any of these are true:
+Split the container if any of these is true: the Dockerfile is over about 50 lines; the image installs Python *and* R *and* Bioconductor; the entry script has more than one subcommand that takes half a page of arguments; or you add `if mode == 'qc'` branches.
 
-- The Dockerfile is over ~50 lines.
-- The image installs both Python *and* R *and* Bioconductor.
-- The entry-point script has more than one subcommand that takes more
-  than half a page of arguments.
-- You catch yourself adding `if mode == 'qc'` versus `if mode == 'de'`
-  branches in the entry script.
+### Apple Silicon and x86_64
 
-If any of those are true, split. The Nextflow workflow you'll build in
-the next lesson will be much happier with two single-purpose
-containers than with one omnibus container.
+If you build on an M-series Mac and a collaborator runs on AWS x86, either build a multi-arch image (`docker buildx build --platform linux/amd64,linux/arm64 ...`) or force the platform at run time (`docker run --platform linux/amd64 ...`, slower but it works).
 
-## Containers on Apple Silicon vs. x86_64
+### Further reading
 
-If you build on an M-series Mac and your collaborator runs on AWS x86,
-you need to either:
-
-- Build a multi-arch image: `docker buildx build --platform
-  linux/amd64,linux/arm64 ...`, or
-- Force the platform on the run side: `docker run --platform
-  linux/amd64 ...` (slower, but works).
-
-The book companion's containers are built multi-arch precisely for this
-reason — `nsforest` and `scanpy-qc` both run on Apple-Silicon laptops
-*and* on AWS instances.
-
-## What you'll have at the end
-
-A single-purpose `Dockerfile`, a built image tagged with a real version,
-a pushed image at a registry your collaborator can pull from, and a
-smoke-test command you can paste into any README. Once you have that,
-[Nextflow](../nextflow-workflows/index.md) becomes trivial — it's just wiring boxes
-together.
-
-## In-depth walkthrough
-
-- [`building-dockerfiles.md`](building-dockerfiles.md) —
-  build two real single-purpose images end-to-end: `fastqc` and `multiqc`.
-  The NICHD Kids First / INCLUDE course walks through both step by step; the
-  finished images become the two pipeline steps in the
-  [`multiqc-workflow`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md) case
-  study.
-
-## Further reading
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [Docker documentation](https://docs.docker.com/)
-- [Dockerfile reference](https://docs.docker.com/reference/dockerfile/) — every instruction
-- [Open Container Initiative](https://opencontainers.org/) — the spec containers implement
-- [BioContainers](https://biocontainers.pro/) — pre-built bioinformatics container catalog
-- [hadolint](https://github.com/hadolint/hadolint) — Dockerfile linter
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
+- [Docker documentation](https://docs.docker.com/) and the [Dockerfile reference](https://docs.docker.com/reference/dockerfile/)
+- [Open Container Initiative](https://opencontainers.org/)
+- [BioContainers](https://biocontainers.pro/), a catalogue of ready-made bioinformatics containers
+- [hadolint](https://github.com/hadolint/hadolint), a Dockerfile linter
 - [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-
-
-## Where to next
-
-→ [Nextflow modules](../nextflow-modules/index.md) — wrap each CLI verb as a `.nf` module.

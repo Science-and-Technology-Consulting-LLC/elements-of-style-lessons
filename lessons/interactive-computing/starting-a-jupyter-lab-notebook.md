@@ -1,108 +1,92 @@
 # Starting a JupyterLab notebook
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-1-reasoning/starting-a-jupyter-lab-notebook/)) — woven into
-the [interactive-computing](index.md) lesson.*
+You will start [JupyterLab](https://jupyterlab.readthedocs.io/) on your laptop and learn what its screen shows. This matters because every later lesson runs inside it.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`starting-a-jupyter-lab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Learn what JupyterLab is.
+- Start it from a terminal.
+- Recognise the file browser, the Launcher and the menu bar.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- The `eos` conda environment, from [conda-environments](../conda-environments/README.md).
+- A web browser such as [Chrome](https://www.google.com/chrome/).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`starting-a-jupyter-lab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. Know what JupyterLab is
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+Before you can *run* a notebook you need one to run. **JupyterLab** is a web page that lets you open notebooks, files and terminals side by side. It runs on a computer (yours, or a Lifebit server) and shows up in your browser.
 
+You will start it in one of two places, described in the next two steps.
 
-## Overview
+**What you should see:** nothing. This step is reading only.
 
-Before you can *run* a notebook you need one to run. This walkthrough covers
-the two places you're likely to open JupyterLab and the one-time setup
-each of them needs.
+### Step 2. On your laptop: start JupyterLab
 
-## On your laptop
-
-Once you've completed [conda-environments](../conda-environments/index.md)
-and activated the `eos` env, launch JupyterLab from a terminal:
-
-In a terminal (JupyterLab runs until you stop it, so it is not a notebook cell):
+Finish the [conda-environments lesson](../conda-environments/README.md) first. Then, in a **terminal** (not in a notebook cell), type these two commands, one per line, and press `Enter` after each. The first one turns on the `eos` environment. The second one starts JupyterLab. JupyterLab keeps running until you stop it, so it cannot run as a notebook cell.
 
 ```text
 conda activate eos
 jupyter lab
 ```
 
-JupyterLab opens in your default browser. If it doesn't, look at the
-terminal output for a URL of the form `http://localhost:8888/lab?token=…` and
-paste it into a browser.
+**What you should see:** your terminal prompt starts with `(eos)`. JupyterLab opens in your default browser. In the terminal you see log lines that include a web address like `http://localhost:8888/lab?token=...`. If no browser opens, copy that address into a browser yourself. To stop JupyterLab later, press `Ctrl-C` twice in that terminal.
 
-## On Lifebit
+> **Picture to add:** the terminal after `jupyter lab`, with the localhost address line (save as assets/starting-a-jupyter-lab-notebook-step-2.png)
 
-Lifebit's notebook servers ship JupyterLab pre-installed. From the workspace
-dashboard, click **Notebook → Launch** and pick a compute size. The browser
-tab opens straight into JupyterLab; the terminal is available under
-*File → New → Terminal*.
+### Step 3. Optional: start JupyterLab on Lifebit instead
 
-## What "started" looks like
+Skip this step if you started JupyterLab on your laptop in Step 2. It needs a Lifebit account: see [Other places to run these lessons](../introduction/other-places-to-run.md).
+
+[Lifebit](https://lifebit.ai/)'s notebook servers have JupyterLab already installed.
+
+1. From the workspace dashboard, click **Notebook**, then **Launch**.
+2. Pick a compute size.
+3. Wait for the browser tab to open. It opens straight into JupyterLab.
+
+The terminal is under **File**, **New**, **Terminal**.
+
+> **Picture to add:** the Lifebit dashboard with the Notebook and Launch buttons (save as assets/starting-a-jupyter-lab-notebook-step-3.png)
+
+**What you should see:** a new browser tab with JupyterLab in it.
+
+### Step 4. Recognise the screen
 
 However you got here, you now see:
 
 - A **file browser** on the left.
-- A **launcher panel** in the centre showing tiles: *Python 3*, *R* (if
-  you registered IRkernel — see [conda-environments](../conda-environments/index.md)),
-  *Terminal*, *Text File*.
-- A **menu bar** across the top: *File, Edit, View, Run, Kernel, Tabs, …*.
+- A **Launcher** in the middle, with tiles: *Python 3*, *R* (if you registered IRkernel, see [conda-environments](../conda-environments/README.md)), *Terminal* and *Text File*.
+- A **menu bar** across the top: *File, Edit, View, Run, Kernel, Tabs* and more.
 
-## Where to next
+> **Picture to add:** JupyterLab with the file browser, the Launcher tiles and the menu bar labelled (save as assets/starting-a-jupyter-lab-notebook-step-4.png)
 
-→ [`running-a-jupyterlab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/running-a-jupyterlab-notebook.ipynb) —
-clone your first notebook repository and run its cells end-to-end.
+**What you should see:** all three parts above. If the *R* tile is missing, see below.
 
-→ Back to the [interactive-computing lesson](index.md) for the fuller
-tour of `.ipynb` cell types and the *Restart-and-Run-All* discipline.
+## If something goes wrong
+
+- **`conda: command not found`.** Conda is not installed, or you opened this terminal before installing it. Close it, open a new one, and see [conda-environments](../conda-environments/README.md).
+- **`jupyter: command not found`.** The `eos` environment is not active. Run `conda activate eos` first.
+- **The browser does not open.** Copy the `http://localhost:8888/lab?token=...` address from the terminal into your browser.
+- **There is no R tile.** R is not registered with Jupyter. Follow the one-time steps in [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
+
+## Next
+
+[running-a-jupyterlab-notebook.md](running-a-jupyterlab-notebook.md): clone your first notebook project and run its cells from top to bottom. For the fuller tour, go back to the [interactive-computing lesson](README.md).

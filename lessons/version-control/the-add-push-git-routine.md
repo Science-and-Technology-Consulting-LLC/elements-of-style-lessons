@@ -1,95 +1,92 @@
 # The add–commit–push routine
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-2-code-versioning/the-add-push-git-routine/)) — woven into
-the [version-control](index.md) lesson.*
+You will make one change to a file and send it to GitHub, then offer it to the original project. This is the loop you will repeat every working day.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`the-add-push-git-routine.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/the-add-push-git-routine.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Copy a project to your computer.
+- Edit a file and check what changed with `git status`.
+- Save the change with `git add`, `git commit` and `git push`.
+- Open a pull request on GitHub.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A free [GitHub account](https://github.com/signup), with Git told who you are: [why-git-and-setup.md](why-git-and-setup.md).
+- The GitHub CLI signed in: [github-authenticate.md](github-authenticate.md).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`the-add-push-git-routine.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/the-add-push-git-routine.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. Go to your practice folder
+
+You keep practice work in `~/eos-practice`, away from the course files. `~` means your home folder. `mkdir -p` makes the folder if it is not there yet.
 
 ```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
+mkdir -p ~/eos-practice
+cd ~/eos-practice
+pwd
 ```
 
+**What you should see:** one line ending in `eos-practice`.
 
-## Setup
+### Step 2. Make a folder with your GitHub user name
 
-Make a directory that carries your GitHub username — this is *your* place in
-the shared workspace so the class doesn't collide file-names:
+This is your own place, so file names never collide with another student's. **Edit the next cell first.** Replace `<your-github-username>`, including the angle brackets, with your real GitHub user name. Run it as written and the shell reports a syntax error.
 
 ```bash
 mkdir <your-github-username>
 cd <your-github-username>
 ```
 
-Clone your fork of the demo repository. If you already forked
-[NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook)
-(see [`keeping-your-repository-fork-in-sync.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb)),
-replace `<your-github-username>` in the URL below with your own:
+**What you should see:** nothing, if it worked. `pwd` should now end with your user name.
+
+### Step 3. Fork the practice project
+
+A **fork** is your own copy of someone else's project on GitHub. You can change your fork freely. You do this in the browser.
+
+1. Open [NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook).
+2. Click **Fork** at the top right.
+3. Choose your own account as the owner, then click **Create fork**.
+
+> **Picture to add:** the Fork button at the top right of the repository page (save as assets/the-add-push-git-routine-step-3.png)
+
+**What you should see:** the page changes to `<your-github-username>/exampleVolcanoPlotNotebook`, with a line "forked from NIH-NICHD/exampleVolcanoPlotNotebook". There is more about forks in [keeping-your-repository-fork-in-sync.md](keeping-your-repository-fork-in-sync.md).
+
+### Step 4. Clone your fork
+
+To **clone** is to copy a GitHub project onto your computer. **Edit the next cell first**: replace `<your-github-username>` in the web address with your own.
 
 ```bash
 git clone https://github.com/<your-github-username>/exampleVolcanoPlotNotebook.git
 cd exampleVolcanoPlotNotebook
 ```
 
-## `git status` — the command you'll use every day
+**What you should see:** lines such as `Cloning into 'exampleVolcanoPlotNotebook'...` and `Receiving objects: 100%`, ending with `done.`. List the files with `ls` if you like: you should find `README.md`, `Reading-data-and-plotting-in-R.ipynb` and `install_dependencies.R`.
 
-`git status` tells you what has changed in your local copy since the last
-commit. Nothing is more useful.
+### Step 5. Run `git status`
+
+`git status` tells you what changed in your local copy since the last commit (the last saved snapshot). You will use it every day.
 
 ```bash
 git status
 ```
 
-Expected output when nothing has changed:
+**What you should see:** when nothing has changed:
 
 ```
 On branch main
@@ -98,29 +95,36 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-## Edit a file
+### Step 6. Edit a file
 
-Open `README.md` in nano (or any editor) and add a line like:
+Add one line to `README.md`: `Learn about Zenodo here: https://zenodo.org`. Use one of these two ways.
 
+- **In a terminal:** run `nano README.md`, type the line, press `Ctrl-O` then `Enter` to save, and `Ctrl-X` to exit.
+- **In a notebook:** run the next cell. It adds the same line to the end of the file.
+
+```bash
+echo "Learn about Zenodo here: https://zenodo.org" >> README.md
 ```
-Learn about Zenodo here: https://zenodo.org
-```
 
-Save (`CTRL-O`, `ENTER`) and exit (`CTRL-X`).
-
-Confirm the file has the change:
+Check that the file has the change. `head` shows the top of the file. `tail` shows the end, where the notebook cell put the new line.
 
 ```bash
 head README.md
 ```
 
-## Inspect changes with `git status`
+```bash
+tail -n 3 README.md
+```
+
+**What you should see:** the line `Learn about Zenodo here: https://zenodo.org` in one of the two outputs, depending on where you put it.
+
+### Step 7. Run `git status` again
 
 ```bash
 git status
 ```
 
-You'll now see:
+**What you should see:** Git now lists the file as changed:
 
 ```
 On branch main
@@ -133,64 +137,91 @@ Changes not staged for commit:
 no changes added to commit (use "git add" to update)
 ```
 
-## `git add` — stage the change
+### Step 8. Stage the change with `git add`
 
-`add` moves the change from "unstaged" to "staged" — a candidate for the
-next commit:
+`git add` moves the change from "unstaged" to "staged", which means it is chosen for the next commit.
 
 ```bash
 git add README.md
 ```
 
-## `git commit` — save it locally
+**What you should see:** nothing. Run `git status` and the file now appears under "Changes to be committed".
 
-A **commit message** is a note-to-future-self about *what* changed and
-*why*. Present tense, short, specific.
+### Step 9. Save it locally with `git commit`
+
+A **commit message** is a note to your future self about what changed and why. Write it in the present tense, short and specific.
 
 ```bash
 git commit -m 'added Zenodo pointer to README'
 ```
 
-## `git push` — send it to GitHub
+**What you should see:** a line with a short code and your message, then a count of changes:
+
+```
+[main 1a2b3c4] added Zenodo pointer to README
+ 1 file changed, 1 insertion(+)
+```
+
+(The short code will differ.)
+
+### Step 10. Send it to GitHub with `git push`
+
+`git push` uploads your commits from your computer to your fork on GitHub. It uses the sign-in you made in [github-authenticate.md](github-authenticate.md).
 
 ```bash
 git push
 ```
 
-## `git status` — confirm all is quiet
+**What you should see:** lines about counting and writing objects, ending with `main -> main`. Refresh your fork's page on GitHub: it shows your commit message next to `README.md`.
+
+### Step 11. Confirm all is quiet
 
 ```bash
 git status
 ```
 
-## The pull request
+**What you should see:**
 
-Once the change is on your fork, open the GitHub web UI:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
 
-1. Navigate to your fork's page.
-2. GitHub shows a banner: *"This branch is 1 commit ahead of upstream"*.
-3. Click **Contribute → Open pull request**.
-4. Write a short PR description.
-5. Submit.
+nothing to commit, working tree clean
+```
 
-The upstream maintainer now sees your proposed change and can accept it,
-comment, or request changes.
+### Step 12. Open a pull request
+
+A **pull request** (PR) asks the owner of the original project to take your change. You do this in the browser.
+
+1. Open your fork's page on GitHub.
+2. GitHub shows a banner that says your branch is "1 commit ahead of" the original.
+3. Click **Contribute**, then **Open pull request**.
+4. Write a short description of what you changed.
+5. Click **Create pull request**.
+
+> **Picture to add:** the Contribute menu with Open pull request, on your fork's page (save as assets/the-add-push-git-routine-step-12.png)
+
+**What you should see:** a new page for your pull request. The original owner can now accept it, comment, or ask for changes.
 
 ## Recap
 
-You just walked the whole loop:
+You walked the whole loop:
 
-- ✅ Cloned a fork.
-- ✅ Edited a file.
-- ✅ Inspected with `git status`.
-- ✅ Staged with `git add`.
-- ✅ Recorded a versioned snapshot with `git commit`.
-- ✅ Sent it up with `git push`.
-- ✅ Offered it upstream as a pull request.
+- Cloned a fork.
+- Edited a file.
+- Inspected with `git status`.
+- Staged with `git add`.
+- Saved a snapshot with `git commit`.
+- Sent it up with `git push`.
+- Offered it to the original project as a pull request.
 
-Welcome to the world of documenting your work with GitHub.
+## If something goes wrong
 
-## Where to next
+- **`Author identity unknown` when you commit.** Git does not know your name yet. Set it as in [why-git-and-setup.md](why-git-and-setup.md) (Step 5), then commit again.
+- **`Permission denied` or "could not read Username" when you push.** Either you cloned the original project instead of your fork, or you are not signed in. Check the clone address has your user name in it, and run `gh auth status`.
+- **`syntax error near unexpected token` in Steps 4 or 6.** You left `<your-github-username>` as it was. Replace it with your user name, angle brackets included.
+- **`destination path already exists` when you clone.** You already cloned it. Run `cd exampleVolcanoPlotNotebook` instead.
 
-→ [`keeping-your-repository-fork-in-sync.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb) —
-when the upstream repo moves forward, how to catch your fork up.
+## Next
+
+[keeping-your-repository-fork-in-sync.md](keeping-your-repository-fork-in-sync.md): catch your fork up when the original moves ahead.

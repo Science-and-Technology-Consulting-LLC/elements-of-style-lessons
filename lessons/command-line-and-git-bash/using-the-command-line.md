@@ -1,176 +1,172 @@
 # Using the command line
 
-*Adapted from the NICHD Kids First / INCLUDE course
-(https://nih-nichd.github.io/classes/day-1-reasoning/using-the-command-line/) — woven into
-the [command-line-and-git-bash](index.md) lesson.*
+In this walkthrough you type seven commands that move, make, copy, delete and download files. Every tool in the later lessons (`git`, `conda`, `docker`, `nextflow`) runs from the same terminal, so this is the skill you will use most.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Look around a folder and find out where you are.
+- Create, copy and delete a file, and create and delete a folder.
+- Download a real data file from the web.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A terminal with Bash: *Terminal* on a Mac or Linux, [Git Bash](https://git-scm.com/download/win) on Windows. The [introduction lesson](../introduction/lets-dive-in.md) installs both.
+- The `eos` conda environment from that lesson, which provides `wget` and JupyterLab. See [Conda environments](../conda-environments/README.md).
+- An internet connection, for the last step.
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## The steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. Make a practice folder
+
+The next steps create and delete files. Doing that in a folder of its own keeps the lesson files safe. `mkdir -p practice` makes a folder called `practice`. `cd practice` moves you into it. You meet both commands again below.
 
 ```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
+mkdir -p practice
+cd practice
+pwd
 ```
 
+**What you should see:** one line, a path that ends in `/command-line-and-git-bash/practice`. Every later cell now runs inside that folder.
 
-## Why this notebook exists
+### Step 2. `ls` lists the files in a folder
 
-A terminal window is the text interface where you type instructions to your
-computer instead of clicking icons. Every workflow tool in the rest of this
-curriculum — `git`, `conda`, `docker`, `nextflow` — is driven from the terminal.
-Getting comfortable here is the single largest one-time investment you can make.
-
-This walkthrough is exactly seven commands. Each one shows up in every
-subsequent lesson.
-
-:::{tip}
-**ExplainShell** — when you meet an unfamiliar command in the wild, paste it
-into [explainshell.com](https://explainshell.com) and it will annotate every
-flag against the official man page.
-:::
-
-## 1. `ls` — list files in the current folder
-
-`ls -l` lists everything in your current directory in long form (permissions,
-owner, size, modification time).
+*Folder* and *directory* mean the same thing. `ls` lists what is in the current folder. The `-l` option gives the long form: permissions, owner, size and date. An *option* (or *flag*) changes how a command works.
 
 ```bash
 ls -l
 ```
 
-## 2. `pwd` — print working directory
+**What you should see:** nothing, or the line `total 0`. Your practice folder is empty.
 
-`pwd` prints the absolute path of the folder you are currently in.
+You can paste any command you do not understand into [ExplainShell](https://explainshell.com/). It explains each part.
 
-> An *absolute* path starts from the filesystem root (e.g. `/home/annie/work`).
-> A *relative* path starts from wherever you are now (e.g. `../data`).
-> See [Absolute vs. relative paths](https://linuxfoundation.org/blog/classic-sysadmin-absolute-path-vs-relative-path-in-linux-unix/)
-> for the crisp explanation.
+### Step 3. `pwd` prints your location
+
+`pwd` stands for *print working directory*. It shows the full address of the folder you are in. A path that starts at the top of the disk (like `/home/annie/work`) is an *absolute* path. A path that starts from where you are now (like `../data`) is a *relative* path. [This page](https://linuxfoundation.org/blog/classic-sysadmin-absolute-path-vs-relative-path-in-linux-unix/) explains the difference.
 
 ```bash
 pwd
 ```
 
-## 3. `cp` — copy a file
+**What you should see:** the same path as in Step 1, ending in `/practice`.
 
-First, create a small file using `echo` with the `>` redirect operator, which
-writes the string on the left into the file on the right:
+### Step 4. `echo` and `>` create a file
+
+`echo` prints text. The `>` sign sends that text into a file instead of the screen. If the file does not exist, it is created. If it exists, it is replaced. Here the new file is named `README.md`.
 
 ```bash
 echo 'I am the header of your first README.md' > README.md
 ls -l README.md
 ```
 
-Now make a copy:
+**What you should see:** one line that ends with `README.md`. The size is 40 bytes:
+
+```text
+-rw-r--r--  1 you  staff  40 Nov 13 15:33 README.md
+```
+
+Your name and the date will differ.
+
+### Step 5. `cp` copies a file
+
+`cp` takes the file to copy, then the name for the copy.
 
 ```bash
 cp README.md duplicated_README.md
 ls -l README.md duplicated_README.md
 ```
 
-View a file's contents with `more` or `less` in a terminal; they page, and `q` quits.
-`head` prints the first lines and also works in a notebook:
+**What you should see:** two lines, both 40 bytes, one for `README.md` and one for `duplicated_README.md`.
+
+### Step 6. `head` shows the start of a file
+
+`head` prints the first lines of a file. To read a long file one page at a time in a terminal, use `less` and press `q` to quit. `less` does not work inside a notebook, but `head` does.
 
 ```bash
 head README.md
 ```
 
-## 4. `rm` — delete a file
+**What you should see:**
 
-Removes the named file. There is no trash bin in the terminal — the file is gone.
+```text
+I am the header of your first README.md
+```
+
+### Step 7. `rm` deletes a file
+
+`rm` removes the file you name. The terminal has no trash bin. The file is gone for good, so check the name before you press Return.
 
 ```bash
 rm duplicated_README.md
 ls -l
 ```
 
-## 5. `mkdir` — create a new directory (folder)
+**What you should see:** only `README.md` is left. The copy is gone.
 
-*Directory* and *folder* mean the same thing.
+### Step 8. `mkdir` makes a folder
+
+`mkdir` stands for *make directory*.
 
 ```bash
 mkdir new_folder
 ls -l
 ```
 
-## 6. `rm -r` — delete a folder
+**What you should see:** a new line for `new_folder`. It starts with `d`, which means directory:
 
-The `-r` flag means *recursive* — remove the folder and everything inside it.
+```text
+drwxr-xr-x  2 you  staff  64 Nov 13 15:33 new_folder
+```
+
+### Step 9. `rm -r` deletes a folder
+
+The `-r` option means *recursive*. It removes the folder and everything inside it. Use it with care.
 
 ```bash
 rm -r new_folder
 ls -l
 ```
 
-## 7. `wget` — download a file from a link
+**What you should see:** `new_folder` is gone. Only `README.md` is left.
 
-`wget` retrieves a file from a public URL. The example file is on Zenodo; it works
-anywhere:
+### Step 10. `wget` downloads a file
+
+`wget` fetches a file from a web address. This file is a table of results from an RNA-seq experiment (a count of how active each gene is), analysed with DESeq2. It lists genes with *p*-values below 0.05 and a fold change above 1.5. The [interactive computing lesson](../interactive-computing/README.md) uses it again for a volcano plot. The `-q` option keeps `wget` quiet.
 
 ```bash
-wget -q https://zenodo.org/record/4302133/files/deseq2_5k.csv
-ls -l deseq2_5k.csv
+ls -l
 ```
 
-The file contains DESeq2 results from an RNA-seq experiment
-(*p*-values < 0.05, fold difference > 1.5). It reappears in the
-[interactive-computing](../interactive-computing/index.md) lesson as the
-input for a volcano-plot exercise.
+**What you should see:** a line for `deseq2_5k.csv`, about 580,000 bytes (about 570 KB):
 
-## Where to next
+```text
+-rw-r--r--  1 you  staff  580861 Nov 13 15:33 deseq2_5k.csv
+```
 
-You now have `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r`, and `wget` — the seven
-commands you need to navigate a working directory, create and destroy files,
-and pull data from the web.
+You have now used `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r` and `wget`. The folder `practice` stays on your disk. When you are finished, you can delete it from a terminal with `rm -r practice`.
 
-→ Continue with the [command-line-and-git-bash lesson](index.md) proper
-for the git-focused ten-command tour.
+## If something goes wrong
 
-→ Then on to [version-control](../version-control/index.md).
+- **`wget: command not found`.** Neither a Mac nor Git Bash comes with `wget`. The `eos` environment does. Close JupyterLab, run `conda activate eos` in a terminal, start `jupyter lab` again and rerun the cell. As a stopgap, `curl -O https://zenodo.org/record/4302133/files/deseq2_5k.csv` does the same job.
+- **`ls: cannot access` or `No such file`.** You skipped a step, or you are in the wrong folder. Run `pwd` and compare with Step 3. Then run the steps again from the top.
+- **The notebook asks you to choose a kernel.** Choose **Bash**. If it is not listed, repeat the kernel registration in Step 4 of [Let's dive in](../introduction/lets-dive-in.md) with `eos` active, then restart JupyterLab.
+
+## Next
+
+Continue with the [command line lesson](README.md) for the ten-command tour, then [Version control with Git](../version-control/README.md).

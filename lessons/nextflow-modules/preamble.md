@@ -1,90 +1,87 @@
-# Preamble — publishing your containers before you build the workflow
+# Preamble: publish your containers before you build the workflow
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-4-workflow-development/preamble/)) — woven into
-the [nextflow-modules](index.md) lesson.*
+You will tag your two images with a full registry address and push them to GitHub's container registry, because a workflow can only use an image that it can download.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`preamble.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/preamble.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Rebuild the `fastqc` and `multiqc` images.
+- Give each image a full, versioned address.
+- Log in to the registry and push both images.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- The two images from [building Dockerfiles](../containers/building-dockerfiles.md): `fastqc` and `multiqc`, in the folders `~/fastqc-docker` and `~/multiqc-docker`.
+- [Docker Desktop](https://docs.docker.com/get-started/get-docker/), installed and running. See the [containers lesson](../containers/README.md).
+- A [GitHub account](https://github.com/signup) and a personal access token (a password that only works for chosen tasks) with the `write:packages` permission. See [GitHub's guide to the container registry](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
+- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
+
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
+
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`preamble.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/preamble.ipynb) and run each cell in order, top to bottom.
+
+## Check your setup
+
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Step 1: Choose a registry
+
+*Why:* a **registry** is a website that stores container images so that other computers can download them. There are two common choices.
+
+| Registry | When to use it | Sign-in |
+|---|---|---|
+| **[GitHub Container Registry (GHCR)](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry)** | Default for open work. Free, unlimited public images, and it sits next to your code. | Personal access token with `write:packages` |
+| **[Docker Hub](https://hub.docker.com/)** | The older default. The free tier now limits how often others can pull. | Docker Hub access token |
+
+The [containers lesson](../containers/README.md) uses **GHCR**. Pick one per repository and stay with it.
+
+## Step 2: Go to your home folder
+
+*Why:* the next cell uses the folder names `fastqc-docker` and `multiqc-docker`, so it must start in the folder that holds both. That is the home folder if you followed [building Dockerfiles](../containers/building-dockerfiles.md).
+
+Run the next cell.
 
 ```bash
-pip install bash_kernel
-python -m bash_kernel.install
+cd ~
+ls
 ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+**What you should see:** a list that includes `fastqc-docker` and `multiqc-docker`. If either is missing, go back to [building Dockerfiles](../containers/building-dockerfiles.md).
 
-### Every time — verify the tools this walkthrough uses
+## Step 3: Rebuild the images (recap)
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+*Why:* this makes sure both images exist and are current. Because Docker remembers each step, the rebuild is fast if nothing changed.
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+> **Note for Podman users.** The Lifebit platform runs containers with [Podman](https://podman.io/), which reads the same Dockerfile. In the `docker build` and `docker run` commands below, you can type `podman` instead of `docker`. Podman may need a registry prefix in front of a short image name, such as `docker.io/library/`.
 
-Run them all at once:
-
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s\n" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING\n" "$cmd"
-  fi
-done
-```
-
-
-## Two registries you might publish to
-
-| Registry | When to use it | Auth |
-|---|---|---|
-| **GitHub Container Registry (GHCR)** | Default for open work. Free, unlimited public images, natural home next to the repo. | PAT with `write:packages` |
-| **Docker Hub** | Legacy default; free tier now rate-limits pulls. | Docker Hub PAT |
-
-The [containers lesson](../containers/index.md) uses **GHCR**.
-Pick one per repo, be consistent.
-
-## Prerequisites
-
-- Two built images from
-  [building-dockerfiles.ipynb](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb):
-  `fastqc` and `multiqc`.
-- A GitHub personal access token with `write:packages`.
-
-## Build the images (recap)
+Run the next cell.
 
 ```bash
 cd fastqc-docker && docker build -t fastqc .
 cd ../multiqc-docker && docker build -t multiqc .
 ```
 
-## Tag, log in and push to GHCR
+**What you should see:** for each image, build lines ending without `ERROR`. Most steps say `CACHED` if you built the images before.
 
-Each image gets a *fully qualified* tag: `<registry>/<user>/<image>:<version>`.
+## Step 4: Tag, log in and push to GHCR
+
+*Why:* each image needs a *fully qualified* tag: `<registry>/<user>/<image>:<version>`. A **tag** is the name Docker uses for an image. Including a version means you can always get back the exact image that produced a result.
+
+The cell below does four things: it tags both images, logs in, and pushes both. Before you run it:
+
+1. Set two variables in your terminal, or in a cell above: `GHCR_USER` (your GitHub user name) and `GHCR_TOKEN` (your token). For example `export GHCR_USER=your-username`.
+2. The cell uses the organisation name `science-and-technology-consulting-llc`. If you are not a member of that organisation, replace it with your own lowercase GitHub user name in the four `ghcr.io/...` addresses.
+
+> **Check:** Students cannot push to `ghcr.io/science-and-technology-consulting-llc/`. Should this cell use the student's own GitHub user name instead?
+
+Run the next cell.
 
 ```bash
 docker tag fastqc  ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9
@@ -96,14 +93,20 @@ docker push ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9
 docker push ghcr.io/science-and-technology-consulting-llc/multiqc:v1.0.0
 ```
 
-On success the registry URL becomes the *portable address* your
-Nextflow module (and any CWL workflow) will reference in its `container`
-directive.
+**What you should see:** `docker tag` prints nothing. The login prints `Login Succeeded`. Each push prints `The push refers to repository [ghcr.io/...]`, then one line per layer ending in `Pushed` (or `Layer already exists`), and a final line such as `v0.11.9: digest: sha256:... size: ...`.
 
-## Where to next
+> **Picture to add:** the GitHub page "Packages" of your account showing the pushed fastqc and multiqc images (save as assets/preamble-step-4.png)
 
-→ Back to the [nextflow-modules lesson](index.md) — wrap each of the two
-published images in a `.nf` module.
+New packages on GHCR start **private**. To let a workflow on another computer pull the image without logging in, open the package on GitHub, go to its settings, and change its visibility to **Public**.
 
-→ Then [`building-a-nextflow-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb) —
-compose the modules into a runnable pipeline.
+The registry address is now the *portable address* of your image. Your Nextflow module, and any CWL workflow, names it in a `container` line.
+
+## If something goes wrong
+
+- **`denied: permission_denied` on push.** The address names an organisation you are not in. Use your own lowercase GitHub user name in the address. Also check that your token has the `write:packages` permission.
+- **`unauthorized`, or another error at the login line.** The user name or token is wrong or empty. Run `echo "$GHCR_USER"` to check the user name, set both variables again, and rerun the cell.
+- **`cd: fastqc-docker: No such file or directory`.** You are not in the folder that holds the two image folders. Run Step 2 again.
+
+## Next
+
+Back to the [nextflow-modules lesson](README.md): wrap each of the two published images in a `.nf` module. After that, [building a Nextflow workflow](../nextflow-workflows/building-a-nextflow-workflow.md) joins the modules into a runnable pipeline.

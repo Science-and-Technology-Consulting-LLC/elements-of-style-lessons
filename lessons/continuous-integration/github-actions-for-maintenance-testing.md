@@ -1,89 +1,57 @@
 # GitHub Actions for maintenance testing
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-5-workflow-execution/GitHubActionsForMaintenanceTesting/)) — woven into
-the [continuous-integration](index.md) lesson.*
+You will read three real GitHub Actions workflows that keep a research pipeline working over time. This matters because a pipeline that quietly stopped running two months ago is a paper you cannot reproduce.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+*Part of the [continuous-integration](README.md) lesson. Do [add a first CI job](add-a-first-ci-job.md) first if you have never written a workflow.*
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`github-actions-for-maintenance-testing.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/github-actions-for-maintenance-testing.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+## What you will do
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+- Learn what *maintenance testing* is: re-running a small test of your pipeline on every change.
+- Read a real test workflow from a published pipeline.
+- Read the test workflow used in this repository.
+- Read the workflow that builds and publishes Docker images automatically.
 
-## Set up the environment
+## What you need
 
-### One time — register the Bash kernel
+- Nothing to install to read the workflows. To use them on your own pipeline you need a [GitHub account](https://github.com/signup) and a repository.
+- A [Nextflow](https://www.nextflow.io/) pipeline with a small test dataset, if you want to adapt the examples. See [nextflow-workflows](../nextflow-workflows/README.md).
+- Containers, for the last workflow. See [containers](../containers/README.md).
+- [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+## Before you begin
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+1. **Get the code.** In a terminal, run:
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### Every time — verify the tools this walkthrough uses
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`github-actions-for-maintenance-testing.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/github-actions-for-maintenance-testing.ipynb) and run each cell in order, top to bottom.
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+## Step 1. Understand why a research repository needs CI
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+Why: *continuous integration* (CI) means a computer re-runs your checks on every change. Software drifts. Packages update, containers are rebuilt and workflow runners change. Automating the question "does this still run?" is how a [Nextflow](https://www.nextflow.io/) pipeline survives six months of that drift.
 
+[GitHub Actions](https://docs.github.com/en/actions) runs your test data on every push, every pull request and every release. It is free for public repositories, runs on GitHub's own computers (*runners*), and gives each job about 8 GB of memory and a small disk. That is enough for a smoke test, not for a full analysis.
 
-## Why CI belongs in a research repo
+The pattern has four parts:
 
-Automating the *"does this still run?"* check is how a Nextflow pipeline
-survives the six-months-later drift of package updates, container
-rebuilds, and CWL runner upgrades. GitHub Actions runs your test
-dataset on every push, every pull request, and every release — for
-free, on GitHub's own runners, with roughly 8 GB of memory and small
-disk (enough for a smoke test, not a full analysis).
+1. Keep a **tiny test dataset** in `data/test/`. Under 20 MB is plenty.
+2. Add a **test profile** in your `nextflow.config` that points at that data. A *profile* is a named set of settings.
+3. Write **one workflow file** at `.github/workflows/test.yml` that runs `nextflow run . -profile test` on every push and pull request.
+4. If it goes red, you know within minutes. Without CI you find out when a reviewer tries to rerun your paper.
 
-## The pattern in one paragraph
+**What you should see:** nothing to run here. You now have the pattern. The next steps show it in real files.
 
-- Keep a **tiny test dataset** in `data/test/` (< 20 MB is plenty).
-- Add a **test profile** in your `nextflow.config` that points at that
-  data.
-- Write **one workflow file** at `.github/workflows/test.yml` that runs
-  `nextflow run . -profile test` on every push and PR.
-- If it goes red, you know within minutes; if you don't run CI, you
-  find out six months later when the paper reviewer tries to rerun it.
+## Step 2. Read a real test workflow
 
-## A real, canonical `.github/workflows/test.yml`
-
-This is the shape used by
-[Sheynkman-Lab/Long-Read-Proteogenomics](https://github.com/Sheynkman-Lab/Long-Read-Proteogenomics)
-and, with minor edits, by nearly every nf-core pipeline.
+Why: this shape is used by [Sheynkman-Lab/Long-Read-Proteogenomics](https://github.com/Sheynkman-Lab/Long-Read-Proteogenomics) and, with small edits, by nearly every [nf-core](https://nf-co.re/) pipeline.
 
 ```yaml
 name: Testing for Long Reads Proteogenomics with SQANTI
@@ -120,22 +88,17 @@ jobs:
             --config conf/test_with_sqanti.config
 ```
 
-Read three things:
+Read three things in it:
 
-1. **`on:`** decides when this runs. Push to `dev`, every PR, every
-   release. Adjust to taste (`branches: [main]` for repos with no `dev`
-   branch).
-2. **`strategy.matrix.nxf_ver`** runs the whole job in parallel across
-   more than one Nextflow version — catches breakage that only shows
-   up on the pinned version *or* only on the latest.
-3. **`nextflow run … --config conf/test_with_sqanti.config`** is the
-   *actual* command. The magic is that this is the same command you'd
-   run on your laptop; CI just wraps it in a fresh Ubuntu VM.
+1. **`on:`** decides when the workflow runs. Here it is a push to `dev`, every pull request and every release. Change `dev` to `main` if your repository has no `dev` branch.
+2. **`strategy.matrix.nxf_ver`** runs the whole job once for each Nextflow version listed. Here that is one pinned old version and the latest. It catches breakage that shows up only on one of them.
+3. **`nextflow run ... --config conf/test_with_sqanti.config`** is the real command. It is the same command you would run on your laptop. CI wraps it in a fresh Ubuntu machine.
 
-## The elements-of-style version — `.github/workflows/ci.yml`
+**What you should see:** you can point to the three lines above in the file. If you can, you can read any test workflow.
 
-For the containers-and-modules pattern used across this repo, the same
-idea in a slightly more modern form:
+## Step 3. Read the version used in this repository
+
+Why: this repository uses a slightly newer form of the same idea. Save it as `.github/workflows/ci.yml` in your own repository to use it.
 
 ```yaml
 name: CI
@@ -166,14 +129,15 @@ jobs:
           nextflow run main-bulk-de.nf -profile test
 ```
 
-Two `uses:` differences from the NICHD example: `actions/checkout@v4`
-(newer) and Nextflow install via `curl` instead of `wget` (both work).
+Two small differences from the step 4 example: `actions/checkout@v4` (a newer version) and Nextflow installed with `curl` instead of `wget`. Both work.
 
-## Automatic deployment — the docker-publish pattern
+**What you should see:** three steps in the job. First it gets your code, then it installs Nextflow, then it runs the pipelines with `-profile test`.
 
-GitHub Actions also serves as *a compiler for Docker images.* Every
-push to `main` builds each `container/<name>/` image, tags it with
-both `:latest` and `:<git-sha>`, and pushes to GHCR:
+> **Picture to add:** the Actions tab of this repository showing a passing CI run (save as assets/github-actions-for-maintenance-testing-step-3.png)
+
+## Step 4. Read the Docker publish workflow
+
+Why: GitHub Actions can also build and publish Docker images. Every push to `main` builds each image in `container/<name>/`, tags it with `:latest` and with the Git commit ID, and uploads it to GHCR (GitHub's container registry).
 
 ```yaml
 name: docker-publish
@@ -212,22 +176,22 @@ jobs:
             ghcr.io/science-and-technology-consulting-llc/${{ matrix.image }}:${{ github.sha }}
 ```
 
-Every module that names `ghcr.io/…/scanpy-qc:latest` in its `container:`
-directive picks up the freshest build automatically.
+Every module that names `ghcr.io/.../scanpy-qc:latest` in its `container:` line picks up the freshest build the next time it runs.
 
-## Recap
+**What you should see:** one `matrix` list of four image names. The job runs once for each name, so one workflow builds four images.
 
-- **CI catches drift before you feel it.** A pipeline that quietly
-  stopped running two months ago is a paper you can't reproduce.
-- **Testing is `nextflow run … -profile test` in a VM.** GitHub gives
-  you the VM.
-- **Docker publish is the same story.** Push to `main` → image at GHCR.
-  Downstream workflows pull the fresh image on their next run.
+## Step 5. Recap
 
-## Where to next
+- **CI catches drift before you feel it.**
+- **Testing is `nextflow run ... -profile test` in a fresh virtual machine.** GitHub provides the machine.
+- **Docker publish is the same idea.** Push to `main` and the image appears at GHCR. Later workflows pull it.
 
-→ Back to the [continuous-integration lesson](index.md) for the
-full theory (green-badge culture, matrix testing, secrets management).
+## If something goes wrong
 
-→ Then [documentation](../documentation/index.md) — every push
-also rebuilds and republishes *this* Sphinx site.
+- **The workflow never runs.** The `on:` section did not match what you did. A push to a branch not listed under `branches:` does nothing. Check the branch name.
+- **A workflow fails with a YAML error.** YAML cares about spaces. Use spaces, never tabs, and keep each level indented the same amount as in the examples.
+- **Docker publish fails with `denied` or `permission`.** The job needs `packages: write` under `permissions:` (as in step 6), and the repository must allow Actions to write packages. See [GitHub's container registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
+
+## Next
+
+[Documentation](../documentation/README.md): every push also rebuilds and republishes the Sphinx site. Or return to the [continuous-integration lesson](README.md).

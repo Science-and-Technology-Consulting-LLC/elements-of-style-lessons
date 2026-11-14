@@ -16,5 +16,5 @@
 :maxdepth: 1
 
 lets-dive-in
-pre-training
+other-places-to-run
 ```

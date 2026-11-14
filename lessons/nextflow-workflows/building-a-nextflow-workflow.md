@@ -1,89 +1,55 @@
-# Building a Nextflow workflow — fastqc → multiqc
+# Building a Nextflow workflow: fastqc then multiqc
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-4-workflow-development/building-a-nextflow-workflow/)) — woven into
-the [nextflow-workflows](index.md) lesson.*
+You will run a two-step pipeline, first FastQC on sequencing files and then MultiQC to combine the results, using [Nextflow](https://www.nextflow.io/docs/latest/), so that the same steps run the same way on any computer.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`building-a-nextflow-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Get the example files and install Nextflow.
+- Learn the five parts of a Nextflow script: parameters, processes, channels, operators and configuration.
+- Write a short Nextflow script and run it on two small test files.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- [Docker Desktop](https://docs.docker.com/get-started/get-docker/), installed and running. See the [containers lesson](../containers/README.md).
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
+- [Nextflow](https://www.nextflow.io/docs/latest/install.html) (Step 2 installs it with conda).
+- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
+- An internet connection. The test files come from [Zenodo](https://zenodo.org/records/7025773), and Docker downloads two small tool images on the first run.
 
-### One time — register the Bash kernel
+You do not need the images from the earlier lessons. The script below uses public images.
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+## Before you begin
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+1. **Get the code.** In a terminal, run:
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### Every time — verify the tools this walkthrough uses
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-a-nextflow-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb) and run each cell in order, top to bottom.
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+## Step 1: Get the example files
+
+*Why:* the example repository holds a small pipeline and test data. First go to your home folder, so that the clone does not land inside the course folder.
+
+Run the next cell.
 
 ```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
+cd ~
+pwd
 ```
 
+**What you should see:** your home folder.
 
-## Prerequisites
+The next cell clones the example repository from GitHub. To **clone** is to copy a repository to your computer.
 
-- Two container images from
-  [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb),
-  published per [`preamble.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/preamble.ipynb).
-- Conda from
-  [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb),
-  active as `eos`.
-- Docker on your PATH (see [containers](../containers/index.md)).
-
-## Clone the NICHD example
-
-You have two equally-valid clone sources:
-
-```text
-# The NICHD teaching fork (unchanged for the course):
-git clone https://github.com/NIH-NICHD/Building-A-Nextflow-Script.git
-
-# The upstream origin (where fixes land first):
-git clone https://github.com/adeslatt/Building-A-Nextflow-Script.git
-```
-
-Either works — the two are typically in sync during the training week.
-The next block clones the upstream origin.
+Run the next cell.
 
 ```bash
 git clone https://github.com/adeslatt/Building-A-Nextflow-Script.git
@@ -91,9 +57,15 @@ cd Building-A-Nextflow-Script
 ls -l
 ```
 
-## Install Nextflow
+**What you should see:** `Cloning into 'Building-A-Nextflow-Script'...`, progress lines, then a listing that includes `README.md`, `cwl_tools`, `fastqc.nf`, `fastqc_multiqc_wf.cwl`, `fastqc_multiqc_wf.nf`, `nextflow.config`, `params_reads.nf` and `testdata`.
 
-Inside the `eos` conda environment:
+## Step 2: Install Nextflow
+
+*Why:* Nextflow is the program that reads your script and runs the steps. The first line installs it with conda into the active environment. The other two lines show where it is and which version you have.
+
+Start JupyterLab from a terminal where you have already run `conda activate eos`. Then the notebook uses the same environment.
+
+Run the next cell.
 
 ```bash
 conda install -c bioconda nextflow -y
@@ -101,25 +73,29 @@ which nextflow
 nextflow -version
 ```
 
-## Anatomy of a Nextflow script
+**What you should see:** conda installs the package (or says `All requested packages already installed`). Then a path to `nextflow` inside your `eos` environment, and a banner like this (your version number will differ):
 
-A Nextflow script has five moving parts. Learn them once, and every workflow
-you meet becomes readable.
+```text
+      N E X T F L O W
+      version 26.10.5 build 14654
+```
 
-### 1. Parameters — the workflow's inputs
+## Step 3: Read the anatomy of a Nextflow script
+
+*Why:* a Nextflow script has five moving parts. Learn them once and every workflow you meet becomes readable. Nothing to run in this step. The snippets show the shape; the script you run is in Step 5.
+
+### 1. Parameters: the workflow's inputs
 
 ```groovy
 params.reads = false
 println "My reads: ${params.reads}"
 ```
 
-Parameters are the `--reads` etc. flags a user passes on the command line.
-Every parameter has a default (often `false`, to force the user to set it).
+A **parameter** is a setting a user passes on the command line, such as `--reads`. Each one has a default, often `false`, to force the user to set it.
 
-### 2. Processes — the computational steps
+### 2. Processes: the computational steps
 
-A `process` is one step: one input, one script, one output. The container
-directive names the image *from the registry* the step will run inside.
+A **process** is one step: one input, one script, one output. The `container` line names the image the step runs inside.
 
 ```groovy
 process fastqc {
@@ -139,17 +115,11 @@ process fastqc {
 }
 ```
 
-:::{note}
-The NICHD version was written in **DSL1** (with `from` and `into` on the
-input/output lines). Nextflow's current default is **DSL2**, which is what
-you see here — cleaner, composable via modules, and required by the
-sc-nsforest-qc-nf pattern.
-:::
+> **Note.** Older Nextflow scripts are written in a style called **DSL1**, with `from` and `into` on the input and output lines. Current Nextflow uses **DSL2**, shown here. It is cleaner, it can be split into modules, and the sc-nsforest-qc-nf project uses it.
 
-### 3. Channels — how data flows between processes
+### 3. Channels: how data flows between processes
 
-Channels connect the output of one process to the input of the next. For
-paired-end FASTQs you'd typically use `fromFilePairs`:
+A **channel** carries items from one process to the next. For paired-end FASTQ files (two files per sample) you would use `fromFilePairs`:
 
 ```groovy
 Channel
@@ -157,10 +127,9 @@ Channel
     .set { read_pairs_ch }
 ```
 
-### 4. Operators — small transformations on channels
+### 4. Operators: small changes to channels
 
-`.collect()` gathers every output into a single list — you need this before
-a step that operates on *all* the results at once (like `multiqc`):
+An **operator** reshapes a channel. `.collect()` gathers every output into one list. You need it before a step that works on *all* the results at once, such as `multiqc`:
 
 ```groovy
 process multiqc {
@@ -182,39 +151,105 @@ workflow {
 }
 ```
 
-### 5. Configuration — everything else, out of the script
+### 5. Configuration: everything else, out of the script
 
-`nextflow.config` is where you set container engines, resource limits, and
-profiles for different platforms (test / docker / lifebit).
+The file `nextflow.config` is where you set the container engine, resource limits, and **profiles** (named sets of settings) for different platforms: test, docker and lifebit.
 
-## Run it
+## Step 4: Download two test files
 
-Give Nextflow some FASTQs to work on (the same tiny test files the
-[CWL walkthrough](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) uses):
+*Why:* FASTQ files hold raw sequencing reads. These two are tiny (20,000 reads each) and are the same files the [CWL walkthrough](building-a-cwl-workflow.md) uses.
+
+Run the next cell.
 
 ```bash
 wget -q https://zenodo.org/record/7025773/files/test.20k_reads_1.fastq.gz
 wget -q https://zenodo.org/record/7025773/files/test.20k_reads_2.fastq.gz
 ```
 
-Then run the pipeline (adjust the script name to match the repo's
-actual entry-point — often `main.nf`):
+**What you should see:** no output (`-q` means quiet). Check with `ls`: the files `test.20k_reads_1.fastq.gz` and `test.20k_reads_2.fastq.gz` are in the folder.
+
+## Step 5: Write the script and run it
+
+*Why:* the repository's own script is written in the older DSL1 style, and its container images sit in a private registry, so it does not run with current Nextflow. The next cell writes a small DSL2 version of the same two steps to `main.nf`, using public container images, and runs it. The first run downloads the two images, so allow a few minutes.
+
+Make sure Docker Desktop is running. Then run the next cell.
 
 ```bash
+cat > main.nf <<'EOF'
+nextflow.enable.dsl = 2
+
+params.reads = false
+
+process FASTQC {
+    tag "$name"
+    publishDir "results", mode: 'copy'
+    container 'quay.io/biocontainers/fastqc:0.12.1--hdfd78af_0'
+
+    input:
+    tuple val(name), path(reads)
+
+    output:
+    path "*_fastqc.{zip,html}"
+
+    script:
+    """
+    fastqc $reads
+    """
+}
+
+process MULTIQC {
+    publishDir "results", mode: 'copy'
+    container 'quay.io/biocontainers/multiqc:1.25.1--pyhdfd78af_0'
+
+    input:
+    path 'fastqc/*'
+
+    output:
+    path "multiqc_report.html"
+    path "multiqc_data"
+
+    script:
+    """
+    multiqc . -m fastqc
+    """
+}
+
+workflow {
+    reads = Channel.fromFilePairs(params.reads, size: 2)
+    FASTQC(reads)
+    MULTIQC(FASTQC.out.collect())
+}
+EOF
 nextflow run main.nf --reads 'test.20k_reads_{1,2}.fastq.gz' -with-docker
 ```
 
-On success, `results/` contains per-sample fastqc HTML/ZIP files
-and one aggregated `multiqc_report.html`.
+**What you should see:** Nextflow prints a header with its version and the script name, then one progress line for each step, `FASTQC` and `MULTIQC`. Each line shows a short hash such as `[ab/12cd34]` and reaches `100%`. At the end it returns to the prompt without an error message.
 
-## Where to next
+> **Picture to add:** the terminal output of the finished nextflow run, with both steps at 100% (save as assets/building-a-nextflow-workflow-step-5.png)
 
-→ [`building-a-cwl-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) — the
-same two steps written in Common Workflow Language for comparison.
+## Step 6: Look at the results
 
-→ [`shared-structure-nextflow-vs-cwl.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/shared-structure-nextflow-vs-cwl.ipynb) —
-what the two languages agree on and why that matters for platform independence.
+*Why:* `publishDir "results"` told Nextflow to copy each step's outputs into a folder called `results`.
 
-→ [`case-studies/multiqc-workflow/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
-— the same pipeline reorganised into the container / module / workflow
-graduation structure.
+Run the next cell.
+
+```bash
+ls results
+```
+
+**What you should see:** the per-sample FastQC files `test.20k_reads_1_fastqc.html`, `test.20k_reads_1_fastqc.zip`, `test.20k_reads_2_fastqc.html` and `test.20k_reads_2_fastqc.zip`, one combined `multiqc_report.html`, and a folder `multiqc_data`. Open `multiqc_report.html` in your web browser to see the combined report.
+
+> **Picture to add:** the multiqc_report.html page open in a browser (save as assets/building-a-nextflow-workflow-step-6.png)
+
+## If something goes wrong
+
+- **`wget: command not found`.** Mac and Git Bash do not include `wget`. Use `curl -L -O <the same web address>` for each file, or install it with `conda install wget`.
+- **`Cannot connect to the Docker daemon`, or `docker: command not found`.** Docker Desktop is not running or not installed. Open it, wait until it says it is running, and run Step 5 again.
+- **`nextflow: command not found`.** The environment is not active. Close JupyterLab, run `conda activate eos` in a terminal, start JupyterLab again from that terminal, and repeat Step 2.
+- **`Cannot find script file: main.nf`.** You are in the wrong folder. Run `pwd`; it must end in `Building-A-Nextflow-Script`. If it does not, run `cd ~/Building-A-Nextflow-Script` and run the Step 5 cell again.
+
+## Next
+
+- [Building a CWL workflow](building-a-cwl-workflow.md): the same two steps written in Common Workflow Language, for comparison.
+- [Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md): what the two languages agree on, and why that makes your work portable.
+- [The multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md): the same pipeline reorganised into containers, modules and a workflow.

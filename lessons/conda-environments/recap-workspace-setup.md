@@ -1,135 +1,138 @@
-# Recap — workspace setup
+# Recap: workspace set-up
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-3-containerization/recap-workspace-setup/)) — woven into
-the [conda-environments](index.md) lesson.*
+You will review what you built in Days 1 and 2, then practise moving around a Git clone and the "wipe it and clone again" recovery move. This matters because one day a local copy will go wrong, and you will need to fix it calmly.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Go to your practice folder, `~/eos-practice`, and clone a notebook project.
+- Check that folder with `git status`, `ls` and `git diff`.
+- Move up and down folders with `.` and `..`.
+- Wipe a clone and clone it again.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- [Git](https://git-scm.com/) ([version-control](../version-control/README.md)).
+- An internet connection.
+- The lessons [interactive-computing](../interactive-computing/README.md) and [version-control](../version-control/README.md) behind you.
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. See what you have built so far
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+**Day 1, reasoning**
 
+- You met the [Elements of Style](../elements-of-style-rules/README.md) approach.
+- You opened a JupyterLab notebook, on your laptop. See [interactive-computing](../interactive-computing/README.md).
+- You inspected a real R notebook, `Reading-data-and-plotting-in-R.ipynb`.
 
-## What you have built so far
+**Day 2, code versioning**
 
-### Day 1 — reasoning
+- You learned what Git, GitHub, version control and attribution give you.
+- You forked, cloned, edited, staged, committed, pushed and opened a pull request. See the [version-control walkthroughs](../version-control/README.md).
 
-- Met the [Elements of Style](../elements-of-style-rules/index.md) approach.
-- Opened a JupyterLab notebook (on your
-  laptop or Lifebit). See [interactive-computing](../interactive-computing/index.md).
-- Inspected a real R notebook — `exampleVolcanoPlot.ipynb`.
+**What you should see:** nothing. This step is reading only.
 
-### Day 2 — code versioning
+### Step 2. Know what the volcano-plot notebook is missing
 
-- Learned what Git, GitHub, version control, and attribution give you.
-- Forked, cloned, edited, staged, committed, pushed, and opened a pull
-  request. See the [version-control walkthroughs](../version-control/index.md).
+The R notebook `Reading-data-and-plotting-in-R.ipynb` needs three things before it runs cleanly:
 
-## The missing pieces in the volcano-plot notebook
+1. **The data**, from Zenodo, DOI [10.5281/zenodo.7510587](https://doi.org/10.5281/zenodo.7510587).
+2. **The R packages**, installed once with `Rscript install_dependencies.R`.
+3. **One extra `library()` line**, `library(rlang)`, that the original did not declare.
 
-The R notebook `Reading-data-and-plotting-in-R.ipynb` needs three things
-before it runs cleanly:
+These fixes are in the copy at [`adeslatt/exampleVolcanoPlotNotebook`](https://github.com/adeslatt/exampleVolcanoPlotNotebook). If you synced your fork with `NIH-NICHD/exampleVolcanoPlotNotebook`, as in [keeping-your-repository-fork-in-sync.md](../version-control/keeping-your-repository-fork-in-sync.md), they are in your fork too.
 
-1. **The data** — from Zenodo at DOI [10.5281/zenodo.7510587](https://doi.org/10.5281/zenodo.7510587).
-2. **The R package dependencies** — installed once via
-   `Rscript install_dependencies.R`.
-3. **One extra `library()` call** — `library(rlang)` — that wasn't declared
-   in the original.
+**What you should see:** nothing. This step is reading only.
 
-These fixes are in the upstream copy at
-[`adeslatt/exampleVolcanoPlotNotebook`](https://github.com/adeslatt/exampleVolcanoPlotNotebook),
-and — if you've synced your fork with `NIH-NICHD/exampleVolcanoPlotNotebook`
-per the [`keeping-your-repository-fork-in-sync`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb)
-walkthrough — into your fork too.
+### Step 3. Go to your practice folder and get the project
 
-## Navigate to the right directory
-
-Start from your personal directory (named after your GitHub username):
+You keep practice work in `~/eos-practice`. `~` means your home folder. The next cell makes the folder if needed, moves into it, and clones the project only if the folder `exampleVolcanoPlotNotebook` is not already there. **If you already have a folder with that name here, it must hold nothing you have not pushed.** Step 10 deletes it.
 
 ```bash
-cd <your-github-username>
+mkdir -p ~/eos-practice
+cd ~/eos-practice
+[ -d exampleVolcanoPlotNotebook ] || git clone https://github.com/adeslatt/exampleVolcanoPlotNotebook.git
 ```
+
+**What you should see:** `Cloning into 'exampleVolcanoPlotNotebook'...` and lines ending in `done.`. If the folder was already there, nothing prints.
+
+### Step 4. Check whether this folder is a Git repository
+
+`git status` only works inside a Git project. The cell prints a friendly message if you are not in one.
 
 ```bash
-git status
+git status || echo "Not a Git repository here: you are one level too high."
 ```
 
-If `git status` complains about not being in a repo, you're one
-level too high. `ls -l` to see what's around:
+**What you should see:** because you are in the folder *above* the project, the answer is no:
+
+```
+fatal: not a git repository (or any of the parent directories): .git
+Not a Git repository here: you are one level too high.
+```
+
+That message is expected here. If `git status` complains like this when you meant to be in a project, you are one level too high.
+
+### Step 5. List what is around you
+
+`ls -l` lists the files and folders here, one per line. A line that starts with `d` is a folder.
 
 ```bash
 ls -l
 ```
+
+**What you should see:** a list that includes a line for `exampleVolcanoPlotNotebook`, starting with `d`.
+
+### Step 6. Go into the project and check it
+
+`cd` means "change directory". Then `git status` reports on the project.
 
 ```bash
 cd exampleVolcanoPlotNotebook
 git status
 ```
 
+**What you should see:**
+
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+
+### Step 7. See what has changed
+
+`git diff` shows every line you changed since the last commit.
+
 ```bash
 git diff
 ```
 
-## The "start over" move
+**What you should see:** nothing, if you have not edited any file. If you have, Git prints the changed lines, with `-` before removed lines and `+` before added lines. Press `q` to leave the viewer.
 
-Sometimes your local copy has drifted from the remote in ways that aren't
-worth untangling. If (and *only* if) your work is already safely pushed to
-GitHub, the fastest recovery is to wipe the local directory and re-clone.
+### Step 8. Learn the two shortcuts
 
-### Two navigation shortcuts
+Sometimes your local copy has drifted from GitHub in ways that are not worth untangling. If, and **only** if, your work is already safely pushed to GitHub, the fastest fix is to wipe the local folder and clone it again. For that you need two shortcuts:
 
-- `.` is the *current* directory.
-- `..` is the *parent* directory (one level up).
+- `.` is the *current* folder.
+- `..` is the *parent* folder, one level up.
 
 Confirm where you are:
 
@@ -138,38 +141,51 @@ cd .
 ls -l
 ```
 
-Move up one level:
+**What you should see:** the contents of the project folder, including `README.md`, `Reading-data-and-plotting-in-R.ipynb` and `install_dependencies.R`.
+
+### Step 9. Move up one level
 
 ```bash
 cd ..
 ls -l
 ```
 
-Wipe the tangled clone:
+**What you should see:** the list now includes `exampleVolcanoPlotNotebook` as one entry. You are back in `~/eos-practice`.
+
+### Step 10. Wipe the tangled clone
+
+**This deletes the folder and everything in it. It cannot be undone.** Only run it when everything you care about is pushed. `rm` removes. `-f` forces it without asking. `-R` goes into subfolders. See [ExplainShell](https://explainshell.com/explain?cmd=rm+-f+-R) for the breakdown.
 
 ```bash
 rm -f -R exampleVolcanoPlotNotebook
 ```
 
-(`-f` forces without prompting, `-R` recurses into subdirectories. See
-[ExplainShell](https://explainshell.com/explain?cmd=rm+-f+-R) for the
-breakdown.)
+**What you should see:** nothing. Run `ls` and the folder is gone.
 
-Then re-clone a fresh copy:
+### Step 11. Clone a fresh copy
+
+The origin is `adeslatt/exampleVolcanoPlotNotebook`. `NIH-NICHD/exampleVolcanoPlotNotebook` is a fork of it for teaching, and either works. The `adeslatt` copy is where fixes land first.
 
 ```bash
 git clone https://github.com/adeslatt/exampleVolcanoPlotNotebook.git
 ```
 
-> **Note on the URL** — the origin is `adeslatt/exampleVolcanoPlotNotebook`;
-> `NIH-NICHD/exampleVolcanoPlotNotebook` is a fork of it for the NICHD
-> teaching context. Either works; the `adeslatt` upstream is where fixes
-> land first.
+**What you should see:** `Cloning into 'exampleVolcanoPlotNotebook'...` and lines ending in `done.`.
 
-Open the notebook, clear all outputs (JupyterLab: *Edit → Clear All Outputs*),
-restart the kernel (*Kernel → Restart Kernel*), and re-run.
+> **Picture to add:** JupyterLab with the fresh `exampleVolcanoPlotNotebook` folder in the file browser (save as assets/recap-workspace-setup-step-11.png)
 
-## Where to next
+### Step 12. Open the notebook and run it fresh
 
-You now have git + conda + the courage to blow away a broken clone and start
-over. Time for [containers](../containers/index.md).
+In JupyterLab, open `Reading-data-and-plotting-in-R.ipynb` from the new folder. Choose **Edit**, then **Clear All Outputs**. Choose **Kernel**, then **Restart Kernel**. Then run the cells again.
+
+**What you should see:** the outputs disappear, then come back as the cells run. Cells may stop with errors until you add the data and packages (Step 2).
+
+## If something goes wrong
+
+- **`rm: cannot remove ...: No such file or directory`.** You are in the wrong folder. Run `pwd` and `ls`, then use `cd` to reach the folder that contains `exampleVolcanoPlotNotebook`.
+- **`destination path 'exampleVolcanoPlotNotebook' already exists`.** The wipe step did not run, or you were in the wrong folder. Check with `ls`.
+- **`Permission denied` when you clone.** Clone the `adeslatt` address shown above. It is public and needs no sign-in.
+
+## Next
+
+You now have Git, conda and the courage to wipe a broken clone and start over. On to [containers](../containers/README.md).

@@ -1,98 +1,62 @@
-# Creating a `conda` environment
+# Creating a conda environment
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-3-containerization/creating-a-conda-environment/)) — woven into
-the [conda-environments](index.md) lesson.*
+You will install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and make a clean environment called `eos`. This matters because a clean, named environment makes your work repeatable on any machine.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Install `conda`, the program that manages software environments.
+- Create an environment named `eos`.
+- Activate it and list your environments.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A Bash terminal on Linux, with an internet connection. A Mac or Windows needs a different installer: see the next line.
+- On a Mac or Windows, use [Miniforge](https://conda-forge.org/download/) instead of the steps in this notebook that download the Linux installer. See the [lesson page](README.md).
+- No Linux terminal? [Other places to run these lessons](../introduction/other-places-to-run.md) covers Google Cloud Shell and Lifebit.
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. Know what conda is
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+`conda` is the program we use to control our software and manage installs. A **conda environment** is an isolated bubble: its own Python or R, and its own set of installed packages. Nothing you install into an environment leaks out and disturbs the rest of the computer.
 
+Making a *clean* environment first is a good habit. It makes every assumption about what is or is not installed explicit. Without it you inherit whatever happens to be on a shared machine. That is a common cause of "works on my machine, breaks in the container".
 
-## What conda is
+When we build a Docker image later (see [containers](../containers/README.md)), we usually start from a conda base image. The same tool follows us from laptop to container to workflow to federated node.
 
-`conda` is the application we use to control our environment and manage
-package installs. A **conda environment** is an isolated bubble — its own
-Python or R interpreter, its own set of installed packages. Nothing you
-install into an environment leaks out and pollutes the system.
+**What you should see:** nothing. This step is reading only.
 
-Making a *clean* environment first is a discipline: every assumption about
-what is or isn't installed becomes explicit. Without it you inherit whatever
-happens to be on the shared machine — a common cause of *"works on my
-machine, breaks in the container."*
+### Step 2. Choose where to run this
 
-When we later build a Docker image (see [containers](../containers/index.md))
-we typically start `FROM` a conda base image, so the same tool follows us
-from laptop → container → workflow → federated node.
+The steps below use a Linux Bash terminal. Practise installs in a folder you can delete, so a mistake costs nothing. On a Mac or Windows, stop at Step 5 and use the Miniforge installer instead.
 
-## Where you can run this
+**What you should see:** nothing. This step is a choice.
 
-The NICHD walkthrough uses a free browser terminal — [Google Cloud Shell](https://shell.cloud.google.com/).
-It's ephemeral (small disk, wiped between sessions), which makes it a good
-sandbox for practising the install steps. The same commands work on your
-laptop and on Lifebit.
+### Step 3. Know where to look up packages
 
-## Anaconda's package search
+When you need to install *thing X*, search the web for `anaconda thing-X`, or use the [anaconda.org search](https://anaconda.org/search). Alongside packages you find tutorials, sample data and hosted notebooks, such as [JupyterLab basics](https://anaconda.org/ijstokes/open-data-science-with-anaconda/notebook).
 
-Whenever you need to install *thing X*, the fastest lookup is a browser
-search for `anaconda thing-X`, e.g. [anaconda.org search](https://anaconda.org/search).
-Alongside packages you'll find tutorials, sample datasets, and hosted
-notebooks — for instance [JupyterLab basics](https://anaconda.org/ijstokes/open-data-science-with-anaconda/notebook).
+**What you should see:** nothing. This step is reading only.
 
-## Clean up the workspace first
+### Step 4. Look at your folder first
 
-If you're in Google Cloud Shell (limited disk), tidy up before starting:
+Look at what is in your folder before you start. `ls -l` lists the files in a folder, one per line. `ls -la` adds the hidden files, whose names start with a dot.
 
 ```bash
 ls -l
@@ -102,31 +66,46 @@ ls -l
 ls -la      # -a also shows hidden files (dotfiles)
 ```
 
-Any command's flags can be looked up on [ExplainShell](https://explainshell.com) — e.g. [`ls -la`](https://explainshell.com/explain?cmd=ls+-la).
+**What you should see:** a list that starts with a line like `total 12`, then one line per file or folder. The second list is longer, because it also shows hidden entries such as `.bashrc`. A brand new account shows only a few entries.
 
-## Install Miniconda
+Not sure what a command's flags mean? Paste the command into [ExplainShell](https://explainshell.com), for example [`ls -la`](https://explainshell.com/explain?cmd=ls+-la).
 
-We install **Miniconda** — the minimal conda installer from Anaconda. Full
-Anaconda ships a lot of extras we don't need for this course.
+### Step 5. Find out what computer you have
 
-First, confirm which OS + architecture we're on:
+We install **Miniconda**, the minimal conda installer from Anaconda. The full Anaconda includes many extras we do not need. First, confirm your operating system and architecture. `uname -a` prints them.
 
 ```bash
 uname -a
 ```
 
-For Linux x86_64 (Google Cloud Shell, most Lifebit hosts), we grab the matching installer:
+**What you should see:** one long line. On most Linux machines it starts with `Linux` and contains `x86_64`. The next steps are for that case. If the line starts with `Darwin` (a Mac) or you are on Windows, stop here and install [Miniforge](https://conda-forge.org/download/) instead, then go on at Step 10.
+
+> **Picture to add:** a Linux terminal after `uname -a`, showing the Linux and x86_64 words (save as assets/creating-a-conda-environment-step-5.png)
+
+### Step 6. Check that `wget` is installed
+
+`wget` is a program that downloads files from a web address. `which` prints where a program lives, or nothing if it is missing.
 
 ```bash
 which wget
 ```
+
+**What you should see:** one line, for example `/usr/bin/wget`. If nothing prints, `wget` is missing. See "If something goes wrong".
+
+### Step 7. Download the installer
+
+For Linux x86_64, we download the matching Miniconda installer. The second line lists the file so you can confirm it arrived.
 
 ```bash
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 ls -l Miniconda3-latest-Linux-x86_64.sh
 ```
 
-Now run the installer:
+**What you should see:** a progress bar that ends with a line saying the file was saved, then one `ls -l` line that shows the file name `Miniconda3-latest-Linux-x86_64.sh` and its size.
+
+### Step 8. Run the installer (in a terminal)
+
+The installer asks you questions and waits for typed answers, so a notebook cell cannot run it. **Open a terminal and type the command there**, in the same folder as the downloaded file. The cell below shows the command.
 
 ```bash
 bash Miniconda3-latest-Linux-x86_64.sh
@@ -134,12 +113,20 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 Answer the prompts:
 
-- **Press `ENTER`** to review the license (`SPACE` scrolls it faster).
-- **`yes`** to accept the license terms.
-- **`ENTER`** to accept the default install location.
-- **`yes`** when asked *"Do you wish the installer to initialize Miniconda3 by running conda init?"*
+- Press `Enter` to read the license. Press `Space` to scroll faster.
+- Type `yes` to accept the license terms.
+- Press `Enter` to accept the default install location.
+- Type `yes` when it asks "Do you wish the installer to initialize Miniconda3 by running conda init?"
 
-Then reboot the shell so `conda` is on your `PATH`:
+To skip all questions, you can run `bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3` instead. That installs into `~/miniconda3` without asking. Afterwards run `~/miniconda3/bin/conda init bash`.
+
+**What you should see:** many lines of progress, ending with a message that the installation is finished and a reminder to close and reopen your shell.
+
+> **Picture to add:** the installer asking "Do you wish the installer to initialize Miniconda3" (save as assets/creating-a-conda-environment-step-8.png)
+
+### Step 9. Restart the shell so `conda` is found
+
+The command `exec -l bash` restarts your shell, so it re-reads your settings and finds `conda`. Run it in a **terminal**, not in a notebook cell, because it replaces the shell itself. Then check where `conda` lives.
 
 ```bash
 exec -l bash
@@ -149,50 +136,65 @@ exec -l bash
 which conda
 ```
 
-If everything worked, `which conda` prints the path to the newly
-installed `conda` and the shell prompt gains a `(base)` prefix.
+**What you should see:** a path such as `/home/you/miniconda3/bin/conda`, and your terminal prompt now starts with `(base)`. `base` is conda's built-in starting environment.
 
-## Create your first clean environment
+### Step 10. Create your first clean environment
 
-Name your environment for the project. This course is *Elements of Style*,
-so `eos` is a natural short name:
+Name the environment for the project. This course is *Elements of Style*, so `eos` is a natural short name. `-n eos` sets the name, and `-y` answers "yes" to conda's questions. If `eos` already exists, creating it again replaces it, so check `conda env list` first (Step 12).
 
 ```bash
 conda create -n eos -y
 ```
 
-Activate it:
+**What you should see:** conda prints the folder it will use, then `done`, and a note on how to activate it.
+
+### Step 11. Activate it
+
+To **activate** an environment is to start using it.
 
 ```bash
 conda activate eos
 ```
 
-Your prompt should now start with `(eos)` instead of `(base)`. You
-are now inside the isolated bubble; anything you `conda install` from here
-lands in `eos` only.
+**What you should see:** no message. Your prompt now starts with `(eos)` instead of `(base)`. You are inside the bubble. Anything you `conda install` from now on lands in `eos` only.
 
-List every environment on the machine:
+> **Picture to add:** a terminal prompt that starts with (eos) (save as assets/creating-a-conda-environment-step-11.png)
+
+### Step 12. List every environment
+
+This shows all environments on the machine. The active one has a star.
 
 ```bash
 conda env list
+```
+
+**What you should see:**
+
+```
+# conda environments:
+#
+base                     /home/you/miniconda3
+eos                   *  /home/you/miniconda3/envs/eos
 ```
 
 ## Recap
 
 You just:
 
-- Started a Bash shell in a browser via Google Cloud Shell (or your local
-  terminal).
-- Discovered Anaconda's community package library.
+- Started a Bash shell in your own terminal.
+- Learned where to search for Anaconda packages.
 - Used `wget` to fetch the Miniconda installer.
 - Installed `conda`.
 - Created and activated a clean `eos` environment.
 
-## Where to next
+## If something goes wrong
 
-→ [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) — a
-Day-1 + Day-2 recap that puts conda into context alongside the earlier
-notebook and git work.
+- **`wget: command not found`.** On a Mac, `wget` is not installed, and the Linux installer is the wrong one anyway. Use [Miniforge](https://conda-forge.org/download/). On Linux, install `wget` with your package manager.
+- **`conda: command not found` after the install.** The shell has not re-read its settings. Close the terminal and open a new one, or run `exec -l bash` again. If you skipped `conda init`, run `~/miniconda3/bin/conda init bash` and restart the shell.
+- **`conda activate eos` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one and try again. In a notebook cell this command may not work. Use a terminal.
 
-→ Then on to [containers](../containers/index.md), where the conda
-environment becomes the seed for a Docker image.
+> **Check:** No executed copy of this notebook was available, so the "What you should see" lines describe the typical result. Compare them with a real run.
+
+## Next
+
+[recap-workspace-setup.md](recap-workspace-setup.md): a checkpoint that puts conda in context with the notebook and Git work. Then [containers](../containers/README.md), where the environment becomes the seed for a Docker image.

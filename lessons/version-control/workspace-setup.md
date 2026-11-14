@@ -1,89 +1,68 @@
 # Workspace set-up
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-2-code-versioning/workspace-setup/)) — woven into
-the [version-control](index.md) lesson.*
+You will check your computer and start JupyterLab in your own Bash terminal. This matters because every later lesson assumes this workspace.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/workspace-setup.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Check which tools your computer already has.
+- Use your laptop terminal as your workspace.
+- Learn what to watch for on cost.
+- Start JupyterLab.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A computer with a terminal (see the Before you begin block). No computer of your own? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+- A modern web browser such as [Chrome](https://www.google.com/chrome/).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
+
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
+
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/workspace-setup.ipynb) and run each cell in order, top to bottom.
+
+## Steps
+
+### Check your setup
+
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+### Step 1. Your workspace
+
+A **workspace** is the computer and terminal where you type commands. Use your own laptop terminal. It costs nothing extra, it is always available, and it suits every lesson in the first part of the course. A cloud workspace is covered in [Other places to run these lessons](../introduction/other-places-to-run.md), for when your work outgrows a laptop.
+
+**What you should see:** nothing yet. This step is reading only.
+
+### Step 2. Know the cost
+
+Your laptop costs nothing extra. If you later use a cloud computer, it charges by the hour while it runs. Develop and debug on small files. Once the code is right, run it across the hundreds or thousands of files. This costs less and catches bugs earlier.
+
+**What you should see:** nothing. This step is reading only.
+
+### Step 3. Start your notebook
+
+In a terminal, go to the course folder and run `jupyter lab`. A browser tab opens with JupyterLab.
+
+The next cell prints the folder this notebook is running in. `pwd` means "print working directory".
 
 ```bash
-pip install bash_kernel
-python -m bash_kernel.install
+pwd
 ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+**What you should see:** a folder path ending in `version-control`, for example `/Users/you/elements-of-style-lessons/lessons/version-control`.
 
-### Every time — verify the tools this walkthrough uses
+> **Picture to add:** JupyterLab with the file list on the left and the Launcher in the middle (save as assets/workspace-setup-step-3.png)
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## If something goes wrong
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+- **`jupyter: command not found`.** JupyterLab is not installed in this terminal. Activate the `eos` environment (`conda activate eos`), or finish the [conda-environments lesson](../conda-environments/README.md).
+- **The browser does not open.** Look in the terminal for a web address that starts with `http://localhost:8888`. Copy it into your browser.
 
-Run them all at once:
+## Next
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
-
-
-## Pick a workspace
-
-Everything in this curriculum runs equally well in two places:
-
-- **Your laptop terminal** — the cheapest, always available, best for the
-  first several lessons.
-- **A Lifebit notebook server** — a browser-based terminal + JupyterLab that
-  ships with `git`, `conda`, `docker`, `nextflow` already installed.
-
-Chrome (or any modern browser) — open each cloud-platform link in a new tab.
-
-## Cost
-
-Develop and debug on small files. Once the code is right, run it across the
-hundreds or thousands of files. This costs less *and* catches bugs earlier.
-
-*To fill in: what a CloudOS notebook server costs, and when it shuts down.*
-
-## Start your notebook
-
-Sign in as in [`logging-into-cloudos.md`](../platforms/logging-into-cloudos.md)
-and open JupyterLab in your workspace.
-
-## Where to next
-
-→ [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) — sign in to GitHub
-from the terminal so you can push code up.
+[github-authenticate.md](github-authenticate.md): sign in to GitHub from the terminal so you can push code up.

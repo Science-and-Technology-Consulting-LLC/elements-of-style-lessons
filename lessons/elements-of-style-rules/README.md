@@ -1,173 +1,115 @@
 # The Rules
 
+This lesson gives you eight rules, drawn from Strunk and White and from Kernighan and Plauger, that every later lesson relies on.
+
 > *In the book: Section 3.1 — The Rules.*
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- The **eight canonical principles** that underpin every later lesson,
-  drawn from Strunk & White and Kernighan & Plauger.
-- A short collection of **derived rules of thumb** — pithier phrases
-  to reach for when choosing between two ways to do something.
-:::
+The previous lesson: [Introduction](../introduction/README.md).
 
-## The canonical eight
+## Do this
 
-Inspired by **Strunk & White** (*The Elements of Style*) and
-**Kernighan & Plauger** (*The Elements of Programming Style*). Read
-them once now; come back when you're choosing between two ways to do
-something.
+This lesson has no notebook and nothing to run. You read it.
 
-### 1. Write clearly — don't be too clever
+1. **Clone the repository** (optional, if you want the files on your computer). In a terminal, run:
 
-If a colleague reading your code six months from now has to puzzle
-out what it does, you've optimised for the wrong thing. Clever is for
-crosswords. Clear is for science.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### 2. Pseudo-code first
+2. **Open a terminal** only if you cloned. On a Mac, open *Terminal*. On Windows, open *Git Bash*.
+3. **Read this page.** On your computer it is `lessons/elements-of-style-rules/README.md`. On the web it is [here](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/elements-of-style-rules/README.md). Read the eight rules once now. Come back when you must choose between two ways to do something.
 
-Sketch what each step does in plain English before writing any
-syntax. Most bugs are *thinking* bugs, not typing bugs. Pseudocode
-catches the thinking ones before they become typing ones.
+## What you should see
 
-### 3. Modularize
+Nothing runs, so there is no output. When you finish, you can say the eight rules in your own words and name the six things to remember.
 
-One function does one thing. One CLI verb does one thing. One Nextflow
-module does one thing. Things you can name independently you can test
-and reuse independently.
+## Where the files are
 
-### 4. Build and test in small pieces
+- `lessons/elements-of-style-rules/README.md` — this page. It is the whole lesson.
 
-Compose from working pieces. Don't build a 10-step pipeline and run
-the whole thing hoping it works. Build step 1; test it. Build step 2;
-test it. Then stitch.
+## Next
 
-### 5. Validate all inputs
+[Command line, with Git Bash](../command-line-and-git-bash/README.md)
 
-Trust nothing that crosses a boundary — file format, column name,
-expected range, missing values. The cell-counts in a `.h5ad` file
-should match the row labels. The CSV header should be the columns
-your code asks for. Check, don't assume.
+## Background
 
-### 6. Make it right before faster
+### The eight rules
 
-Premature optimisation is the famous sin. Get the answer right,
-*then* — if performance actually matters — measure where time is
-going, and fix that. Most "slow" code is fine. Most "wrong" code is
-not.
+These come from Strunk and White, [*The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style), and from Kernighan and Plauger, [*The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style).
 
-### 7. Keep it simple
+**1. Write clearly. Do not be too clever.** If a colleague reading your code six months from now has to puzzle out what it does, you have optimised for the wrong thing. Clever is for crosswords. Clear is for science.
 
-Every layer of abstraction you add is a layer the next reader has to
-peel back. If a one-line function would do, write the one-line
-function.
+**2. Write pseudo-code first.** Sketch what each step does in plain English before you write any syntax. Most bugs are thinking bugs, not typing bugs. Pseudo-code catches the thinking ones early.
 
-### 8. Document data and functions
+**3. Modularize.** One function does one thing. One command line verb does one thing. One Nextflow module does one thing. Things you can name independently, you can test and reuse independently.
 
-Every column has units. Every function has a purpose. Every CLI flag
-has a meaning. Document them where they're defined. The README is the
-*outside* of the box; the docstring is the *inside.* Both matter.
+**4. Build and test in small pieces.** Do not build a 10-step pipeline and run the whole thing hoping it works. Build step 1 and test it. Build step 2 and test it. Then join them.
 
-## Derived rules of thumb
+**5. Validate all inputs.** Trust nothing that crosses a boundary: file format, column name, expected range, missing values. The cell counts in a `.h5ad` file should match the row labels. The CSV header should hold the columns your code asks for. Check. Do not assume.
 
-Short phrases that summarise patterns this curriculum keeps returning
-to. Most are direct corollaries of the eight above.
+**6. Make it right before faster.** Premature optimisation is the famous sin. Get the answer right. Then, if speed matters, measure where the time goes and fix that. Most "slow" code is fine. Most "wrong" code is not.
 
-### On work that lasts
+**7. Keep it simple.** Every layer of abstraction is a layer the next reader must peel back. If a one-line function does the job, write the one-line function.
 
-> **Workflows are letters to your future self.**
+**8. Document data and functions.** Every column has units. Every function has a purpose. Every command line flag has a meaning. Document each where it is defined. The README is the outside of the box. The docstring is the inside. Both matter.
 
-> **Pinning beats remembering.**
+### Derived rules of thumb
 
-> **A notebook is a draft tool. A CLI is a durable tool.**
+Short phrases for patterns the lessons keep returning to. Most follow from the eight rules above.
 
-> **If you can't rerun it six months from now, it isn't a workflow.**
+**On work that lasts**
 
-### On the discipline of one job at a time
+- Workflows are letters to your future self.
+- Pinning beats remembering.
+- A notebook is a draft tool. A command line tool is a durable tool.
+- If you cannot rerun it six months from now, it is not a workflow.
 
-> **One container, one job.**
+**On one job at a time**
 
-> **One CLI does one thing well.**
+- One container, one job.
+- One command line tool does one thing well.
+- One module is one process with documented inputs and outputs.
 
-> **One module is one process with documented inputs and outputs.**
+**On honesty**
 
-### On honesty
+- If `--help` lies, the tool is broken.
+- Restart and Run All before you ship.
+- Cite your data. Pin your environment.
 
-> **If `--help` lies, the CLI is broken.**
+**On other people**
 
-> **Restart and Run All before you ship.**
+- Do not judge. When a learner struggles, that is information about the lesson, not about the learner. When a collaborator's work is not the way you would do it, ask before you "fix" it. Add to what is there. Do not replace it.
+- Educate without disrupting.
+- Bridge constrained environments. Do not fight them.
+- Your README is for the next person. The next person is sometimes you.
 
-> **Cite your data; pin your env.**
+**On the agentic AI era**
 
-### On other people
+- A well-documented command line tool is an API for AI agents.
+- An MCP server is the politest introduction your tool can make.
+- One must have a simple design idea in one's head, or one will be led astray.
 
-> **Do not judge.** When a learner struggles, that's information about
-> the lesson, not about the learner. When a collaborator's work isn't
-> the way you'd do it, ask before "fixing." Augment what's there; don't
-> replace it.
+### Six things to remember
 
-> **Educate without disrupting.**
+These map one to one onto the lessons.
 
-> **Bridge constrained environments; don't fight them.**
+1. **Start simple.** Write a shell script, test it, then scale. A working five-line script you have run once beats a beautiful 200-line one you have not. (Foundation lessons.)
+2. **Containerize.** Use [Docker](https://docs.docker.com/get-docker/) and [Conda](https://docs.conda.io/) at the level of one process. One container, one job, one command line tool. ([Containers](../containers/README.md).)
+3. **Use workflow languages.** [Nextflow](https://www.nextflow.io/) first for biomedical work, or CWL or WDL. Running steps in parallel comes free. The same workflow runs on a laptop, a cluster and the cloud. ([Nextflow modules](../nextflow-modules/README.md), then [Nextflow workflows](../nextflow-workflows/README.md).)
+4. **Use version control.** Put everything on [GitHub](https://github.com/). If it is worth running once, it is worth committing once. ([Version control](../version-control/README.md).)
+5. **Use AI wisely.** Syntax help, yes. Architecture design, no. You hold the design idea in your head. The AI fills in the keystrokes. ([MCP server](../mcp-server/README.md), [Publishing for agents](../publishing-for-agents/README.md).)
+6. **Fail fast.** Use [GitHub Actions](https://docs.github.com/en/actions) for CI/CD. The sooner you find the broken thing, the cheaper it is to fix. ([Continuous integration](../continuous-integration/README.md).)
 
-> **Your README is for the next person — and the next person is sometimes you.**
+### Further reading
 
-### On the agentic AI era
+- [Strunk and White, *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
+- [Kernighan and Plauger, *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)
+- [Robert C. Martin, *Clean Code*](https://en.wikipedia.org/wiki/Clean_Code)
+- [How to Design Programs](https://htdp.org/), a free introduction to program design
 
-> **A well-documented CLI is an API for AI agents.**
+### The notebooks in this lesson
 
-> **An MCP server is the politest introduction your tool can make.**
-
-> **One MUST have a simple design idea in one's head — or one WILL be led astray.**
-
-## Six things to remember
-
-Six takeaways that map 1:1 to the curriculum spine. If you walk away
-with nothing else, walk away with these.
-
-### 1. Start simple
-
-Shell scripts → test → scale. A working five-line script you've run
-once beats a beautiful 200-line one you haven't.
-*(Foundation lessons.)*
-
-### 2. Containerize
-
-Docker + Conda at the process level. One container, one job, one CLI.
-*([Containers](../containers/index.md).)*
-
-### 3. Use workflow languages
-
-Nextflow (or CWL / WDL — Nextflow first for biomedical work).
-Parallelisation comes free. Same workflow runs on laptop, cluster, and
-cloud.
-*([Nextflow modules](../nextflow-modules/index.md) → [Nextflow workflows](../nextflow-workflows/index.md).)*
-
-### 4. Version control
-
-GitHub for everything. If it's worth running once, it's worth
-committing once.
-*([Version control](../version-control/index.md).)*
-
-### 5. AI wisely
-
-Syntax help — yes. Architecture design — no. You hold the design idea
-in your head; the AI fills in the keystrokes.
-*([MCP server](../mcp-server/index.md), [Publishing for agents](../publishing-for-agents/index.md).)*
-
-### 6. Fail fast
-
-GitHub Actions for CI/CD. The sooner you find the broken thing, the
-cheaper it is to fix.
-
-## Further reading
-
-- [Strunk & White — *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
-- [Kernighan & Plauger — *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)
-- [Robert C. Martin — *Clean Code*](https://en.wikipedia.org/wiki/Clean_Code)
-- [How to Design Programs](https://htdp.org/) — a free introduction to program design
-
-
-## Where to next
-
-→ [Command line, with Git Bash](../command-line-and-git-bash/index.md)
+This lesson has no notebooks.

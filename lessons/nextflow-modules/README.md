@@ -1,58 +1,71 @@
 # Nextflow modules
 
+> *In the book: Sections 7.2 and 7.5, Nextflow: a Domain-Specific Language; Processes.*
 
-> *In the book: Sections 7.2 and 7.5 — Nextflow: a Domain-Specific Language; Processes.*
+This lesson shows you how to publish your containers and wrap each one in a Nextflow module, the smallest reusable unit of a pipeline.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- Write a `.nf` module that wraps exactly one CLI verb.
-- Test the module standalone with its `main-*.nf` runner.
-- Why `bin/` scripts (or installed CLIs) beat inline `script:` blocks.
-:::
+The previous lesson is [containers](../containers/README.md). You need the `fastqc` and `multiqc` images from it.
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the code.** In a terminal, run:
 
-A Nextflow *module* is a single process with documented inputs and
-outputs. Think of it as one LEGO brick — the smallest reusable unit of
-work in your pipeline. A workflow is a *snap-together* of modules.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-This deeper-dive sub-section is where you learn to write modules
-your future self (and your collaborator, and an AI agent) can reuse
-without reading their internals.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook** `lessons/nextflow-modules/preamble.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/preamble.ipynb). Run each cell in order, top to bottom.
 
-## What this lesson builds
+## What you should see
 
-1. A clean `process` block with `input:`, `output:`, and `script:`.
+Both images pushed to GitHub's container registry with full, versioned addresses, such as `ghcr.io/<user>/fastqc:v0.11.9`. Push lines end with `Pushed` and a final `digest: sha256:` line.
+
+> **Picture to add:** the pushed images listed on your GitHub Packages page (save as assets/overview.png)
+
+## Where the files are
+
+- The lesson folder is [`lessons/nextflow-modules`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/nextflow-modules).
+- The example module runners (`main-hello-py-greet.nf` and others) are in the top folder of the repository, next to `nextflow.config`.
+
+## Notebooks in order
+
+1. [Preamble: publish your containers before you build the workflow](preamble.md) (notebook: `preamble.ipynb`)
+
+## Next
+
+[Nextflow workflows](../nextflow-workflows/README.md): compose modules into a pipeline.
+
+## Background
+
+A Nextflow *module* is a single process with documented inputs and outputs: one brick, the smallest reusable unit of work. A workflow is bricks snapped together. Write modules your future self, your collaborator and an AI agent can reuse without reading the insides.
+
+### What this lesson builds
+
+1. A clean `process` block with `input:`, `output:` and `script:`.
 2. A module file (`<name>.nf`) you can `include` from any workflow.
-3. A `bin/` script that holds the *actual work* — the `.nf` file is
-   just the contract.
-4. A short test that runs the module on a tiny input and asserts the
-   output shape.
+3. A `bin/` script that holds the actual work. The `.nf` file is only the contract.
+4. A short test that runs the module on a tiny input and checks the output.
 
-## Worked example in the book companion
+### Worked example
 
-The `geo-to-h5ad` pipeline in the book companion repo is two modules
-plus a `main.nf` orchestrator:
+The `geo-to-h5ad` pipeline in the book companion is two modules plus a `main.nf`:
 
-- [`workflows/geo-to-h5ad/modules/download_geo_h5.nf`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/workflows/geo-to-h5ad/modules/download_geo_h5.nf)
-- [`workflows/geo-to-h5ad/modules/build_h5ad.nf`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/workflows/geo-to-h5ad/modules/build_h5ad.nf)
+- [`download_geo_h5.nf`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/workflows/geo-to-h5ad/modules/download_geo_h5.nf)
+- [`build_h5ad.nf`](https://github.com/adeslatt/elements-of-style-workflows/blob/main/workflows/geo-to-h5ad/modules/build_h5ad.nf)
 
-Read both. Note how each has exactly one `process` and a `bin/` script
-backing it.
+Each has exactly one `process` and a `bin/` script behind it.
 
-## The deliverable
+> **Check:** These links point to the repository `adeslatt/elements-of-style-workflows`, while the rest of the course uses `Science-and-Technology-Consulting-LLC/elements-of-style-lessons`. Is that repository still the right home, and is there a `workflows/geo-to-h5ad` folder in the lessons repository?
 
-One `.nf` module + one `bin/` script + one smoke test. Reusable from
-any workflow that needs that step.
+### The deliverable
 
-## Run the smallest module — three ways
+One `.nf` module, one `bin/` script and one smoke test, reusable from any workflow that needs that step.
+
+### Run the smallest module, three ways
 
 ::::{tab-set}
 
@@ -64,11 +77,10 @@ nextflow run main-hello-py-greet.nf -profile docker --name elements-of-style
 ```
 :::
 
-:::{tab-item} macOS / Windows (no Docker — test profile)
+:::{tab-item} macOS / Windows (no Docker, test profile)
 :sync: test
 
-The test profile uses no container, so the command must be installed
-first:
+The test profile uses no container, so the command must be installed first:
 
 ```bash
 pip install -e container/hello-py/context
@@ -86,22 +98,9 @@ nextflow run main-hello-py-greet.nf -profile lifebit --name elements-of-style
 
 ::::
 
-## In-depth walkthrough
+### Further reading
 
-- [`preamble.md`](preamble.md) — the *"before you
-  write a module, publish the container"* loop (build → tag → push), for
-  GHCR. Adapted from the NICHD Kids First / INCLUDE
-  course.
-
-## Further reading
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [Nextflow documentation](https://www.nextflow.io/docs/latest/)
-- [nf-core module standards](https://nf-co.re/docs/contributing/modules) — community conventions
-- [Nextflow process reference](https://www.nextflow.io/docs/latest/process.html)
-- [Groovy documentation](https://groovy-lang.org/documentation.html) — Nextflow's host language
-
-
-## Where to next
-
-→ [Nextflow workflows](../nextflow-workflows/index.md) — compose modules into a pipeline.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
+- [Nextflow documentation](https://www.nextflow.io/docs/latest/) and the [process reference](https://www.nextflow.io/docs/latest/process.html)
+- [nf-core module standards](https://nf-co.re/docs/contributing/modules)
+- [Groovy documentation](https://groovy-lang.org/documentation.html), Nextflow's host language

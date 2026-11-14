@@ -1,118 +1,87 @@
-# MCP server — the agentic AI portion
+# MCP server: the agentic AI portion
 
+*In the book: Sections 11.5.1 and 11.5.2, The MCP Server; Wrapping a Typer Command-Line Interface as an MCP Server.*
 
-> *In the book: Sections 11.5.1 and 11.5.2 — The MCP Server; Wrapping a Typer Command-Line Interface as an MCP Server.*
+This lesson shows you how to wrap a command-line tool in a small *MCP server* so an AI assistant can call it. The Model Context Protocol (MCP) is a standard way to tell an assistant (Claude, ChatGPT and others) what your tool does, what it needs and what it returns.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- Wrap any CLI in an MCP server so an AI agent can drive it.
-- Register an MCP server with Claude Code on Mac and Windows.
-- Run the nsforest-cli + MCP worked example end-to-end.
-:::
+Do [federated learning](../federated-learning/README.md) first. You also need the `hello-py` tool from [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md).
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the course repository.** In a terminal, run:
 
-This lesson is where everything from the earlier lessons becomes
-*agent-callable*. The Model Context Protocol (MCP) is a small,
-standardized way to tell an AI agent (Claude, ChatGPT, …) what your tool
-can do, what it needs as input, and what it produces as output.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Wrap any of your CLIs with an MCP server and the agent can now drive
-that CLI on your behalf in natural language.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its step 1 makes a conda environment first.
 
-:::{admonition} The worked example
-:class: tip
+## What you should see
 
-The headline worked example is **`nsforest-cli` from the NIH-NLM
-`sc-nsforest-qc-nf` workflow, wrapped as an MCP server**, with the
-researcher talking to the agent in natural language:
+You write `hello_mcp_server.py`, run it, and ask an MCP-aware assistant such as Claude Desktop to use the `greet` tool. The assistant replies `Hello, Annie!`.
 
-> "Run NSForest on the kidney atlas, organ=kidney, output to my Lifebit
-> workspace."
+> **Picture to add:** the assistant's chat showing the greet tool call and its reply (save a screenshot of the finished demo) (save as assets/overview.png)
 
-The agent reads the MCP-exposed `--help`, asks any clarifying questions,
-and runs the workflow on Lifebit. The researcher never types a Nextflow
-command. *That's* the agentic AI portion of the book.
-:::
+## Where the files are
 
-## What this lesson builds
+- `lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb` and `.md`: the walkthrough.
+- `hello_mcp_server.py`: the file you create in the lesson folder.
+- `lessons/mcp-server/assets/`: pictures for this lesson.
+
+## Notebooks in order
+
+1. [`wrap-a-typer-cli-as-an-mcp-server.md`](wrap-a-typer-cli-as-an-mcp-server.md) — wrap the `greet` command as an MCP tool and call it from an assistant
+
+## Next
+
+[Agentic harness](../agentic-harness/README.md): set up the assistant that will call your MCP server.
+
+## Background
+
+Every tool you built in the earlier lessons becomes available to an AI assistant once you wrap it with MCP. The work does not change. Its reach grows.
+
+### The worked example
+
+The headline example is `nsforest-cli` from the NIH-NLM `sc-nsforest-qc-nf` workflow, wrapped as an MCP server, with the researcher talking to the assistant in plain language:
+
+> "Run NSForest on the kidney atlas, organ=kidney, output to my Lifebit workspace."
+
+The assistant reads the MCP-exposed `--help`, asks any clarifying questions and runs the workflow on Lifebit. The researcher never types a Nextflow command.
+
+### What this lesson builds
 
 1. A minimal MCP server in Python that wraps a Typer CLI.
-2. The MCP manifest that tells the agent what tools exist.
-3. A registration path so Claude Code / Claude.ai / ChatGPT can find
-   your server.
-4. The end-to-end chat → agent → MCP → CLI → result demo.
+2. The MCP manifest that tells the assistant what tools exist.
+3. A way to register it so Claude Code, Claude.ai or ChatGPT can find it.
+4. The end-to-end flow: chat, assistant, MCP, CLI, result.
 
-## Why this matters
+The deliverable is a working MCP server that exposes `nsforest-cli` (or any of your CLIs) to Claude Code, with a recorded conversation showing the assistant working out the inputs and running the workflow.
 
-Every CLI you've built in the earlier lessons is, the moment you wrap it
-with MCP, **available to an AI agent**. The work doesn't change. The
-*reach* of the work multiplies.
+### Pairs well with
 
-## The natural pairing
+MCP plus [Platforms](../platforms/README.md) (especially Lifebit): assistants drive CLIs, CLIs run on the transport layer, results come back.
 
-MCP + [Platforms](../platforms/index.md) (especially Lifebit) is the combination
-that delivers on the agentic-AI-for-science promise: agents drive CLIs,
-CLIs run on the transport-layer, results come back. See
-[Platforms](../platforms/index.md) for the framing.
+### Register the server with Claude Code
 
-## The deliverable
-
-A working MCP server that exposes `nsforest-cli` (or any of your topic
-CLIs) to Claude Code, with a recorded conversation showing the agent
-correctly inferring inputs and running the workflow.
-
-## Register the MCP server with Claude Code
-
-::::{tab-set}
-
-:::{tab-item} macOS
-:sync: mac
+On macOS, Claude Code reads `~/.claude/config.json`. Add or merge the `mcp-nsforest-server` entry. On Windows it reads `%USERPROFILE%\.claude\config.json`, with the same JSON shape. To look at the file:
 
 ```bash
-# Claude Code reads ~/.claude/config.json
-# Add (or merge) the mcp-nsforest-server entry:
 cat ~/.claude/config.json
 ```
-:::
 
-:::{tab-item} Windows
-:sync: win
+On Lifebit, the MCP server runs inside a Lifebit workspace and exposes `nsforest-cli`. The assistant connects to that workspace's URL with the right authentication.
 
-```bash
-# Claude Code on Windows reads %USERPROFILE%\.claude\config.json
-# Same JSON shape; just the file lives at a Windows path.
-cat ~/.claude/config.json
-```
-:::
+> **Check:** the lesson says Claude Code reads `~/.claude/config.json`. The [agentic-harness](../agentic-harness/README.md) walkthrough registers servers with `claude mcp add` instead. Which is right?
 
-:::{tab-item} Lifebit
-:sync: lifebit
+### Further reading
 
-The Lifebit pattern: the MCP server runs *inside* a Lifebit workspace
-exposing nsforest-cli; the agent (Claude / ChatGPT) connects to that
-workspace's URL with the appropriate auth.*
-:::
-
-::::
-
-## Further reading
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. — the reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
+- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
 - [Model Context Protocol specification](https://modelcontextprotocol.io/)
-- [Anthropic MCP quickstart](https://modelcontextprotocol.io/quickstart)
+- [MCP quickstart](https://modelcontextprotocol.io/quickstart)
 - [Official MCP server registry](https://github.com/modelcontextprotocol/servers)
 - [Claude Code MCP integration](https://docs.claude.com/en/docs/claude-code/mcp)
-- [nsforest-cli](https://github.com/NIH-NLM/sc-nsforest-qc-nf) — the CLI wrapped in this lesson's example
-
-
-## Where to next
-
-→ [Agentic harness](../agentic-harness/index.md) — configure the agent that will call your MCP server.
+- [nsforest-cli](https://github.com/NIH-NLM/sc-nsforest-qc-nf): the CLI wrapped in this lesson's example

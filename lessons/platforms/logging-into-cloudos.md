@@ -1,79 +1,81 @@
 # Logging into CloudOS
 
-*Source: the platforms lesson. Part of the [platforms](index.md) lesson.*
+You will sign in to CloudOS, create a workspace and open JupyterLab inside it. This matters because the workspace is where your analysis runs.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+*Part of the [platforms](README.md) lesson.*
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`logging-into-cloudos.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/logging-into-cloudos.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+## What you will do
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+- Open the login page and sign in with your institution.
+- Create a workspace from the *biomedical analysis* template.
+- Open JupyterLab in that workspace.
 
-## Set up the environment
+## What you need
 
-### One time — register the Bash kernel
+- A CloudOS account. See [creating-a-cloudos-account](creating-a-cloudos-account.md).
+- A web browser. No programs to install.
+- [JupyterLab](https://jupyter.org/) with a Bash kernel only if you want to run this page as a notebook. It has nothing to run.
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+## Before you begin
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+1. **Get the code.** In a terminal, run:
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### Every time — verify the tools this walkthrough uses
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`logging-into-cloudos.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/logging-into-cloudos.ipynb) and run each cell in order, top to bottom.
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+## Step 1. Open the login page
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s\n" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING\n" "$cmd"
-  fi
-done
-```
+Why: this is the front door of the platform. Open <https://cloudos.lifebit.ai/login> in a browser.
 
-## Step 1 — Open the login page
+**What you should see:** the CloudOS login page.
 
-Open <https://cloudos.lifebit.ai/login> in a browser.
+> **Picture to add:** the CloudOS login page (save as assets/logging-into-cloudos-step-2.png)
 
-## Step 2 — Use institutional login
+## Step 2. Use institutional login
 
-Choose *Sign in with institutional login* and pick your institution from
-the list. If it is not listed, ask at <https://lifebit.ai/contact>.
+Why: you made your account this way, so you sign in this way.
 
-## Step 3 — Create a workspace
+Choose *Sign in with institutional login* and pick your institution from the list. If it is not listed, ask at <https://lifebit.ai/contact>.
+
+**What you should see:** your institution's sign-in page, and after you sign in, the CloudOS home page.
+
+## Step 3. Create a workspace
+
+Why: a *workspace* is a private area with its own files and tools for your project.
 
 Create a workspace and pick the *biomedical analysis* template.
 
-## Step 4 — Open JupyterLab
+**What you should see:** a new workspace in your list.
 
-Open the workspace's JupyterLab. Then continue with
-[`starting-a-jupyter-lab-notebook.md`](../interactive-computing/starting-a-jupyter-lab-notebook.md).
+> **Picture to add:** the create-workspace screen with the biomedical analysis template selected (save as assets/logging-into-cloudos-step-2.png)
 
-## Where to next
+> **Check:** which button or menu creates a workspace, and how long does a new workspace take to start?
 
-→ [`authenticating-on-cloudos.md`](authenticating-on-cloudos.md) — an API key
-and `cloudos configure`, so you can run jobs from a terminal.
+## Step 4. Open JupyterLab
+
+Why: JupyterLab is where you run notebooks, like this one.
+
+Open the workspace's JupyterLab. Then continue with [starting-a-jupyter-lab-notebook](../interactive-computing/starting-a-jupyter-lab-notebook.md).
+
+**What you should see:** the JupyterLab Launcher with tiles for notebooks and a terminal.
+
+> **Picture to add:** JupyterLab open inside the CloudOS workspace (save as assets/logging-into-cloudos-step-3.png)
+
+## If something goes wrong
+
+- **Your institution is not in the list.** Ask at <https://lifebit.ai/contact>.
+- **You sign in but see no workspace.** Create one in step 5. A new account starts with none.
+- **The JupyterLab tab opens blank or is blocked.** Allow pop-ups for `cloudos.lifebit.ai` in your browser and try again.
+
+## Next
+
+[Authenticating on CloudOS](authenticating-on-cloudos.md): get an API key and run `cloudos configure`, so you can run jobs from a terminal.

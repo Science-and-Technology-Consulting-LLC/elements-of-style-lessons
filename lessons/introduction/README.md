@@ -1,22 +1,52 @@
 # Introduction
 
+This lesson explains why the course follows *The Elements of Style*, then walks you through setting up your computer and running a first notebook.
+
 > *In the book: the Introduction, and Chapter 3 — Elements of Style.*
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- Why the lessons follow *The Elements of Style*: cleanliness, accuracy and brevity.
-- The dry workbench: keep the computer as clean as the wet bench.
-- The order of the lessons, and where to start.
-:::
+None. This is the first lesson.
 
-## The spirit
+## Do this
+
+1. **Clone the repository.** This copies the lessons to your computer. In a terminal, run:
+
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
+
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, the walkthrough's Step 1 shows how to install it.
+3. **Open the notebook** `lessons/introduction/lets-dive-in.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`. Then open [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) and run each cell in order, top to bottom. You can also read the same steps as a web page: [Let's dive in](lets-dive-in.md).
+
+## What you should see
+
+- `git --version` and `conda --version` each print a version number.
+- A `(eos)` prefix on your terminal prompt after `conda activate eos`.
+- JupyterLab opens in your browser with a **Bash** tile in the Launcher.
+- A list of tools, each with a location or the word `MISSING`.
+
+## Where the files are
+
+- `lessons/introduction/README.md` — this page.
+- `lessons/introduction/lets-dive-in.ipynb` — the notebook you run.
+- `lessons/introduction/lets-dive-in.md` — the same steps as a web page.
+- `eos.yml` in the repository root — the recipe for the conda environment.
+
+## Next
+
+[The Rules](../elements-of-style-rules/README.md)
+
+## Background
+
+### The spirit
 
 Strunk and White called *The Elements of Style* a summation of the case for cleanliness, accuracy and brevity in the use of English. Kernighan and Ritchie, and Kernighan and Plauger, brought the same spirit to programming. These lessons bring it to biomedical workflows.
 
-Brevity and clarity matter more with an AI agent. A computer cannot reason or judge. You must say exactly what you want, and be sure of your correctness.
+Brevity and clarity matter even more when you work with an AI agent. A computer cannot reason or judge. You must say exactly what you want, and be sure of your correctness.
 
-## The dry workbench
+### The dry workbench
 
 Treat your work on the computer like the wet bench. Keep the area clean. Make the experiment repeatable, so anyone gets the same result.
 
@@ -29,29 +59,24 @@ Treat your work on the computer like the wet bench. Keep the area clean. Make th
 - Test, iterate and refine.
 - Automate, reuse and repeat.
 
-## Who it is for
+### Who it is for
 
 Working scientists at any career stage, from a first terminal session to a Nextflow pipeline. Anyone whose work has to live somewhere other than a laptop.
 
-## What you need
+### What you need
 
-A computer with a terminal, a browser, and a GitHub account. The lessons work on a Mac, on Windows with Git Bash, and in a browser with Google Cloud Shell. You do not need administrator rights.
+A computer with a terminal, a browser, and a GitHub account. The lessons work on a Mac, on Windows with Git Bash, and on Linux. You do not need administrator rights. No terminal of your own? See [Other places to run these lessons](other-places-to-run.md).
 
-## The order
+### The order of the lessons
 
-1. **Set the stage.** This lesson, then [The Rules](../elements-of-style-rules/index.md).
-2. **Foundation.** [Command line, with Git Bash](../command-line-and-git-bash/index.md), [Version control with Git](../version-control/index.md), [Reproducible environments with Conda](../conda-environments/index.md), [Interactive computing with Jupyter](../interactive-computing/index.md).
-3. **Build.** [Reusable command-line tools](../reusable-clis/index.md), [Containers](../containers/index.md), [Nextflow modules](../nextflow-modules/index.md), [Nextflow workflows](../nextflow-workflows/index.md), [Differential analysis](../differential-analysis/index.md).
-4. **Durable.** [Documentation](../documentation/index.md), [Continuous integration](../continuous-integration/index.md).
-5. **Scale.** [Federated computing](../federated-computing/index.md), [Federated learning](../federated-learning/index.md).
-6. **Agent.** [MCP server](../mcp-server/index.md), [Agentic harness](../agentic-harness/index.md), [Publishing for agents](../publishing-for-agents/index.md).
-7. **Run.** [Platforms](../platforms/index.md).
+1. **Set the stage.** This lesson, then [The Rules](../elements-of-style-rules/README.md).
+2. **Foundation.** [Command line, with Git Bash](../command-line-and-git-bash/README.md), [Version control with Git](../version-control/README.md), [Reproducible environments with Conda](../conda-environments/README.md), [Interactive computing with Jupyter](../interactive-computing/README.md).
+3. **Build.** [Reusable command-line tools](../reusable-clis/README.md), [Containers](../containers/README.md), [Nextflow modules](../nextflow-modules/README.md), [Nextflow workflows](../nextflow-workflows/README.md), [Differential analysis](../differential-analysis/README.md).
+4. **Durable.** [Documentation](../documentation/README.md), [Continuous integration](../continuous-integration/README.md).
+5. **Scale.** [Federated computing](../federated-computing/README.md), [Federated learning](../federated-learning/README.md).
+6. **Agent.** [MCP server](../mcp-server/README.md), [Agentic harness](../agentic-harness/README.md), [Publishing for agents](../publishing-for-agents/README.md).
+7. **Run.** [Platforms](../platforms/README.md).
 
-## The two pages in this lesson
+### The notebooks in this lesson
 
-- [Pre-training](pre-training.md) — what to install and which accounts to create.
-- [Let's dive in](lets-dive-in.md) — open a terminal and run a first notebook.
-
-## Where to next
-
-→ [Pre-training](pre-training.md).
+1. [Let's dive in](lets-dive-in.md) — set up your computer and run a first notebook.

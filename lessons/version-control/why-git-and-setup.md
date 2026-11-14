@@ -1,139 +1,159 @@
 # Why Git and GitHub?
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-2-code-versioning/why-git-and-setup/)) — woven into
-the [version-control](index.md) lesson.*
+You will set up the tools that record your work, and tell Git who you are. This matters because every change you save is stamped with your name, so your methods stay traceable.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`why-git-and-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/why-git-and-setup.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Learn what [Git](https://git-scm.com/) and [GitHub](https://github.com/) do for you.
+- Edit a text file in a terminal with [`nano`](https://www.nano-editor.org/).
+- Create a [conda](https://docs.conda.io/) environment called `eos` and install the [GitHub CLI](https://cli.github.com/) (`gh`) into it.
+- Tell Git your name and email.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A free [GitHub account](https://github.com/signup).
+- A terminal (see the Before you begin block).
+- Conda. If `conda --version` fails, install it first with [creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md).
 
-### One time — register the Bash kernel
+> **Check:** This lesson uses conda before the conda lesson. Should students install conda first, or is the order meant to be this way?
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+## Before you begin
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+1. **Get the code.** In a terminal, run:
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-### Every time — verify the tools this walkthrough uses
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`why-git-and-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/why-git-and-setup.ipynb) and run each cell in order, top to bottom.
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+## Steps
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+### Check your setup
 
-Run them all at once:
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+### Step 1. Make a practice folder
+
+You will keep all practice files in one folder, `~/eos-practice`, so they stay apart from the course files. `~` means your home folder. `pwd` prints the folder you are in.
 
 ```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
+mkdir -p ~/eos-practice
+cd ~/eos-practice
+pwd
 ```
 
+**What you should see:** one line ending in `eos-practice`, for example `/Users/you/eos-practice`.
 
-## Motivation
+### Step 2. Write a file with `nano` (in a terminal)
 
-**Git** is a version-control system for code with several benefits you feel
-immediately:
+[`nano`](https://www.nano-editor.org/) is a simple text editor that runs inside the terminal. A notebook cell cannot run it, so use a real terminal for this step (see item 2 of Before you begin).
 
-- Protects code from being lost on local machines or ephemeral environments.
-- Tracks every change as the project moves.
-- Lets you revisit any older version of the code, notebooks, and documentation.
-- Supports maintaining multiple versions at once (branches).
+1. In the terminal, type `cd ~/eos-practice` and press `Enter`.
+2. Type `nano hello.txt` and press `Enter`. This opens the file, or creates it if it is new.
+3. Type any line of text, such as `hello Git`.
+4. Save: press `Ctrl-O`, then `Enter` to confirm the file name.
+5. Exit: press `Ctrl-X`.
 
-**GitHub** is a code-hosting platform for that version-controlled code:
+> **Picture to add:** the nano screen with one line of text and the shortcut bar at the bottom (save as assets/why-git-and-setup-step-2.png)
 
-- Access to a large community of open-source projects.
-- Multiple contributors on the same project.
-- A discoverable, transparent record of the methods behind a paper.
-
-## Set-up in a terminal
-
-Open a **Terminal** — on your laptop, or on a Lifebit notebook server.
-The steps below work identically in both.
-
-### Editing files with `nano`
-
-`nano` is a simple in-terminal file editor with four moves:
-
-1. **Open** — `nano hello.txt` opens the file (or creates it if new).
-2. **Write** — type as you would in any editor.
-3. **Save** — `CTRL-O`, then `ENTER` to confirm.
-4. **Exit** — `CTRL-X`.
-
-Verify with `head`:
+**What you should see:** you are back at the normal prompt, and the file exists. The next cell shows its first lines with `head`. `head` prints the top of a file.
 
 ```bash
 head hello.txt
 ```
 
-### Create a conda environment for these lessons
+**What you should see:** the line you typed, for example:
 
-We keep the tools we install for this course isolated in a conda environment
-called `eos`. Details of *why* conda and *how* environments work live in the
-[conda-environments](../conda-environments/index.md) lesson.
+```
+hello Git
+```
+
+If you did not use nano, you will see `head: hello.txt: No such file or directory`. Go back and make the file first.
+
+### Step 3. Create a conda environment called `eos`
+
+A **conda environment** is a separate folder of installed programs. Putting the course tools in one named environment keeps them from clashing with anything else on your computer. The [conda-environments lesson](../conda-environments/README.md) explains this in full.
+
+First, list the environments you already have. If `eos` is in the list, skip the next cell, because creating it again would replace it.
+
+```bash
+conda env list
+```
+
+**What you should see:** a table of names and folders. A fresh conda shows only `base`. Look for a line that starts with `eos`.
+
+Now create the environment. `-n eos` names it, and `-y` answers "yes" to the questions.
 
 ```bash
 conda create -n eos -y
 ```
 
+**What you should see:** conda prints the folder it will use, then `done`, then a message that says how to activate it:
+
+```
+# To activate this environment, use
+#
+#     $ conda activate eos
+```
+
+Now **activate** the environment, which means "start using it". Your terminal prompt gains `(eos)` at the start.
+
 ```bash
 conda activate eos
 ```
 
-Install the GitHub CLI:
+**What you should see:** no message. In a terminal, the prompt now starts with `(eos)`.
+
+### Step 4. Install the GitHub CLI
+
+The GitHub CLI (`gh`) is a program that signs you in to GitHub from the terminal. **CLI** means *command-line interface*: a program you control by typing. `conda install` downloads it from the [conda-forge](https://conda-forge.org/) package channel.
 
 ```bash
 conda install -c conda-forge gh -y
 ```
 
-Optionally install a terminal editor other than `nano`:
+**What you should see:** conda solves the environment, lists packages, then ends with `Executing transaction: done`. This can take a minute. Check that it worked:
+
+```bash
+gh --version
+```
+
+**What you should see:** a line like `gh version 2.x.x` followed by a web address.
+
+#### Optional: install a different terminal editor
+
+If you prefer `emacs` to `nano`, install it. It is a large download, so skip this unless you want it.
 
 ```bash
 conda install -c conda-forge emacs -y
 ```
 
-## Configure your Git identity
+### Step 5. Tell Git who you are
 
-Every commit records *who made it*. That is `user.name` and `user.email` at
-the git level. Set them once, globally, and every future commit is stamped
-with these values.
+Every Git **commit** (a saved snapshot of your work) records who made it. Git reads your name and email from its settings. You set them once, with `--global`, and every future commit uses them.
+
+**Edit the next cell first.** Replace each piece of text in angle brackets, including the `<` and `>`, with your own value. Use the email tied to your GitHub account. Keep the quotes.
 
 ```bash
 git config --global user.name  '<your github user name>'
 git config --global user.email '<the email tied to your github account>'
 ```
 
-Set your preferred in-terminal editor (optional):
+**What you should see:** nothing, if it worked. Check your settings:
+
+```bash
+git config --global --get user.name
+git config --global --get user.email
+```
+
+**What you should see:** your name on one line and your email on the next.
+
+### Step 4. Choose your editor for Git messages (optional)
+
+Git sometimes opens a text editor. This setting says which one. The first line below picks `nano`. The commented lines (they start with `#`) show how to pick `emacs` or `vim` instead.
 
 ```bash
 git config --global core.editor nano
@@ -142,10 +162,15 @@ git config --global core.editor nano
 # git config --global core.editor vim
 ```
 
-## Where to next
+**What you should see:** nothing. The setting is saved.
 
-→ [`workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/workspace-setup.ipynb) — pick your
-notebook environment: laptop or Lifebit.
+## If something goes wrong
 
-→ [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) — generate a
-personal access token and sign in via `gh auth login`.
+- **`conda: command not found`.** Conda is not installed, or this terminal was opened before you installed it. Close the terminal, open a new one, and try again. If it still fails, follow [creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md).
+- **`conda activate eos` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one, then run `conda activate eos` again. In a notebook cell this command may not work. Run it in a terminal instead.
+- **`git: command not found` on a Mac.** Type `git --version` in Terminal. A window offers to install the Xcode Command Line Tools. Accept it. On Windows, install [Git for Windows](https://gitforwindows.org/), which also gives you Git Bash.
+- **`python: command not found` when you register the Bash kernel (Step 4 of [Let's dive in](../introduction/lets-dive-in.md)).** Try `python3` in place of `python`, or finish the [conda lesson](../conda-environments/README.md) first.
+
+## Next
+
+[workspace-setup.md](workspace-setup.md): check your computer and start JupyterLab.

@@ -1,94 +1,63 @@
-# Nextflow and CWL — shared structure, shared elements
+# Nextflow and CWL: shared structure, shared elements
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-4-workflow-development/NextflowCommonWorkFlowLanguageSharedStructureSharedElements/)) — woven into
-the [nextflow-workflows](index.md) lesson.*
+You will compare one pipeline step written in Nextflow and in the Common Workflow Language, so that you see why a well-built container can move between workflow languages.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`shared-structure-nextflow-vs-cwl.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/shared-structure-nextflow-vs-cwl.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Read the goal and the strategy behind the course.
+- See what Nextflow and CWL have in common.
+- Compare one FastQC step side by side.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- Nothing new to install. This walkthrough is mostly reading. It helps to have done [building a Nextflow workflow](building-a-nextflow-workflow.md) and [building a CWL workflow](building-a-cwl-workflow.md) first.
+- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`shared-structure-nextflow-vs-cwl.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/shared-structure-nextflow-vs-cwl.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Check your setup
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+## Step 1: Read the goal
 
-Run them all at once:
+*Why:* everything in this course serves one aim. Make our science *as platform-independent and workflow-independent as possible*, in service of open, reproducible science.
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+**What you should take away:** the aim is not a particular tool. It is work that survives a change of tool.
 
+## Step 2: Read the strategy
 
-## The goal
+*Why:* one habit makes the aim real. **Containerise at the logical, single-purpose level.** A **container** is a sealed box with a program and everything it needs. One container does one job and has one command-line interface. Do that, and the same container fits into a Nextflow module, a CWL step, a Snakemake rule, or a plain `docker run` on your laptop. The computation stays identical. Only the language that joins the steps changes.
 
-Make our science *as platform-independent and workflow-independent as
-possible*, in service of open, reproducible science.
+The Elements of Style calls this the *fan-in* shape: many workflow languages, all using the same container-level building blocks. See the lessons on [containers](../containers/README.md) and [reusable command-line tools](../reusable-clis/README.md).
 
-## The strategy
+**What you should take away:** the container is the stable part. The workflow language is the replaceable part.
 
-**Containerise at the logical, single-purpose level.** One container, one
-job, one CLI. Do that, and the same container drops into a Nextflow module,
-a CWL step, a Snakemake rule, or an `docker run` on your laptop. The
-computation stays identical; only the composition language changes.
+## Step 3: See what Nextflow and CWL share
 
-That is what the Elements of Style calls the *fan-in* organisational shape:
-many workflow languages, all consuming the same container-level building
-blocks.
+*Why:* once you see the shared parts, a new workflow language looks familiar. Both languages describe the same three things:
 
-## What Nextflow and CWL share
+- **Inputs**: the parameters and files the step uses.
+- **Outputs**: the files or values the step makes.
+- **Scripts or commands**: what the step actually runs, inside a container.
 
-Both languages describe the same three primitives:
+They differ in *syntax* and in *how data moves between steps*: Nextflow uses channels (pipes that carry items from one step to the next), and CWL writes each step-to-step connection down explicitly. The scientific containers are identical.
 
-- **Inputs** — the parameters and files the step consumes.
-- **Outputs** — the files or values the step produces.
-- **Scripts / commands** — what the step actually runs (inside a container).
+**What you should take away:** three shared primitives, and one real difference, the wiring.
 
-They differ only in *syntax* and *how dataflow between steps is expressed*
-(Nextflow channels vs. CWL explicit step-output wiring). The scientific
-containers are identical.
+## Step 4: Compare one FastQC step side by side
 
-## Side-by-side — one fastqc step
+*Why:* seeing the two versions next to each other makes the shared structure concrete. Match up the lines: the container, the command, the input and the output appear in both.
 
 **Nextflow (DSL2):**
 
@@ -124,28 +93,21 @@ outputs:
       glob: results
 ```
 
-Different syntax. **Same container. Same command. Same intent.**
+**What you should see:** different syntax, **same container, same command, same intent.** `<owner>` stands for your own registry name.
 
-## Benefits of this discipline
+## Step 5: Read why this discipline pays off
 
-- **Reproducible science.** The container fixes the tool version; the
-  workflow language just orchestrates.
-- **Cleaner, testable components.** Each container can be `--help`'d and
-  smoke-tested independent of any workflow engine.
-- **Reusable in other workflows.** The container you built for a Nextflow
-  step drops straight into someone else's CWL pipeline — or a Common
-  Workflow Language runner, or Snakemake, or a plain shell script.
+- **Reproducible science.** The container fixes the tool version. The workflow language only organises the steps.
+- **Cleaner, testable parts.** Each container can be run with `--help` and smoke-tested without any workflow engine.
+- **Reuse in other workflows.** The container you built for a Nextflow step drops straight into someone else's CWL pipeline, a Snakemake rule or a plain shell script.
 
-This is why the elements-of-style curriculum spends so much time on the
-**containers** and **reusable-clis** lessons before ever touching a `.nf`
-file: those are the *load-bearing* pieces. Workflow syntax is a thin
-composition layer on top.
+This is why the curriculum spends so much time on the **containers** and **reusable-clis** lessons before it touches a `.nf` file. Those are the parts that carry the load. Workflow syntax is a thin layer on top.
 
-## Where to next
+## If something goes wrong
 
-→ Back to the [nextflow-workflows lesson](index.md) for the framework's
-own graduation from monolithic scripts to `modules/` + `main-*.nf`.
+- **A tool shows `MISSING` in the tool check (Step 6 of [Let's dive in](../introduction/lets-dive-in.md)).** This walkthrough does not need it. If you want it, the lesson linked in the table explains how to install it.
+- **The Bash tile is missing in JupyterLab.** Repeat Step 4 of [Let's dive in](../introduction/lets-dive-in.md) and restart JupyterLab.
 
-→ [`case-studies/multiqc-workflow/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md)
-— the fastqc → multiqc pipeline in the graduated container / module /
-workflow structure, with Nextflow-first orchestration.
+## Next
+
+Back to the [nextflow-workflows lesson](README.md), which shows how a one-file script grows into `modules/` and `main-*.nf`. Then the [multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md): the fastqc then multiqc pipeline in the container, module and workflow structure, with Nextflow first.

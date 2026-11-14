@@ -1,136 +1,146 @@
 # Running a JupyterLab notebook
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-1-reasoning/running-a-jupyterlab-notebook/)) — woven into
-the [interactive-computing](index.md) lesson.*
+You will copy a real R notebook from GitHub, open it in JupyterLab, and run it from top to bottom. This matters because "Restart and Run All" is how you prove a notebook works.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`running-a-jupyterlab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/running-a-jupyterlab-notebook.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Clone a small R notebook project from GitHub.
+- Open the notebook and choose the R kernel.
+- Run every cell, then use **Restart Kernel and Run All Cells**.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- JupyterLab running: [starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md).
+- The R kernel registered: [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
+- [Git](https://git-scm.com/) installed ([command-line-and-git-bash](../command-line-and-git-bash/README.md)).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`running-a-jupyterlab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/running-a-jupyterlab-notebook.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. Know the project
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+*Project Jupyter is a non-profit, open-source project, born out of the IPython Project in 2014.* Its mission is interactive computing across programming languages. JupyterLab supports roughly 40 language **kernels** (the programs that run your code) through community plugins. Python and R are the two this course uses most.
 
+This walkthrough uses `exampleVolcanoPlotNotebook`, a small R notebook that reads DESeq2 output and draws a **volcano plot** (a scatter plot of how much and how reliably each gene changed). The original lives at [`adeslatt/exampleVolcanoPlotNotebook`](https://github.com/adeslatt/exampleVolcanoPlotNotebook). [`NIH-NICHD/exampleVolcanoPlotNotebook`](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook) is a teaching fork of it.
 
-## About JupyterLab
+**What you should see:** nothing. This step is reading only.
 
-*Project Jupyter is a non-profit, open-source project, born out of the IPython
-Project in 2014.* Its mission is interactive computing across programming
-languages — JupyterLab supports roughly 40 language kernels via community
-plugins. Python and R are the two we use most in this curriculum.
+### Step 2. Open the project page
 
-## Get a real notebook to run
+In your browser, open [https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook).
 
-The rest of this walkthrough uses `exampleVolcanoPlotNotebook` — a small R
-notebook that reads DESeq2 output and draws a volcano plot. The origin lives
-at [`adeslatt/exampleVolcanoPlotNotebook`](https://github.com/adeslatt/exampleVolcanoPlotNotebook);
-`NIH-NICHD/exampleVolcanoPlotNotebook` is the NICHD teaching fork of it.
+**What you should see:** a GitHub page with a file list that includes `README.md` and `Reading-data-and-plotting-in-R.ipynb`.
 
-### 1. Navigate to the repository
+### Step 3. Copy the clone address
 
-Open [https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook](https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook)
-in your browser.
+Click the green **Code** button, then **HTTPS**, then the copy icon. The address looks like `https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git`.
 
-### 2. Copy the clone URL
+> **Picture to add:** the green Code button open on the HTTPS tab with the copy icon (save as assets/running-a-jupyterlab-notebook-step-3.png)
 
-Click the green **Code** button → **HTTPS** → the copy icon.
+**What you should see:** a small box with the address and a copy icon.
 
-### 3. Clone it in the JupyterLab terminal
+### Step 4. Go to your practice folder
 
-Open a terminal in JupyterLab (*File → New → Terminal*), then:
+You keep practice work in `~/eos-practice`. `~` means your home folder. The next cell makes the folder and moves into it.
 
 ```bash
-git clone https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git
+mkdir -p ~/eos-practice
+cd ~/eos-practice
+pwd
 ```
+
+**What you should see:** one line ending in `eos-practice`.
+
+### Step 5. Clone the project
+
+To **clone** is to copy a GitHub project onto your computer. You can also do this in a JupyterLab terminal (*File*, *New*, *Terminal*). The command is the same.
+
+```bash
+[ -d exampleVolcanoPlotNotebook ] || git clone https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git
+```
+
+**What you should see:** lines that begin like this and end with `done.`:
+
+```
+Cloning into 'exampleVolcanoPlotNotebook'...
+remote: Enumerating objects: 22, done.
+...
+Receiving objects: 100% (22/22), 210.63 KiB | 7.80 MiB/s, done.
+Resolving deltas: 100% (6/6), done.
+```
+
+(The sizes may differ.)
+
+### Step 6. Look inside the project
+
+`cd` moves into the new folder. `ls` lists what is in it.
 
 ```bash
 cd exampleVolcanoPlotNotebook
 ls
 ```
 
-### 4. Open the notebook
+**What you should see:**
 
-In the JupyterLab file browser (left side), navigate into
-`exampleVolcanoPlotNotebook/` and double-click `Reading-data-and-plotting-in-R.ipynb`.
+```
+README.md  Reading-data-and-plotting-in-R.ipynb  install_dependencies.R
+```
 
-If the R kernel isn't offered, either (a) you're on a Python-only environment
-and need to register IRkernel — see
-[conda-environments](../conda-environments/index.md) — or (b) your
-platform image has Python only; use an image with **R + Python (Bioconductor)**.
+### Step 7. Open the notebook
 
-### 5. Run every cell top to bottom
+In the JupyterLab file browser (left side), open `eos-practice`, then `exampleVolcanoPlotNotebook`, and double-click `Reading-data-and-plotting-in-R.ipynb`.
 
-The keyboard move is `Shift-Enter` to run the current cell and advance to the
-next. When you're done exploring, the discipline is:
+If JupyterLab does not offer the *R* kernel, either you need to register [IRkernel](https://irkernel.github.io/) (see [exploring-an-r-notebook.md](exploring-an-r-notebook.md)), or your Lifebit image has Python only. In that case use an image with **R + Python (Bioconductor)**.
 
-> **Kernel → Restart Kernel and Run All Cells.**
+> **Picture to add:** the notebook open in JupyterLab with the kernel name "R" at the top right (save as assets/running-a-jupyterlab-notebook-step-7.png)
 
-If the notebook still produces the same output, you have a *reproducible*
-notebook. If not, you've just caught a hidden dependency between cells —
-better now than in a paper review.
+**What you should see:** the notebook opens in a new tab, and the top right corner says *R*.
 
-## Learning outcomes
+### Step 8. Run every cell, top to bottom
 
-By running this notebook end-to-end you have practised:
+Press `Shift-Enter` to run the current cell and move to the next one. When you finish exploring, use the habit that proves a notebook works:
 
-- Logging into your environment (laptop / Lifebit).
+> **Kernel**, then **Restart Kernel and Run All Cells**.
+
+If the notebook gives the same output, it is *reproducible*. If not, you found a hidden link between cells. Better to find it now than in a paper review.
+
+**Expect some errors on the first run.** This notebook needs three things before it runs cleanly: the data (from Zenodo, DOI [10.5281/zenodo.7510587](https://doi.org/10.5281/zenodo.7510587)), the R packages (installed with `Rscript install_dependencies.R`), and one extra `library(rlang)` line. The [recap-workspace-setup lesson](../conda-environments/recap-workspace-setup.md) explains all three.
+
+> **Check:** Does the NIH-NICHD copy of the notebook run cleanly from top to bottom for a beginner, or should students use the `adeslatt` copy?
+
+> **Picture to add:** the volcano plot that the notebook draws, if it runs to the end (save as assets/running-a-jupyterlab-notebook-step-8.png)
+
+**What you should see:** cells with numbers beside them, text output, and (if the data and packages are in place) a volcano plot.
+
+## What you practised
+
+- Logging into your environment (your laptop).
 - Starting an interactive JupyterLab session.
 - Cloning a repo from GitHub.
-- Executing notebook cells that use an R kernel.
-- Producing your first visualisation (a volcano plot).
+- Running notebook cells with an R kernel.
+- Making your first visualisation, a volcano plot.
 
-## Where to next
+## If something goes wrong
 
-→ Back to the [interactive-computing lesson](index.md) for the fuller
-notebook anatomy, cell-type reference, and the *Restart-and-Run-All* ritual.
+- **`destination path 'exampleVolcanoPlotNotebook' already exists`.** You already cloned it. Skip the clone and run `cd exampleVolcanoPlotNotebook`.
+- **No R kernel in the Launcher.** See [exploring-an-r-notebook.md](exploring-an-r-notebook.md) to install and register it.
+- **An error such as "there is no package called ..." or a missing data file.** The notebook needs its packages and data. See Step 0 above and the [recap-workspace-setup lesson](../conda-environments/recap-workspace-setup.md).
 
-→ Then [reusable-clis](../reusable-clis/index.md) — where the notebook
-code graduates into a command-line-callable tool.
+## Next
+
+[exploring-an-r-notebook.md](exploring-an-r-notebook.md) if you have not done it, or back to the [interactive-computing lesson](README.md). Then [reusable-clis](../reusable-clis/README.md), where notebook code becomes a command-line tool.

@@ -1,95 +1,96 @@
 # Reproducible environments with Conda
 
+> *In the book: Sections 5.2 and 5.3, Introduction to Anaconda and Packages; Creating a Conda Environment.*
 
-> *In the book: Sections 5.2 and 5.3 — Introduction to Anaconda and Packages; Creating a Conda Environment.*
+This lesson gives you the `eos` conda environment, a named set of software versions that recreates the same setup on any machine, so your work stays runnable for years.
 
-:::{admonition} What you'll learn
-:class: tip
+## Before you start
 
-- Why pinning beats remembering.
-- Create the `eos` env and activate it everywhere.
-- Register the R kernel so Jupyter sees both R and Python.
-:::
+[Version control with Git](../version-control/README.md)
 
-:::{admonition} 📸 Screenshot placeholder
-:class: note
+## Do this
 
-*TBD will drop a screenshot at `assets/overview.png` here showing the
-key result of this lesson. Reference it from this README as
-`![overview](assets/overview.png){width=520}` once captured.*
-:::
+1. **Clone the course.** In a terminal, run:
 
-Reproducibility starts with knowing *which versions of which packages* your
-code needs. Conda is the most common way biomedical projects answer that
-question. One file — `eos.yml` (in the repo root) — lists everything, and
-one command recreates the environment from scratch.
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-:::{admonition} Why this step matters
-:class: tip
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the first notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Open `lessons/conda-environments/creating-a-conda-environment.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb)). Run each cell in order, top to bottom.
 
-A notebook that "worked yesterday" usually still works today — until
-something updates underneath it. Conda freezes the floor under your feet.
-Pin the env once and your work stays runnable for years.
-:::
+Then work through the notebooks in this order:
 
-## Install Miniforge (the lightweight, conda-forge-first installer)
+1. [creating-a-conda-environment.md](creating-a-conda-environment.md): install Miniconda from scratch in a Linux Bash terminal, then create and activate an `eos` environment.
+2. [recap-workspace-setup.md](recap-workspace-setup.md): a Day 1 and Day 2 checkpoint. Move around a Git clone, use the `..` shortcut, and practise the "wipe the local tangle and clone again" recovery.
 
-Miniforge is a clean Conda install that defaults to the `conda-forge`
-channel — which is what you want for biomedical work.
+## What you should see
 
-- **macOS / Linux:** https://conda-forge.org/download/ (or https://github.com/conda-forge/miniforge#install)
-- **Windows (with Git Bash):** download the Windows `.exe` from the same
-  page and run it. Reopen Git Bash afterward.
+- `conda --version` prints a version number.
+- `conda env list` shows an environment called `eos`.
+- Your terminal prompt starts with `(eos)` after `conda activate eos`.
+- With the full `eos.yml` environment: `python --version` shows 3.11.x, and the JupyterLab Launcher shows Python 3, Bash and R tiles.
 
-Verify:
+> **Picture to add:** a terminal with the `(eos)` prompt and the output of `conda env list` (save as assets/overview.png)
+
+## Where the files are
+
+- The lessons are in `lessons/conda-environments/` of the [course repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/conda-environments).
+- The environment recipe is [`eos.yml`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/eos.yml) at the root of the repository.
+
+## Next
+
+[Interactive computing with Jupyter](../interactive-computing/README.md)
+
+## Background
+
+### Why this lesson matters
+
+A notebook that worked yesterday usually still works today, until something updates underneath it. Conda freezes the floor under your feet. Pin the environment once and your work stays runnable for years.
+
+### Two ways to think about conda
+
+1. An **environment** is a folder full of compatible packages: Python, R, bioinformatics tools. You activate it before running code.
+2. An **environment file** (`eos.yml` in this repository) is a recipe for that folder. Anyone with the recipe can recreate the folder.
+
+You almost always want the recipe. Installing packages by hand "until it works" is the classic way to make work that nobody else, including future you, can reproduce.
+
+> **Check:** The notebook `creating-a-conda-environment` makes an empty environment with `conda create -n eos -y`, while this page makes it from `eos.yml`. Is that difference intended?
+
+### Install Miniforge
+
+[Miniforge](https://github.com/conda-forge/miniforge) is a clean conda install that uses the `conda-forge` channel by default. That is what you want for biomedical work.
+
+- **macOS and Linux:** [conda-forge.org/download](https://conda-forge.org/download/), or the [Miniforge install notes](https://github.com/conda-forge/miniforge#install).
+- **Windows (with Git Bash):** download the Windows `.exe` from the same page and run it. Reopen Git Bash afterwards.
+
+Check it:
 
 ```bash
 conda --version
 ```
 
-## Two ways to think about Conda
+### What is in `eos.yml`
 
-1. An **environment** is a folder full of compatible packages — Python,
-   R, bioinformatics tools, whatever. You activate it before running code.
-2. An **environment file** (`eos.yml` in this repo) is a *recipe* for
-   that folder. Anyone with the recipe can recreate the folder.
+When resolved, `eos.yml` gives you:
 
-You almost always want the recipe. Hand-installing packages "until it
-works" is the classic way to make work that nobody else (including future
-you) can reproduce.
+- **Python 3.11 and JupyterLab**, with three registered kernels: Python 3, Bash and R (IRkernel).
+- **R 4.x**, with a small tidyverse-adjacent set (`tibble`, `dplyr`, `ggplot2`, `docopt`).
+- **Tools** you will reach for: `git`, `gh` (GitHub CLI), `nextflow`, `curl`, `wget`.
+- **Python libraries** for the starter notebooks and case studies: `pandas`, `numpy`, `matplotlib`, `typer`, `pydantic`.
+- The **Sphinx and MyST-NB** tools, so you can build the course site locally.
 
-## What's in `eos.yml`
+Docker is not installed by `eos.yml`. It needs the system package manager: Docker Desktop on macOS and Windows, `apt` or `dnf` on Linux. See [containers](../containers/README.md).
 
-The [`eos.yml`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/eos.yml)
-at the root of this repo is the single environment file for the whole
-curriculum. When resolved it gives you:
+### Create the `eos` environment from `eos.yml`
 
-- **Python 3.11 + JupyterLab** with three registered kernels:
-  **Python 3**, **Bash**, and **R** (IRkernel).
-- **R 4.x** with a small tidyverse-adjacent set (`tibble`, `dplyr`,
-  `ggplot2`, `docopt`).
-- **Tools** every reader reaches for: `git`, `gh` (GitHub CLI),
-  `nextflow`, `curl`, `wget`.
-- **Python libraries** for the starter notebooks and case studies:
-  `pandas`, `numpy`, `matplotlib`, `typer`, `pydantic`.
-- The **Sphinx + MyST-NB** stack so you can build this site locally.
+The first `conda env create` takes a few minutes, because conda downloads and resolves a few hundred packages. After that, activation is instant.
 
-Docker is *not* installed by `eos.yml` — it needs the system package
-manager (Docker Desktop on macOS/Windows, `apt`/`dnf` on Linux; it's
-already on Lifebit compute). See [containers](../containers/index.md).
-
-## Create the `eos` environment — per venue
-
-::::{tab-set}
-
-:::{tab-item} On your laptop (macOS)
-:sync: mac
-
-Install Miniforge once, then create the env from `eos.yml`.
+**On your laptop (macOS).** Install Miniforge once, then create the environment from `eos.yml`:
 
 ```bash
-# 1. Miniforge — the lightweight, conda-forge-first installer.
-#    Apple Silicon or Intel — Miniforge has installers for both.
+# 1. Miniforge. Apple Silicon or Intel, there is an installer for both.
 #    Download from https://github.com/conda-forge/miniforge#install
 bash Miniforge3-MacOSX-arm64.sh    # or -x86_64 on Intel
 
@@ -98,15 +99,13 @@ cd elements-of-style-lessons
 conda env create -f eos.yml
 conda activate eos
 ```
-:::
 
-:::{tab-item} On your laptop (Windows Git Bash)
-:sync: win
+**On your laptop (Windows Git Bash):**
 
 ```bash
 # 1. Download Miniforge3-Windows-x86_64.exe from
 #    https://conda-forge.org/download/ and run it.
-#    Then reopen Git Bash so PATH picks up conda.
+#    Then reopen Git Bash so it finds conda.
 conda --version
 
 # 2. Create the eos environment.
@@ -114,46 +113,8 @@ cd elements-of-style-lessons
 conda env create -f eos.yml
 conda activate eos
 ```
-:::
 
-:::{tab-item} In Google Cloud Shell
-:sync: gcs
-
-Open <https://shell.cloud.google.com/> (any Google account).
-Miniconda isn't pre-installed — bootstrap it once, then create `eos`.
-
-```bash
-# 1. Install Miniconda (see creating-a-conda-environment.md for the
-#    full walkthrough).
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda3
-exec -l bash
-
-# 2. Clone the repo and create the eos environment.
-git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-cd elements-of-style-lessons
-conda env create -f eos.yml
-conda activate eos
-```
-:::
-
-:::{tab-item} On Lifebit CloudOS
-:sync: lifebit
-
-```bash
-# Lifebit notebook servers ship mamba/conda pre-installed —
-# just clone and create.
-git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-cd elements-of-style-lessons
-conda env create -f eos.yml
-conda activate eos
-```
-:::
-
-::::
-
-The first `conda env create` takes a few minutes — Conda is downloading
-and resolving a few hundred packages. After that, activation is instant.
+**On Linux.** Install Miniforge the same way as on macOS, using the Linux installer. No Linux terminal? See [Other places to run these lessons](../introduction/other-places-to-run.md), which covers Google Cloud Shell and Lifebit.
 
 Confirm the essentials:
 
@@ -165,11 +126,9 @@ gh --version
 nextflow -version
 ```
 
-## Register the Bash and R Jupyter kernels
+### Register the Bash and R Jupyter kernels
 
-`eos.yml` installs `bash_kernel` (pip) and `r-irkernel` (conda) but they
-need a one-time registration so JupyterLab shows a **Bash** and an
-**R** tile in the launcher:
+`eos.yml` installs `bash_kernel` (with pip) and `r-irkernel` (with conda). They need a one-time registration so JupyterLab shows a **Bash** tile and an **R** tile in the Launcher:
 
 ```bash
 conda activate eos
@@ -177,50 +136,31 @@ python -m bash_kernel.install
 R -e 'IRkernel::installspec(name="ir", displayname="R")'
 ```
 
-Restart JupyterLab; the launcher now shows Python 3, Bash, and R.
+Restart JupyterLab. The Launcher now shows Python 3, Bash and R.
 
-## Editing the environment
+### Editing the environment
 
-When you need a new package, add it to `eos.yml` (don't `pip install`
-ad-hoc into the env), then:
+When you need a new package, add it to `eos.yml`. Do not `pip install` ad hoc into the environment. Then run:
 
 ```bash
 conda env update -f eos.yml --prune
 ```
 
-The `--prune` flag also removes packages you deleted from the file. This
-keeps the file and the env in sync, which is the whole point.
+The `--prune` flag also removes packages you deleted from the file. This keeps the file and the environment in sync, which is the whole point.
 
-## A common gotcha: which env am I in?
+### Which environment am I in?
 
 ```bash
-conda info --envs    # lists all envs; the active one has a *
-which python         # full path tells you where you are
+conda info --envs    # lists all environments; the active one has a *
+which python         # the full path tells you where you are
 ```
 
-If the path doesn't include `envs/eos`, you forgot to `conda activate eos`.
-Happens to everyone.
+If the path does not contain `envs/eos`, you forgot to run `conda activate eos`. This happens to everyone.
 
-## In-depth walkthroughs
+### Further reading
 
-Two walkthroughs adapted from the NICHD Kids First / INCLUDE course:
-
-- [`creating-a-conda-environment.md`](creating-a-conda-environment.md) —
-  install Miniconda from scratch in Google Cloud Shell (or any Bash terminal),
-  create and activate an `eos` environment.
-- [`recap-workspace-setup.md`](recap-workspace-setup.md) —
-  a Day-1 + Day-2 checkpoint: navigating a git clone, the `..` shortcut, and
-  the classic *"wipe the local tangle and re-clone"* recovery move.
-
-## Further reading
-
-- [Miniforge](https://github.com/conda-forge/miniforge) — installer
-- [conda-forge](https://conda-forge.org/) — the community package channel
-- [Mamba](https://mamba.readthedocs.io/) — a faster drop-in for conda
-- [IRkernel](https://irkernel.github.io/) — R kernel for Jupyter
-- [conda documentation](https://docs.conda.io/) — the authoritative reference
-
-
-## Where to next
-
-→ Next lesson: [Interactive computing with Jupyter](../interactive-computing/index.md)
+- [Miniforge](https://github.com/conda-forge/miniforge): installer
+- [conda-forge](https://conda-forge.org/): the community package channel
+- [Mamba](https://mamba.readthedocs.io/): a faster drop-in for conda
+- [IRkernel](https://irkernel.github.io/): R kernel for Jupyter
+- [conda documentation](https://docs.conda.io/): the authoritative reference

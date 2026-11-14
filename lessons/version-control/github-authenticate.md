@@ -1,111 +1,96 @@
 # GitHub authentication
 
-*Adapted from the NICHD Kids First / INCLUDE course
-([source](https://nih-nichd.github.io/classes/day-2-code-versioning/github-authenticate/)) — woven into
-the [version-control](index.md) lesson.*
+You will prove to GitHub who you are, from the terminal. This matters because GitHub accepts your changes only from a signed-in user.
 
-:::{admonition} Two ways to run this walkthrough
-:class: tip
+**What you will do:**
 
-- **In a terminal** — on your **laptop**, in **[Google Cloud Shell](https://shell.cloud.google.com/)** (a free browser-based terminal), or on **[Lifebit CloudOS](https://cloudos.lifebit.ai/)** when the work needs to scale.
-  Copy each shell block below into your terminal.
-- **In the paired notebook** [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) — every code cell
-  is a shell command executed by the Jupyter **Bash** kernel.
+- Create a Personal Access Token on the GitHub website.
+- Sign in with the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
+- Check that you are signed in.
 
-The walkthrough is **self-contained**. Work through *Set up the
-environment* below once, then run the steps top-to-bottom.
-:::
+**What you need:**
 
-## Set up the environment
+- A free [GitHub account](https://github.com/signup).
+- The `gh` program. Install it with [why-git-and-setup.md](why-git-and-setup.md) (Step 4).
 
-### One time — register the Bash kernel
+## Before you begin
 
-Only needed if you'll run the paired notebook in JupyterLab. Skip if
-you're doing everything in a terminal.
+1. **Get the code.** In a terminal, run:
 
-```bash
-pip install bash_kernel
-python -m bash_kernel.install
-```
+   ```bash
+   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
+   cd elements-of-style-lessons
+   ```
 
-Restart JupyterLab; the launcher now shows a **Bash** tile.
+2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
+3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) and run each cell in order, top to bottom.
 
-### Every time — verify the tools this walkthrough uses
+## Steps
 
-The commands below call one or more of these tools. Where a check
-fails, the linked lesson has the install instructions.
+### Check your setup
 
-| Tool | Check | If missing, see |
-|---|---|---|
-| Bash / Git Bash | `bash --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Git | `git --version` | [command-line-and-git-bash](../command-line-and-git-bash/index.md) |
-| Conda | `conda --version` | [conda-environments](../conda-environments/index.md) |
-| GitHub CLI (`gh`) | `gh --version` | [version-control](../version-control/why-git-and-setup.md) |
-| Docker | `docker --version` | [containers](../containers/index.md) |
-| Nextflow | `nextflow -version` | [nextflow-workflows](../nextflow-workflows/index.md) |
-| Python 3 | `python3 --version` | [conda-environments](../conda-environments/index.md) |
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do Steps 4 and 6 of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-Run them all at once:
+### Step 1. Know why you sign in
 
-```bash
-for cmd in bash git conda gh docker nextflow python3; do
-  if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
-  else
-    printf "  %-10s MISSING
-" "$cmd"
-  fi
-done
-```
+To contribute to any GitHub repository, even one you own, you first prove who you are. `gh` does this in one step, but it needs a **Personal Access Token (PAT)**. A PAT is a private secret key that tells GitHub that this computer is acting for you. Treat it like a password: never paste it into a notebook cell, an email or a chat.
 
+`gh` came from the [conda-forge package channel](https://conda-forge.org/), the same source used by `conda install` in the [conda-environments lesson](../conda-environments/README.md). **CLI** means *command-line interface*, a program you control by typing.
 
-## Why authenticate
+**What you should see:** nothing. This step is reading only.
 
-To contribute to any GitHub repository — even one you own — you first prove
-who you are. The GitHub CLI (`gh`) does this in one step, but it needs a
-**Personal Access Token (PAT)**: a private secret key that tells GitHub
-*this terminal session is Annie*.
+### Step 2. Create a Personal Access Token
 
-`gh` came from the [Anaconda package library](https://anaconda.org/anaconda/repo)
-(the same source we use for `conda install` in
-[conda-environments](../conda-environments/index.md)). **CLI** stands for
-*Command Line Interface* — the shell-driven applications we've been using for
-two lessons now.
+You do this in a web browser, on GitHub's [token page](https://github.com/settings/tokens).
 
-## Generate a Personal Access Token
-
-In a browser, go to your GitHub account and follow six clicks:
-
-1. Click your **profile avatar** (top right) → **Settings**.
+1. Click your **profile picture** (top right), then **Settings**.
 2. Scroll to the bottom of the left sidebar and click **Developer settings**.
-3. Click **Personal access tokens** (the third item from the top).
-4. Click **Generate new token** (top right). Give it a note, e.g. `eos`.
-5. Select all the scope options (you can trim later).
-6. Click **Generate token** — and **copy the token immediately**. GitHub will
-   never show it to you again. If you lose it, generate a fresh one.
+3. Click **Personal access tokens**, then **Tokens (classic)**.
+4. Click **Generate new token**, then **Generate new token (classic)**. In the *Note* box, type a name such as `eos`.
+5. Tick the boxes `repo`, `read:org` and `gist`. These are the smallest set that `gh` needs, according to the [gh manual](https://cli.github.com/manual/gh_auth_login).
+6. Scroll down and click **Generate token**. **Copy the token now.** GitHub never shows it again. If you lose it, make a new one.
 
-## Authenticate
+> **Check:** The original steps said "select all the scope options" and "third item from the top". GitHub's menu has changed. Please confirm the current wording and the scopes you want students to tick.
 
-Back in the terminal:
+> **Picture to add:** the "New personal access token (classic)" page with the Note box and the three ticked scopes (save as assets/github-authenticate-step-2.png)
+
+**What you should see:** a green banner with a long string that starts with `ghp_`. That string is your token.
+
+### Step 3. Sign in with `gh auth login`
+
+`gh auth login` asks you questions and waits for your answers, so a notebook cell cannot run it. **Open a terminal and type the command there** (item 2 of Before you begin). The cell below is the same command, for reference.
 
 ```bash
 gh auth login
 ```
 
-`gh` will ask a few questions — the sensible answers:
+Answer the questions like this:
 
-- **What account** → *GitHub.com* (usually the default).
-- **Preferred protocol** → *HTTPS*.
-- **Authenticate with GitHub credentials** → *Yes*.
-- **How to authenticate** → *Paste an authentication token*. Paste the PAT
-  you just copied.
+1. **What account do you want to log into?** Choose *GitHub.com*. This is usually the default.
+2. **What is your preferred protocol for Git operations?** Choose *HTTPS*.
+3. **Authenticate Git with your GitHub credentials?** Choose *Yes*.
+4. **How would you like to authenticate GitHub CLI?** Choose *Paste an authentication token*, then paste the token you copied.
 
-If everything worked, `gh` prints a happy checkmark and you are ready to
-`git push` for real.
+**What you should see:** a line with a check mark that says you are logged in as your GitHub user name.
 
-## Where to next
+> **Picture to add:** the terminal after a successful `gh auth login`, with the check mark line (save as assets/github-authenticate-step-3.png)
 
-→ [`the-add-push-git-routine.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/the-add-push-git-routine.ipynb) — the
-daily `add → commit → push` loop that turns work-in-progress into a shared
-record.
+### Step 4. Check that you are signed in
+
+This command reports who `gh` thinks you are. It changes nothing.
+
+```bash
+gh auth status
+```
+
+**What you should see:** `Logged in to github.com` followed by your user name. If it says you are not logged in, repeat the last step in a terminal.
+
+## If something goes wrong
+
+- **`gh: command not found`.** Activate the environment where you installed it: `conda activate eos`. If `gh` is still missing, run `conda install -c conda-forge gh -y`.
+- **The command seems to hang in a notebook cell.** It is waiting for answers you cannot type there. Stop the cell (the square Stop button) and run `gh auth login` in a terminal.
+- **"Bad credentials" or a rejected token.** The token was copied wrongly or expired. Make a new token and try again.
+
+## Next
+
+[the-add-push-git-routine.md](the-add-push-git-routine.md): the daily add, commit and push loop.
