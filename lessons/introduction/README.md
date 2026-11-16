@@ -118,10 +118,6 @@ Each lesson builds on the one before it.
 7. **Run.** [Platforms](../platforms/README.md).
 8. **Put it together.** [Case studies](../../case-studies/README.md): five real pipelines, from sc-nsforest-qc-nf to LRP2.
 
-## References
-
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](../../case-studies/nlm-ckn/README.md) case study, and for the course as a whole.
-
 ## Next
 
 [The Rules](../elements-of-style-rules/README.md): the principles that every later lesson follows.

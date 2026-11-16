@@ -3,11 +3,10 @@
 # Run it by hand: GitHub -> Actions -> "Test Podman in Git Bash" -> Run workflow.
 # It never runs on a push, so it costs nothing until you start it.
 #
-# This workflow has not been run yet. A Windows runner may not allow the
-# virtual machine that Podman needs (WSL2). If the Windows job fails at
-# "Start the Podman machine", that is a limit of the runner, not proof that
-# the lesson fails on a real Windows computer. Each step records what happened
-# in the job summary so that you can read the result without opening the log.
+# It ran correctly on windows-latest in Git Bash: Podman installed, a container
+# ran, the fastqc image built, and fastqc ran without MSYS_NO_PATHCONV. A runner
+# is not a student's own computer, so a real Windows test is still worth doing.
+# Each step records what happened in the job summary.
 name: Test Podman in Git Bash
 
 on:

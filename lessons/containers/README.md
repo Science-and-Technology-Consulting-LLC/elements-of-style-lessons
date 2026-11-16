@@ -165,7 +165,7 @@ podman --version
 
 ::::
 
-> **Check:** I ran the Mac commands on an Apple-silicon Mac on 2026-11-16 (`brew install podman` installed Podman 6.2.0; `podman machine init`, `podman machine start`, `podman run` and `podman build` all worked). I could not test the Windows and Linux commands. Please run them and confirm them, including the Windows route (installer or `winget`). On Linux with SELinux, a mounted folder may need `:Z` after the path, as in `-v "$PWD:$PWD:Z"`.
+> **Check:** I ran the Mac commands on an Apple-silicon Mac on 2026-11-16 (`brew install podman` installed Podman 6.2.0; `podman machine init`, `podman machine start`, `podman run` and `podman build` all worked). The Windows commands ran in Git Bash on a GitHub-hosted Windows runner (Podman installed with `winget`; a container ran, the fastqc image built, and `fastqc` ran). I have not run them on a student's own Windows computer, or on Linux. On Linux with SELinux, a mounted folder may need `:Z` after the path, as in `-v "$PWD:$PWD:Z"`.
 
 ### A first build
 
