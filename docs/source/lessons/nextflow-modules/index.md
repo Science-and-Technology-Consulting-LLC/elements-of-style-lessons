@@ -15,5 +15,6 @@
 :hidden:
 :maxdepth: 1
 
-preamble
+fastqc-and-multiqc-modules
+tour-of-nextflow-features
 ```

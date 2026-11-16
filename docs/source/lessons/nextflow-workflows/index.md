@@ -15,7 +15,7 @@
 :hidden:
 :maxdepth: 1
 
-building-a-cwl-workflow
 building-a-nextflow-workflow
+building-a-cwl-workflow
 shared-structure-nextflow-vs-cwl
 ```

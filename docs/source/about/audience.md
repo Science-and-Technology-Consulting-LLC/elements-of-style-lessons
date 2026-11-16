@@ -3,8 +3,8 @@
 A broad audience focused on solving scientific problems.
 
 This curriculum has been taught seven times — at Jackson Laboratory
-with the Lifebit team, at ISCB Academy, in NICHD Scholar programmes
-on INCLUDE and Kids First, and on the Lifebit Federated Data and
+with the Lifebit team, at ISCB Academy, in NICHD Scholar programmes,
+and on the Lifebit Federated Data and
 Learning Fabric. The shape it's settled into addresses three things
 in every reader.
 

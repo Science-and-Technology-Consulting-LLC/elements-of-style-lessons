@@ -4,11 +4,13 @@
 
 This lesson shows you how to publish a command-line tool so AI agents (and people) can find it, understand it and use it. The earlier lessons make your work run. This one makes it findable.
 
-## Before you start
+## Start here
 
-Do [agentic-harness](../agentic-harness/README.md) first. You also need the `hello-py` tool from [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md).
+### Before you start
 
-## Do this
+The previous lesson is [Agentic harness](../agentic-harness/README.md). You also need the `hello-py` tool from [A Typer CLI in fifteen minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md).
+
+### Do this
 
 1. **Clone the course repository.** In a terminal, run:
 
@@ -20,27 +22,57 @@ Do [agentic-harness](../agentic-harness/README.md) first. You also need the `hel
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/publishing-for-agents/exposing-help-and-schema.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/publishing-for-agents/exposing-help-and-schema.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first section makes a conda environment.
 
-## What you should see
+### What you should see
 
 You read the `--help` pages of `hello-py` and write a JSON schema of the `greet` input into `schemas/greet.schema.json`. The schema lists one property, `name`, with the description `Who to greet.`.
 
 > **Picture to add:** the `schemas/greet.schema.json` file printed in a terminal (save a screenshot of the finished schema) (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - `lessons/publishing-for-agents/exposing-help-and-schema.ipynb` and `.md`: the walkthrough.
 - `schemas/greet.schema.json`: created when you follow the walkthrough.
 - `lessons/publishing-for-agents/assets/`: pictures for this lesson.
 
-## Notebooks in order
+## Steps to execute
 
 1. [`exposing-help-and-schema.md`](exposing-help-and-schema.md) — give a CLI a truthful `--help` and a JSON schema
 
-## Next
+## Ask an AI assistant
 
-[Platforms](../platforms/README.md): where published tools run.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain what makes a command-line tool easy for an AI agent to use: its help page, a machine-readable schema, stable exit codes. Give a short example of each for a tool called greet.
+```
+
+**Ask it to build.**
+
+```text
+Here is the `--help` text of my tool: <paste>. Write (1) a README section an agent can act on, with exact commands and their expected output, and (2) a JSON Schema for the tool's options. Do not describe any option that is not in the help text.
+```
+
+**Ask it to review.**
+
+```text
+Act as an AI agent that has never seen this tool. Using only the README below, list what you would run, in order, to do <task>. Then list every place the README left you guessing.
+
+<paste README>
+```
+
+
+## Further reading
+
+- [Python Packaging User Guide](https://packaging.python.org/)
+- [Semantic Versioning](https://semver.org/)
+- [Keep a Changelog](https://keepachangelog.com/)
+- [GitHub Container Registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
+- [Zenodo](https://zenodo.org/): a citable DOI for a GitHub release
+- [NIH-NLM GitHub](https://github.com/NIH-NLM)
+
+## Supplementary information
 
 A well-documented CLI is an API for AI agents. An MCP server is the politest introduction your tool can make. Every habit from the earlier lessons helps:
 
@@ -142,12 +174,6 @@ Agents that pin to `~=1.0` get safe upgrades. Agents that pin to `==1.0.1` get e
 
 A well-published tool is usable by a person who finds your README, and also by an AI agent doing literature-driven analysis, an automated pipeline run that picked your tool from a manifest, a federated workflow that needs your container at each site, and you in six months. All four want structure, honesty and a `--help` that tells the truth.
 
-### Further reading
+## Next
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [Python Packaging User Guide](https://packaging.python.org/)
-- [Semantic Versioning](https://semver.org/)
-- [Keep a Changelog](https://keepachangelog.com/)
-- [GitHub Container Registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
-- [Zenodo](https://zenodo.org/): a citable DOI for a GitHub release
-- [NIH-NLM GitHub](https://github.com/NIH-NLM)
+[Platforms](../platforms/README.md): where published tools run.

@@ -1,6 +1,6 @@
 # Using the command line
 
-In this walkthrough you type seven commands that move, make, copy, delete and download files. Every tool in the later lessons (`git`, `conda`, `docker`, `nextflow`) runs from the same terminal, so this is the skill you will use most.
+In this walkthrough you type seven commands that move, make, copy, delete and download files. Every tool in the later lessons (`git`, `conda`, `podman`, `nextflow`) runs from the same terminal, so this is the skill you will use most.
 
 **What you will do:**
 
@@ -14,7 +14,9 @@ In this walkthrough you type seven commands that move, make, copy, delete and do
 - The `eos` conda environment from that lesson, which provides `wget` and JupyterLab. See [Conda environments](../conda-environments/README.md).
 - An internet connection, for the last step.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -26,11 +28,12 @@ In this walkthrough you type seven commands that move, make, copy, delete and do
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) and run each cell in order, top to bottom.
 
-## The steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Make a practice folder
 
@@ -161,7 +164,7 @@ ls -l
 
 You have now used `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r` and `wget`. The folder `practice` stays on your disk. When you are finished, you can delete it from a terminal with `rm -r practice`.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`wget: command not found`.** Neither a Mac nor Git Bash comes with `wget`. The `eos` environment does. Close JupyterLab, run `conda activate eos` in a terminal, start `jupyter lab` again and rerun the cell. As a stopgap, `curl -O https://zenodo.org/record/4302133/files/deseq2_5k.csv` does the same job.
 - **`ls: cannot access` or `No such file`.** You skipped a step, or you are in the wrong folder. Run `pwd` and compare with *`pwd` prints your location*. Then run the steps again from the top.

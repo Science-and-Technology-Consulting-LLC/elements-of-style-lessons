@@ -22,11 +22,11 @@ tools for immediate use so the practioner becomes immediately capable.
 | Foundation | [Interactive computing with Jupyter](lessons/interactive-computing/index.md) | Notebooks demystified and a way to work out the specification of your workflow |
 | Build | [Building reusable command-line tools](lessons/reusable-clis/index.md) | Typer (Python) + Rscript (R) |
 | Build | [Containers](lessons/containers/index.md) | One container, one set of CLIs |
-| Build | [Nextflow modules](lessons/nextflow-modules/index.md) | One `.nf` per CLI verb |
-| Build | [Nextflow workflows](lessons/nextflow-workflows/index.md) | Compose modules into a pipeline |
-| Build | [Differential analysis](lessons/differential-analysis/index.md) | Single cell to pseudobulk, limma-voom |
-| Durable | [Documentation](lessons/documentation/index.md) | Sphinx + MyST; this site is the worked example |
 | Durable | [Continuous integration](lessons/continuous-integration/index.md) | GitHub Actions guards every commit |
+| Durable | [Documentation](lessons/documentation/index.md) | Sphinx + MyST; this site is the worked example |
+| Build | [Introduction to Nextflow](lessons/nextflow-workflows/index.md) | A whole pipeline in one script |
+| Build | [Nextflow modules and features](lessons/nextflow-modules/index.md) | One `.nf` per tool, then the features of Nextflow |
+| Build | [Differential analysis](lessons/differential-analysis/index.md) | Single cell to pseudobulk, limma-voom |
 | Scale | [Federated computing](lessons/federated-computing/index.md) | Compute travels to data |
 | Scale | [Federated learning](lessons/federated-learning/index.md) | Model parameters travel; data stays put |
 | Agent | [MCP server](lessons/mcp-server/index.md) | An AI agent can drive your CLI |
@@ -64,22 +64,28 @@ lessons/introduction/index
 lessons/elements-of-style-rules/index
 lessons/command-line-and-git-bash/index
 lessons/version-control/index
-lessons/git-survival-guide
 lessons/conda-environments/index
 lessons/interactive-computing/index
 lessons/reusable-clis/index
 lessons/containers/index
-lessons/nextflow-modules/index
-lessons/nextflow-workflows/index
-lessons/differential-analysis/index
-lessons/documentation/index
 lessons/continuous-integration/index
+lessons/documentation/index
+lessons/nextflow-workflows/index
+lessons/nextflow-modules/index
+lessons/differential-analysis/index
 lessons/federated-computing/index
 lessons/federated-learning/index
 lessons/mcp-server/index
 lessons/agentic-harness/index
 lessons/publishing-for-agents/index
 lessons/platforms/index
+```
+
+```{toctree}
+:hidden:
+:caption: Case studies
+
+case-studies/index
 ```
 
 ```{toctree}

@@ -4,21 +4,23 @@ You will make a command-line tool describe itself in two ways: a `--help` page f
 
 *Part of the [publishing-for-agents](README.md) lesson.*
 
-## What you will do
+## Start here
+
+### What you will do
 
 - Make a clean conda environment with Typer installed.
 - Read the `--help` pages of the `hello-py` command.
 - Write a JSON schema for the `greet` input with Pydantic.
 - Save the schema in a `schemas/` folder.
 
-## What you need
+### What you need
 
 - [conda](https://docs.conda.io/) and a terminal. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md) and [command-line-and-git-bash](../command-line-and-git-bash/README.md).
 - The `hello-py` command from [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md), installed in your environment. [Typer](https://typer.tiangolo.com/) is a Python package for making command-line tools.
 - [Pydantic](https://docs.pydantic.dev/), a Python package that describes data and writes [JSON Schema](https://json-schema.org/) for it (*Write a JSON schema* shows how to install it).
 - [JupyterLab](https://jupyter.org/) with a Python kernel, if you want to read this as a notebook.
 
-## Before you begin
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -30,7 +32,9 @@ You will make a command-line tool describe itself in two ways: a `--help` page f
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`exposing-help-and-schema.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/publishing-for-agents/exposing-help-and-schema.ipynb) and run each cell in order, top to bottom.
 
-## Make a clean environment for this walkthrough (in a terminal)
+## Steps to execute
+
+### Make a clean environment for this walkthrough (in a terminal)
 
 Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
@@ -46,20 +50,20 @@ python -m ipykernel install --user \
 
 > **Check:** the `ipykernel` kernel installed here has no `typer`. Which environment should the notebook run in, this one or the one in the next step?
 
-## Check which Python this notebook uses
+### Check which Python this notebook uses
 
 Why: the walkthrough runs its commands in a terminal, but it is good to know which Python and tools your notebook sees.
 
 ```python
 import shutil, sys
 print("python  ", sys.executable)
-for cmd in ["conda", "pip", "git", "docker"]:
+for cmd in ["conda", "pip", "git", "podman"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
-**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `docker` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `docker` is fine.
+**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `podman` is fine.
 
-## The two descriptions
+### The two descriptions
 
 Why: an agent needs two things from your tool.
 
@@ -68,7 +72,7 @@ Why: an agent needs two things from your tool.
 
 An agent that has both can call your tool reliably. An agent that has only one has to guess.
 
-## Set up an environment (in a terminal)
+### Set up an environment (in a terminal)
 
 Why: a clean environment keeps these packages away from your other work. Run these lines in a **terminal**, not in a notebook cell:
 
@@ -82,7 +86,7 @@ pip install typer typer-slim[standard]
 
 > **Check:** *Make a clean environment for this walkthrough (in a terminal)* and *Set up an environment (in a terminal)* make two different environments. Please confirm which one to use. Also, `pip install typer typer-slim[standard]` installs two Typer packages. Is one of them meant to be left out?
 
-## Show the `--help` pages
+### Show the `--help` pages
 
 Why: this is what an agent sees first. Use the `hello-py` command from [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md). It must be installed in the active environment. Run these lines in a **terminal**:
 
@@ -93,7 +97,7 @@ hello-py greet --help
 
 **What you should see:** the first command lists the tool's commands, with `greet` among them. The second shows the usage line, the options of `greet` and a one-line help text for each. The second page is what an agent actually reads when it decides how to call `greet`. Every option should have a `help="..."` string, because the agent uses them word for word.
 
-## Write a JSON schema
+### Write a JSON schema
 
 Why: `--help` is for reading. A *JSON schema* is the same information in a form a program can check.
 
@@ -136,7 +140,7 @@ print(json.dumps(GreetInput.model_json_schema(), indent=2))
 }
 ```
 
-## Save the schema in a file
+### Save the schema in a file
 
 Why: an agent reads a file, not your terminal. This saves the same schema as `schemas/greet.schema.json` and prints it back. Run it in a **terminal**:
 
@@ -151,7 +155,7 @@ cat schemas/greet.schema.json
 
 **What you should see:** the same JSON as in *Write a JSON schema*, printed by `cat`.
 
-## Publish the schemas next to the code
+### Publish the schemas next to the code
 
 The convention in this repository is:
 
@@ -161,7 +165,7 @@ container/<name>/context/schemas/<verb>.schema.json
 
 CI publishes the files under a GitHub Pages route, so agents can fetch them without cloning the repository. See [continuous-integration](../continuous-integration/README.md).
 
-## If something goes wrong
+### If something goes wrong
 
 - **`hello-py: command not found`.** The `hello-py` command is not installed in this environment. Do [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md) first, in the same environment.
 - **`ModuleNotFoundError: No module named 'pydantic'`.** Run `pip install pydantic` in the active environment (see *Write a JSON schema*) and try again.

@@ -4,11 +4,13 @@ This lesson gives you a Bash terminal that works the same on Mac, Windows and Li
 
 > *In the book: Section 3.7 — The Command Line with Git Bash.*
 
-## Before you start
+## Start here
 
-The previous lessons: [Introduction](../introduction/README.md) and [The Rules](../elements-of-style-rules/README.md).
+### Before you start
 
-## Do this
+The previous lessons are [Introduction](../introduction/README.md) and [The Rules](../elements-of-style-rules/README.md). You need no earlier practical skill.
+
+### Do this
 
 1. **Clone the repository.** In a terminal, run:
 
@@ -20,13 +22,13 @@ The previous lessons: [Introduction](../introduction/README.md) and [The Rules](
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook** `lessons/command-line-and-git-bash/using-the-command-line.ipynb`. From the repository folder, run `conda activate eos`, then `jupyter lab`. Open [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) and run each cell in order, top to bottom. The same steps are on the web as [Using the command line](using-the-command-line.md).
 
-## What you should see
+### What you should see
 
 - A `practice` folder appears next to the notebook.
 - You create, copy and delete a file and a folder, and the listing changes after each step.
 - A file named `deseq2_5k.csv`, about 580 KB, downloads into `practice`.
 
-## Where the files are
+### Where the files are
 
 - `lessons/command-line-and-git-bash/README.md` — this page.
 - `lessons/command-line-and-git-bash/using-the-command-line.ipynb` — the notebook you run.
@@ -34,11 +36,44 @@ The previous lessons: [Introduction](../introduction/README.md) and [The Rules](
 - `lessons/command-line-and-git-bash/assets/` — pictures for the lesson.
 - `lessons/command-line-and-git-bash/practice/` — made when you run the notebook.
 
-## Next
+## Steps to execute
 
-[Version control with Git](../version-control/README.md)
+1. [Using the command line](using-the-command-line.md) — seven commands, one step at a time.
 
-## Background
+## Ask an AI assistant
+
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+
+**Ask it to explain.**
+
+```text
+Explain this command to me word by word, and say what could go wrong when I run it: <paste command>. Do not run it.
+```
+
+**Ask it to build.**
+
+```text
+I am in a folder with many files named like sample1_R1.fastq.gz. Give me the exact Bash commands to list them, count them, and copy them into a new folder called backup. Use only commands that cannot delete anything. Explain each line in one sentence and tell me what output to expect.
+```
+
+**Ask it to review.**
+
+```text
+Look at this sequence of commands that I typed and tell me which ones change or delete files, in order, so that I can see what happened. Then tell me how to undo the last change, if it can be undone.
+
+<paste history>
+```
+
+
+## Further reading
+
+- [ExplainShell](https://explainshell.com/) — paste any command and see what each flag means
+- [Git for Windows](https://git-scm.com/install/windows) — the installer that includes Git Bash
+- [Miniforge](https://github.com/conda-forge/miniforge) — the terminal-friendly conda installer
+- [The Linux Command Line](https://linuxcommand.org/tlcl.php) — William Shotts' free book
+- [Bash Reference Manual](https://www.gnu.org/software/bash/manual/) — the definitive source
+
+## Supplementary information
 
 The terminal is the common language of biomedical computing. Cloud platforms, HPC clusters (shared computers for big jobs) and containers all take shell commands. You need about ten commands to be productive.
 
@@ -88,14 +123,6 @@ pwd
 
 You should see `notes.md` listed. `pwd` should print a path that ends in `/elements-of-style-practice/day-1`. You have made a project folder. The next lesson turns a folder like it into a Git repository.
 
-### The notebooks in this lesson
+## Next
 
-1. [Using the command line](using-the-command-line.md) — seven commands, one step at a time.
-
-### Further reading
-
-- [ExplainShell](https://explainshell.com/) — paste any command and see what each flag means
-- [Git for Windows](https://git-scm.com/install/windows) — the installer that includes Git Bash
-- [Miniforge](https://github.com/conda-forge/miniforge) — the terminal-friendly conda installer
-- [The Linux Command Line](https://linuxcommand.org/tlcl.php) — William Shotts' free book
-- [Bash Reference Manual](https://www.gnu.org/software/bash/manual/) — the definitive source
+[Version control with Git](../version-control/README.md): keep every change to your files in one safe history.

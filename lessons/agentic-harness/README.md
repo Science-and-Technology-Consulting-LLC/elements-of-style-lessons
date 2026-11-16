@@ -4,11 +4,13 @@
 
 An *agentic harness* is the setup on the assistant's side that makes your tools useful when an AI assistant drives them. This lesson explains its four parts and has you connect one of your own tools to Claude Code.
 
-## Before you start
+## Start here
 
-Do [mcp-server](../mcp-server/README.md) first. You need the MCP server it builds.
+### Before you start
 
-## Do this
+The previous lesson is [MCP server](../mcp-server/README.md). You need the MCP server it builds.
+
+### Do this
 
 1. **Clone the course repository.** In a terminal, run:
 
@@ -20,27 +22,55 @@ Do [mcp-server](../mcp-server/README.md) first. You need the MCP server it build
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/agentic-harness/wiring-a-claude-code-loop.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/agentic-harness/wiring-a-claude-code-loop.ipynb)) and run each cell in order, top to bottom.
 
-## What you should see
+### What you should see
 
 You register your MCP server with Claude Code (`claude mcp add`), see it in `claude mcp list`, then start `claude` and ask it to use your tool. Claude calls `greet`, writes a file and runs `git add`, `git commit` and `git push`.
 
 > **Picture to add:** Claude Code in a terminal after the request, showing the tool call and the git commands (save a screenshot of the finished loop) (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - `lessons/agentic-harness/wiring-a-claude-code-loop.ipynb` and `.md`: the walkthrough.
 - `.claude/` in the repository: this repository's own harness (project memory, skills, agents and hooks).
 - `lessons/agentic-harness/assets/`: pictures for this lesson.
 
-## Notebooks in order
+## Steps to execute
 
 1. [`wiring-a-claude-code-loop.md`](wiring-a-claude-code-loop.md) — register an MCP server with Claude Code and drive it from chat
 
-## Next
+## Ask an AI assistant
 
-[Publishing for agents](../publishing-for-agents/README.md): make your work findable by other agents, not just your own.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain what an agent harness is: the instructions file, the tools, the permissions and the loop. Say what each one does in a coding agent such as Claude Code.
+```
+
+**Ask it to build.**
+
+```text
+Write the instructions file for an AI coding agent for my repository (named CLAUDE.md or AGENTS.md, depending on the tool). Include: what the repository is, the exact commands to build and test, the folder layout, the rules (never edit files under data/, never push, never delete), and how to report what it did. Ask me for anything you need first.
+```
+
+**Ask it to review.**
+
+```text
+Review this agent instructions file. Is anything unclear, contradictory or unsafe? Is there a command an agent could run that I would regret? Is there a rule it cannot check? List each.
+
+<paste file>
+```
+
+
+## Further reading
+
+- [Claude Code documentation](https://docs.claude.com/en/docs/claude-code)
+- [Skills](https://docs.claude.com/en/docs/claude-code/skills), [sub-agents](https://docs.claude.com/en/docs/claude-code/sub-agents) and [hooks](https://docs.claude.com/en/docs/claude-code/hooks)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+- [Anthropic API documentation](https://docs.anthropic.com/) and [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
+
+## Supplementary information
 
 ### Why a harness
 
@@ -131,9 +161,6 @@ claude
 
 On Windows (Git Bash), follow the [Claude Code setup page](https://docs.claude.com/en/docs/claude-code/setup), then run `cd elements-of-style-lessons` and `claude`. The assistant picks up `CLAUDE.md`, skills, agents and hooks automatically.
 
-### Further reading
+## Next
 
-- [Claude Code documentation](https://docs.claude.com/en/docs/claude-code)
-- [Skills](https://docs.claude.com/en/docs/claude-code/skills), [sub-agents](https://docs.claude.com/en/docs/claude-code/sub-agents) and [hooks](https://docs.claude.com/en/docs/claude-code/hooks)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Anthropic API documentation](https://docs.anthropic.com/) and [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
+[Publishing for agents](../publishing-for-agents/README.md): make your work findable by other agents, not just your own.

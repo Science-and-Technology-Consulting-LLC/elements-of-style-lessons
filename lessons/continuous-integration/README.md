@@ -4,11 +4,13 @@
 
 This lesson shows you how to make GitHub check your work automatically on every push, so broken things are found in minutes. You will add a first check to a new repository and read the real workflows that keep this course working.
 
-## Before you start
+## Start here
 
-Do [documentation](../documentation/README.md) first. For the first notebook you also need a GitHub account and `gh` signed in (see the notebook's top box).
+### Before you start
 
-## Do this
+The previous lesson is [Containers](../containers/README.md). You need an image to publish. For the first notebook you also need a GitHub account and `gh` signed in (see the notebook's top box).
+
+### Do this
 
 1. **Clone the course repository.** In a terminal, run:
 
@@ -20,29 +22,59 @@ Do [documentation](../documentation/README.md) first. For the first notebook you
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/continuous-integration/add-a-first-ci-job.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/add-a-first-ci-job.ipynb)) and run each cell in order, top to bottom. You also need a GitHub account and `gh` signed in (see [github-authenticate](../version-control/github-authenticate.md)).
 
-## What you should see
+### What you should see
 
 You create a small repository, add a workflow, and see a green tick on GitHub's **Actions** tab. Then you break the code on purpose and see a red cross. The notebook says what each command should print.
 
 > **Picture to add:** the Actions tab of the practice repository with a green run (save a screenshot of the finished first job) (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - `lessons/continuous-integration/add-a-first-ci-job.ipynb` and `.md`: the first CI job. **Needs a GitHub account and `gh` signed in.**
+- `lessons/continuous-integration/publish-an-image-with-actions.ipynb` and `.md`: publish an image to GHCR. **Needs a GitHub account, `gh` signed in and Podman.**
 - `lessons/continuous-integration/github-actions-for-maintenance-testing.ipynb` and `.md`: the maintenance-testing workflows to read.
 - `.github/workflows/docs.yml` and `.github/workflows/ci.yml` in the repository: the two real workflows this course uses.
 - `lessons/continuous-integration/assets/`: pictures for this lesson.
 
-## Notebooks in order
+## Steps to execute
 
 1. [`add-a-first-ci-job.md`](add-a-first-ci-job.md) — make a repository, add a check, watch it pass, then fail (needs a GitHub account and `gh` signed in)
-2. [`github-actions-for-maintenance-testing.md`](github-actions-for-maintenance-testing.md) — read the workflows that keep a pipeline and its Docker images up to date
+2. [`publish-an-image-with-actions.md`](publish-an-image-with-actions.md) — build an image with Podman on GitHub and publish it to the GitHub Container Registry (needs a GitHub account, `gh` signed in and Podman)
+3. [`github-actions-for-maintenance-testing.md`](github-actions-for-maintenance-testing.md) — read the workflows that keep a pipeline and its container images up to date
 
-## Next
+## Ask an AI assistant
 
-[Federated computing](../federated-computing/README.md): take the containers, workflows and CI you have built and run them across institutions.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain what a GitHub Actions workflow is, and what `on`, `jobs`, `steps`, `uses` and `run` mean. Use a workflow that runs `ruff check .` as the example.
+```
+
+**Ask it to build.**
+
+```text
+Write a GitHub Actions workflow file that, on every push to main that changes files under container/, builds the Dockerfile in container/<name>/ with Podman and pushes it to ghcr.io/<owner>/<repo>/<name>, tagged with the commit hash. Use the least permissions needed, take the token from GITHUB_TOKEN, and make the image name lower case. Explain each line.
+```
+
+**Ask it to review.**
+
+```text
+Review this workflow for safety and repeatability. Check the permissions are the least needed, no secret is printed, versions of actions are pinned, and the image is tagged by something that never changes. List each problem and a fix.
+
+<paste workflow>
+```
+
+
+## Further reading
+
+- [GitHub Actions documentation](https://docs.github.com/en/actions) and [workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions).
+- [Actions marketplace](https://github.com/marketplace?type=actions).
+- [`actions/checkout`](https://github.com/actions/checkout), [`actions/setup-python`](https://github.com/actions/setup-python) and [`docker/build-push-action`](https://github.com/docker/build-push-action): the three you will use most.
+- [Publishing to GitHub Pages from Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow): the pattern `docs.yml` uses.
+
+## Supplementary information
 
 ### Why CI
 
@@ -133,10 +165,6 @@ Push, watch the **Actions** tab, and repeat.
 - Add `- run: echo "debug info"` steps to print values you are curious about.
 - [`act`](https://github.com/nektos/act) runs workflows on your own computer.
 
-### Further reading
+## Next
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [GitHub Actions documentation](https://docs.github.com/en/actions) and [workflow syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions).
-- [Actions marketplace](https://github.com/marketplace?type=actions).
-- [`actions/checkout`](https://github.com/actions/checkout), [`actions/setup-python`](https://github.com/actions/setup-python) and [`docker/build-push-action`](https://github.com/docker/build-push-action): the three you will use most.
-- [Publishing to GitHub Pages from Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow): the pattern `docs.yml` uses.
+[Documentation](../documentation/README.md): build a Sphinx site, then publish it with GitHub Actions.

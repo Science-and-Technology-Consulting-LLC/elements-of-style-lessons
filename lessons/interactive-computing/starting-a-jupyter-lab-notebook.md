@@ -13,7 +13,9 @@ You will start [JupyterLab](https://jupyterlab.readthedocs.io/) on your laptop a
 - The `eos` conda environment, from [conda-environments](../conda-environments/README.md).
 - A web browser such as [Chrome](https://www.google.com/chrome/).
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -25,11 +27,12 @@ You will start [JupyterLab](https://jupyterlab.readthedocs.io/) on your laptop a
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`starting-a-jupyter-lab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Know what JupyterLab is
 
@@ -80,7 +83,7 @@ However you got here, you now see:
 
 **What you should see:** all three parts above. If the *R* tile is missing, see below.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`conda: command not found`.** Conda is not installed, or you opened this terminal before installing it. Close it, open a new one, and see [conda-environments](../conda-environments/README.md).
 - **`jupyter: command not found`.** The `eos` environment is not active. Run `conda activate eos` first.

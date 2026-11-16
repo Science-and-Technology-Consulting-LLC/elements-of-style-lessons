@@ -1,0 +1,102 @@
+# Try the containers lesson in Git Bash on Windows, and on Linux for comparison.
+#
+# Run it by hand: GitHub -> Actions -> "Test Podman in Git Bash" -> Run workflow.
+# It never runs on a push, so it costs nothing until you start it.
+#
+# This workflow has not been run yet. A Windows runner may not allow the
+# virtual machine that Podman needs (WSL2). If the Windows job fails at
+# "Start the Podman machine", that is a limit of the runner, not proof that
+# the lesson fails on a real Windows computer. Each step records what happened
+# in the job summary so that you can read the result without opening the log.
+name: Test Podman in Git Bash
+
+on:
+  workflow_dispatch:
+
+jobs:
+  containers-lesson:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # On Windows, `shell: bash` is Git Bash, the same shell the lessons use.
+        shell: bash
+    steps:
+      - name: Show the shell
+        run: |
+          echo "## ${{ matrix.os }}" >> "$GITHUB_STEP_SUMMARY"
+          uname -a | tee -a "$GITHUB_STEP_SUMMARY"
+          bash --version | head -1 | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "MSYSTEM=${MSYSTEM:-none}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Install Podman (Windows)
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        run: |
+          winget install --id RedHat.Podman -e --silent --accept-source-agreements --accept-package-agreements
+          echo "C:\\Program Files\\RedHat\\Podman" >> "$GITHUB_PATH"
+
+      - name: Podman version
+        continue-on-error: true
+        run: |
+          export PATH="$PATH:/c/Program Files/RedHat/Podman"
+          podman --version | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Start the Podman machine (Windows)
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        run: |
+          export PATH="$PATH:/c/Program Files/RedHat/Podman"
+          podman machine init
+          podman machine start
+          podman machine list
+
+      - name: Run a small container
+        id: hello
+        continue-on-error: true
+        run: |
+          export PATH="$PATH:/c/Program Files/RedHat/Podman"
+          podman run --rm docker.io/library/alpine echo hello-from-podman | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Build the lesson's fastqc image
+        id: build
+        if: steps.hello.outcome == 'success'
+        continue-on-error: true
+        run: |
+          export PATH="$PATH:/c/Program Files/RedHat/Podman"
+          mkdir fastqc-docker && cd fastqc-docker
+          cat > Dockerfile <<'EOF'
+          FROM docker.io/condaforge/miniforge3:26.9.4-2
+          ARG ENV_NAME="fastqc"
+          COPY environment.yml /
+          RUN conda env create --quiet --name ${ENV_NAME} --file /environment.yml && conda clean -a -y
+          ENV PATH /opt/conda/envs/${ENV_NAME}/bin:$PATH
+          EOF
+          cat > environment.yml <<'EOF'
+          name: fastqc
+          channels:
+            - conda-forge
+            - bioconda
+          dependencies:
+            - fastqc
+          EOF
+          podman build -t fastqc .
+
+      - name: Run fastqc with the lesson's command
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          export PATH="$PATH:/c/Program Files/RedHat/Podman"
+          cd fastqc-docker
+          podman run --rm -v "$PWD:$PWD" -w "$PWD" fastqc fastqc --version | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Run fastqc with MSYS_NO_PATHCONV=1
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          export PATH="$PATH:/c/Program Files/RedHat/Podman"
+          cd fastqc-docker
+          MSYS_NO_PATHCONV=1 podman run --rm -v "$PWD:$PWD" -w "$PWD" fastqc fastqc --version | tee -a "$GITHUB_STEP_SUMMARY"

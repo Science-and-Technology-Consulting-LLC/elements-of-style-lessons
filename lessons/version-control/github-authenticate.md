@@ -13,7 +13,9 @@ You will prove to GitHub who you are, from the terminal. This matters because Gi
 - A free [GitHub account](https://github.com/signup).
 - The `gh` program. Install it with [why-git-and-setup.md](why-git-and-setup.md) (the *Install the GitHub CLI* section).
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -25,11 +27,12 @@ You will prove to GitHub who you are, from the terminal. This matters because Gi
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Know why you sign in
 
@@ -85,7 +88,7 @@ gh auth status
 
 **What you should see:** `Logged in to github.com` followed by your user name. If it says you are not logged in, repeat the last step in a terminal.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`gh: command not found`.** Activate the environment where you installed it: `conda activate eos`. If `gh` is still missing, run `conda install -c conda-forge gh -y`.
 - **The command seems to hang in a notebook cell.** It is waiting for answers you cannot type there. Stop the cell (the square Stop button) and run `gh auth login` in a terminal.

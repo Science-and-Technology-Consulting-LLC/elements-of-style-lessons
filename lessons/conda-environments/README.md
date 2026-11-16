@@ -4,11 +4,13 @@
 
 This lesson gives you the `eos` conda environment, a named set of software versions that recreates the same setup on any machine, so your work stays runnable for years.
 
-## Before you start
+## Start here
 
-[Version control with Git](../version-control/README.md)
+### Before you start
 
-## Do this
+The previous lesson is [Version control with Git](../version-control/README.md). You need Git and a terminal.
+
+### Do this
 
 1. **Clone the course.** In a terminal, run:
 
@@ -20,12 +22,7 @@ This lesson gives you the `eos` conda environment, a named set of software versi
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the first notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Open `lessons/conda-environments/creating-a-conda-environment.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb)). Run each cell in order, top to bottom.
 
-Then work through the notebooks in this order:
-
-1. [creating-a-conda-environment.md](creating-a-conda-environment.md): install Miniconda from scratch in a Linux Bash terminal, then create and activate an `eos` environment.
-2. [recap-workspace-setup.md](recap-workspace-setup.md): a Day 1 and Day 2 checkpoint. Move around a Git clone, use the `..` shortcut, and practise the "wipe the local tangle and clone again" recovery.
-
-## What you should see
+### What you should see
 
 - `conda --version` prints a version number.
 - `conda env list` shows an environment called `eos`.
@@ -34,16 +31,52 @@ Then work through the notebooks in this order:
 
 > **Picture to add:** a terminal with the `(eos)` prompt and the output of `conda env list` (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - The lessons are in `lessons/conda-environments/` of the [course repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/conda-environments).
 - The environment recipe is [`eos.yml`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/eos.yml) at the root of the repository.
 
-## Next
+## Steps to execute
 
-[Interactive computing with Jupyter](../interactive-computing/README.md)
+Work through the notebooks in this order:
 
-## Background
+1. [creating-a-conda-environment.md](creating-a-conda-environment.md): install Miniconda from scratch in a Linux Bash terminal, then create and activate an `eos` environment.
+2. [recap-workspace-setup.md](recap-workspace-setup.md): a Day 1 and Day 2 checkpoint. Move around a Git clone, use the `..` shortcut, and practise the "wipe the local tangle and clone again" recovery.
+
+## Ask an AI assistant
+
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+
+**Ask it to explain.**
+
+```text
+Explain the difference between conda, an environment, an environment.yml file and a channel, using the example of one bioinformatics tool. Keep it to ten lines.
+```
+
+**Ask it to build.**
+
+```text
+Write an environment.yml for a conda environment named <name> with Python 3.11 and these tools: <list>. Use the conda-forge and bioconda channels. Pin each version as exact as conda allows. Give me the command to create it and a one-line test that shows each tool starts.
+```
+
+**Ask it to review.**
+
+```text
+Review this environment.yml. List anything that makes it hard to repeat on another computer: unpinned versions, missing channels, packages installed with pip that conda also offers. Suggest a fix for each. Do not change the tools.
+
+<paste file>
+```
+
+
+## Further reading
+
+- [Miniforge](https://github.com/conda-forge/miniforge): installer
+- [conda-forge](https://conda-forge.org/): the community package channel
+- [Mamba](https://mamba.readthedocs.io/): a faster drop-in for conda
+- [IRkernel](https://irkernel.github.io/): R kernel for Jupyter
+- [conda documentation](https://docs.conda.io/): the authoritative reference
+
+## Supplementary information
 
 ### Why this lesson matters
 
@@ -81,7 +114,7 @@ When resolved, `eos.yml` gives you:
 - **Python libraries** for the starter notebooks and case studies: `pandas`, `numpy`, `matplotlib`, `typer`, `pydantic`.
 - The **Sphinx and MyST-NB** tools, so you can build the course site locally.
 
-Docker is not installed by `eos.yml`. It needs the system package manager: Docker Desktop on macOS and Windows, `apt` or `dnf` on Linux. See [containers](../containers/README.md).
+Podman is not installed by `eos.yml`, on purpose. A conda package of Podman exists, but on a Mac I could not make it start the virtual machine that Podman needs (it stopped with an error about `gvproxy`). Install Podman with the system package manager instead: `brew` on macOS, the Podman installer on Windows, `apt` or `dnf` on Linux. See [Install Podman](../containers/README.md).
 
 ### Create the `eos` environment from `eos.yml`
 
@@ -157,10 +190,6 @@ which python         # the full path tells you where you are
 
 If the path does not contain `envs/eos`, you forgot to run `conda activate eos`. This happens to everyone.
 
-### Further reading
+## Next
 
-- [Miniforge](https://github.com/conda-forge/miniforge): installer
-- [conda-forge](https://conda-forge.org/): the community package channel
-- [Mamba](https://mamba.readthedocs.io/): a faster drop-in for conda
-- [IRkernel](https://irkernel.github.io/): R kernel for Jupyter
-- [conda documentation](https://docs.conda.io/): the authoritative reference
+[Interactive computing with Jupyter](../interactive-computing/README.md): run your code in notebooks.

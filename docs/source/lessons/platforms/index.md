@@ -19,5 +19,4 @@ creating-a-cloudos-account
 logging-into-cloudos
 authenticating-on-cloudos
 running-a-pipeline-on-cloudos
-pre-training-creating-kids-first-and-other-accounts
 ```

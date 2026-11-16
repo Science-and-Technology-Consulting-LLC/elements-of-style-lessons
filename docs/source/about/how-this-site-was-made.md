@@ -76,10 +76,10 @@ iteration informed the structure of this site.
 |------|---------|--------------------|
 | Dec 2020 | 5-day course — *the origin* | Jackson Laboratory + Lifebit (co-taught with Christina Chatzipantsiou) |
 | Fall 2021 | 3-hour ISCB Academy course | Lifebit |
-| Mar 2022 | 3-hour NICHD Scholar course | INCLUDE platform / Seven Bridges CAVATICA |
+| Mar 2022 | 3-hour NICHD Scholar course | Seven Bridges CAVATICA |
 | Jul 2022 | 1-hour presentation | Univ Colorado — Data Science for Diverse Scholars (Down Syndrome) |
-| Aug 2022 | 5-day NICHD Scholar course | Kids First / Seven Bridges CAVATICA |
-| Mar 2023 | NICHD Scholar — Kids First + INCLUDE | Velsera |
+| Aug 2022 | 5-day NICHD Scholar course | Seven Bridges CAVATICA |
+| Mar 2023 | NICHD Scholar course | Velsera |
 | 2024 | Federated Data and Learning Fabric | Lifebit |
 
 The pattern of *every container ships a CLI, every Nextflow module
@@ -93,7 +93,7 @@ teaches.
 
 - **Christina Chatzipantsiou** and the **Lifebit** team — origin of
   the course, December 2020.
-- The **NICHD Scholar** programmes (Kids First, INCLUDE) for hosting
+- The **NICHD Scholar** programmes for hosting
   the iterations that sharpened the curriculum.
 - **Seven Bridges / Velsera** and **CAVATICA** for the platforms that
   let earlier cohorts practise on real data.

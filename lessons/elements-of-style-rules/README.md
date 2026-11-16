@@ -4,11 +4,13 @@ This lesson gives you eight rules, drawn from Strunk and White and from Kernigha
 
 > *In the book: Section 3.1 — The Rules.*
 
-## Before you start
+## Start here
 
-The previous lesson: [Introduction](../introduction/README.md).
+### Before you start
 
-## Do this
+The previous lesson is [Introduction](../introduction/README.md). You need nothing from it except the idea of the course.
+
+### Do this
 
 This lesson has no notebook and nothing to run. You read it.
 
@@ -22,19 +24,51 @@ This lesson has no notebook and nothing to run. You read it.
 2. **Open a terminal** only if you cloned. On a Mac, open *Terminal*. On Windows, open *Git Bash*.
 3. **Read this page.** On your computer it is `lessons/elements-of-style-rules/README.md`. On the web it is [here](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/elements-of-style-rules/README.md). Read the eight rules once now. Come back when you must choose between two ways to do something.
 
-## What you should see
+### What you should see
 
 Nothing runs, so there is no output. When you finish, you can say the eight rules in your own words and name the six things to remember.
 
-## Where the files are
+### Where the files are
 
 - `lessons/elements-of-style-rules/README.md` — this page. It is the whole lesson.
 
-## Next
+## Steps to execute
 
-[Command line, with Git Bash](../command-line-and-git-bash/README.md)
+This lesson has no notebooks.
 
-## Background
+## Ask an AI assistant
+
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+
+**Ask it to explain.**
+
+```text
+Here is a rule from the Elements of Style course: "<paste one rule>". Explain it in three sentences to a biologist, then give one example of a script that breaks the rule and the same script fixed.
+```
+
+**Ask it to build.**
+
+```text
+I have a script that does <what it does>. Rewrite it so that each step is one small function with a clear name, the settings are options and not numbers in the code, and every function has a one-line comment that says its purpose. Keep the output identical. Show me the result of a test I can run to prove it.
+```
+
+**Ask it to review.**
+
+```text
+Review the script below against these rules: be clear with every step, keep the environment clean, do not reinvent the wheel, make each step a command, test and refine. For each rule say met or not met, and quote the line. Do not rewrite the script.
+
+<paste script>
+```
+
+
+## Further reading
+
+- [Strunk and White, *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
+- [Kernighan and Plauger, *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)
+- [Robert C. Martin, *Clean Code*](https://en.wikipedia.org/wiki/Clean_Code)
+- [How to Design Programs](https://htdp.org/), a free introduction to program design
+
+## Supplementary information
 
 ### The eight rules
 
@@ -97,19 +131,12 @@ Short phrases for patterns the lessons keep returning to. Most follow from the e
 These map one to one onto the lessons.
 
 1. **Start simple.** Write a shell script, test it, then scale. A working five-line script you have run once beats a beautiful 200-line one you have not. (Foundation lessons.)
-2. **Containerize.** Use [Docker](https://docs.docker.com/get-docker/) and [Conda](https://docs.conda.io/) at the level of one process. One container, one job, one command line tool. ([Containers](../containers/README.md).)
-3. **Use workflow languages.** [Nextflow](https://www.nextflow.io/) first for biomedical work, or CWL or WDL. Running steps in parallel comes free. The same workflow runs on a laptop, a cluster and the cloud. ([Nextflow modules](../nextflow-modules/README.md), then [Nextflow workflows](../nextflow-workflows/README.md).)
+2. **Containerize.** Use [Podman](https://podman.io/docs/installation) and [Conda](https://docs.conda.io/) at the level of one process. One container, one job, one command line tool. ([Containers](../containers/README.md).)
+3. **Use workflow languages.** [Nextflow](https://www.nextflow.io/) first for biomedical work, or CWL or WDL. Running steps in parallel comes free. The same workflow runs on a laptop, a cluster and the cloud. ([Nextflow modules and features](../nextflow-modules/README.md), then [Introduction to Nextflow](../nextflow-workflows/README.md).)
 4. **Use version control.** Put everything on [GitHub](https://github.com/). If it is worth running once, it is worth committing once. ([Version control](../version-control/README.md).)
 5. **Use AI wisely.** Syntax help, yes. Architecture design, no. You hold the design idea in your head. The AI fills in the keystrokes. ([MCP server](../mcp-server/README.md), [Publishing for agents](../publishing-for-agents/README.md).)
 6. **Fail fast.** Use [GitHub Actions](https://docs.github.com/en/actions) for CI/CD. The sooner you find the broken thing, the cheaper it is to fix. ([Continuous integration](../continuous-integration/README.md).)
 
-### Further reading
+## Next
 
-- [Strunk and White, *The Elements of Style*](https://en.wikipedia.org/wiki/The_Elements_of_Style)
-- [Kernighan and Plauger, *The Elements of Programming Style*](https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style)
-- [Robert C. Martin, *Clean Code*](https://en.wikipedia.org/wiki/Clean_Code)
-- [How to Design Programs](https://htdp.org/), a free introduction to program design
-
-### The notebooks in this lesson
-
-This lesson has no notebooks.
+[The command line, with Git Bash](../command-line-and-git-bash/README.md): the first practical lesson.

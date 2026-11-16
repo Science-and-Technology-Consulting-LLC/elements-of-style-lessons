@@ -1,10 +1,14 @@
 # Other places to run these lessons
 
+## Start here
+
 Further information. You do not need this page if you have a Mac, a Windows computer with Git Bash, or a Linux computer. Start with [Let's dive in](lets-dive-in.md).
 
 Use this page if you have no terminal of your own, or when your work grows beyond your laptop.
 
-## Google Cloud Shell
+## Steps to execute
+
+### Google Cloud Shell
 
 [Google Cloud Shell](https://shell.cloud.google.com/) is a free Bash terminal in your web browser. It is a way to practise when you cannot install anything.
 
@@ -28,13 +32,13 @@ Use this page if you have no terminal of your own, or when your work grows beyon
 Things to know:
 
 - Its disk is small and is wiped between sessions. Push your work to GitHub before you close it.
-- It has no Docker daemon you can rely on, so the container lessons need a laptop or Lifebit.
+- It does not give you a container engine you can rely on, so the container lessons need a laptop or Lifebit.
 
 > **Check:** The old introduction said Google Cloud Shell comes with `conda`. The conda lesson says it does not. Which is right?
 
-## Lifebit
+### Lifebit
 
-[Lifebit CloudOS](https://cloudos.lifebit.ai/) is the platform for large runs. Its notebook servers already have `git`, `conda`, `docker` and `nextflow`.
+[Lifebit CloudOS](https://cloudos.lifebit.ai/) is the platform for large runs. Its notebook servers already have `git`, `conda`, `podman` and `nextflow`.
 
 1. [Create a CloudOS account](../platforms/creating-a-cloudos-account.md).
 2. [Log in](../platforms/logging-into-cloudos.md).
@@ -50,7 +54,7 @@ Things to know:
 
 > **Check:** Cost and credits. What does a notebook server cost, when does it shut down, and are credits available to course students? The answer decides whether Lifebit can be a first step. Ask your course lead before you start a server.
 
-## Amazon Web Services (AWS) and NIH STRIDES
+### Amazon Web Services (AWS) and NIH STRIDES
 
 Both give you a cloud computer you rent by the hour. Neither is needed for the first lessons.
 

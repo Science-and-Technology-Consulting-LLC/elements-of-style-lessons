@@ -15,7 +15,9 @@ You will run a small R notebook that builds a table, summarises it and draws a b
 - JupyterLab running ([starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md)).
 - This is the R companion to the other [interactive-computing](README.md) walkthroughs, which use a Bash or Python kernel. A **kernel** is the program that runs your code. This notebook uses the **R** kernel.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -27,7 +29,7 @@ You will run a small R notebook that builds a table, summarises it and draws a b
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`exploring-an-r-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/exploring-an-r-notebook.ipynb) and run each cell in order, top to bottom.
 
-## Steps
+## Steps to execute
 
 ### Install R and register the R kernel (one time)
 
@@ -50,10 +52,9 @@ Restart JupyterLab, then reopen this notebook and choose the *R* kernel.
 This R cell asks the computer where each of five programs lives. It prints the location, or `MISSING`.
 
 ```r
-for (cmd in c("R", "Rscript", "git", "docker", "conda")) {
+for (cmd in c("R", "Rscript", "git", "podman", "conda")) {
   where <- Sys.which(cmd)
-  cat(sprintf("  %-10s %s
-", cmd,
+  cat(sprintf("  %-10s %s\n", cmd,
               ifelse(nchar(where) > 0, where, "MISSING")))
 }
 ```
@@ -64,11 +65,11 @@ for (cmd in c("R", "Rscript", "git", "docker", "conda")) {
   R          /Users/you/miniforge3/envs/eos/bin/R
   Rscript    /Users/you/miniforge3/envs/eos/bin/Rscript
   git        /usr/bin/git
-  docker     /usr/local/bin/docker
+  podman     /usr/local/bin/podman
   conda      /Users/you/miniforge3/bin/conda
 ```
 
-`MISSING` is fine for `docker` at this stage. This notebook needs only `R`.
+`MISSING` is fine for `podman` at this stage. This notebook needs only `R`.
 
 ### Build a small table
 
@@ -159,7 +160,7 @@ limma      3.62.1
 
 Add a sixth sample to `df`, run the two summary cells again, then choose **Kernel**, then **Restart Kernel and Run All Cells**. If the output is the same as before (apart from your new sample), you have a reproducible R notebook.
 
-## If something goes wrong
+### If something goes wrong
 
 - **The kernel says "R" is not found, or there is no R tile.** *Install R and register the R kernel (one time)* has not been done in the same environment that runs JupyterLab. Redo *Install R and register the R kernel (one time)*, then restart JupyterLab.
 - **`conda: command not found`.** See [conda-environments](../conda-environments/README.md).

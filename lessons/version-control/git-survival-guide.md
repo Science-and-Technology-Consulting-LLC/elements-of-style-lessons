@@ -1,4 +1,4 @@
-Git Survival Guide for Multi-Remote Biomedical Workflows
+# Git survival guide for multi-remote biomedical workflows
 
 *Every example in this section happened during real development of
 the NIH-NLM sc-nsforest-qc-nf single-cell quality control pipeline.
@@ -6,7 +6,7 @@ The mistakes are real. The fixes are tested.*
 
 ---
 
-## 1. The Basics You Already Know (and One Thing You Don't)
+## The Basics You Already Know (and One Thing You Don't)
 
 You know `git add`, `git commit`, `git push`. You have used
 `git clone`. You may even have made a pull request.
@@ -23,7 +23,7 @@ Keep this in mind. It will save you hours.
 
 ---
 
-## 2. Forking: Your Copy, Their Repository
+## Forking: Your Copy, Their Repository
 
 When you fork a repository on GitHub, you get an independent copy.
 Your fork and the original (upstream) start identical, then diverge
@@ -71,7 +71,7 @@ problem. It is a feature. But you must be aware of it.
 
 ---
 
-## 3. Fork Patterns: How Much Should You Diverge?
+## Fork Patterns: How Much Should You Diverge?
 
 Forking is easy. The hard question is: **how do you customise a fork
 for your own use while still benefiting from upstream improvements?**
@@ -236,7 +236,7 @@ a contributor, not just a consumer.
 
 ---
 
-## 4. The Publish Commit Trap
+## The Publish Commit Trap
 
 Here is a real scenario that cost half a day:
 
@@ -292,7 +292,7 @@ often than you expect.
 
 ---
 
-## 4. When Cherry-Pick Says "Already Applied"
+## When Cherry-Pick Says "Already Applied"
 
 Sometimes git tells you a cherry-picked commit is empty:
 
@@ -318,7 +318,7 @@ empty, keep skipping. Git will tell you when the sequence is done.
 
 ---
 
-## 5. The Clean-Main Pattern
+## The Clean-Main Pattern
 
 When your local `main` has diverged too far from upstream and you
 need to push specific changes, the cleanest approach is:
@@ -350,7 +350,7 @@ redirects.
 
 ---
 
-## 6. Resolving "Non-Fast-Forward" Rejections
+## Resolving "Non-Fast-Forward" Rejections
 
 ```
 ! [rejected]  main -> main (non-fast-forward)
@@ -380,7 +380,7 @@ If your changes are there, you are done. There is nothing to push.
 
 ---
 
-## 7. Container Image Tags: Why `:latest` Is a Trap
+## Container Image Tags: Why `:latest` Is a Trap
 
 Cloud platforms like CloudOS cache container images aggressively.
 When your `nextflow.config` says:
@@ -422,7 +422,7 @@ unknown point in the past."
 
 ---
 
-## 8. GitHub Actions and Path Filters
+## GitHub Actions and Path Filters
 
 Your repository may have GitHub Actions that build Docker images.
 A common question: if I change a Nextflow file (not a Docker file),
@@ -458,7 +458,7 @@ triggers what. Surprises here cost time and cloud compute credits.
 
 ---
 
-## 9. The Dropbox Problem
+## The Dropbox Problem
 
 If your git repository lives inside a Dropbox-synced folder,
 you may encounter mysterious behavior:
@@ -482,7 +482,7 @@ two systems (git and Dropbox) that both want to manage file state.
 
 ---
 
-## 10. The Edit-on-GitHub Trap: Stash Before You Sync
+## The Edit-on-GitHub Trap: Stash Before You Sync
 
 Here is a scenario that catches everyone at least once:
 
@@ -534,7 +534,7 @@ is unclear. Pick one place to make changes and be consistent.
 
 ---
 
-## 11. Quick Reference
+## Quick Reference
 
 ### Daily commands
 

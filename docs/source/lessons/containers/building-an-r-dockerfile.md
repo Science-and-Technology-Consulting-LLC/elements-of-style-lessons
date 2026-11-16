@@ -8,7 +8,7 @@
 % title for Sphinx's toctree, then includes the walkthrough
 % body (starting after its own h1 to avoid a duplicate title).
 
-# Building an R Dockerfile
+# Building an R container image
 
 ```{include} ../../../../lessons/containers/building-an-r-dockerfile.md
 :start-line: 1

@@ -4,11 +4,13 @@
 
 This lesson gives you a working picture of a Jupyter notebook, and two short starter notebooks (Python and R) that you can edit, rerun and reuse as templates.
 
-## Before you start
+## Start here
 
-[Reproducible environments with Conda](../conda-environments/README.md). You need the `eos` environment.
+### Before you start
 
-## Do this
+The previous lesson is [Reproducible environments with Conda](../conda-environments/README.md). You need the `eos` environment.
+
+### Do this
 
 1. **Clone the course.** In a terminal, run:
 
@@ -20,15 +22,7 @@ This lesson gives you a working picture of a Jupyter notebook, and two short sta
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Start JupyterLab and open the first notebook.** In the terminal run `conda activate eos`, then `jupyter lab`. In JupyterLab open `lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb)). On Lifebit, JupyterLab is already running, so skip `jupyter lab` and open the notebook from the file browser.
 
-Then work through the notebooks in this order:
-
-1. [starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md): start JupyterLab on your laptop.
-2. [running-a-jupyterlab-notebook.md](running-a-jupyterlab-notebook.md): clone a real R notebook (`exampleVolcanoPlotNotebook`), choose the R kernel, and use Restart and Run All.
-3. [exploring-an-r-notebook.md](exploring-an-r-notebook.md): register the R kernel and run a small worked example in R.
-4. `python.ipynb` ([view on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/python.ipynb)): the Python starter notebook. It has no web page copy. Open it in JupyterLab.
-5. `r.ipynb` ([view on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/r.ipynb)): the R starter notebook. It has no web page copy. Open it in JupyterLab.
-
-## What you should see
+### What you should see
 
 - JupyterLab in your browser, with a file browser on the left, a Launcher in the middle, and a menu bar across the top.
 - A Launcher with tiles for *Python 3*, *Bash*, *R* and *Terminal*.
@@ -37,15 +31,56 @@ Then work through the notebooks in this order:
 
 > **Picture to add:** JupyterLab with the file browser, the Launcher tiles and the menu bar (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 Everything is in `lessons/interactive-computing/` of the [course repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/interactive-computing). Each walkthrough is a notebook (`.ipynb`) with a web page copy (`.md`). The two starter notebooks are `python.ipynb` and `r.ipynb` only.
 
-## Next
+## Steps to execute
 
-[Building reusable command-line tools](../reusable-clis/README.md)
+Work through the notebooks in this order:
 
-## Background
+1. [starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md): start JupyterLab on your laptop.
+2. [running-a-jupyterlab-notebook.md](running-a-jupyterlab-notebook.md): clone a real R notebook (`exampleVolcanoPlotNotebook`), choose the R kernel, and use Restart and Run All.
+3. [exploring-an-r-notebook.md](exploring-an-r-notebook.md): register the R kernel and run a small worked example in R.
+4. `python.ipynb` ([view on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/python.ipynb)): the Python starter notebook. It has no web page copy. Open it in JupyterLab.
+5. `r.ipynb` ([view on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/r.ipynb)): the R starter notebook. It has no web page copy. Open it in JupyterLab.
+
+## Ask an AI assistant
+
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+
+**Ask it to explain.**
+
+```text
+Explain what a Jupyter kernel is, and why the notebook gives different answers after I run cells out of order. Then explain "Restart Kernel and Run All Cells".
+```
+
+**Ask it to build.**
+
+```text
+Here is the code from a notebook cell. Turn it into a function with a name, inputs and a return value, and add a second cell that calls it on a small example and prints the result. Keep the output the same.
+
+<paste cell>
+```
+
+**Ask it to review.**
+
+```text
+Review this notebook for repeatability. Look for cells that depend on an earlier cell run in a different order, hard-coded file paths, and results that change on each run (random numbers with no seed). List each with the cell number. Do not rewrite the notebook.
+
+<paste notebook text>
+```
+
+
+## Further reading
+
+- [Project Jupyter](https://jupyter.org/): home page and documentation index
+- [JupyterLab documentation](https://jupyterlab.readthedocs.io/): the modern interface
+- [IRkernel](https://irkernel.github.io/): R kernel for Jupyter
+- [Executable Books Project](https://executablebooks.org/): MyST-NB, Jupyter Book and friends
+- [nbconvert](https://nbconvert.readthedocs.io/): convert notebooks to other formats
+
+## Supplementary information
 
 ### What a notebook is
 
@@ -93,10 +128,6 @@ The All of Us Workbench gives you Jupyter directly. Python, R and Nextflow are s
 
 > **Check:** The original linked this to `../../bridges/index.md`. That page is not in this folder tree. Where does it live now?
 
-### Further reading
+## Next
 
-- [Project Jupyter](https://jupyter.org/): home page and documentation index
-- [JupyterLab documentation](https://jupyterlab.readthedocs.io/): the modern interface
-- [IRkernel](https://irkernel.github.io/): R kernel for Jupyter
-- [Executable Books Project](https://executablebooks.org/): MyST-NB, Jupyter Book and friends
-- [nbconvert](https://nbconvert.readthedocs.io/): convert notebooks to other formats
+[Building reusable command-line tools](../reusable-clis/README.md): turn a notebook's code into a tool that anyone can run.

@@ -17,7 +17,9 @@ You will set up the tools that record your work, and tell Git who you are. This 
 
 > **Check:** This lesson uses conda before the conda lesson. Should students install conda first, or is the order meant to be this way?
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -29,11 +31,12 @@ You will set up the tools that record your work, and tell Git who you are. This 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`why-git-and-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/why-git-and-setup.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Make a practice folder
 
@@ -164,7 +167,7 @@ git config --global core.editor nano
 
 **What you should see:** nothing. The setting is saved.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`conda: command not found`.** Conda is not installed, or this terminal was opened before you installed it. Close the terminal, open a new one, and try again. If it still fails, follow [creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md).
 - **`conda activate eos` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one, then run `conda activate eos` again. In a notebook cell this command may not work. Run it in a terminal instead.

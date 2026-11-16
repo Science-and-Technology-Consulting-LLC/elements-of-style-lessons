@@ -33,8 +33,8 @@ endometriosis/
 |------|-------------|--------------|
 | Pull metadata | [interactive-computing](../../lessons/interactive-computing/README.md) | Python notebook calling ENA API |
 | Bulk volcano teaser | [interactive-computing](../../lessons/interactive-computing/README.md) | R notebook with DESeq2 |
-| Pseudobulk DE | [containers](../../lessons/containers/README.md) + [nextflow-workflows](../../lessons/nextflow-workflows/README.md) | `container/limma-voom/` (5 CLI verbs) + `main-bulk-de.nf` |
-| Single-cell markers | [nextflow-workflows](../../lessons/nextflow-workflows/README.md) | `sc-nsforest-fork/` |
+| Pseudobulk DE | [containers](../../lessons/containers/README.md) + [Introduction to Nextflow](../../lessons/nextflow-workflows/README.md) | `container/limma-voom/` (5 CLI verbs) + `main-bulk-de.nf` |
+| Single-cell markers | [Introduction to Nextflow](../../lessons/nextflow-workflows/README.md) | `sc-nsforest-fork/` |
 | Cross-validation | (not yet written) | Bulk DE genes vs. NSForest markers |
 
 ## The driving question

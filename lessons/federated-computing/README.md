@@ -4,11 +4,13 @@
 
 *Federated computing* means running the same workflow on data that lives in different places, without moving the data. This lesson gives you the picture and a small simulation you can run yourself. The compute travels to the data. The results travel back.
 
-## Before you start
+## Start here
 
-Do [continuous integration](../continuous-integration/README.md) first.
+### Before you start
 
-## Do this
+The previous lesson is [Differential analysis](../differential-analysis/README.md). You also need the ideas of [Continuous integration](../continuous-integration/README.md).
+
+### Do this
 
 1. **Clone the course repository.** In a terminal, run:
 
@@ -20,13 +22,13 @@ Do [continuous integration](../continuous-integration/README.md) first.
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/federated-computing/simulating-a-3x3-federated-run.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-computing/simulating-a-3x3-federated-run.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first two sections make a conda environment.
 
-## What you should see
+### What you should see
 
 You make three fake sites, train a simple model at each, and combine the three sets of coefficients with a median. You finish with a `global:` line of three numbers close to 1.5, -2.0 and 0.3. The raw data never leaves the site folders.
 
 > **Picture to add:** the notebook's output after the median step, showing the three site lines and the global line (save a screenshot of the finished run) (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - `lessons/federated-computing/simulating-a-3x3-federated-run.ipynb` and `.md`: the simulation.
 - `lessons/federated-computing/sites/`: created when you run it. One folder per site, each with `train.csv` and `model.json`.
@@ -34,15 +36,41 @@ You make three fake sites, train a simple model at each, and combine the three s
 - `lessons/federated-computing/assets/`: pictures for this lesson.
 - [`case-studies/oadr-autoantibody`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/oadr-autoantibody/README.md): the full real-world version.
 
-## Notebooks in order
+## Steps to execute
 
 1. [`simulating-a-3x3-federated-run.md`](simulating-a-3x3-federated-run.md) — simulate three sites and a median coordinator
 
-## Next
+## Ask an AI assistant
 
-[Federated learning](../federated-learning/README.md): the case where the per-site phase is training a model.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain in plain words what travels and what stays put in a federated computation, using three hospitals and one mean as the example. Say what a site must trust and what it never reveals.
+```
+
+**Ask it to build.**
+
+```text
+Write a small Python simulation of three sites, each with its own table of numbers. Each site computes a local result and a count; a coordinator combines them. Show that the combined mean equals the mean of all the data together. Use only the standard library and numpy, and print the check.
+```
+
+**Ask it to review.**
+
+```text
+Review my plan for a federated analysis: <describe it>. List ways that raw data or identifying information could leak through the results that leave a site (small counts, row-level outputs, logs). Suggest a rule for each.
+```
+
+
+## Further reading
+
+- [Lifebit Federated Trusted Research Environment](https://lifebit.ai/federated-trusted-research-environment/)
+- [Kairouz et al., Advances and Open Problems in Federated Learning (2019)](https://arxiv.org/abs/1912.04977)
+- [oadr-autoantibody repository](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)
+- [NIH ADAPTS overview](https://www.nih.gov/)
+
+## Supplementary information
 
 ### Why this matters for NLM-CKN
 
@@ -101,10 +129,6 @@ On Lifebit, in the oadr-autoantibody workspace, run `jupyter notebook federated_
 2. **Audit.** The provenance trail must survive across sites: which site contributed which subjects, with which code version, when.
 3. **Privacy is not automatic.** "The data did not leave" is not "nothing about an individual leaked". Model parameters can leak training information in some attacks. Differential privacy and secure aggregation go further.
 
-### Further reading
+## Next
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [Lifebit Federated Data and Learning Fabric](https://lifebit.ai/products/federated-fabric)
-- [Kairouz et al., Advances and Open Problems in Federated Learning (2019)](https://arxiv.org/abs/1912.04977)
-- [oadr-autoantibody repository](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody)
-- [NIH ADAPTS overview](https://www.nih.gov/)
+[Federated learning](../federated-learning/README.md): the case where the per-site phase is training a model.

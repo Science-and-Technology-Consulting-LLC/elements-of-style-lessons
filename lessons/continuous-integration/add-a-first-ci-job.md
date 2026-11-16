@@ -6,14 +6,16 @@ You will make a tiny repository, add a workflow that checks your Python code eve
 
 *Part of the [continuous-integration](README.md) lesson.*
 
-## What you will do
+## Start here
+
+### What you will do
 
 - Create a small repository on your computer and on GitHub.
 - Add a workflow file that runs a Python style check on every push.
 - Watch the check pass on GitHub's **Actions** tab.
 - Break the code on purpose and watch the check fail.
 
-## What you need
+### What you need
 
 - A [GitHub account](https://github.com/signup) (free).
 - The [GitHub CLI (`gh`)](https://cli.github.com/), installed and signed in. Sign in once with `gh auth login`; see [github-authenticate](../version-control/github-authenticate.md). Check with `gh auth status`.
@@ -21,7 +23,7 @@ You will make a tiny repository, add a workflow that checks your Python code eve
 - A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
 - [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
 
-## Before you begin
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -33,11 +35,13 @@ You will make a tiny repository, add a workflow that checks your Python code eve
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`add-a-first-ci-job.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/add-a-first-ci-job.ipynb) and run each cell in order, top to bottom.
 
-## Check your setup
+### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Confirm you are signed in to GitHub
+## Steps to execute
+
+### Confirm you are signed in to GitHub
 
 Why: *Commit and push the workflow* creates a repository on GitHub. It fails if `gh` does not know who you are. Run this in a terminal (it also works in a notebook cell):
 
@@ -47,7 +51,7 @@ gh auth status
 
 **What you should see:** a line that says `Logged in to github.com` followed by your GitHub user name. If it says you are not logged in, run `gh auth login` and follow the prompts, or follow [github-authenticate](../version-control/github-authenticate.md).
 
-## Make the repository
+### Make the repository
 
 Why: CI needs a repository on GitHub to run in. This cell makes a folder called `hello-ci` in `~/eos-practice`, turns it into a Git repository, adds one Python file, saves ("commits") it, and creates a public repository with the same name on your GitHub account. `git init` starts tracking a folder. `git commit` saves a snapshot. `gh repo create` makes the copy on GitHub and `--push` uploads your snapshot to it.
 
@@ -64,7 +68,7 @@ gh repo create hello-ci --public --source=. --push
 
 > **Check:** the earlier run of this cell was done in a folder that already held a Git repository, so its output did not show a clean first run. Rerun it from a fresh `~/eos-practice` to confirm the exact lines.
 
-## Look at the workflow
+### Look at the workflow
 
 Why: a *workflow* is a recipe that GitHub follows on its own computer. It lives in `.github/workflows/`. This one runs whenever you push to `main` or open a pull request (a request to merge changes). It installs Python and [ruff](https://docs.astral.sh/ruff/) (a program that checks Python style), then runs `ruff check .`.
 
@@ -115,7 +119,7 @@ EOF
 
 **What you should see:** nothing. To check, run `ls .github/workflows` in a terminal opened in `~/eos-practice/hello-ci`. You should see `ci.yml`.
 
-## Commit and push the workflow
+### Commit and push the workflow
 
 Why: GitHub only runs workflows it has received. `git add` chooses the file, `git commit` saves it, and `git push` uploads it.
 
@@ -127,7 +131,7 @@ git push
 
 **What you should see:** Git lists one new file, then `git push` prints lines that end with `main -> main`. That means GitHub has your workflow.
 
-## Watch the run
+### Watch the run
 
 Why: this is the payoff. GitHub starts the check the moment the push arrives.
 
@@ -139,7 +143,7 @@ Why: this is the payoff. GitHub starts the check the moment the push arrives.
 
 > **Picture to add:** the Actions tab with one green run named "add first CI job" (save as assets/add-a-first-ci-job-step-5.png)
 
-## Break it on purpose
+### Break it on purpose
 
 Why: a check you have never seen fail is a check you cannot trust. This cell adds a line of messy Python to `hello.py` and pushes it.
 
@@ -153,7 +157,7 @@ git push
 
 > **Picture to add:** the Actions tab showing the red failed run and the ruff error in the log (save as assets/add-a-first-ci-job-step-6.png)
 
-## Fix it and see green again
+### Fix it and see green again
 
 Why: this is the whole loop: push, fail, fix, pass. In a terminal in `~/eos-practice/hello-ci`, open `hello.py`, delete the last line (`import os,sys;print('bad style')`), then run:
 
@@ -166,7 +170,7 @@ git push
 
 When you are done, you can delete the practice repository on GitHub: open it, choose **Settings**, scroll to the bottom and choose **Delete this repository**.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`gh: command not found`, or `gh repo create` says you are not logged in.** Install [gh](https://cli.github.com/) and run `gh auth login`. See [github-authenticate](../version-control/github-authenticate.md).
 - **`Author identity unknown` or `Please tell me who you are` from `git commit`.** Git does not know your name. Run `git config --global user.name "Your Name"` and `git config --global user.email "you@example.com"`, then run the cell again. See [why-git-and-setup](../version-control/why-git-and-setup.md).
@@ -175,4 +179,4 @@ When you are done, you can delete the practice repository on GitHub: open it, ch
 
 ## Next
 
-[GitHub Actions for maintenance testing](github-actions-for-maintenance-testing.md): the pattern that tests a whole pipeline on every push. Or return to the [continuous-integration lesson](README.md).
+[Publish a container image with GitHub Actions](publish-an-image-with-actions.md): build and publish an image on every push. Or return to the [continuous-integration lesson](README.md).

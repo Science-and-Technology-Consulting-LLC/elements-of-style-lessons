@@ -11,7 +11,9 @@
 # Full Sphinx options: https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os
+import re
 import sys
+from pathlib import Path
 
 # Make the repo root importable in case future autodoc needs it
 # (e.g., when Typer CLIs land — see curriculum/06-typer-clis.md)
@@ -150,9 +152,49 @@ def _canonical_edit_path_for(pagename: str) -> str | None:
 
 def _add_canonical_edit_path(app, pagename, templatename, context, doctree):
     canonical = _canonical_edit_path_for(pagename)
+    if not canonical and pagename.startswith("case-studies/"):
+        name = pagename[len("case-studies/"):]
+        canonical = "case-studies/README.md" if name == "index" else f"case-studies/{name}/README.md"
     if canonical:
         context["canonical_edit_path"] = canonical
 
 
+# -- Links that work on GitHub and on this site ------------------------------
+#
+# The lesson and case-study pages are written for GitHub: a link to another
+# lesson ends in `README.md`, which GitHub opens as that lesson's page. On
+# this site each lesson page is `index.md`, and each case study is
+# `case-studies/<name>.md`. So that one source file serves both, the links are
+# rewritten as the page is pulled in by an `{include}` in a shim page.
+# Full web addresses (http, https) are never touched.
+
+_CASE_STUDIES = (
+    "sc-nsforest-qc-nf", "endometriosis", "oadr-autoantibody", "oadr-cpep",
+    "lrp2", "multiqc-workflow", "nlm-ckn",
+)
+_CASE_NAMES = "|".join(re.escape(n) for n in _CASE_STUDIES)
+
+
+def _site_links(text: str, source_path: str) -> str:
+    """`source_path` is the included file, such as ../../case-studies/lrp2/README.md."""
+    if "case-studies/" in source_path:
+        # The shim page sits one folder up from the source file it includes.
+        text = re.sub(r"\]\((?:\.\./)+lessons/", "](../lessons/", text)
+        text = re.sub(r"\]\(\.\./(%s)/README\.md" % _CASE_NAMES, r"](\1.md", text)
+        text = re.sub(r"\]\((%s)/(?:README\.md)?(?=[)#])" % _CASE_NAMES, r"](\1.md", text)
+        if not source_path.endswith("case-studies/README.md"):
+            text = re.sub(r"\]\(\.\./README\.md", "](index.md", text)
+    # A case study linked from a lesson, or by its folder, is a page of its own on the site.
+    text = re.sub(r"\]\(((?:\.\./)+)case-studies/(%s)/README\.md" % _CASE_NAMES, r"](\1case-studies/\2.md", text)
+    text = re.sub(r"\]\(\.\./(%s)/(?=[)#])" % _CASE_NAMES, r"](\1.md", text) if "case-studies/" in source_path else text
+    # README.md at the end of a path becomes index.md; web addresses are skipped.
+    return re.sub(r"\]\((?!https?:)((?:[^)\s]*/)?)README\.md", r"](\1index.md", text)
+
+
+def _rewrite_included_links(app, relative_path, parent_docname, content):
+    content[0] = _site_links(content[0], Path(relative_path).as_posix())
+
+
 def setup(app):
     app.connect("html-page-context", _add_canonical_edit_path)
+    app.connect("include-read", _rewrite_included_links)

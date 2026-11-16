@@ -15,7 +15,9 @@ You will review what you built in Days 1 and 2, then practise moving around a Gi
 - An internet connection.
 - The lessons [interactive-computing](../interactive-computing/README.md) and [version-control](../version-control/README.md) behind you.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -27,11 +29,12 @@ You will review what you built in Days 1 and 2, then practise moving around a Gi
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### See what you have built so far
 
@@ -180,7 +183,7 @@ In JupyterLab, open `Reading-data-and-plotting-in-R.ipynb` from the new folder. 
 
 **What you should see:** the outputs disappear, then come back as the cells run. Cells may stop with errors until you add the data and packages (*Know what the volcano-plot notebook is missing*).
 
-## If something goes wrong
+### If something goes wrong
 
 - **`rm: cannot remove ...: No such file or directory`.** You are in the wrong folder. Run `pwd` and `ls`, then use `cd` to reach the folder that contains `exampleVolcanoPlotNotebook`.
 - **`destination path 'exampleVolcanoPlotNotebook' already exists`.** The wipe step did not run, or you were in the wrong folder. Check with `ls`.

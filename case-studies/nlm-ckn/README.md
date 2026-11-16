@@ -45,7 +45,7 @@ The full stack:
 | Layer | Uses lesson | Demonstrates |
 |---|---|---|
 | Source scientific containers | [containers](../../lessons/containers/README.md) | `scanpy-qc`, `nsforest`, `limma-voom`, and more |
-| Pipeline composition | [nextflow-workflows](../../lessons/nextflow-workflows/README.md) | `NIH-NLM/sc-nsforest-qc-nf` — the reference workflow this whole curriculum's `container/` + `modules/` + `main-*.nf` shape mirrors |
+| Pipeline composition | [Introduction to Nextflow](../../lessons/nextflow-workflows/README.md) | `NIH-NLM/sc-nsforest-qc-nf` — the reference workflow this whole curriculum's `container/` + `modules/` + `main-*.nf` shape mirrors |
 | Publishing scientific results as an API | [mcp-server](../../lessons/mcp-server/README.md) | [`NIH-NLM/NLM-CKN-MCP`](https://github.com/NIH-NLM/NLM-CKN-MCP) |
 | Publishing to be readable by agents | [publishing-for-agents](../../lessons/publishing-for-agents/README.md) | machine-readable schemas + provenance |
 | Federated computation across sites | [federated-computing](../../lessons/federated-computing/README.md) | how ingestion works across institutional data owners |

@@ -16,5 +16,6 @@
 :maxdepth: 1
 
 add-a-first-ci-job
+publish-an-image-with-actions
 github-actions-for-maintenance-testing
 ```

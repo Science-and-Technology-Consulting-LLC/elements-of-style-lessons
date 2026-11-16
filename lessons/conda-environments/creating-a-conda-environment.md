@@ -14,7 +14,9 @@ You will install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and
 - On a Mac or Windows, use [Miniforge](https://conda-forge.org/download/) instead of the steps in this notebook that download the Linux installer. See the [lesson page](README.md).
 - No Linux terminal? [Other places to run these lessons](../introduction/other-places-to-run.md) covers Google Cloud Shell and Lifebit.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -26,11 +28,12 @@ You will install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Know what conda is
 
@@ -38,7 +41,7 @@ This notebook runs shell commands with the Bash kernel and uses tools such as `g
 
 Making a *clean* environment first is a good habit. It makes every assumption about what is or is not installed explicit. Without it you inherit whatever happens to be on a shared machine. That is a common cause of "works on my machine, breaks in the container".
 
-When we build a Docker image later (see [containers](../containers/README.md)), we usually start from a conda base image. The same tool follows us from laptop to container to workflow to federated node.
+When we build a container image later (see [containers](../containers/README.md)), we usually start from a conda base image. The same tool follows us from laptop to container to workflow to federated node.
 
 **What you should see:** nothing. This step is reading only.
 
@@ -177,7 +180,7 @@ base                     /home/you/miniconda3
 eos                   *  /home/you/miniconda3/envs/eos
 ```
 
-## Recap
+### Recap
 
 You just:
 
@@ -187,7 +190,7 @@ You just:
 - Installed `conda`.
 - Created and activated a clean `eos` environment.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`wget: command not found`.** On a Mac, `wget` is not installed, and the Linux installer is the wrong one anyway. Use [Miniforge](https://conda-forge.org/download/). On Linux, install `wget` with your package manager.
 - **`conda: command not found` after the install.** The shell has not re-read its settings. Close the terminal and open a new one, or run `exec -l bash` again. If you skipped `conda init`, run `~/miniconda3/bin/conda init bash` and restart the shell.
@@ -197,4 +200,4 @@ You just:
 
 ## Next
 
-[recap-workspace-setup.md](recap-workspace-setup.md): a checkpoint that puts conda in context with the notebook and Git work. Then [containers](../containers/README.md), where the environment becomes the seed for a Docker image.
+[recap-workspace-setup.md](recap-workspace-setup.md): a checkpoint that puts conda in context with the notebook and Git work. Then [containers](../containers/README.md), where the environment becomes the seed for a container image.

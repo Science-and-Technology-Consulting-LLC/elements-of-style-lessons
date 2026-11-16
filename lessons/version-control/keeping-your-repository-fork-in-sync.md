@@ -14,7 +14,9 @@ You will catch your fork up with the original project when the original gets new
 - A free [GitHub account](https://github.com/signup).
 - Git set up and `gh` signed in: [why-git-and-setup.md](why-git-and-setup.md) and [github-authenticate.md](github-authenticate.md).
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -26,11 +28,12 @@ You will catch your fork up with the original project when the original gets new
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`keeping-your-repository-fork-in-sync.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Learn the four words
 
@@ -128,7 +131,7 @@ git push origin main
 
 **What you should see:** `Already up to date.` if there was nothing new. If there were new commits, Git lists the files that changed, and `git push` ends with `main -> main`.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`'upstream' does not appear to be a git repository`.** You skipped *Tell your clone where upstream is*. Run the `git remote add upstream` cell, then try again.
 - **A "merge conflict" message.** You and upstream changed the same lines. Do not panic. Nothing is lost. See the conflict section of the [Git survival guide](git-survival-guide.md).

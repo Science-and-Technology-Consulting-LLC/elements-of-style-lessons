@@ -17,4 +17,5 @@
 
 building-an-r-dockerfile
 building-dockerfiles
+publish-your-images
 ```

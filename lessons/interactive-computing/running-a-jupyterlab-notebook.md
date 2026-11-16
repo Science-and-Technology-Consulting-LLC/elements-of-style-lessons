@@ -14,7 +14,9 @@ You will copy a real R notebook from GitHub, open it in JupyterLab, and run it f
 - The R kernel registered: [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
 - [Git](https://git-scm.com/) installed ([command-line-and-git-bash](../command-line-and-git-bash/README.md)).
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -26,11 +28,12 @@ You will copy a real R notebook from GitHub, open it in JupyterLab, and run it f
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`running-a-jupyterlab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/running-a-jupyterlab-notebook.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Know the project
 
@@ -127,7 +130,7 @@ If the notebook gives the same output, it is *reproducible*. If not, you found a
 
 **What you should see:** cells with numbers beside them, text output, and (if the data and packages are in place) a volcano plot.
 
-## What you practised
+### What you practised
 
 - Logging into your environment (your laptop).
 - Starting an interactive JupyterLab session.
@@ -135,7 +138,7 @@ If the notebook gives the same output, it is *reproducible*. If not, you found a
 - Running notebook cells with an R kernel.
 - Making your first visualisation, a volcano plot.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`destination path 'exampleVolcanoPlotNotebook' already exists`.** You already cloned it. Skip the clone and run `cd exampleVolcanoPlotNotebook`.
 - **No R kernel in the Launcher.** See [exploring-an-r-notebook.md](exploring-an-r-notebook.md) to install and register it.

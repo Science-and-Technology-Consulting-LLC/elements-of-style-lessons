@@ -4,21 +4,23 @@ You will read three real GitHub Actions workflows that keep a research pipeline 
 
 *Part of the [continuous-integration](README.md) lesson. Do [add a first CI job](add-a-first-ci-job.md) first if you have never written a workflow.*
 
-## What you will do
+## Start here
+
+### What you will do
 
 - Learn what *maintenance testing* is: re-running a small test of your pipeline on every change.
 - Read a real test workflow from a published pipeline.
 - Read the test workflow used in this repository.
 - Read the workflow that builds and publishes Docker images automatically.
 
-## What you need
+### What you need
 
 - Nothing to install to read the workflows. To use them on your own pipeline you need a [GitHub account](https://github.com/signup) and a repository.
 - A [Nextflow](https://www.nextflow.io/) pipeline with a small test dataset, if you want to adapt the examples. See [nextflow-workflows](../nextflow-workflows/README.md).
 - Containers, for the last workflow. See [containers](../containers/README.md).
 - [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
 
-## Before you begin
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -30,11 +32,13 @@ You will read three real GitHub Actions workflows that keep a research pipeline 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`github-actions-for-maintenance-testing.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/github-actions-for-maintenance-testing.ipynb) and run each cell in order, top to bottom.
 
-## Check your setup
+### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
 
-## Understand why a research repository needs CI
+## Steps to execute
+
+### Understand why a research repository needs CI
 
 Why: *continuous integration* (CI) means a computer re-runs your checks on every change. Software drifts. Packages update, containers are rebuilt and workflow runners change. Automating the question "does this still run?" is how a [Nextflow](https://www.nextflow.io/) pipeline survives six months of that drift.
 
@@ -49,7 +53,7 @@ The pattern has four parts:
 
 **What you should see:** nothing to run here. You now have the pattern. The next steps show it in real files.
 
-## Read a real test workflow
+### Read a real test workflow
 
 Why: this shape is used by [Sheynkman-Lab/Long-Read-Proteogenomics](https://github.com/Sheynkman-Lab/Long-Read-Proteogenomics) and, with small edits, by nearly every [nf-core](https://nf-co.re/) pipeline.
 
@@ -96,7 +100,7 @@ Read three things in it:
 
 **What you should see:** you can point to the three lines above in the file. If you can, you can read any test workflow.
 
-## Read the version used in this repository
+### Read the version used in this repository
 
 Why: this repository uses a slightly newer form of the same idea. Save it as `.github/workflows/ci.yml` in your own repository to use it.
 
@@ -135,7 +139,7 @@ Two small differences from the *Read the Docker publish workflow* example: `acti
 
 > **Picture to add:** the Actions tab of this repository showing a passing CI run (save as assets/github-actions-for-maintenance-testing-step-3.png)
 
-## Read the Docker publish workflow
+### Read the Docker publish workflow
 
 Why: GitHub Actions can also build and publish Docker images. Every push to `main` builds each image in `container/<name>/`, tags it with `:latest` and with the Git commit ID, and uploads it to GHCR (GitHub's container registry).
 
@@ -180,13 +184,13 @@ Every module that names `ghcr.io/.../scanpy-qc:latest` in its `container:` line 
 
 **What you should see:** one `matrix` list of four image names. The job runs once for each name, so one workflow builds four images.
 
-## Recap
+### Recap
 
 - **CI catches drift before you feel it.**
 - **Testing is `nextflow run ... -profile test` in a fresh virtual machine.** GitHub provides the machine.
 - **Docker publish is the same idea.** Push to `main` and the image appears at GHCR. Later workflows pull it.
 
-## If something goes wrong
+### If something goes wrong
 
 - **The workflow never runs.** The `on:` section did not match what you did. A push to a branch not listed under `branches:` does nothing. Check the branch name.
 - **A workflow fails with a YAML error.** YAML cares about spaces. Use spaces, never tabs, and keep each level indented the same amount as in the examples.
@@ -194,4 +198,4 @@ Every module that names `ghcr.io/.../scanpy-qc:latest` in its `container:` line 
 
 ## Next
 
-[Documentation](../documentation/README.md): every push also rebuilds and republishes the Sphinx site. Or return to the [continuous-integration lesson](README.md).
+[Documentation](../documentation/README.md): build a Sphinx site and publish it with GitHub Actions. Or return to the [continuous-integration lesson](README.md).

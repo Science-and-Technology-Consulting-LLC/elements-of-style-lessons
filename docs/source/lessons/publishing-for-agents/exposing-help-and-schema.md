@@ -8,7 +8,7 @@
 % title for Sphinx's toctree, then includes the walkthrough
 % body (starting after its own h1 to avoid a duplicate title).
 
-# Exposing `--help` and schema — the two things an agent reads first
+# Exposing help and schema
 
 ```{include} ../../../../lessons/publishing-for-agents/exposing-help-and-schema.md
 :start-line: 1

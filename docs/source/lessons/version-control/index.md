@@ -15,9 +15,10 @@
 :hidden:
 :maxdepth: 1
 
-github-authenticate
-keeping-your-repository-fork-in-sync
-the-add-push-git-routine
 why-git-and-setup
 workspace-setup
+github-authenticate
+the-add-push-git-routine
+keeping-your-repository-fork-in-sync
+git-survival-guide
 ```

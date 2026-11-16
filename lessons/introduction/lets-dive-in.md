@@ -16,7 +16,9 @@ In this walkthrough you set up your computer and run your first notebook. Every 
 - A free [GitHub account](https://github.com/signup). You first need it in the [version control lesson](../version-control/README.md).
 - A good internet connection. *Create the `eos` environment* downloads a few hundred packages.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -28,7 +30,7 @@ In this walkthrough you set up your computer and run your first notebook. Every 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) and run each cell in order, top to bottom.
 
-## The steps
+## Steps to execute
 
 ### Install a terminal and Git
 
@@ -117,20 +119,18 @@ This cell asks your computer where each program lives. Where a program is missin
 | [Git](https://git-scm.com/) | `git --version` | [Command line](../command-line-and-git-bash/README.md) |
 | [Conda](https://docs.conda.io/) | `conda --version` | [Conda environments](../conda-environments/README.md) |
 | [GitHub CLI](https://cli.github.com/) (`gh`) | `gh --version` | [Version control](../version-control/why-git-and-setup.md) |
-| [Docker](https://docs.docker.com/get-docker/) | `docker --version` | [Containers](../containers/README.md) |
-| [Nextflow](https://www.nextflow.io/) | `nextflow -version` | [Nextflow workflows](../nextflow-workflows/README.md) |
+| [Podman](https://podman.io/docs/installation) | `podman --version` | [Containers](../containers/README.md) |
+| [Nextflow](https://www.nextflow.io/) | `nextflow -version` | [Introduction to Nextflow](../nextflow-workflows/README.md) |
 | [Python 3](https://www.python.org/) | `python3 --version` | [Conda environments](../conda-environments/README.md) |
 
 Run all the checks at once:
 
 ```bash
-for cmd in bash git conda gh docker nextflow python3; do
+for cmd in bash git conda gh podman nextflow python3; do
   if command -v "$cmd" >/dev/null 2>&1; then
-    printf "  %-10s %s
-" "$cmd" "$(command -v "$cmd")"
+    printf "  %-10s %s\n" "$cmd" "$(command -v "$cmd")"
   else
-    printf "  %-10s MISSING
-" "$cmd"
+    printf "  %-10s MISSING\n" "$cmd"
   fi
 done
 ```
@@ -140,24 +140,24 @@ done
 ```text
   bash       /bin/bash
   git        /path/to/eos/bin/git
-  docker     MISSING
+  podman     MISSING
 ```
 
-The exact paths on your computer will differ. If you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `docker` may show `MISSING` until *Install Docker later*.
+The exact paths on your computer will differ. If you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `podman` may show `MISSING` until *Install Podman later*.
 
-### Install Docker later
+### Install Podman later
 
-[Docker](https://docs.docker.com/get-docker/) runs *containers*, which are sealed boxes holding a program and everything it needs. Conda does not install Docker. You need it from the [containers lesson](../containers/README.md) on. Skip it today.
+[Podman](https://podman.io/docs/installation) runs *containers*, which are sealed boxes holding a program and everything it needs. Conda does not install Podman. You need it from the [containers lesson](../containers/README.md) on, and that lesson shows how to install it. Skip it today.
 
 ### Other places to run the lessons
 
 Your own Bash terminal is the main way to follow these lessons. If you cannot use one, or later when the work grows, see [Other places to run these lessons](other-places-to-run.md). It covers Google Cloud Shell and Lifebit.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`git: command not found` or `conda: command not found`.** On Windows, make sure you opened *Git Bash*, not Command Prompt or PowerShell. After installing Miniforge, close the terminal and open a new one.
 - **No Bash tile in JupyterLab.** You registered the kernel outside the `eos` environment. Run `conda activate eos`, repeat *Register the Bash kernel*, then restart JupyterLab (*Start JupyterLab*).
-- **A tool shows `MISSING`.** Compare it with the table in *Check your tools*. Run `conda activate eos` and run the cell again. Docker is the one tool you install by hand.
+- **A tool shows `MISSING`.** Compare it with the table in *Check your tools*. Run `conda activate eos` and run the cell again. Podman is the one tool you install by hand.
 
 ## Next
 

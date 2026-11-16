@@ -41,7 +41,7 @@ real federated-learning problem.
 | Prototype in a notebook | [interactive-computing](../../lessons/interactive-computing/README.md) | `oadr-autoantibody/ipynb/*.ipynb` |
 | Refactor to a Python CLI | [reusable-clis](../../lessons/reusable-clis/README.md) | `oadr-cpep` Typer CLI |
 | Containerise + publish | [containers](../../lessons/containers/README.md) + [continuous-integration](../../lessons/continuous-integration/README.md) | Dockerfile + GHCR publish |
-| Wrap as a Nextflow module | [nextflow-modules](../../lessons/nextflow-modules/README.md) | one module per CLI verb |
+| Wrap as a Nextflow module | [Nextflow modules and features](../../lessons/nextflow-modules/README.md) | one module per CLI verb |
 | Run under federation | [federated-computing](../../lessons/federated-computing/README.md) + [federated-learning](../../lessons/federated-learning/README.md) | ADAPTS platform, median-of-coefficients aggregation |
 
 ## Why the pair matters pedagogically

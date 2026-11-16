@@ -8,7 +8,7 @@
 % title for Sphinx's toctree, then includes the walkthrough
 % body (starting after its own h1 to avoid a duplicate title).
 
-# Building a Sphinx site — the local build/deploy loop
+# Building a Sphinx site: the local build and deploy loop
 
 ```{include} ../../../../lessons/documentation/building-a-sphinx-site.md
 :start-line: 1

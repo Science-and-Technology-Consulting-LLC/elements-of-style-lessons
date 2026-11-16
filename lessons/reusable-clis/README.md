@@ -4,11 +4,13 @@
 
 This lesson shows you how to turn a script into a command-line tool that explains itself with `--help`, in Python (Typer) and in R (docopt).
 
-## Before you start
+## Start here
 
-The previous lesson is [conda environments](../conda-environments/README.md). You need it to make a clean environment for each walkthrough.
+### Before you start
 
-## Do this
+The previous lesson is [Interactive computing with Jupyter](../interactive-computing/README.md). You also need the `eos` environment from [Reproducible environments with Conda](../conda-environments/README.md).
+
+### Do this
 
 1. **Clone the code.** In a terminal, run:
 
@@ -20,28 +22,56 @@ The previous lesson is [conda environments](../conda-environments/README.md). Yo
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook** `lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb). Run each cell in order, top to bottom.
 
-## What you should see
+### What you should see
 
 A small tool that you type by name, such as `hello-py greet --name Annie`, which prints `Hello, Annie!`, and a `--help` screen that lists its commands. The R walkthrough gives you `hello-r` in the same way.
 
 > **Picture to add:** the `hello-py --help` screen in a terminal (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - The lesson folder is [`lessons/reusable-clis`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/reusable-clis).
 - The notebooks and web pages are in that folder. Each walkthrough exists as a `.ipynb` notebook and a `.md` page with the same steps.
 - The tools you build are saved in new folders you create in the walkthroughs: `hello-py-cli` and `hello-r-cli`.
 
-## Notebooks in order
+## Steps to execute
 
 1. [A Typer CLI in fifteen minutes](typer-cli-in-fifteen-minutes.md) (notebook: `typer-cli-in-fifteen-minutes.ipynb`)
 2. [An Rscript CLI in fifteen minutes](rscript-cli-in-fifteen-minutes.md) (notebook: `rscript-cli-in-fifteen-minutes.ipynb`)
 
-## Next
+## Ask an AI assistant
 
-[Containers](../containers/README.md): take your CLI and put it in a single-purpose container.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain what a command-line interface is and why the same function is easier to repeat as a command than as a cell in a notebook. Use `greet --name Annie` as the example.
+```
+
+**Ask it to build.**
+
+```text
+Here is a Python function: <paste function>. Wrap it in a Typer command-line tool with one command, typed options with help text, and a `--help` page that explains each option. Put the logic in the function and keep the command script thin. Show me three example runs and what each prints. (For R: use Rscript and docopt in the same way.)
+```
+
+**Ask it to review.**
+
+```text
+Review this command-line tool. Check that every option has help text, that it exits with a clear message and a non-zero code when an input is missing, and that the logic is in a function that can be tested without the command line. List problems; do not rewrite.
+
+<paste script>
+```
+
+
+## Further reading
+
+- [Typer](https://typer.tiangolo.com/) and [Click](https://click.palletsprojects.com/), the library Typer is built on
+- [Command Line Interface Guidelines](https://clig.dev/)
+- [argparse, Python standard library](https://docs.python.org/3/library/argparse.html)
+- [docopt for R](https://cran.r-project.org/package=docopt) and [optparse for R](https://cran.r-project.org/package=optparse)
+
+## Supplementary information
 
 A command-line interface (CLI) turns a one-off script into a *tool*. A teammate can run it without reading your code. CI (automatic checks on every push) can run it without anyone watching. Nextflow can run it as a step. An AI agent can run it because `--help` tells the truth.
 
@@ -91,10 +121,6 @@ Install the CLI with `pip install -e .` after adding a `[project.scripts]` entry
 
 An agent's main interface to your tool is `--help`. Use verbs for subcommands, one-sentence docstrings, a `help=` on every flag with units, and honest boolean names (`--shout / --no-shout`). Then an agent that reaches your tool through an MCP server (see the [MCP server lesson](../mcp-server/README.md)) can call it correctly the first time.
 
-### Further reading
+## Next
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [Typer](https://typer.tiangolo.com/) and [Click](https://click.palletsprojects.com/), the library Typer is built on
-- [Command Line Interface Guidelines](https://clig.dev/)
-- [argparse, Python standard library](https://docs.python.org/3/library/argparse.html)
-- [docopt for R](https://cran.r-project.org/package=docopt) and [optparse for R](https://cran.r-project.org/package=optparse)
+[Containers](../containers/README.md): put your tool in a single-purpose container.

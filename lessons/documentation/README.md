@@ -4,11 +4,13 @@
 
 This lesson shows you how to turn plain text files into a documentation website with [Sphinx](https://www.sphinx-doc.org/), the same tool that builds this course site. You will see why documentation is part of the work, not an afterthought.
 
-## Before you start
+## Start here
 
-Make sure you have a conda environment named `eos`. See [conda-environments](../conda-environments/README.md).
+### Before you start
 
-## Do this
+The previous lesson is [Continuous integration](../continuous-integration/README.md). You need the `eos` environment from [Reproducible environments with Conda](../conda-environments/README.md), and the second notebook uses the ideas of GitHub Actions.
+
+### Do this
 
 1. **Clone the course repository.** In a terminal, run:
 
@@ -20,28 +22,58 @@ Make sure you have a conda environment named `eos`. See [conda-environments](../
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/documentation/building-a-sphinx-site.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb)) and run each cell in order, top to bottom. The notebook has a *Check your setup* section at the top for the Bash kernel.
 
-## What you should see
+### What you should see
 
 You install Sphinx, write three small files, build them into a website, and open it in your browser at `http://localhost:8000`. Each step in the notebook says what the output should look like.
 
 > **Picture to add:** the finished example site open in a browser (save a screenshot of this lesson's landing page) (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - `lessons/documentation/building-a-sphinx-site.ipynb`: the notebook you run.
 - `lessons/documentation/building-a-sphinx-site.md`: the same walkthrough as a web page.
 - `lessons/documentation/docs/`: created when you run the notebook. It holds your practice site.
 - `lessons/documentation/assets/`: pictures for this lesson.
 
-## Notebooks in order
+## Steps to execute
 
-1. [`building-a-sphinx-site.md`](building-a-sphinx-site.md) — build a small Sphinx site and learn how it is published
+1. [`building-a-sphinx-site.md`](building-a-sphinx-site.md) — build a small Sphinx site on your computer
+2. [`publish-your-site-with-actions.md`](publish-your-site-with-actions.md) — publish the site on the web with GitHub Actions (needs a GitHub account and `gh` signed in)
 
-## Next
+## Ask an AI assistant
 
-[Continuous integration](../continuous-integration/README.md): automate the build and publish of this site, and everything else, with GitHub Actions.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain what Sphinx, MyST and a toctree are, and how a Markdown file becomes a web page. Keep it to ten lines.
+```
+
+**Ask it to build.**
+
+```text
+Create a minimal Sphinx site for my project: conf.py using myst_nb and the Read the Docs theme, an index.md with a toctree, and one page for each of these topics: <list>. Add a GitHub Actions workflow that builds with `sphinx-build -W` and publishes to GitHub Pages only from main. Give me the exact commands to build it on my computer first.
+```
+
+**Ask it to review.**
+
+```text
+Read the page below as a new user would. List every place where you would not know what to do next, every term that is not explained, and every command that has no stated output. Do not rewrite it.
+
+<paste page>
+```
+
+
+## Further reading
+
+- [Sphinx documentation](https://www.sphinx-doc.org/en/master/): the authoritative reference.
+- [MyST-parser guide](https://myst-parser.readthedocs.io/en/latest/): Markdown syntax that Sphinx understands.
+- [MyST-NB guide](https://myst-nb.readthedocs.io/en/latest/): notebook rendering.
+- [Diátaxis](https://diataxis.fr/): a framework for organising technical documentation.
+- [Write the Docs](https://www.writethedocs.org/): community and guides for documentation as a craft.
+
+## Supplementary information
 
 ### Why documentation
 
@@ -93,7 +125,7 @@ On a cloud platform such as Lifebit, the workspace's port forwarding gives you t
 
 ### Deploy with GitHub Pages
 
-Every push to `main` runs `.github/workflows/docs.yml`. It installs Sphinx, builds the HTML and publishes it to GitHub Pages. This takes about two minutes. See [continuous integration](../continuous-integration/README.md).
+Every push to `main` runs `.github/workflows/docs.yml`. It installs Sphinx, builds the HTML and publishes it to GitHub Pages. This takes about two minutes. See [publish your site with GitHub Actions](publish-your-site-with-actions.md).
 
 ### Writing conventions
 
@@ -103,11 +135,6 @@ Every push to `main` runs `.github/workflows/docs.yml`. It installs Sphinx, buil
 - Link to notebooks by relative path, for example `[notebook](python.ipynb)`, only where the notebook exists.
 - End every lesson with **Further reading** and a **Next** link.
 
-### Further reading
+## Next
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [Sphinx documentation](https://www.sphinx-doc.org/en/master/): the authoritative reference.
-- [MyST-parser guide](https://myst-parser.readthedocs.io/en/latest/): Markdown syntax that Sphinx understands.
-- [MyST-NB guide](https://myst-nb.readthedocs.io/en/latest/): notebook rendering.
-- [Diátaxis](https://diataxis.fr/): a framework for organising technical documentation.
-- [Write the Docs](https://www.writethedocs.org/): community and guides for documentation as a craft.
+[Introduction to Nextflow](../nextflow-workflows/README.md): put your tools, containers and documentation to work in a pipeline.

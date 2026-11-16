@@ -14,9 +14,12 @@
 # The last two lines register the Bash and R Jupyter kernels so
 # the .ipynb walkthroughs open with the correct kernel.
 #
-# Docker is intentionally NOT installed here — it needs the system
-# package manager (Docker Desktop on macOS/Windows, `apt`/`dnf` on Linux,
-# already present on Lifebit compute).  See lessons/containers/README.md.
+# Podman is intentionally NOT installed here. It needs the system package
+# manager and, on macOS and Windows, a small virtual machine that the conda
+# package could not start when tested on a Mac.  Install it as
+# lessons/containers/README.md describes (brew install podman on macOS),
+# then run `podman machine init` and `podman machine start` once.
+# It is already present on Lifebit compute.
 name: eos
 channels:
   - conda-forge

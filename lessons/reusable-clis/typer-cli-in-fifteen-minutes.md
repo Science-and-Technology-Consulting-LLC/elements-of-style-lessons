@@ -17,7 +17,9 @@ You will build a small command-line tool in Python that prints its own honest he
 
 You do not need an account for this lesson.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -31,7 +33,9 @@ You do not need an account for this lesson.
 
 > **Where to type the commands.** The gray command boxes in this lesson run in your **terminal**, not in a notebook cell. The only notebook cell is in *Check that Python is the one you expect*. Keep your terminal open next to this page.
 
-## Make a clean environment (once)
+## Steps to execute
+
+### Make a clean environment (once)
 
 *Why:* an **environment** is a private box of programs. Anything you install here stays here and cannot break your other work. A **kernel** is the program that runs the code in a notebook cell; the last command gives this environment its own kernel so you can pick it in JupyterLab. The [conda environments lesson](../conda-environments/README.md) explains the idea in full.
 
@@ -51,16 +55,16 @@ Lesson-specific `pip install` commands appear in the steps below. They land in t
 
 > **Picture to add:** a terminal whose prompt shows `(typer-cli-in-fifteen-minutes)` (save as assets/typer-cli-step-1.png)
 
-## Check that Python is the one you expect
+### Check that Python is the one you expect
 
-*Why:* if the wrong Python runs your commands, nothing else in this lesson works. The next cell prints where Python lives and whether four other tools are found. `MISSING` for `docker` is fine here; this lesson does not use it.
+*Why:* if the wrong Python runs your commands, nothing else in this lesson works. The next cell prints where Python lives and whether four other tools are found. `MISSING` for `podman` is fine here; this lesson does not use it.
 
 Run the next cell.
 
 ```python
 import shutil, sys
 print("python  ", sys.executable)
-for cmd in ["conda", "pip", "git", "docker"]:
+for cmd in ["conda", "pip", "git", "podman"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
@@ -68,7 +72,7 @@ for cmd in ["conda", "pip", "git", "docker"]:
 
 > **Check:** The notebook cell above runs in whichever kernel the notebook uses. If it prints a path without the environment name, choose *Kernel*, then *Change Kernel*, then *Python (typer-cli-in-fifteen-minutes)*. Please confirm that this is the menu path in your JupyterLab version.
 
-## What we build
+### What we build
 
 A single-file Python tool, `hello-py`, with two commands, `greet` and `version`. By the end you can type:
 
@@ -79,7 +83,7 @@ hello-py --help
 
 and get a properly formatted help screen. This is the same help an AI agent will read later in the [MCP server lesson](../mcp-server/README.md).
 
-## Create a project folder
+### Create a project folder
 
 *Why:* all the files for this tool should live together in one new folder. A **command-line interface** (CLI) is a program you control by typing its name and options.
 
@@ -92,7 +96,7 @@ pwd
 
 **What you should see:** a path that ends in `hello-py-cli`.
 
-## Install Typer
+### Install Typer
 
 *Why:* [Typer](https://typer.tiangolo.com/) is the Python library that turns an ordinary function into a command with options and a help screen. `pip` is Python's installer.
 
@@ -104,7 +108,7 @@ The quotes matter on a Mac. Without them the default Mac shell (zsh) stops with 
 
 **What you should see:** pip ends with `Successfully installed` followed by a list that includes `typer`. If pip also warns that Typer does not provide the extra `all`, you can ignore the warning.
 
-## Write the tool
+### Write the tool
 
 *Why:* this is the whole tool. The function `greet` becomes a command, and the options and help text come from the function itself, so the help cannot drift away from the code. A **decorator** (the line starting with `@`) marks a function as a command.
 
@@ -138,7 +142,7 @@ if __name__ == "__main__":
 
 > **Picture to add:** the JupyterLab file browser showing hello_py/main.py open in the editor (save as assets/typer-cli-step-5.png)
 
-## Run it before you install it
+### Run it before you install it
 
 *Why:* `python -m hello_py.main` runs the file as a module, so you can test the tool before you package it. Run both commands from inside `hello-py-cli`.
 
@@ -151,7 +155,7 @@ python -m hello_py.main --help
 
 > **Picture to add:** the terminal showing the `--help` screen with the two commands (save as assets/typer-cli-step-6.png)
 
-## Make it installable
+### Make it installable
 
 *Why:* the file `pyproject.toml` tells Python the name of your tool, what it needs, and which function starts it. The line under `[project.scripts]` says: make a command called `hello-py` that runs `app` in `hello_py/main.py`.
 
@@ -182,7 +186,7 @@ The dot means "the folder I am in".
 
 **What you should see:** pip finishes with a line like `Successfully installed hello-py-0.1.0`.
 
-## Use your new command
+### Use your new command
 
 *Why:* the tool is now a real command on your `PATH`, the list of folders your terminal searches for programs.
 
@@ -194,7 +198,7 @@ hello-py --help
 
 **What you should see:** `Hello, Annie!`, then `hello-py 0.1.0`, then the same help screen as in *Run it before you install it*, now headed by `hello-py` instead of `python -m hello_py.main`. Try it from another folder: it still works.
 
-## Why this shape reappears everywhere
+### Why this shape reappears everywhere
 
 - Every container in this repo ships a CLI in exactly this shape.
 - Every Nextflow module wraps exactly one CLI command.
@@ -203,7 +207,7 @@ hello-py --help
 
 Get this pattern into your fingers and the rest of the curriculum unlocks.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`conda: command not found`.** Close the terminal and open a new one. If it still fails, run `conda init`, then open a new terminal. On Windows, use *Git Bash* (see [the command line lesson](../command-line-and-git-bash/README.md)).
 - **`zsh: no matches found: typer[all]`.** Put quotes around the name: `pip install 'typer[all]'`.

@@ -16,4 +16,5 @@
 :maxdepth: 1
 
 building-a-sphinx-site
+publish-your-site-with-actions
 ```

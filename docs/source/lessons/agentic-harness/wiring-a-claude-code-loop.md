@@ -8,7 +8,7 @@
 % title for Sphinx's toctree, then includes the walkthrough
 % body (starting after its own h1 to avoid a duplicate title).
 
-# Wiring a Claude Code loop around your tools
+# Wiring a Claude Code loop
 
 ```{include} ../../../../lessons/agentic-harness/wiring-a-claude-code-loop.md
 :start-line: 1

@@ -4,11 +4,13 @@
 
 *Federated learning* trains a model when the training data lives in many places that cannot share it. The model travels and the data stays put. This lesson gives you the loop and a tiny experiment that shows why the way you combine sites matters.
 
-## Before you start
+## Start here
 
-Do [federated computing](../federated-computing/README.md) first.
+### Before you start
 
-## Do this
+The previous lesson is [Federated computing](../federated-computing/README.md).
+
+### Do this
 
 1. **Clone the course repository.** In a terminal, run:
 
@@ -20,27 +22,53 @@ Do [federated computing](../federated-computing/README.md) first.
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/federated-learning/median-of-coefficients-aggregation.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first two sections make a conda environment.
 
-## What you should see
+### What you should see
 
 You compare the mean and the median of coefficients from five sites, one of them far off. You see `mean  : [ 4.2  -5.6   0.85]` against `median: [ 1.5  -2.    0.35]`: the median ignores the odd site.
 
 > **Picture to add:** the notebook's output showing the mean and median lines (save a screenshot of the finished run) (save as assets/overview.png)
 
-## Where the files are
+### Where the files are
 
 - `lessons/federated-learning/median-of-coefficients-aggregation.ipynb` and `.md`: the experiment.
 - `lessons/federated-learning/assets/`: pictures for this lesson.
 - [`oadr-autoantibody` notebooks](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/tree/main/ipynb): the real federated learning example.
 
-## Notebooks in order
+## Steps to execute
 
 1. [`median-of-coefficients-aggregation.md`](median-of-coefficients-aggregation.md) — compare mean and median aggregation with one outlier site
 
-## Next
+## Ask an AI assistant
 
-[MCP server](../mcp-server/README.md): wrap the federated-learning command-line tool so an AI agent can drive it on Lifebit.
+*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
 
-## Background
+**Ask it to explain.**
+
+```text
+Explain the federated learning loop in five steps. Then explain why the median of the sites' coefficients can be safer than the mean when one site is unusual.
+```
+
+**Ask it to build.**
+
+```text
+Write a Python function that takes the model coefficients from several sites and returns the coordinate-wise median, and a second that returns the weighted mean by sample size. Add a test with three sites where one is an outlier, and print both answers.
+```
+
+**Ask it to review.**
+
+```text
+Review this federated learning design: <describe it>. What does each site send, and could a site's private data be inferred from it? Is there a site that could be too small to share safely? List the risks and what to check.
+```
+
+
+## Further reading
+
+- [McMahan et al., Federated Averaging (2016)](https://arxiv.org/abs/1602.05629)
+- [Flower framework](https://flower.ai/)
+- [PySyft](https://github.com/OpenMined/PySyft)
+- [oadr-autoantibody notebooks](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/tree/main/ipynb)
+
+## Supplementary information
 
 For biomedical work this is often the only way to build cell-type classifiers, batch-correction models and patient-stratification models across institutions whose data-use agreements forbid pooling. It is a special case of [federated computing](../federated-computing/README.md).
 
@@ -91,10 +119,6 @@ Open [`federated_analysis_simulation_3x3.ipynb`](https://github.com/Science-and-
 
 Federation without the other two is still a big gain over pooling in most biomedical settings. Say which guarantees you have and which you do not.
 
-### Further reading
+## Next
 
-- Scheuermann RH, Deslattes Mays A, Diller M, LeClair R, Spear W, Zhang Y. *A trustworthy data-driven biomedical knowledge base of cell phenotypes for the National Library of Medicine.* In **Knowledge Graphs in U.S. Government Agencies**. Springer, forthcoming. The reference frame for the [NLM-CKN](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/nlm-ckn/README.md) case study.
-- [McMahan et al., Federated Averaging (2016)](https://arxiv.org/abs/1602.05629)
-- [Flower framework](https://flower.ai/)
-- [PySyft](https://github.com/OpenMined/PySyft)
-- [oadr-autoantibody notebooks](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/tree/main/ipynb)
+[MCP server](../mcp-server/README.md): wrap the federated-learning command-line tool so an AI agent can drive it on Lifebit.

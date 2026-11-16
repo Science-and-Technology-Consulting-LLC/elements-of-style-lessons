@@ -4,21 +4,23 @@ You will compare two ways of combining models from five sites, one of which has 
 
 *Part of the [federated-learning](README.md) lesson.*
 
-## What you will do
+## Start here
+
+### What you will do
 
 - Build five sets of model coefficients, one per site, with one site very far off.
 - Combine them with the mean (the average).
 - Combine them with the median (the middle value).
 - See which answer the odd site spoils.
 
-## What you need
+### What you need
 
 - [conda](https://docs.conda.io/) to make a clean environment. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md).
 - [JupyterLab](https://jupyter.org/) with a Python kernel. See [starting a JupyterLab notebook](../interactive-computing/starting-a-jupyter-lab-notebook.md).
 - The Python package [NumPy](https://numpy.org/) (*Install the packages the walkthrough uses (in a terminal)* installs it).
 - The idea of one site sending only numbers to a coordinator. See [simulating a 3x3 federated run](../federated-computing/simulating-a-3x3-federated-run.md).
 
-## Before you begin
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -30,7 +32,9 @@ You will compare two ways of combining models from five sites, one of which has 
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`median-of-coefficients-aggregation.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb) and run each cell in order, top to bottom.
 
-## Make a clean environment for this walkthrough (in a terminal)
+## Steps to execute
+
+### Make a clean environment for this walkthrough (in a terminal)
 
 Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
@@ -46,7 +50,7 @@ python -m ipykernel install --user \
 
 > **Check:** the `ipykernel` kernel installed here has no `numpy` or `pandas`. Which environment should the notebook run in, this one or the one in the next step?
 
-## Install the packages the walkthrough uses (in a terminal)
+### Install the packages the walkthrough uses (in a terminal)
 
 Why: the code uses NumPy for arrays. This second environment has NumPy, pandas and [scikit-learn](https://scikit-learn.org/). Run these lines in a **terminal**:
 
@@ -59,18 +63,18 @@ conda activate fed-learn
 
 > **Check:** *Make a clean environment for this walkthrough (in a terminal)* and *Install the packages the walkthrough uses (in a terminal)* make two different environments. Please confirm which one the notebook kernel should use, and whether `numpy` should be added to the *Make a clean environment for this walkthrough (in a terminal)* environment instead.
 
-## Check which Python this notebook uses
+### Check which Python this notebook uses
 
 Why: if the notebook's Python has no NumPy, *Compare the mean and the median* stops with `ModuleNotFoundError`.
 
 ```python
 import shutil, sys
 print("python  ", sys.executable)
-for cmd in ["conda", "pip", "git", "docker"]:
+for cmd in ["conda", "pip", "git", "podman"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
-**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `docker` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `docker` is fine.
+**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `podman` is fine.
 
 ```python
 import numpy
@@ -79,11 +83,11 @@ print("numpy", numpy.__version__)
 
 **What you should see:** one line with a version number. `ModuleNotFoundError` means the notebook's Python lacks NumPy. See **If something goes wrong** below.
 
-## Why median and not mean
+### Why median and not mean
 
 Why: the classic method, *FedAvg* (federated averaging), takes the average of each site's model weights. The median is a small change. It is more robust when one site's data is very different in scale, or when one site's data is wrong. Both are ways to combine weights. In both, raw data stays behind each institution's walls. A *coefficient* is one number a model learns; a *weight* is the same idea.
 
-## Compare the mean and the median
+### Compare the mean and the median
 
 Why: the cell builds five sites' coefficients. Four sites agree, and the fifth is ten times too large. It then prints the mean and the median for each of the three coefficients.
 
@@ -113,7 +117,7 @@ median: [ 1.5  -2.    0.35]
 
 Read the two vectors. The mean is pulled toward the odd site, to 4.2, -5.6 and 0.85. The median stays at 1.5, -2.0 and 0.35, which is what the four good sites say. Federated learning at scale relies on ways of combining that survive an odd site.
 
-## Where the idea really lives
+### Where the idea really lives
 
 - **Local training** is a black box. It could be linear regression, a step of a neural network, or a whole Nextflow module scoring a pre-trained model.
 - **Aggregation** can be the mean, the median, a trimmed mean, secure aggregation or differential privacy. Swap in whatever your data-use agreement requires.
@@ -121,7 +125,7 @@ Read the two vectors. The mean is pulled toward the odd site, to 4.2, -5.6 and 0
 
 The [oadr-cpep](../../case-studies/oadr-cpep/README.md) package implements exactly this loop for C-peptide AUC prediction across four Type 1 Diabetes cohorts.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`ModuleNotFoundError: No module named 'numpy'`.** The notebook's Python is not the environment with NumPy. In a terminal run `conda activate` for the environment your kernel uses, then `pip install numpy`. Restart the kernel and run the cells again.
 - **`conda: command not found` on Windows.** Open *Git Bash* (not PowerShell) after installing conda. See [conda-environments](../conda-environments/README.md).

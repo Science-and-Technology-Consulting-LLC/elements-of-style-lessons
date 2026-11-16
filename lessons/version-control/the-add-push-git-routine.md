@@ -14,7 +14,9 @@ You will make one change to a file and send it to GitHub, then offer it to the o
 - A free [GitHub account](https://github.com/signup), with Git told who you are: [why-git-and-setup.md](why-git-and-setup.md).
 - The GitHub CLI signed in: [github-authenticate.md](github-authenticate.md).
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -26,11 +28,12 @@ You will make one change to a file and send it to GitHub, then offer it to the o
 2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`the-add-push-git-routine.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/the-add-push-git-routine.ipynb) and run each cell in order, top to bottom.
 
-## Steps
 
 ### Check your setup
 
 This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+
+## Steps to execute
 
 ### Go to your practice folder
 
@@ -203,7 +206,7 @@ A **pull request** (PR) asks the owner of the original project to take your chan
 
 **What you should see:** a new page for your pull request. The original owner can now accept it, comment, or ask for changes.
 
-## Recap
+### Recap
 
 You walked the whole loop:
 
@@ -215,7 +218,7 @@ You walked the whole loop:
 - Sent it up with `git push`.
 - Offered it to the original project as a pull request.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`Author identity unknown` when you commit.** Git does not know your name yet. Set it as in [why-git-and-setup.md](why-git-and-setup.md) (the *Tell Git who you are* section), then commit again.
 - **`Permission denied` or "could not read Username" when you push.** Either you cloned the original project instead of your fork, or you are not signed in. Check the clone address has your user name in it, and run `gh auth status`.

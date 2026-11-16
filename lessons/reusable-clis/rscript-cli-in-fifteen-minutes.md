@@ -17,7 +17,9 @@ You will build a small command-line tool in R that prints its own help screen, s
 
 You do not need an account for this lesson.
 
-## Before you begin
+## Start here
+
+### Before you begin
 
 1. **Get the code.** In a terminal, run:
 
@@ -31,7 +33,9 @@ You do not need an account for this lesson.
 
 > **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The boxes with a *Run the next cell* instruction are notebook cells that use the R kernel. Keep your terminal open next to this page.
 
-## Install R and register the R kernel (once)
+## Steps to execute
+
+### Install R and register the R kernel (once)
 
 *Why:* a **kernel** is the program that runs the code in a notebook cell. JupyterLab needs the R kernel, called IRkernel, before it can run R cells.
 
@@ -49,17 +53,16 @@ Restart JupyterLab. The Launcher now shows an **R** tile. Open this notebook wit
 
 > **Picture to add:** the JupyterLab Launcher with the R tile visible (save as assets/rscript-cli-step-1.png)
 
-## Check that R can see its tools
+### Check that R can see its tools
 
-*Why:* this cell finds each program and prints where it lives, or `MISSING`. `docker` and `conda` are not used in the steps below, so `MISSING` for them is fine today.
+*Why:* this cell finds each program and prints where it lives, or `MISSING`. `podman` and `conda` are not used in the steps below, so `MISSING` for them is fine today.
 
 Run the next cell.
 
 ```r
-for (cmd in c("R", "Rscript", "git", "docker", "conda")) {
+for (cmd in c("R", "Rscript", "git", "podman", "conda")) {
   where <- Sys.which(cmd)
-  cat(sprintf("  %-10s %s
-", cmd,
+  cat(sprintf("  %-10s %s\n", cmd,
               ifelse(nchar(where) > 0, where, "MISSING")))
 }
 ```
@@ -70,17 +73,17 @@ for (cmd in c("R", "Rscript", "git", "docker", "conda")) {
   R          /.../envs/eos/bin/R
   Rscript    /.../envs/eos/bin/Rscript
   git        /.../envs/eos/bin/git
-  docker     /usr/local/bin/docker
+  podman     /usr/local/bin/podman
   conda      /Users/you/miniforge3/bin/conda
 ```
 
 `R` and `Rscript` must not say `MISSING`.
 
-## What we build
+### What we build
 
 A single R command, `hello-r`, with two commands, `greet` and `version`. It uses [`docopt`](https://github.com/docopt/docopt.R) to read what you type. The shape matches the Typer tool in the Python walkthrough.
 
-## Create a project folder
+### Create a project folder
 
 *Why:* all the files for this tool should live together in one new folder.
 
@@ -93,7 +96,7 @@ pwd
 
 **What you should see:** a path that ends in `hello-r-cli`. Keep this terminal open. You will use it again in *Write the tool as one script*.
 
-## Install `docopt` (once)
+### Install `docopt` (once)
 
 *Why:* `docopt` reads a usage message written in plain text and turns it into the options your script receives. It saves you writing argument-parsing code. `install.packages` is R's installer for packages.
 
@@ -105,7 +108,7 @@ install.packages("docopt", repos = "https://cloud.r-project.org")
 
 **What you should see:** R downloads and installs the package. The output ends with lines like `Updating HTML index of packages in '.Library'`, `Making 'packages.html' ... done`. If `docopt` is already installed, R reinstalls it and prints the same lines.
 
-## Write the tool as one script
+### Write the tool as one script
 
 *Why:* the usage message at the top is the help screen and the instructions for `docopt` at the same time. A **script** is a plain text file of R code that you can run from the terminal.
 
@@ -146,7 +149,7 @@ chmod +x hello-r.R
 
 > **Picture to add:** the terminal showing the three commands and their output (save as assets/rscript-cli-step-5.png)
 
-## Put the logic in an R function
+### Put the logic in an R function
 
 *Why:* a function in its own file can be tested from a notebook, and the command-line script only has to call it. The
 [`NIH-NLM/sc-nsforest-qc-nf`](https://github.com/NIH-NLM/sc-nsforest-qc-nf)
@@ -179,7 +182,7 @@ greet("Annie")
 
 The cell that defined `greet` prints nothing. That is normal: it only stores the function.
 
-## Read the thin command-line script
+### Read the thin command-line script
 
 *Why:* this is what `inst/scripts/hello-r` looks like once the logic lives in a package. Read it; do not run it yet.
 
@@ -207,12 +210,12 @@ if (isTRUE(args$version)) cat("hello-r 0.1.0\n")
 
 The function `greet()` can now be used from any R code (a notebook, a test). The script runs from the shell, from a Nextflow `script:` block, and from an AI agent through MCP.
 
-## Why this shape
+### Why this shape
 
 - It follows the same *one job, one CLI command* rule as the Typer walkthrough.
 - It wraps into a Nextflow module the same way: one `.nf` file per CLI command, with a container from [containers](../containers/README.md) that supplies R, `docopt` and your package.
 
-## If something goes wrong
+### If something goes wrong
 
 - **`Rscript: command not found`, or `R` shows `MISSING` in *Check that R can see its tools*.** The environment with R is not active. Run `conda activate eos`, start JupyterLab again from that terminal, and repeat *Check that R can see its tools*.
 - **`Permission denied` when you run `./hello-r.R`.** Run `chmod +x hello-r.R` first. On Windows Git Bash, if the script still will not start, run `Rscript hello-r.R greet --name Annie` instead.
@@ -220,4 +223,4 @@ The function `greet()` can now be used from any R code (a notebook, a test). The
 
 ## Next
 
-Put this tool in a container: [building an R Dockerfile](../containers/building-an-r-dockerfile.md). Or go back to the [reusable CLIs lesson](README.md).
+Put this tool in a container: [building an R container image](../containers/building-an-r-dockerfile.md). Or go back to the [reusable CLIs lesson](README.md).
