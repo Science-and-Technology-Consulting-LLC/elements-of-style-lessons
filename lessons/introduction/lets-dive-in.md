@@ -20,15 +20,51 @@ In this walkthrough you set up your computer and run your first notebook. Every 
 
 ### Before you begin
 
-1. **Get the code.** In a terminal, run:
+1. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, the walkthrough's *Install a terminal and Git* section shows how to install it.
+2. **Get the lessons.** Copy and paste these two lines, then press Return:
 
    ```bash
    git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
    cd elements-of-style-lessons
    ```
 
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`lets-dive-in.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/lets-dive-in.ipynb) and run each cell in order, top to bottom.
+3. **Install conda, if you do not have it.** Type `conda --version`. If it prints a version number, go to step 4. If not, install Miniforge. On a Mac or Linux, paste these two lines. Press Return to read the licence, type `yes` to accept it, accept the default folder, and answer `yes` when it asks to initialize conda:
+
+   ```bash
+   curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+   bash "Miniforge3-$(uname)-$(uname -m).sh"
+   ```
+
+   On Windows, download `Miniforge3-Windows-x86_64.exe` from [conda-forge.org/download](https://conda-forge.org/download/) and run it. Then close the terminal, open a new one, and go back into the folder:
+
+   ```bash
+   cd elements-of-style-lessons
+   ```
+
+4. **Create the `eos` environment.** This takes several minutes the first time. Paste these lines and press Return:
+
+   ```bash
+   conda env create -f eos.yml
+   conda activate eos
+   python -m bash_kernel.install
+   R -e 'IRkernel::installspec(name="ir", displayname="R")'
+   ```
+
+   Your prompt now starts with `(eos)`.
+
+5. **Start JupyterLab.** Keep this terminal open while you work:
+
+   ```bash
+   jupyter lab
+   ```
+
+   A browser tab opens with JupyterLab. If it does not, copy the address that starts with `http://localhost` from the terminal into your browser.
+
+6. **Open the first lesson.** In the file list on the left of JupyterLab, double-click `lessons`, then `introduction`, then `lets-dive-in.ipynb`. If it asks you to select a kernel, choose **Bash**. Run each cell in order, top to bottom, with `Shift-Return`.
+
+Why these steps work is explained in the lessons that follow. Here you only copy and paste.
+
+> **Check:** the Miniforge lines come from the [Miniforge page](https://github.com/conda-forge/miniforge#install). I have not run these steps in order on a fresh computer. Please try them on one and tell me where you get stuck.
 
 ## Steps to execute
 
