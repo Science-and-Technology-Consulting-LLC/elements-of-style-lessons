@@ -12,7 +12,7 @@ This is the first lesson. You need nothing before it.
 
 ### Do this
 
-1. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, the walkthrough's *Install a terminal and Git* section shows how to install it.
+1. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, install it from [git-scm.com](https://git-scm.com/downloads). On Windows that also installs Git Bash.
 2. **Get the lessons.** Copy and paste these two lines, then press Return:
 
    ```bash
@@ -74,7 +74,7 @@ Why these steps work is explained in the lessons that follow. Here you only copy
 
 ## Steps to execute
 
-1. [Let's dive in](lets-dive-in.md) — set up your computer and run a first notebook.
+1. [Let's dive in](lets-dive-in.md) — find your way around JupyterLab, run a first cell and check your tools.
 
 ## Ask an AI assistant
 

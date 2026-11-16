@@ -31,7 +31,7 @@ In this walkthrough you type seven commands that move, make, copy, delete and do
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
 
 ## Steps to execute
 
@@ -168,7 +168,7 @@ You have now used `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r` and `wget`. The fold
 
 - **`wget: command not found`.** Neither a Mac nor Git Bash comes with `wget`. The `eos` environment does. Close JupyterLab, run `conda activate eos` in a terminal, start `jupyter lab` again and rerun the cell. As a stopgap, `curl -O https://zenodo.org/record/4302133/files/deseq2_5k.csv` does the same job.
 - **`ls: cannot access` or `No such file`.** You skipped a step, or you are in the wrong folder. Run `pwd` and compare with *`pwd` prints your location*. Then run the steps again from the top.
-- **The notebook asks you to choose a kernel.** Choose **Bash**. If it is not listed, repeat the kernel registration in the *Register the Bash kernel* step of [Let's dive in](../introduction/lets-dive-in.md) with `eos` active, then restart JupyterLab.
+- **The notebook asks you to choose a kernel.** Choose **Bash**. If it is not listed, repeat step 4 of the [Introduction page](../introduction/README.md) with `eos` active, then restart JupyterLab.
 
 ## Next
 

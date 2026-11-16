@@ -1,149 +1,115 @@
 # Let's dive in
 
-In this walkthrough you set up your computer and run your first notebook. Every later lesson assumes this setup, so it pays to get it right once.
+You have JupyterLab open and this notebook in front of you. In this walkthrough you look around, learn to move through a notebook, and test that your tools work. Every later lesson assumes you can do these things.
 
 **What you will do:**
 
-- Install the programs the lessons use.
-- Build one [conda environment](../conda-environments/README.md) that holds them all.
-- Open [JupyterLab](https://jupyter.org/) and run two checks inside a notebook.
+- Find the parts of the JupyterLab window.
+- Run your first cell.
+- Check which tools your computer has.
 
 **What you need:**
 
-- A computer: a Mac, Windows with Git Bash, or Linux. No computer of your own? See [Other places to run these lessons](other-places-to-run.md).
-- [Git](https://git-scm.com/), the program that tracks changes to files. *Install a terminal and Git* installs it. If `git --version` fails, do *Install a terminal and Git* first, then come back to "Before you begin".
-- [Miniforge](https://github.com/conda-forge/miniforge), the installer for conda. *Install Miniforge* installs it.
-- A free [GitHub account](https://github.com/signup). You first need it in the [version control lesson](../version-control/README.md).
-- A good internet connection. *Create the `eos` environment* downloads a few hundred packages.
+- JupyterLab open on this notebook. The steps to get here are on the [Introduction page](README.md).
+- The `(eos)` environment active in the terminal where JupyterLab runs.
 
 ## Start here
 
 ### Before you begin
 
-1. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, the walkthrough's *Install a terminal and Git* section shows how to install it.
-2. **Get the lessons.** Copy and paste these two lines, then press Return:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-3. **Install conda, if you do not have it.** Type `conda --version`. If it prints a version number, go to step 4. If not, install Miniforge. On a Mac or Linux, paste these two lines. Press Return to read the licence, type `yes` to accept it, accept the default folder, and answer `yes` when it asks to initialize conda:
-
-   ```bash
-   curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-   bash "Miniforge3-$(uname)-$(uname -m).sh"
-   ```
-
-   On Windows, download `Miniforge3-Windows-x86_64.exe` from [conda-forge.org/download](https://conda-forge.org/download/) and run it. Then close the terminal, open a new one, and go back into the folder:
-
-   ```bash
-   cd elements-of-style-lessons
-   ```
-
-4. **Create the `eos` environment.** This takes several minutes the first time. Paste these lines and press Return:
-
-   ```bash
-   conda env create -f eos.yml
-   conda activate eos
-   python -m bash_kernel.install
-   R -e 'IRkernel::installspec(name="ir", displayname="R")'
-   ```
-
-   Your prompt now starts with `(eos)`.
-
-5. **Start JupyterLab.** Keep this terminal open while you work:
-
-   ```bash
-   jupyter lab
-   ```
-
-   A browser tab opens with JupyterLab. If it does not, copy the address that starts with `http://localhost` from the terminal into your browser.
-
-6. **Open the first lesson.** In the file list on the left of JupyterLab, double-click `lessons`, then `introduction`, then `lets-dive-in.ipynb`. If it asks you to select a kernel, choose **Bash**. Run each cell in order, top to bottom, with `Shift-Return`.
-
-Why these steps work is explained in the lessons that follow. Here you only copy and paste.
-
-> **Check:** the Miniforge lines come from the [Miniforge page](https://github.com/conda-forge/miniforge#install). I have not run these steps in order on a fresh computer. Please try them on one and tell me where you get stuck.
+If you are reading this page in a web browser and not in JupyterLab, go back to the [Introduction page](README.md) and do its six steps first. They end with this notebook open.
 
 ## Steps to execute
 
-### Install a terminal and Git
+### What you see
 
-A *terminal* is a window where you type instructions instead of clicking. *Bash* is the language those instructions are written in. Using Bash everywhere means a Mac, a Windows PC and a cloud machine all behave the same way.
+JupyterLab is a web page that works like a small desktop. It has four parts:
 
-- **Windows:** download and run the installer from [Git for Windows](https://git-scm.com/download/win). Accept the defaults. Then open **Git Bash** from the Start menu. Git for Windows installs both Git and Git Bash.
-- **Mac:** open **Terminal** (press `Cmd-Space`, type `Terminal`, press Return). Type `git --version` and press Return. If a box offers to install the "command line developer tools", click **Install** and wait a few minutes.
-- **Linux:** Bash is already your terminal. If Git is missing, install it with `sudo apt install git` (or `sudo dnf install git`).
+- **The menu bar** runs across the top: File, Edit, View, Run, Kernel, Tabs, Settings and Help.
+- **The left bar** is a column of small icons at the left edge. The top icon opens the file list.
+- **The main area** is the large space in the middle. It shows this notebook in a tab. Each file you open gets its own tab.
+- **The status bar** is the thin strip along the bottom.
 
-Type this in the terminal, then press Return:
+> **Picture to add:** the whole JupyterLab window with this notebook open, with the four parts labelled: menu bar, left bar, main area, status bar (save as assets/jupyterlab-window.png)
 
-```text
-git --version
-```
+### Find your way: the menu at the top
 
-**What you should see:** one line that starts with `git version` and ends with a number.
+You will use six menus often.
 
-> **Picture to add:** a Mac Terminal window and a Windows Git Bash window, each showing the output of `git --version` (save as assets/lets-dive-in-step-1.png)
+- **File.** *Save Notebook* keeps your work. *New* makes a new notebook, a terminal or a text file. *Shut Down* stops JupyterLab.
+- **Edit.** *Clear Outputs of All Cells* wipes the results, so you can run the notebook from a clean start.
+- **View.** Shows or hides the left bar and the other panels.
+- **Run.** *Run Selected Cell* runs the cell you clicked on. *Run All Cells* runs the whole notebook, top to bottom.
+- **Kernel.** The kernel is the engine that runs your code. *Restart Kernel* starts the engine again with a clean memory. *Interrupt Kernel* stops a cell that is taking too long.
+- **Help.** Links to the JupyterLab documentation.
 
-The [command line lesson](../command-line-and-git-bash/README.md) covers this step in more detail.
+The other two menus matter less. **Tabs** lists your open tabs. **Settings** holds the theme: choose *Theme* to switch between light and dark.
 
-### Install Miniforge
+> **Picture to add:** the menu bar, with the File menu open (save as assets/jupyterlab-menu-file.png)
 
-*Conda* is a program that installs other programs into a private folder, so one project cannot break another. *Miniforge* is the small installer that gives you conda.
+> **Picture to add:** the Run menu and the Kernel menu, one beside the other (save as assets/jupyterlab-menu-run-kernel.png)
 
-- **Mac:** download the installer for your chip from the [Miniforge page](https://github.com/conda-forge/miniforge#install). Run it in Terminal. For an Apple chip the command is `bash Miniforge3-MacOSX-arm64.sh`. For an Intel chip use the `x86_64` file.
-- **Windows:** download `Miniforge3-Windows-x86_64.exe` from [conda-forge.org/download](https://conda-forge.org/download/) and run it.
+### Find your way: the bar on the left
 
-When the installer finishes, close your terminal and open a new one. Then type:
+The icons in the left bar open panels. Click an icon to open its panel. Click it again to close the panel.
 
-```text
-conda --version
-```
+- **File Browser** (a folder). Lists the files and folders on your computer, starting where you launched JupyterLab. Double-click a folder to go in. Double-click a file to open it. Click the folder icon in the path above the list to go back to the top.
+- **Running Terminals and Kernels** (a circle with a square). Lists what is running now. Use it to shut down a notebook or a terminal you no longer need.
+- **Table of Contents** (a list). Shows the headings of the open notebook. Click a heading to jump to it. This helps in a long lesson.
+- **Extension Manager** (a puzzle piece). Adds extra features. You do not need it in these lessons.
 
-**What you should see:** the word `conda` followed by a version number.
+Above the file list there are buttons too. The blue **+** opens the *Launcher*, a page of tiles. A tile starts a new notebook, a terminal or a text file. Under **Notebook** you will see **Python 3**, **Bash** and **R**: these are the kernels you registered. The lessons use **Bash**.
 
-### Create the `eos` environment
+> **Picture to add:** the left bar with the File Browser panel open, with each icon labelled (save as assets/jupyterlab-left-bar.png)
 
-An *environment* is a private folder of programs. The file `eos.yml` in the repository is the recipe. It lists Python, JupyterLab, Git, the GitHub command line (`gh`), [Nextflow](https://www.nextflow.io/) and more. You are already inside the repository folder from "Before you begin".
+> **Picture to add:** the Launcher showing the Python 3, Bash and R tiles (save as assets/jupyterlab-launcher.png)
 
-Type these two lines in the terminal. They are not notebook cells.
+### Find your way: the notebook toolbar
 
-```text
-conda env create -f eos.yml
-conda activate eos
-```
+A notebook is a stack of **cells**. There are two kinds that you will meet.
 
-The first line takes several minutes the first time. Conda downloads and sorts out a few hundred packages.
+- A **Markdown cell** holds text, like this one. You read it.
+- A **Code cell** holds a command, with `[ ]:` at its left. You run it.
 
-**What you should see:** a long list of packages, then a prompt that starts with `(eos)`. The `(eos)` means the environment is active. Run `conda activate eos` in every new terminal before you start a lesson.
+The toolbar sits just above the notebook. From the left, its buttons are:
 
-### Register the Bash kernel
+- **Save** (a disk).
+- **Add a cell** (a plus).
+- **Cut, copy, paste** (scissors, two pages, a clipboard).
+- **Run** (a play triangle). Runs the cell you chose, then moves to the next one.
+- **Stop** (a square). Interrupts a cell that is still running.
+- **Restart the kernel** (a circular arrow).
+- **Run all** (two triangles).
+- **Cell type** (a drop-down that says *Code* or *Markdown*).
 
-A *kernel* is the engine that runs the code in a notebook. This notebook uses the Bash kernel. You register it once. Running it again does no harm.
+At the top right of the notebook you see the name of the kernel. For these lessons it must say **Bash**. If it says something else, click the name, choose **Bash** from the list, and press **Select**.
 
-Run this cell. If you are working in a terminal instead, type the same two lines there, with `eos` active.
+> **Picture to add:** the notebook toolbar with each button labelled, and the kernel name **Bash** at the top right (save as assets/jupyterlab-toolbar.png)
+
+### Run your first cell
+
+Click on the grey box below. A blue bar appears at the left of it. Then press **Shift and Return** together.
 
 ```bash
-pip install bash_kernel
-python -m bash_kernel.install
+echo "Hello from JupyterLab"
+pwd
 ```
 
-**What you should see:** a stream of lines that start with `Requirement already satisfied` or `Collecting`, and a last line that says `Installing IPython kernel spec`.
+**What you should see:** the words `Hello from JupyterLab`, then a path that ends in `elements-of-style-lessons/lessons/introduction`. That path is the folder that holds this notebook. While the cell runs, the left of it shows `[*]:`. When it is done, a number appears, such as `[1]:`. The number counts the cells you have run since the kernel started.
 
-### Start JupyterLab
+Press **Shift and Return** again on the next cell. Each press runs one cell and moves down. You can also click the **Run** button in the toolbar.
 
-*JupyterLab* is the program that opens notebooks in your web browser. Start it from a terminal where `(eos)` is active. It is not a notebook cell, because it keeps running until you stop it.
+If a cell hangs, click the **Stop** button. If the notebook gets confusing, choose **Kernel**, then **Restart Kernel and Clear Outputs of All Cells**, and run it again from the top.
 
-```text
-jupyter lab
-```
+> **Picture to add:** the cell above after it ran, showing the `[1]:` number and the output (save as assets/jupyterlab-first-cell.png)
 
-Restart it if it was already running, so it sees the new Bash kernel. To stop it later, click in that terminal and press `Ctrl-C`.
+### Open a terminal inside JupyterLab
 
-**What you should see:** a browser tab opens with JupyterLab. The Launcher has a **Bash** tile.
+You can also type commands in a terminal without leaving JupyterLab. Choose **File**, then **New**, then **Terminal**. A new tab opens with a prompt. Run `conda activate eos` in it before you use the lesson tools.
 
-> **Picture to add:** the JupyterLab Launcher with the Bash tile visible (save as assets/lets-dive-in-step-5.png)
+### Stop JupyterLab
+
+When you finish, choose **File**, then **Shut Down**. Or click in the terminal where you ran `jupyter lab` and press `Ctrl-C`. To start again later, open a terminal, go into the `elements-of-style-lessons` folder, run `conda activate eos`, and run `jupyter lab`.
 
 ### Check your tools
 
@@ -179,7 +145,7 @@ done
   podman     MISSING
 ```
 
-The exact paths on your computer will differ. If you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `podman` may show `MISSING` until *Install Podman later*.
+The exact paths on your computer will differ. Because you started from the `eos` environment, `git`, `conda`, `gh`, `nextflow` and `python3` all show a path. `podman` may show `MISSING` until *Install Podman later*.
 
 ### Install Podman later
 
@@ -191,9 +157,15 @@ Your own Bash terminal is the main way to follow these lessons. If you cannot us
 
 ### If something goes wrong
 
-- **`git: command not found` or `conda: command not found`.** On Windows, make sure you opened *Git Bash*, not Command Prompt or PowerShell. After installing Miniforge, close the terminal and open a new one.
-- **No Bash tile in JupyterLab.** You registered the kernel outside the `eos` environment. Run `conda activate eos`, repeat *Register the Bash kernel*, then restart JupyterLab (*Start JupyterLab*).
-- **A tool shows `MISSING`.** Compare it with the table in *Check your tools*. Run `conda activate eos` and run the cell again. Podman is the one tool you install by hand.
+- **The kernel name at the top right is not Bash.** Click the name, choose **Bash**, and press **Select**.
+- **There is no Bash tile in the Launcher.** The kernel was registered outside the `eos` environment. In a terminal run `conda activate eos`, then `python -m bash_kernel.install`, stop JupyterLab, and start it again with `jupyter lab`.
+- **A cell says `command not found`.** JupyterLab was started outside the `eos` environment. Stop it, run `conda activate eos` in the terminal, and run `jupyter lab` again.
+- **A tool shows `MISSING`.** Compare it with the table in *Check your tools*. Podman is the one tool you install by hand.
+- **You closed the browser tab by mistake.** JupyterLab still runs in the terminal. Open the address that starts with `http://localhost` again.
+
+> **Check:** the menu names, the toolbar buttons and the left bar follow JupyterLab 4, the version `eos.yml` installs. Please compare each with your own window as you take the pictures, and tell me what differs.
+
+For more on moving through notebooks, see the [Interactive computing lesson](../interactive-computing/README.md).
 
 ## Next
 

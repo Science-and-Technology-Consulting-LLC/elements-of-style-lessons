@@ -34,7 +34,7 @@ You will set up the tools that record your work, and tell Git who you are. This 
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
 
 ## Steps to execute
 
@@ -172,7 +172,7 @@ git config --global core.editor nano
 - **`conda: command not found`.** Conda is not installed, or this terminal was opened before you installed it. Close the terminal, open a new one, and try again. If it still fails, follow [creating-a-conda-environment.md](../conda-environments/creating-a-conda-environment.md).
 - **`conda activate eos` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one, then run `conda activate eos` again. In a notebook cell this command may not work. Run it in a terminal instead.
 - **`git: command not found` on a Mac.** Type `git --version` in Terminal. A window offers to install the Xcode Command Line Tools. Accept it. On Windows, install [Git for Windows](https://gitforwindows.org/), which also gives you Git Bash.
-- **`python: command not found` when you register the Bash kernel (the *Register the Bash kernel* step of [Let's dive in](../introduction/lets-dive-in.md)).** Try `python3` in place of `python`, or finish the [conda lesson](../conda-environments/README.md) first.
+- **`python: command not found` when you register the Bash kernel (step 4 of the [Introduction page](../introduction/README.md)).** Try `python3` in place of `python`, or finish the [conda lesson](../conda-environments/README.md) first.
 
 ## Next
 

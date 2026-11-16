@@ -38,7 +38,7 @@ You will put a small Sphinx site in a repository, and let GitHub rebuild and pub
 
 ### Check your setup
 
-This notebook runs shell commands with the Bash kernel and uses tools such as `git`, `gh` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the *Register the Bash kernel* and *Check your tools* steps of [Let's dive in](../introduction/lets-dive-in.md) first.
+This notebook runs shell commands with the Bash kernel and uses tools such as `git`, `gh` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
 
 > **Check:** I wrote this lesson without running it. It needs a GitHub login. Please run it once from a fresh `~/eos-practice` and tell me what differs.
 
