@@ -6,34 +6,81 @@ This lesson explains why the course follows *The Elements of Style*, then walks 
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-This is the first lesson. You need nothing before it.
+This is the first lesson, there are no pre-requisites.
 
-### Do this
+1. **Open a terminal.**
 
-1. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, install it from [git-scm.com](https://git-scm.com/downloads). On Windows that also installs Git Bash.
-2. **Get the lessons.** Copy and paste these two lines, then press Return:
+On a Mac, open *Terminal*.   
+
+You can find *Terminal* using the *Finder App* in *Applications/Utilities*
+
+![Applications->Utilities->Terminal](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/7c1f2a7aa6519a34ffca745a8d1bc78901bba67b/lessons/introduction/assets/Applications-Utilities-Terminal.png)
+
+A keyboard alternative is to press keys in succession **command** followed by **space bar**.  In the resulting **search** window (**spy glass**), type **Terminal**.
+
+![Terminal-from-search](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/7c1f2a7aa6519a34ffca745a8d1bc78901bba67b/lessons/introduction/assets/Cmd-Space-Terminal.png)
+
+On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, install it from [git-scm.com](https://git-scm.com/downloads). On Windows that also installs Git Bash.
+
+2. **Get the lessons.**
+
+In the terminal window, copy and paste these two lines, then press Return:
 
    ```bash
    git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
    cd elements-of-style-lessons
    ```
 
-3. **Install conda, if you do not have it.** Type `conda --version`. If it prints a version number, go to step 4. If not, install Miniforge. On a Mac or Linux, paste these two lines. Press Return to read the licence, type `yes` to accept it, accept the default folder, and answer `yes` when it asks to initialize conda:
+3. **Install conda**
+
+In the terminal window, if you see:
+
+![what-you-see-when-you-don't-have-conda[(https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/assets/Terminal-before-miniconda-install.png), you do not have *conda/miniconda* installed.
+
+As a final check, type in the terminal window or simply copy and paste this command: 
+
+```bash
+conda --version
+```
+
+You do have conda installed if you see:
+![terminal-conda-installed](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/assets/Terminal-what-you-see-if-you-have-conda-installed.png)
+
+Seeing a version number, proceed to step 4. 
+
+If you didn't see either the word `(base)` or a version number, you now must install **Miniforge**. 
+
+On a Mac or Linux, copy and paste the following in a terminal window. And then press the `Return` key.
 
    ```bash
    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
    bash "Miniforge3-$(uname)-$(uname -m).sh"
    ```
 
-   On Windows, download `Miniforge3-Windows-x86_64.exe` from [conda-forge.org/download](https://conda-forge.org/download/) and run it. Then close the terminal, open a new one, and go back into the folder:
+It will ask you to press 'space' to read the licence, at the end type `yes` to accept it, also accept the default folder, and answer `yes` when it asks to initialize conda:
 
+   On Windows, download `Miniforge3-Windows-x86_64.exe` from [conda-forge.org/download](https://conda-forge.org/download/) and run it. 
+   
+   **close the termina**.  Press the **red** dot and close the terminal window.
+   
+   Now open a new one.  (If you are wondering which one is used in these lessons, I am using Novel Terminal style.  One can open a *Terminal* *New Window* like what you see by selecting *Novel*.
+   ![Terminal-New-Window-Novel](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/assets/Terminal-New-Window-Select-Novel.png)
+
+   Now, proceed to our lessons directory:
+   
    ```bash
    cd elements-of-style-lessons
    ```
+   Continue to Step 4.
+   
+4. **Create the `eos` environment.**
 
-4. **Create the `eos` environment.** This takes several minutes the first time. Paste these lines and press Return:
+   In later lessons, we will explain why we do this and you will understand that we are creating an environment that will allow us to run each of the lessons.  It is a clean environment, where all our libraries and required tools are installed, so we can proceed error free.  More on this later.
+
+   For now, please copy and paste the following lines in the new terminal window you have opened.
+You will now see, since miniconda has been installed, the words **(base)** next to your prompt.  *Prompt* is the name given to the letters and words that preceed where you can type.
 
    ```bash
    conda env create -f eos.yml
@@ -41,20 +88,36 @@ This is the first lesson. You need nothing before it.
    python -m bash_kernel.install
    R -e 'IRkernel::installspec(name="ir", displayname="R")'
    ```
+   What we have done is the following:
+   * created a new environment called *eos*.
+   * activated this environment
+   * and installed the bash kernel
+   * And installed the R kernel
 
+   A Kernel is required to run what we will use next, Jupyter Lab notebooks.  Jupyter Lab notebooks come with a Python Kernel, but for our lessons we will also use Bash (we are in a shell in our terminal, on a mac this is a Z-shell, in a git bash environment there is a bash shell.  There is more information on shells that you can read about in the further reading session.
+   We will also learn about conda environments later.  But for now, we are just getting started.
+   
    Your prompt now starts with `(eos)`.
 
-5. **Start JupyterLab.** Keep this terminal open while you work:
+5. **Start JupyterLab.** 
 
+   we have set things up and now we are ready to start our first lesson.  To do this, copy and paste the following command in your terminal window.
+   
    ```bash
    jupyter lab
    ```
 
-   A browser tab opens with JupyterLab. If it does not, copy the address that starts with `http://localhost` from the terminal into your browser.
+   A browser tab opens with JupyterLab.  For these lessons, the Chrome browser on the Mac was used.
 
-6. **Open the first lesson.** In the file list on the left of JupyterLab, double-click `lessons`, then `introduction`, then `lets-dive-in.ipynb`. If it asks you to select a kernel, choose **Bash**. Run each cell in order, top to bottom, with `Shift-Return`.
+   If it does not, copy the address that starts with `http://localhost` from the terminal into a new browser tab.
 
-Why these steps work is explained in the lessons that follow. Here you only copy and paste.
+6. **Open the first lesson.**
+  
+In the file list on the left of JupyterLab, double-click `lessons`, then `introduction`, then `lets-dive-in.ipynb`. If it asks you to select a kernel, choose **Bash**. 
+
+Navigating around the `Jupyter Lab Notebook` you have opened, you see 
+
+
 
 > **Check:** the Miniforge lines come from the [Miniforge page](https://github.com/conda-forge/miniforge#install). I have not run these steps in order on a fresh computer. Please try them on one and tell me where you get stuck.
 
