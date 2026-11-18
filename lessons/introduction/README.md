@@ -16,11 +16,11 @@ On a Mac, open *Terminal*.
 
 You can find *Terminal* using the *Finder App* in *Applications/Utilities*
 
-![Applications->Utilities->Terminal](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/7c1f2a7aa6519a34ffca745a8d1bc78901bba67b/lessons/introduction/assets/Applications-Utilities-Terminal.png)
+![Applications->Utilities->Terminal](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/7c1f2a7aa6519a34ffca745a8d1bc78901bba67b/lessons/introduction/assets/Applications-Utilities-Terminal.png)
 
 A keyboard alternative is to press keys in succession **command** followed by **space bar**.  In the resulting **search** window (**spy glass**), type **Terminal**.
 
-![Terminal-from-search](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/7c1f2a7aa6519a34ffca745a8d1bc78901bba67b/lessons/introduction/assets/Cmd-Space-Terminal.png)
+![Terminal-from-search](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/7c1f2a7aa6519a34ffca745a8d1bc78901bba67b/lessons/introduction/assets/Cmd-Space-Terminal.png)
 
 On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](other-places-to-run.md). If `git` is missing, install it from [git-scm.com](https://git-scm.com/downloads). On Windows that also installs Git Bash.
 
@@ -37,7 +37,7 @@ In the terminal window, copy and paste these two lines, then press Return:
 
 In the terminal window, if you see:
 
-![what-you-see-when-you-don't-have-conda[(https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/assets/Terminal-before-miniconda-install.png), you do not have *conda/miniconda* installed.
+![what-you-see-when-you-don't-have-conda](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/main/lessons/introduction/assets/Terminal-before-miniconda-install.png), you do not have *conda/miniconda* installed.
 
 As a final check, type in the terminal window or simply copy and paste this command: 
 
@@ -46,7 +46,7 @@ conda --version
 ```
 
 You do have conda installed if you see:
-![terminal-conda-installed](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/assets/Terminal-what-you-see-if-you-have-conda-installed.png)
+![terminal-conda-installed](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/main/lessons/introduction/assets/Terminal-what-you-see-if-you-have-conda-installed.png)
 
 Seeing a version number, proceed to step 4. 
 
@@ -66,7 +66,7 @@ It will ask you to press 'space' to read the licence, at the end type `yes` to a
    **close the termina**.  Press the **red** dot and close the terminal window.
    
    Now open a new one.  (If you are wondering which one is used in these lessons, I am using Novel Terminal style.  One can open a *Terminal* *New Window* like what you see by selecting *Novel*.
-   ![Terminal-New-Window-Novel](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/introduction/assets/Terminal-New-Window-Select-Novel.png)
+   ![Terminal-New-Window-Novel](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/main/lessons/introduction/assets/Terminal-New-Window-Select-Novel.png)
 
    Now, proceed to our lessons directory:
    

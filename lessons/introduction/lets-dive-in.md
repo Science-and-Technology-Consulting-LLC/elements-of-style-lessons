@@ -26,11 +26,18 @@ If you are reading this page in a web browser and not in JupyterLab, go back to 
 JupyterLab is a web page that works like a small desktop. It has four parts:
 
 - **The menu bar** runs across the top: File, Edit, View, Run, Kernel, Tabs, Settings and Help.
-- **The left bar** is a column of small icons at the left edge. The top icon opens the file list.
-- **The main area** is the large space in the middle. It shows this notebook in a tab. Each file you open gets its own tab.
-- **The status bar** is the thin strip along the bottom.
 
-> **Picture to add:** the whole JupyterLab window with this notebook open, with the four parts labelled: menu bar, left bar, main area, status bar (save as assets/jupyterlab-window.png)
+![Menu-bar](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-menu-bar.png)
+
+- **The left bar** is a column of small icons at the left edge. The top icon opens the file list.
+![Left-bar](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-first-window-left-bar.png)
+
+- **The main area** is the large space in the middle. It shows this notebook in a tab. Each file you open gets its own tab.
+
+![Main-area](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-main-window.png)
+
+- **The status bar** is the thin strip along the bottom.
+![Status-bar](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-main-status-bar.png)
 
 ### Find your way: the menu at the top
 
@@ -45,13 +52,21 @@ You will use six menus often.
 
 The other two menus matter less. **Tabs** lists your open tabs. **Settings** holds the theme: choose *Theme* to switch between light and dark.
 
-> **Picture to add:** the menu bar, with the File menu open (save as assets/jupyterlab-menu-file.png)
+--**File Save As**
 
-> **Picture to add:** the Run menu and the Kernel menu, one beside the other (save as assets/jupyterlab-menu-run-kernel.png)
+![Jupyter-lab-File-Save-As](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-menu-file-save-as.png)
+
+--**Run All Cells**
+
+![Jupyter-lab-Run-Run-All-Cells](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-menu-file-Run-Run-All-Cells.png)
+
+--**Reset Kernel Run All Cells**
+
+![Jupyter-lab-Restart-Kernel-Run-All-Cells](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-Lab-menu-file-Kernel-Restart-Kernel-and-Run-All-Cells.png)
 
 ### Find your way: the bar on the left
 
-The icons in the left bar open panels. Click an icon to open its panel. Click it again to close the panel.
+The icons in the left bar open panels (see above). Click an icon to open its panel. Click it again to close the panel.
 
 - **File Browser** (a folder). Lists the files and folders on your computer, starting where you launched JupyterLab. Double-click a folder to go in. Double-click a file to open it. Click the folder icon in the path above the list to go back to the top.
 - **Running Terminals and Kernels** (a circle with a square). Lists what is running now. Use it to shut down a notebook or a terminal you no longer need.
@@ -60,9 +75,7 @@ The icons in the left bar open panels. Click an icon to open its panel. Click it
 
 Above the file list there are buttons too. The blue **+** opens the *Launcher*, a page of tiles. A tile starts a new notebook, a terminal or a text file. Under **Notebook** you will see **Python 3**, **Bash** and **R**: these are the kernels you registered. The lessons use **Bash**.
 
-> **Picture to add:** the left bar with the File Browser panel open, with each icon labelled (save as assets/jupyterlab-left-bar.png)
-
-> **Picture to add:** the Launcher showing the Python 3, Bash and R tiles (save as assets/jupyterlab-launcher.png)
+![Jupyter-lab-Launcher](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/c9efd7806572c67e1ad5fdf4bd5df35cd4c55060/lessons/introduction/assets/Jupyter-lab-Launcher-Window.png)
 
 ### Find your way: the notebook toolbar
 
