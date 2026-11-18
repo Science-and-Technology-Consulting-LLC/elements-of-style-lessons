@@ -97,7 +97,7 @@ The toolbar sits just above the notebook. From the left, its buttons are:
 
 At the top right of the notebook you see the name of the kernel. For these lessons it must say **Bash**. If it says something else, click the name, choose **Bash** from the list, and press **Select**.
 
-> **Picture to add:** the notebook toolbar with each button labelled, and the kernel name **Bash** at the top right (save as assets/jupyterlab-toolbar.png)
+![Jupyter-lab-bash-kernel-menu](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/9ea15fda12880cce5c89b692418ddf2600539d5f/lessons/introduction/assets/Jupyter-lab-bash-ipynb-menu-bar.png)
 
 ### Run your first cell
 
@@ -114,7 +114,7 @@ Press **Shift and Return** again on the next cell. Each press runs one cell and 
 
 If a cell hangs, click the **Stop** button. If the notebook gets confusing, choose **Kernel**, then **Restart Kernel and Clear Outputs of All Cells**, and run it again from the top.
 
-> **Picture to add:** the cell above after it ran, showing the `[1]:` number and the output (save as assets/jupyterlab-first-cell.png)
+![Jupyter-lab-run-your-first-cell](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/9ea15fda12880cce5c89b692418ddf2600539d5f/lessons/introduction/assets/Jupyter-lab-run-your-first-cell.png)
 
 ### Open a terminal inside JupyterLab
 
