@@ -191,8 +191,46 @@ def _site_links(text: str, source_path: str) -> str:
     return re.sub(r"\]\((?!https?:)((?:[^)\s]*/)?)README\.md", r"](\1index.md", text)
 
 
+# -- Pictures: write `assets/name.png`, it works everywhere ------------------
+#
+# A lesson names its pictures with a plain relative path, such as
+# `![Menu bar](assets/menu-bar.png)`. That path works on GitHub and in
+# JupyterLab as it stands, because it is relative to the lesson's own folder.
+# On this site the lesson is pulled in by a shim page that lives in another
+# folder, so the same path would point at nothing. The rewrite below points
+# it back at the picture in the lesson's folder. Web addresses are not touched.
+
+_IMAGE_MD = re.compile(r"(!\[[^\]]*\]\()(?!https?:|/|#|data:|mailto:)([^)\s]+)")
+_IMAGE_HTML = re.compile(r"(<img\b[^>]*?\bsrc=\")(?!https?:|/|data:)([^\"]+)")
+
+
+def _site_images(app, text: str, source_path: str) -> str:
+    """Point relative picture paths in an included file at the file's own folder."""
+    posix = Path(source_path).as_posix()
+    m = re.search(r"((?:lessons|case-studies)/.*)$", posix)
+    if not m:
+        return text
+    repo_root = Path(app.srcdir).resolve().parent.parent
+    source_rel = Path(m.group(1))
+    source_dir = (repo_root / source_rel).parent
+    # The shim page sits at docs/source/lessons/<topic>/, mirroring the lesson's
+    # folder, or at docs/source/case-studies/ for any case study.
+    if source_rel.parts[0] == "case-studies":
+        shim_dir = Path(app.srcdir).resolve() / "case-studies"
+    else:
+        shim_dir = Path(app.srcdir).resolve() / source_rel.parent
+
+    def fix(match):
+        target = (source_dir / match.group(2)).resolve()
+        return match.group(1) + Path(os.path.relpath(target, shim_dir)).as_posix()
+
+    return _IMAGE_HTML.sub(fix, _IMAGE_MD.sub(fix, text))
+
+
 def _rewrite_included_links(app, relative_path, parent_docname, content):
-    content[0] = _site_links(content[0], Path(relative_path).as_posix())
+    source = Path(relative_path).as_posix()
+    text = _site_links(content[0], source)
+    content[0] = _site_images(app, text, source)
 
 
 def setup(app):

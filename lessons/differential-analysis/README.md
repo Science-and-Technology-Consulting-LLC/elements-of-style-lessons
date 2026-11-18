@@ -85,7 +85,7 @@ groups to test. The figure shows one volcano plot for each of them. Grey
 points pass neither threshold. Coloured points have an adjusted p value
 below 0.05 and an absolute log2 fold change above 1.
 
-![Pseudobulk limma-voom, EuE versus Ctrl, one panel per cell type](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/main/lessons/differential-analysis/images/limma_voom_de_01.png)
+![Pseudobulk limma-voom, EuE versus Ctrl, one panel per cell type](images/limma_voom_de_01.png)
 
 The same analysis for the stromal and lymphocyte subtypes is in
 `images/limma_voom_de_02.png` and `images/limma_voom_de_03.png`.
