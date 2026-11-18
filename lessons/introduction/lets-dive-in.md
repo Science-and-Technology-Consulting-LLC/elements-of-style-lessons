@@ -27,17 +27,17 @@ JupyterLab is a web page that works like a small desktop. It has four parts:
 
 - **The menu bar** runs across the top: File, Edit, View, Run, Kernel, Tabs, Settings and Help.
 
-![Menu-bar](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-menu-bar.png)
+![Menu-bar](assets/Jupyter-lab-lets-dive-in-menu-bar.png)
 
 - **The left bar** is a column of small icons at the left edge. The top icon opens the file list.
-![Left-bar](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-first-window-left-bar.png)
+![Left-bar](assets/Jupyter-lab-lets-dive-in-first-window-left-bar.png)
 
 - **The main area** is the large space in the middle. It shows this notebook in a tab. Each file you open gets its own tab.
 
-![Main-area](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-main-window.png)
+![Main-area](assets/Jupyter-lab-lets-dive-in-main-window.png)
 
 - **The status bar** is the thin strip along the bottom.
-![Status-bar](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-lets-dive-in-main-status-bar.png)
+![Status-bar](assets/Jupyter-lab-lets-dive-in-main-status-bar.png)
 
 ### Find your way: the menu at the top
 
@@ -54,15 +54,15 @@ The other two menus matter less. **Tabs** lists your open tabs. **Settings** hol
 
 --**File Save As**
 
-![Jupyter-lab-File-Save-As](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-menu-file-save-as.png)
+![Jupyter-lab-File-Save-As](assets/Jupyter-lab-menu-file-save-as.png)
 
 --**Run All Cells**
 
-![Jupyter-lab-Run-Run-All-Cells](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-lab-menu-file-Run-Run-All-Cells.png)
+![Jupyter-lab-Run-Run-All-Cells](assets/Jupyter-lab-menu-file-Run-Run-All-Cells.png)
 
 --**Reset Kernel Run All Cells**
 
-![Jupyter-lab-Restart-Kernel-Run-All-Cells](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/86dd7d894e3d692cdbc351c86a126a871f6dc9fc/lessons/introduction/assets/Jupyter-Lab-menu-file-Kernel-Restart-Kernel-and-Run-All-Cells.png)
+![Jupyter-lab-Restart-Kernel-Run-All-Cells](assets/Jupyter-Lab-menu-file-Kernel-Restart-Kernel-and-Run-All-Cells.png)
 
 ### Find your way: the bar on the left
 
@@ -75,7 +75,7 @@ The icons in the left bar open panels (see above). Click an icon to open its pan
 
 Above the file list there are buttons too. The blue **+** opens the *Launcher*, a page of tiles. A tile starts a new notebook, a terminal or a text file. Under **Notebook** you will see **Python 3**, **Bash** and **R**: these are the kernels you registered. The lessons use **Bash**.
 
-![Jupyter-lab-Launcher](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/c9efd7806572c67e1ad5fdf4bd5df35cd4c55060/lessons/introduction/assets/Jupyter-lab-Launcher-Window.png)
+![Jupyter-lab-Launcher](assets/Jupyter-lab-Launcher-Window.png)
 
 ### Find your way: the notebook toolbar
 
@@ -97,7 +97,7 @@ The toolbar sits just above the notebook. From the left, its buttons are:
 
 At the top right of the notebook you see the name of the kernel. For these lessons it must say **Bash**. If it says something else, click the name, choose **Bash** from the list, and press **Select**.
 
-![Jupyter-lab-bash-kernel-menu](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/9ea15fda12880cce5c89b692418ddf2600539d5f/lessons/introduction/assets/Jupyter-lab-bash-ipynb-menu-bar.png)
+![Jupyter-lab-bash-kernel-menu](assets/Jupyter-lab-bash-ipynb-menu-bar.png)
 
 ### Run your first cell
 
@@ -114,7 +114,7 @@ Press **Shift and Return** again on the next cell. Each press runs one cell and 
 
 If a cell hangs, click the **Stop** button. If the notebook gets confusing, choose **Kernel**, then **Restart Kernel and Clear Outputs of All Cells**, and run it again from the top.
 
-![Jupyter-lab-run-your-first-cell](https://raw.githubusercontent.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/9ea15fda12880cce5c89b692418ddf2600539d5f/lessons/introduction/assets/Jupyter-lab-run-your-first-cell.png)
+![Jupyter-lab-run-your-first-cell](assets/Jupyter-lab-run-your-first-cell.png)
 
 ### Open a terminal inside JupyterLab
 
