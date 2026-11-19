@@ -2,42 +2,21 @@
 
 You will make one change to a file and send it to GitHub, then offer it to the original project. This is the loop you will repeat every working day.
 
-**What you will do:**
-
-- Copy a project to your computer.
-- Edit a file and check what changed with `git status`.
-- Save the change with `git add`, `git commit` and `git push`.
-- Open a pull request on GitHub.
-
-**What you need:**
-
-- A free [GitHub account](https://github.com/signup), with Git told who you are: [why-git-and-setup.md](why-git-and-setup.md).
-- The GitHub CLI signed in: [github-authenticate.md](github-authenticate.md).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`the-add-push-git-routine.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/the-add-push-git-routine.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- Git knows who you are: [why-git-and-setup.md](why-git-and-setup.md).
+- The GitHub CLI is signed in: [github-authenticate.md](github-authenticate.md).
+- A free [GitHub account](https://github.com/signup).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
 ### Go to your practice folder
 
-You keep practice work in `~/eos-practice`, away from the course files. `~` means your home folder. `mkdir -p` makes the folder if it is not there yet.
+Practice work stays in `~/eos-practice`, away from the course files, as in [why-git-and-setup.md](why-git-and-setup.md). `mkdir -p` makes the folder if it is not there yet.
 
 ```bash
 mkdir -p ~/eos-practice
@@ -102,7 +81,7 @@ nothing to commit, working tree clean
 
 Add one line to `README.md`: `Learn about Zenodo here: https://zenodo.org`. Use one of these two ways.
 
-- **In a terminal:** run `nano README.md`, type the line, press `Ctrl-O` then `Enter` to save, and `Ctrl-X` to exit.
+- **In a terminal:** run `nano README.md`, type the line, press `Ctrl-O` then `Enter` to save, and `Ctrl-X` to exit. (We used `nano` in [why-git-and-setup.md](why-git-and-setup.md).)
 - **In a notebook:** run the next cell. It adds the same line to the end of the file.
 
 ```bash

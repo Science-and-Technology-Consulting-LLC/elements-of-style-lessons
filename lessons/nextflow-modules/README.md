@@ -6,21 +6,12 @@ This lesson shows you how to wrap each tool and its container in a Nextflow modu
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Introduction to Nextflow](../nextflow-workflows/README.md), where you wrote the same pipeline as one script. Here you split it into modules. The images you built in [containers](../containers/README.md) are optional: the first notebook starts from public images and shows where to put yours.
-
-### Do this
-
-1. **Clone the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook** `lessons/nextflow-modules/fastqc-and-multiqc-modules.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/fastqc-and-multiqc-modules.ipynb). Run each cell in order, top to bottom.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Introduction to Nextflow](../nextflow-workflows/README.md), is done. There you wrote the same pipeline as one script. Here you split it into modules.
+- [Podman](https://podman.io/docs/installation), installed and running, as in the [Containers](../containers/README.md) lesson.
+- The images you built in [Containers](../containers/README.md) are optional: the first notebook starts from public images and shows where to put yours.
 
 ### What you should see
 
@@ -34,6 +25,8 @@ A `results` folder with FastQC reports for each test file and one `multiqc_repor
 - The example module runners (`main-hello-py-greet.nf` and others) are in the top folder of the repository, next to `nextflow.config`.
 
 ## Steps to execute
+
+Open each notebook in JupyterLab and run its cells in order, top to bottom. You can also [view the first notebook on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/fastqc-and-multiqc-modules.ipynb).
 
 1. [Two containers, two modules: fastqc and multiqc](fastqc-and-multiqc-modules.md) (notebook: `fastqc-and-multiqc-modules.ipynb`): one module file and one container image for each tool, joined in a short workflow.
 2. [A tour of Nextflow's features](tour-of-nextflow-features.md) (notebook: `tour-of-nextflow-features.ipynb`): the same project, run again with one more feature each time: channels, parameters, resource settings, resume, profiles and run reports.
@@ -75,7 +68,7 @@ Review this Nextflow module. Check that it does one job, that nothing is read fr
 
 A Nextflow *module* is a single process with documented inputs and outputs: one brick, the smallest reusable unit of work. A workflow is bricks snapped together. Write modules your future self, your collaborator and an AI agent can reuse without reading the insides.
 
-### What this lesson builds
+### What a good module has
 
 1. A clean `process` block with `input:`, `output:` and `script:`.
 2. A module file (`<name>.nf`) you can `include` from any workflow.

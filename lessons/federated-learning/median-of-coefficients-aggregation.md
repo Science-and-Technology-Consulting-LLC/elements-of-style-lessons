@@ -2,7 +2,7 @@
 
 You will compare two ways of combining models from five sites, one of which has bad data, and see that the median beats the mean. This matters because in federated learning a single odd site can ruin the shared model if you combine the sites the wrong way.
 
-*Part of the [federated-learning](README.md) lesson.*
+*Part of the [Federated learning](README.md) lesson.*
 
 ## Start here
 
@@ -13,30 +13,18 @@ You will compare two ways of combining models from five sites, one of which has 
 - Combine them with the median (the middle value).
 - See which answer the odd site spoils.
 
-### What you need
+### Pre-requisites
 
-- [conda](https://docs.conda.io/) to make a clean environment. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md).
-- [JupyterLab](https://jupyter.org/) with a Python kernel. See [starting a JupyterLab notebook](../interactive-computing/starting-a-jupyter-lab-notebook.md).
-- The Python package [NumPy](https://numpy.org/) (*Install the packages the walkthrough uses (in a terminal)* installs it).
-- The idea of one site sending only numbers to a coordinator. See [simulating a 3x3 federated run](../federated-computing/simulating-a-3x3-federated-run.md).
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`median-of-coefficients-aggregation.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb) and run each cell in order, top to bottom.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson page, [Federated computing](../federated-computing/README.md), is done. It shows [one site sending only numbers to a coordinator](../federated-computing/simulating-a-3x3-federated-run.md).
+- The notebook is open: `median-of-coefficients-aggregation.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb)). Run each cell in order, top to bottom. It uses a Python kernel.
+- We use [NumPy](https://numpy.org/). The steps below install it.
 
 ## Steps to execute
 
 ### Make a clean environment for this walkthrough (in a terminal)
 
-Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
+Why: a clean environment keeps what we add out of our other work. Environments are explained in [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
 ```bash
 conda create -n median-of-coefficients-aggregation -y python=3.11 ipykernel
@@ -65,7 +53,7 @@ conda activate fed-learn
 
 ### Check which Python this notebook uses
 
-Why: if the notebook's Python has no NumPy, *Compare the mean and the median* stops with `ModuleNotFoundError`.
+Why: if the notebook's Python has no NumPy, the comparison step stops with `ModuleNotFoundError`.
 
 ```python
 import shutil, sys
@@ -74,14 +62,14 @@ for cmd in ["conda", "pip", "git", "podman"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
-**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `podman` is fine.
+**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. Only the Python line matters here. `MISSING` for `podman` is fine.
 
 ```python
 import numpy
 print("numpy", numpy.__version__)
 ```
 
-**What you should see:** one line with a version number. `ModuleNotFoundError` means the notebook's Python lacks NumPy. See **If something goes wrong** below.
+**What you should see:** one line with a version number. `ModuleNotFoundError` means the notebook's Python lacks NumPy. See *If something goes wrong* below.
 
 ### Why median and not mean
 
@@ -128,9 +116,9 @@ The [oadr-cpep](../../case-studies/oadr-cpep/README.md) package implements exact
 ### If something goes wrong
 
 - **`ModuleNotFoundError: No module named 'numpy'`.** The notebook's Python is not the environment with NumPy. In a terminal run `conda activate` for the environment your kernel uses, then `pip install numpy`. Restart the kernel and run the cells again.
-- **`conda: command not found` on Windows.** Open *Git Bash* (not PowerShell) after installing conda. See [conda-environments](../conda-environments/README.md).
+- **`conda: command not found`.** Open a new terminal, as described on the [Introduction page](../introduction/README.md), then try again.
 - **The kernel tile for the new environment is missing in the Launcher.** Stop `jupyter lab` in the terminal with Ctrl-C, start it again and reload the page.
 
 ## Next
 
-Return to the [federated-learning lesson](README.md), or open the [oadr-autoantibody notebook](../../case-studies/oadr-autoantibody/README.md) and its productised sibling [oadr-cpep](../../case-studies/oadr-cpep/README.md).
+Return to the [Federated learning lesson](README.md), or open the [oadr-autoantibody notebook](../../case-studies/oadr-autoantibody/README.md) and its productised sibling [oadr-cpep](../../case-studies/oadr-cpep/README.md).

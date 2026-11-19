@@ -8,30 +8,16 @@ In this walkthrough you type seven commands that move, make, copy, delete and do
 - Create, copy and delete a file, and create and delete a folder.
 - Download a real data file from the web.
 
-**What you need:**
-
-- A terminal with Bash: *Terminal* on a Mac or Linux, [Git Bash](https://git-scm.com/download/win) on Windows. The [introduction lesson](../introduction/lets-dive-in.md) installs both.
-- The `eos` conda environment from that lesson, which provides `wget` and JupyterLab. See [Conda environments](../conda-environments/README.md).
-- An internet connection, for the last step.
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment. That environment provides `wget`. Conda is explained in [Conda environments](../conda-environments/README.md).
+- The previous lesson, [The Rules](../elements-of-style-rules/README.md), is done.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- An internet connection, for the last step.
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+In JupyterLab, open `lessons`, then `command-line-and-git-bash`, then [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb). Run each cell in order, top to bottom.
 
 ## Steps to execute
 
@@ -153,7 +139,8 @@ ls -l
 `wget` fetches a file from a web address. This file is a table of results from an RNA-seq experiment (a count of how active each gene is), analysed with DESeq2. It lists genes with *p*-values below 0.05 and a fold change above 1.5. The [interactive computing lesson](../interactive-computing/README.md) uses it again for a volcano plot. The `-q` option keeps `wget` quiet.
 
 ```bash
-ls -l
+wget -q https://zenodo.org/record/4302133/files/deseq2_5k.csv
+ls -l deseq2_5k.csv
 ```
 
 **What you should see:** a line for `deseq2_5k.csv`, about 580,000 bytes (about 570 KB):
@@ -172,4 +159,4 @@ You have now used `ls`, `pwd`, `cp`, `rm`, `mkdir`, `rm -r` and `wget`. The fold
 
 ## Next
 
-Continue with the [command line lesson](README.md) for the ten-command tour, then [Version control with Git](../version-control/README.md).
+[Version control with Git](../version-control/README.md): keep every change to your files in one safe history. The [lesson page](README.md) has a ten-command tour if you want more practice first.

@@ -13,28 +13,12 @@ You will sign up for a free account on CloudOS, the Lifebit platform that runs p
 - Pick your institution from the list.
 - Know which free tier you are on.
 
-### What you need
+### Pre-requisites
 
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
 - An institutional email, such as a university or NIH address.
 - An [ORCID](https://orcid.org/) (recommended). It is a free, permanent ID for researchers and credits you on any work run from this account.
-- A web browser. No programs to install.
-- [JupyterLab](https://jupyter.org/) with a Bash kernel only if you want to run this page as a notebook. It has nothing to run.
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`creating-a-cloudos-account.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/creating-a-cloudos-account.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- A web browser. There is nothing to install, and this page has nothing to run.
 
 ## Steps to execute
 

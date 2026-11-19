@@ -20,3 +20,16 @@ lesson's own `assets` folder. That path works on GitHub, in JupyterLab and on th
 Sphinx site. The script reports a missing file, a link to a GitHub page instead
 of a picture, and a broken `![...]( )` line. Add `--online` to also fetch web
 addresses. It counts the "Picture to add" notes that still wait for a picture.
+
+## sync-notebooks.py
+
+Each lesson page (`.md`) has a notebook twin (`.ipynb`). Edit the page, then run:
+
+```bash
+python scripts/sync-notebooks.py
+```
+
+The notebook is rebuilt from the page. Its code cells are kept exactly as they are, and only
+the text between them changes. Add `--check` to see problems without writing anything. To change
+a command, change it in the page and in the notebook cell the same way; the script stops with an
+error if it cannot find a code cell in the page. Run `python scripts/check-images.py` after it.

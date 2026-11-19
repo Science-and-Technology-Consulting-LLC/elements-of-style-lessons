@@ -2,7 +2,7 @@
 
 You will write a short program that lets an AI assistant call your command-line tool. This matters because once a tool speaks the *Model Context Protocol* (MCP), any MCP-aware assistant can use it in plain language.
 
-*Part of the [mcp-server](README.md) lesson.*
+*Part of the [MCP server](README.md) lesson.*
 
 ## Start here
 
@@ -13,30 +13,20 @@ You will write a short program that lets an AI assistant call your command-line 
 - Run the server.
 - Tell Claude Desktop where the server is, and ask it to greet someone.
 
-### What you need
+### Pre-requisites
 
-- [conda](https://docs.conda.io/) and a terminal. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md) and [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-- The [`hello-py` Typer CLI](../reusable-clis/typer-cli-in-fifteen-minutes.md) from the earlier lesson. [Typer](https://typer.tiangolo.com/) is a Python package for making command-line tools.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson page, [MCP server](README.md), is read.
+- The [`hello-py` Typer CLI](../reusable-clis/typer-cli-in-fifteen-minutes.md) from lesson 7.
 - A way to write a small text file: any text editor, or JupyterLab's *File, New, Text File*.
-- An assistant that understands MCP, such as [Claude Desktop](https://claude.ai/download) or [Claude Code](https://docs.claude.com/en/docs/claude-code). Read about the [Model Context Protocol](https://modelcontextprotocol.io/) if the term is new.
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`wrap-a-typer-cli-as-an-mcp-server.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb) and run each cell in order, top to bottom.
+- An assistant that understands MCP, such as [Claude Desktop](https://claude.ai/download) or [Claude Code](https://docs.claude.com/en/docs/claude-code), for the last step.
+- The notebook is open: `wrap-a-typer-cli-as-an-mcp-server.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb)). Run each cell in order, top to bottom. It uses a Python kernel.
 
 ## Steps to execute
 
 ### Make a clean environment for this walkthrough (in a terminal)
 
-Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
+Why: a clean environment keeps what we add out of our other work. Environments are explained in [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
 ```bash
 conda create -n wrap-a-typer-cli-as-an-mcp-server -y python=3.11 ipykernel
@@ -52,7 +42,7 @@ python -m ipykernel install --user \
 
 ### Check which Python this notebook uses
 
-Why: the walkthrough runs the commands below in a terminal, but it is good to know which Python and tools your notebook sees.
+Why: it is good to know which Python and tools your notebook sees.
 
 ```python
 import shutil, sys
@@ -61,11 +51,11 @@ for cmd in ["conda", "pip", "git", "podman"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
-**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `podman` is fine.
+**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. Only the Python line matters here. `MISSING` for `podman` is fine.
 
 ### What we build
 
-A minimal MCP server that offers the `greet` verb of the `hello-py` Typer CLI (see [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md)) as an MCP *tool*. A *tool* is one action an assistant is allowed to call. Once the server runs, any MCP-aware assistant (Claude Desktop, Cursor, the `mcp` command) can call it.
+A minimal MCP server that offers the `greet` verb of the `hello-py` Typer CLI (from [lesson 7](../reusable-clis/typer-cli-in-fifteen-minutes.md)) as an MCP *tool*. [Typer](https://typer.tiangolo.com/) is the Python package behind that CLI. A *tool* is one action an assistant is allowed to call. Once the server runs, any MCP-aware assistant (Claude Desktop, Cursor, the `mcp` command) can call it.
 
 ### Install the MCP package (in a terminal)
 
@@ -105,7 +95,7 @@ if __name__ == "__main__":
 
 ### Run the server
 
-Why: this proves the file has no mistakes. In your terminal, with `(mcp-demo)` active, run:
+Why: this shows the file has no mistakes. In your terminal, with `(mcp-demo)` active, run:
 
 ```bash
 python hello_mcp_server.py
@@ -113,7 +103,7 @@ python hello_mcp_server.py
 
 The server talks the MCP protocol over *stdio* (the terminal's input and output) by default. It is meant to be started by an assistant, not read by you.
 
-**What you should see:** the terminal prints nothing and does not return to the prompt. That is normal: the server is waiting for a message. Press Ctrl-C to stop it. A Python error message instead means a typo in the file or a missing package (see below).
+**What you should see:** the terminal prints nothing and does not return to the prompt. That is normal: the server is waiting for a message. Press Ctrl-C to stop it. A Python error message instead means a typo in the file or a missing package (see *If something goes wrong* below).
 
 ### Register the server with an assistant (Claude Desktop example)
 
@@ -143,15 +133,15 @@ Restart Claude Desktop. In a new chat, type: *"Use the hello-py MCP tool to gree
 ### Why this pattern matters
 
 - The tool's description, its parameter names and its docstring *are* the API for the assistant. Good docstrings make usable tools.
-- The MCP server is a thin wrapper around your existing Typer CLI. No logic is repeated.
-- Every container in this repository can be exposed the same way. See the `mcp-nsforest-server` container in [containers](../containers/README.md).
+- An MCP server can be a thin wrapper around your existing Typer CLI. To keep this example small, `greet` writes the greeting itself. In a real server the tool would call the CLI, so no logic is repeated.
+- Every container in this repository can be exposed the same way. See the [`mcp-nsforest-server` container](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/container/mcp-nsforest-server) in this repository.
 
 ### If something goes wrong
 
 - **`ModuleNotFoundError: No module named 'mcp'` when you run the server.** The terminal is not using the `mcp-demo` environment. Run `conda activate mcp-demo` and `pip install "mcp[cli]" typer` again.
 - **Claude Desktop does not show the tool.** Check the JSON for a missing comma or quote, check that the path to `hello_mcp_server.py` is absolute, and restart Claude Desktop completely (quit, then reopen).
-- **`conda: command not found` on Windows.** Open *Git Bash* (not PowerShell). See [conda-environments](../conda-environments/README.md).
+- **`conda: command not found`.** Open a new terminal, as described on the [Introduction page](../introduction/README.md), then try again.
 
 ## Next
 
-[Agentic harness](../agentic-harness/README.md): set up the assistant that calls your server. Or return to the [mcp-server lesson](README.md), or see [publishing-for-agents](../publishing-for-agents/README.md) for the schemas and docs that make tools discoverable.
+[Agentic harness](../agentic-harness/README.md): set up the assistant that calls your server. Or return to the [MCP server lesson](README.md), or see [Publishing for agents](../publishing-for-agents/README.md) for the schemas and docs that make tools discoverable.

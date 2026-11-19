@@ -49,6 +49,10 @@ source_suffix = {
 #   html_image   → raw <img> tags (useful for screenshots)
 #   linkify      → bare URLs become links
 #   substitution → {{ variable }} replacements
+# Give every heading down to ### an anchor, so a link such as page.md#install-podman
+# works on the site as it does on GitHub.
+myst_heading_anchors = 3
+
 myst_enable_extensions = [
     "colon_fence",
     "deflist",

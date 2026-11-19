@@ -12,9 +12,12 @@
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Nextflow modules and features](../nextflow-modules/README.md). You also need a free [GitHub account](https://github.com/signup) and the setup from [Let's dive in](../introduction/lets-dive-in.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Nextflow modules and features](../nextflow-modules/README.md), is done.
+- A free [GitHub account](https://github.com/signup).
+- Disk space and time for the downloads described next.
 
 ### The data
 
@@ -23,9 +26,9 @@ Laboratory (Tan et al., 2022, *Nature Cell Biology*, PMID 35864314). The
 notebooks download what they need from the JAX Single Cell Portal, so there
 is nothing to copy by hand. The global file is 8.17 GB. The stromal and
 lymphocyte subtype files that the first notebook also fetches add about
-3.1 GB and 1.1 GB. Allow the disk space and some time. In the data, the
-control group is labelled `Ctrl` and the patients' eutopic endometrium
-`EuE`; the notebooks and the workflow use the same labels.
+3.1 GB and 1.1 GB. In the data, the control group is labelled `Ctrl` and
+the patients' eutopic endometrium `EuE`. The notebooks and the workflow use
+the same labels.
 
 ## Steps to execute
 
@@ -36,12 +39,12 @@ control group is labelled `Ctrl` and the patients' eutopic endometrium
    (R kernel). Reads those CSVs, runs limma-voom for each cell type, and
    draws the volcano plots.
 
-Run the first before the second. Use "Restart and Run All" in each.
+Please run the first before the second. In each, use "Restart and Run All".
 
-A third notebook stands apart. [`make_test_data.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/make_test_data.ipynb)
+A third notebook stands apart: [`make_test_data.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/differential-analysis/make_test_data.ipynb)
 (Python 3 kernel) cuts the large file down to a small h5ad per cell type.
 Those small files are the input for the `-profile test` runs of the
-workflow below. You choose the cell types in the notebook itself.
+workflow below. You choose the cell types in the notebook.
 
 ## Ask an AI assistant
 
@@ -92,16 +95,16 @@ The same analysis for the stromal and lymphocyte subtypes is in
 
 ### Why pseudobulk
 
-Cells from one donor are not independent of each other. Testing every cell
-as a separate sample overstates the evidence. Summing counts per donor makes
-the donor the unit of replication, and a bulk method such as limma-voom
-then applies.
+Cells from one donor are not independent of each other, so testing every
+cell as a separate sample overstates the evidence. *Pseudobulk* means summing the counts per donor. The
+donor then becomes the unit of replication, and a bulk method such as
+limma-voom applies.
 
 ### The same steps as a workflow
 
 The five limma-voom modules in [`modules/limma-voom/`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/modules/limma-voom)
 and the stitched [`main-bulk-de.nf`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/main-bulk-de.nf) run this analysis
-as a Nextflow workflow. See [Introduction to Nextflow](../nextflow-workflows/README.md) and [Nextflow modules and features](../nextflow-modules/README.md).
+as a Nextflow workflow. Lessons [11](../nextflow-workflows/README.md) and [12](../nextflow-modules/README.md) explain how.
 
 ## Next
 

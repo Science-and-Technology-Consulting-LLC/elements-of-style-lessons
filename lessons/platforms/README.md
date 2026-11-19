@@ -2,29 +2,19 @@
 
 *In the book: Section 6.6, Workflows on Cloud Platforms.*
 
-Pipelines have to run somewhere. This lesson covers where, and walks you through creating an account on CloudOS (Lifebit), then running a pipeline from a terminal.
+Pipelines have to run somewhere. In this lesson we look at where, create an account on CloudOS (Lifebit), and then run a pipeline from a terminal.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Publishing for agents](../publishing-for-agents/README.md). The account pages need nothing from the earlier lessons, so you can also start here.
-
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/platforms/creating-a-cloudos-account.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/creating-a-cloudos-account.ipynb)) and run each cell in order, top to bottom. The first page needs no kernel. The later ones are Bash notebooks (each has a *Check your setup* section for it).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Publishing for agents](../publishing-for-agents/README.md), is done. The account pages need nothing from the earlier lessons, so you can also start here.
+- An institutional email, such as a university or NIH address, for the sign-up.
 
 ### What you should see
 
-You sign up for CloudOS with your institutional login, sign in, create a workspace, open JupyterLab, save an API key with `cloudos configure` and submit a small job. Each page says what the screen or output should look like.
+You sign up for CloudOS with your institutional login, sign in, create a workspace and open JupyterLab. Then you save an API key with `cloudos configure` and submit a small job. Each page says what the screen or output should look like.
 
 > **Picture to add:** the CloudOS home page after the first sign-in (save a screenshot of the signed-in page) (save as assets/overview.png)
 
@@ -45,7 +35,7 @@ You sign up for CloudOS with your institutional login, sign in, create a workspa
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* Please read [Using the AI prompts](../introduction/README.md) first.
 
 **Ask it to explain.**
 
@@ -106,7 +96,7 @@ Review this plan to run my workflow on a platform. Is a secret printed in a log 
 - Sign in: <https://cloudos.lifebit.ai/login>
 - Institutional access requests: <https://lifebit.ai/contact> (if your institution's sign-in is not listed)
 
-From a browser: sign up, choose *Sign in with institutional login*, pick your institution, create a workspace with the *biomedical analysis* template and open its JupyterLab. From your laptop's terminal:
+The pages in this lesson walk through these steps. In a browser: sign up, choose *Sign in with institutional login*, pick your institution, create a workspace with the *biomedical analysis* template and open its JupyterLab. Then, from your laptop's terminal:
 
 ```bash
 pip install cloudos-cli
@@ -115,7 +105,7 @@ cloudos configure   # asks for your API key; see authenticating-on-cloudos.md
 
 ### Pairs well with
 
-Platforms close the loop. Every CLI, container and Nextflow module you built runs on one of these platforms, and the [MCP server](../mcp-server/README.md) lesson makes them drivable by an assistant.
+Platforms close the loop. Every command-line tool, container and Nextflow module you built runs on one of these platforms, and the [MCP server](../mcp-server/README.md) lesson makes them drivable by an assistant.
 
 ## Next
 

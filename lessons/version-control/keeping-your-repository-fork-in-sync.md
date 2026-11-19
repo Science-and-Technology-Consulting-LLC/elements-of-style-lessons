@@ -2,36 +2,15 @@
 
 You will catch your fork up with the original project when the original gets new changes. This matters because a fork does not update itself, and an old fork leads to conflicts.
 
-**What you will do:**
-
-- Learn four Git words: clone, fork, pull, push.
-- Fork a project and clone your fork.
-- Update your fork from the GitHub website.
-- Update it from the terminal.
-
-**What you need:**
-
-- A free [GitHub account](https://github.com/signup).
-- Git set up and `gh` signed in: [why-git-and-setup.md](why-git-and-setup.md) and [github-authenticate.md](github-authenticate.md).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`keeping-your-repository-fork-in-sync.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/keeping-your-repository-fork-in-sync.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- Git is set up and `gh` is signed in: [why-git-and-setup.md](why-git-and-setup.md) and [github-authenticate.md](github-authenticate.md).
+- The previous step, [the-add-push-git-routine.md](the-add-push-git-routine.md), is done.
+- A free [GitHub account](https://github.com/signup).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
@@ -88,7 +67,7 @@ Time passes. The original project (called **upstream**: `NIH-NICHD/exampleVolcan
 
 > **Picture to add:** the "N commits behind" banner with the Sync fork button (save as assets/keeping-your-repository-fork-in-sync-step-5.png)
 
-**What you should see:** GitHub reports that the branch was successfully fetched and fast-forwarded. Your fork now matches upstream `main`. If you have edited files on GitHub *and* on your computer, read the "stash" tip in the [Git survival guide](git-survival-guide.md) first.
+**What you should see:** GitHub reports that the branch was successfully fetched and fast-forwarded. Your fork now matches upstream `main`. If you have edited files on GitHub *and* on your computer, read the "stash" section of the [Git survival guide](git-survival-guide.md) first.
 
 ### Tell your clone where upstream is
 
@@ -134,9 +113,9 @@ git push origin main
 ### If something goes wrong
 
 - **`'upstream' does not appear to be a git repository`.** You skipped *Tell your clone where upstream is*. Run the `git remote add upstream` cell, then try again.
-- **A "merge conflict" message.** You and upstream changed the same lines. Do not panic. Nothing is lost. See the conflict section of the [Git survival guide](git-survival-guide.md).
+- **A "merge conflict" message.** You and upstream changed the same lines. Nothing is lost. See the [Git survival guide](git-survival-guide.md).
 - **`Permission denied` on push.** You are not signed in, or you cloned the original instead of your fork. Run `gh auth status`, and check the clone address has your user name.
 
 ## Next
 
-Back to the [version-control lesson](README.md). Then [conda-environments](../conda-environments/README.md).
+[Reproducible environments with Conda](../conda-environments/README.md): give each project its own set of tools.

@@ -4,46 +4,35 @@ You will build a small command-line tool in R that prints its own help screen, s
 
 **What you will do:**
 
-- Set up R and its Jupyter kernel.
+- Check that R and its Jupyter kernel are ready.
 - Write a two-command tool, `hello-r`, that reads its options with [docopt](https://github.com/docopt/docopt.R).
 - See how the same tool splits into a testable R function and a thin command-line script.
 
-**What you need:**
+## Start here
 
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
-- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
-- [R](https://www.r-project.org/) (*Install R and register the R kernel (once)* installs it with conda) and [JupyterLab](https://jupyter.org/install).
+### Pre-requisites
+
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Interactive computing with Jupyter](../interactive-computing/README.md), is done.
+- The kernel name at the top right of this notebook says **R**. If it does not, click the name and choose **R**.
+- A terminal. A JupyterLab terminal works: choose *File*, then *New*, then *Terminal*.
 - A plain text editor. JupyterLab has one: choose *File*, then *New*, then *Text File*.
 
 You do not need an account for this lesson.
-
-## Start here
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`rscript-cli-in-fifteen-minutes.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/rscript-cli-in-fifteen-minutes.ipynb) and run each cell in order, top to bottom.
 
 > **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The boxes with a *Run the next cell* instruction are notebook cells that use the R kernel. Keep your terminal open next to this page.
 
 ## Steps to execute
 
-### Install R and register the R kernel (once)
+### Register the R kernel (only if there is no R tile)
 
-*Why:* a **kernel** is the program that runs the code in a notebook cell. JupyterLab needs the R kernel, called IRkernel, before it can run R cells.
+*Why:* JupyterLab needs the R kernel, called IRkernel, before it can run R cells. The Introduction already installed and registered it (step 4). If the Launcher shows an **R** tile, skip this step.
 
-In your terminal, run:
+If it does not, run this in your terminal:
 
 ```bash
 conda activate eos        # or any env dedicated to R work
-conda install -c conda-forge r-base r-irkernel -y
+conda install -c conda-forge r-base=4.4 r-irkernel -y
 R -e 'IRkernel::installspec(name="ir", displayname="R")'
 ```
 
@@ -55,7 +44,7 @@ Restart JupyterLab. The Launcher now shows an **R** tile. Open this notebook wit
 
 ### Check that R can see its tools
 
-*Why:* this cell finds each program and prints where it lives, or `MISSING`. `podman` and `conda` are not used in the steps below, so `MISSING` for them is fine today.
+*Why:* as in [Let's dive in](../introduction/lets-dive-in.md), this cell prints where each program lives, or `MISSING`. `podman` and `conda` are not used in the steps below, so `MISSING` for them is fine today.
 
 Run the next cell.
 

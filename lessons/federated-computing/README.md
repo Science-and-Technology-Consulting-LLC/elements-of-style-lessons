@@ -2,29 +2,21 @@
 
 *In the book: Section 10.2.1, Federated Computing: Compute Travels to Data.*
 
-*Federated computing* means running the same workflow on data that lives in different places, without moving the data. This lesson gives you the picture and a small simulation you can run yourself. The compute travels to the data. The results travel back.
+*Federated computing* means running the same workflow on data that lives in different places, without moving the data. This lesson gives you the picture and a small simulation you can run yourself. The compute travels to the data, and the results travel back.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Differential analysis](../differential-analysis/README.md). You also need the ideas of [Continuous integration](../continuous-integration/README.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Differential analysis](../differential-analysis/README.md), is done.
+- The ideas of [Continuous integration](../continuous-integration/README.md). They are not needed to run the notebook.
 
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/federated-computing/simulating-a-3x3-federated-run.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-computing/simulating-a-3x3-federated-run.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first two sections make a conda environment.
+Open `lessons/federated-computing/simulating-a-3x3-federated-run.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-computing/simulating-a-3x3-federated-run.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel, and its first two sections make a conda environment for it.
 
 ### What you should see
 
-You make three fake sites, train a simple model at each, and combine the three sets of coefficients with a median. You finish with a `global:` line of three numbers close to 1.5, -2.0 and 0.3. The raw data never leaves the site folders.
+We make three fake sites, train a simple model at each, and combine the three sets of coefficients with a median. We finish with a `global:` line of three numbers close to 1.5, -2.0 and 0.3. The raw data never leaves the site folders.
 
 > **Picture to add:** the notebook's output after the median step, showing the three site lines and the global line (save a screenshot of the finished run) (save as assets/overview.png)
 
@@ -42,7 +34,7 @@ You make three fake sites, train a simple model at each, and combine the three s
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -62,7 +54,6 @@ Write a small Python simulation of three sites, each with its own table of numbe
 Review my plan for a federated analysis: <describe it>. List ways that raw data or identifying information could leak through the results that leave a site (small counts, row-level outputs, logs). Suggest a rule for each.
 ```
 
-
 ## Further reading
 
 - [Lifebit Federated Trusted Research Environment](https://lifebit.ai/federated-trusted-research-environment/)
@@ -76,19 +67,12 @@ Review my plan for a federated analysis: <describe it>. List ways that raw data 
 
 Single-cell atlases are increasingly federated. One study's data lives at JAX, another at the Broad, a third in the All of Us Workbench. A federated workflow lets you ask one question across all three without bulk data transfers, and without breaking the data-use agreement that says the data cannot leave its institution.
 
-### What this lesson teaches
-
-1. A clear picture of "compute travels to data" that you can explain to a colleague in one minute.
-2. How to tell when a problem fits federation and when it does not.
-3. How to read a federated workflow and find the *coordinator* and the *per-site* phases.
-4. The trust, audit and provenance limits that come with federation.
-
 ### The shape of a federated computation
 
 1. **Per-site phase.** Each institution runs the same code on its own data, locally. Only small, agreed summaries leave: statistics, model parameters or non-identifying metadata.
 2. **Coordinator phase.** A central process combines the per-site outputs. It can be as simple as "take the median of what each site returned".
 
-Everything else is engineering. The hard parts are agreeing on what summary leaves each site, and trusting that each site ran the code you think it ran.
+The hard parts are agreeing on what summary leaves each site, and trusting that each site ran the code you think it ran.
 
 ### The platform: ADAPTS on Lifebit's federated fabric
 
@@ -116,12 +100,6 @@ Four notebooks worth opening in that repository:
 - [`EffectSizes_and_PowerAnalysis_Extended.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody/blob/main/EffectSizes_and_PowerAnalysis_Extended.ipynb): the power argument for federation.
 
 On Lifebit, in the oadr-autoantibody workspace, run `jupyter notebook federated_analysis_simulation_3x3.ipynb`. It takes 30 to 60 minutes from cold. Results are cached, so re-renders take seconds.
-
-### Pairs well with
-
-- [Nextflow](../nextflow-workflows/README.md): one pipeline, many environments.
-- [Platforms](../platforms/README.md): Lifebit and others provide the federation transport.
-- [Federated learning](../federated-learning/README.md): the case where the per-site phase is training a model.
 
 ### Honest constraints
 

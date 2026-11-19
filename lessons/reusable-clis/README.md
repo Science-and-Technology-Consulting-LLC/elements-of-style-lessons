@@ -6,21 +6,14 @@ This lesson shows you how to turn a script into a command-line tool that explain
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Interactive computing with Jupyter](../interactive-computing/README.md). You also need the `eos` environment from [Reproducible environments with Conda](../conda-environments/README.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Interactive computing with Jupyter](../interactive-computing/README.md), is done.
 
 ### Do this
 
-1. **Clone the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook** `lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb). Run each cell in order, top to bottom.
+In JupyterLab, open `lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb)). Run each cell in order, top to bottom.
 
 ### What you should see
 
@@ -31,7 +24,7 @@ A small tool that you type by name, such as `hello-py greet --name Annie`, which
 ### Where the files are
 
 - The lesson folder is [`lessons/reusable-clis`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/reusable-clis).
-- The notebooks and web pages are in that folder. Each walkthrough exists as a `.ipynb` notebook and a `.md` page with the same steps.
+- Each walkthrough is a `.ipynb` notebook with a `.md` page that has the same steps.
 - The tools you build are saved in new folders you create in the walkthroughs: `hello-py-cli` and `hello-r-cli`.
 
 ## Steps to execute
@@ -41,7 +34,7 @@ A small tool that you type by name, such as `hello-py greet --name Annie`, which
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md#using-the-ai-prompts).
 
 **Ask it to explain.**
 

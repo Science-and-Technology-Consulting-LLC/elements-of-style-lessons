@@ -2,29 +2,18 @@
 
 *In the book: Sections 11.5.3 and 11.5.4, The Agentic Harness; Wiring a Claude Code Loop.*
 
-An *agentic harness* is the setup on the assistant's side that makes your tools useful when an AI assistant drives them. This lesson explains its four parts and has you connect one of your own tools to Claude Code.
+An *agentic harness* is the setup on the assistant's side that makes your tools useful when an AI assistant drives them. In this lesson we meet its four parts, and then we connect one of our own tools to Claude Code.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [MCP server](../mcp-server/README.md). You need the MCP server it builds.
-
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/agentic-harness/wiring-a-claude-code-loop.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/agentic-harness/wiring-a-claude-code-loop.ipynb)) and run each cell in order, top to bottom.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [MCP server](../mcp-server/README.md), is done. We use the MCP server it builds.
 
 ### What you should see
 
-You register your MCP server with Claude Code (`claude mcp add`), see it in `claude mcp list`, then start `claude` and ask it to use your tool. Claude calls `greet`, writes a file and runs `git add`, `git commit` and `git push`.
+You register your MCP server with Claude Code (`claude mcp add`) and see it in `claude mcp list`. Then you start `claude` and ask it to use your tool. Claude calls `greet`, writes a file and runs `git add`, `git commit` and `git push`.
 
 > **Picture to add:** Claude Code in a terminal after the request, showing the tool call and the git commands (save a screenshot of the finished loop) (save as assets/overview.png)
 
@@ -40,7 +29,7 @@ You register your MCP server with Claude Code (`claude mcp add`), see it in `cla
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* Please read [Using the AI prompts](../introduction/README.md) first.
 
 **Ask it to explain.**
 
@@ -74,9 +63,9 @@ Review this agent instructions file. Is anything unclear, contradictory or unsaf
 
 ### Why a harness
 
-The [MCP server](../mcp-server/README.md) lesson covered the *tool side*: wrap a CLI so an assistant can call it. This lesson covers the *assistant side*: set the assistant up to work well with your repository, your rules and your tools.
+The [MCP server](../mcp-server/README.md) lesson covered the *tool side*: wrapping a command-line tool so an assistant can call it. This lesson covers the *assistant side*: setting the assistant up to work well with your repository, your rules and your tools.
 
-Without a harness the assistant improvises and guesses your conventions. With one it has:
+Without a harness the assistant guesses your conventions. With one it has:
 
 - A place to *read* what the repository is and how it is organised.
 - On-demand *skills* it can invoke.
@@ -125,7 +114,7 @@ edited directly.
 
 ### The self-modification pattern
 
-Claude Code can write its own skills, agents and hooks. That is powerful and risky. **Powerful:** ask it to codify a new pattern as a skill, and next session the skill is there. **Risky:** it can write code that runs in later sessions. Review agent-written harness changes like any code: read the diff, run it on a safe case, and commit only what you would have written yourself. The harness is version-controlled, reviewed and committed like your CLIs.
+Claude Code can write its own skills, agents and hooks. That is powerful and risky. **Powerful:** ask it to keep a new pattern as a skill, and next session the skill is there. **Risky:** it can write code that runs in later sessions. Please review what it writes like any code: read the diff, run it on a safe case, and commit only what you would have written yourself. The harness lives in version control, like your command-line tools.
 
 ### This repository's harness
 

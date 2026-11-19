@@ -4,40 +4,33 @@ You will run a small R notebook that builds a table, summarises it and draws a b
 
 **What you will do:**
 
-- Install R and register it with Jupyter (once).
+- Make sure R is registered with Jupyter.
 - Check which tools this notebook can see.
 - Build a small table, summarise it, plot it.
 - Print your environment so you can paste it into a bug report.
 
-**What you need:**
-
-- The `eos` conda environment ([conda-environments](../conda-environments/README.md)).
-- JupyterLab running ([starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md)).
-- This is the R companion to the other [interactive-computing](README.md) walkthroughs, which use a Bash or Python kernel. A **kernel** is the program that runs your code. This notebook uses the **R** kernel.
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Reproducible environments with Conda](../conda-environments/README.md), is done.
+- JupyterLab is running: [starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md).
+- The kernel name at the top right of this notebook says **R**. If it does not, click the name and choose **R**.
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`exploring-an-r-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/exploring-an-r-notebook.ipynb) and run each cell in order, top to bottom.
+This is the R companion to the other [interactive-computing](README.md) walkthroughs. A kernel is the engine that runs your code, as [Let's dive in](../introduction/lets-dive-in.md) shows.
 
 ## Steps to execute
 
-### Install R and register the R kernel (one time)
+### Register the R kernel (only if there is no R tile)
 
-[IRkernel](https://irkernel.github.io/) lets Jupyter run R. Run these three lines in a **terminal**, not in a notebook cell. The first turns on the `eos` environment (or use any environment you keep for R). The second installs R and IRkernel from [conda-forge](https://conda-forge.org/). The third registers R with Jupyter, so the Launcher shows an *R* tile next to *Python 3*.
+[IRkernel](https://irkernel.github.io/) lets Jupyter run R. The Introduction already installed R in the `eos` environment and registered it (step 4). If the Launcher shows an *R* tile, skip this step.
+
+If it does not, run these three lines in a **terminal**, not in a notebook cell. The first turns on the `eos` environment (or use any environment you keep for R). The second installs R and IRkernel from [conda-forge](https://conda-forge.org/). The third registers R with Jupyter.
 
 ```bash
 conda activate eos        # or any env dedicated to R work
-conda install -c conda-forge r-base r-irkernel -y
+conda install -c conda-forge r-base=4.4 r-irkernel -y
 R -e 'IRkernel::installspec(name="ir", displayname="R")'
 ```
 
@@ -162,8 +155,8 @@ Add a sixth sample to `df`, run the two summary cells again, then choose **Kerne
 
 ### If something goes wrong
 
-- **The kernel says "R" is not found, or there is no R tile.** *Install R and register the R kernel (one time)* has not been done in the same environment that runs JupyterLab. Redo *Install R and register the R kernel (one time)*, then restart JupyterLab.
-- **`conda: command not found`.** See [conda-environments](../conda-environments/README.md).
+- **The kernel says "R" is not found, or there is no R tile.** R is not registered in the environment that runs JupyterLab. Do *Register the R kernel (only if there is no R tile)*, then restart JupyterLab.
+- **`conda: command not found`.** See the [Introduction page](../introduction/README.md).
 - **`DESeq2 (not installed)`.** This is expected. It is a larger Bioconductor package that you install later when a lesson needs it.
 
 ## Next

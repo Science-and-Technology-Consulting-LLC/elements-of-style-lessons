@@ -1,50 +1,33 @@
 # Starting a JupyterLab notebook
 
-You will start [JupyterLab](https://jupyterlab.readthedocs.io/) on your laptop and learn what its screen shows. This matters because every later lesson runs inside it.
+You have already started [JupyterLab](https://jupyterlab.readthedocs.io/) once, in the Introduction. Here we say what it is, show how to start it again, and show the Lifebit way. This matters because every later lesson runs inside it.
 
 **What you will do:**
 
 - Learn what JupyterLab is.
-- Start it from a terminal.
+- Start it again from a terminal, or on Lifebit.
 - Recognise the file browser, the Launcher and the menu bar.
-
-**What you need:**
-
-- The `eos` conda environment, from [conda-environments](../conda-environments/README.md).
-- A web browser such as [Chrome](https://www.google.com/chrome/).
 
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`starting-a-jupyter-lab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Reproducible environments with Conda](../conda-environments/README.md), is done.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- A web browser such as [Chrome](https://www.google.com/chrome/).
 
 ## Steps to execute
 
 ### Know what JupyterLab is
 
-Before you can *run* a notebook you need one to run. **JupyterLab** is a web page that lets you open notebooks, files and terminals side by side. It runs on a computer (yours, or a Lifebit server) and shows up in your browser.
-
-You will start it in one of two places, described in the next two steps.
+**JupyterLab** is a web page that lets you open notebooks, files and terminals side by side. It runs on a computer (yours, or a Lifebit server) and shows up in your browser.
 
 **What you should see:** nothing. This step is reading only.
 
-### On your laptop: start JupyterLab
+### On your laptop: start JupyterLab again
 
-Finish the [conda-environments lesson](../conda-environments/README.md) first. Then, in a **terminal** (not in a notebook cell), type these two commands, one per line, and press `Enter` after each. The first one turns on the `eos` environment. The second one starts JupyterLab. JupyterLab keeps running until you stop it, so it cannot run as a notebook cell.
+If JupyterLab is still open from the Introduction, skip this step. If you closed it, type these two commands in a **terminal** (not in a notebook cell), one per line, and press `Enter` after each. The first turns on the `eos` environment. The second starts JupyterLab. JupyterLab keeps running until you stop it, so it cannot run as a notebook cell.
 
 ```text
 conda activate eos
@@ -57,7 +40,7 @@ jupyter lab
 
 ### Optional: start JupyterLab on Lifebit instead
 
-Skip this step if you started JupyterLab on your laptop in *On your laptop: start JupyterLab*. It needs a Lifebit account: see [Other places to run these lessons](../introduction/other-places-to-run.md).
+Skip this step if you started JupyterLab on your laptop. It needs a Lifebit account: see [Other places to run these lessons](../introduction/other-places-to-run.md).
 
 [Lifebit](https://lifebit.ai/)'s notebook servers have JupyterLab already installed.
 
@@ -73,11 +56,7 @@ The terminal is under **File**, **New**, **Terminal**.
 
 ### Recognise the screen
 
-However you got here, you now see:
-
-- A **file browser** on the left.
-- A **Launcher** in the middle, with tiles: *Python 3*, *R* (if you registered IRkernel, see [conda-environments](../conda-environments/README.md)), *Terminal* and *Text File*.
-- A **menu bar** across the top: *File, Edit, View, Run, Kernel, Tabs* and more.
+However you got here, you see a **file browser** on the left, a **Launcher** in the middle and a **menu bar** across the top. [Let's dive in](../introduction/lets-dive-in.md) names each part and what it does. The Launcher has tiles for *Python 3*, *Bash*, *R*, *Terminal* and *Text File*.
 
 > **Picture to add:** JupyterLab with the file browser, the Launcher tiles and the menu bar labelled (save as assets/starting-a-jupyter-lab-notebook-step-4.png)
 
@@ -85,10 +64,10 @@ However you got here, you now see:
 
 ### If something goes wrong
 
-- **`conda: command not found`.** Conda is not installed, or you opened this terminal before installing it. Close it, open a new one, and see [conda-environments](../conda-environments/README.md).
+- **`conda: command not found`.** Conda is not installed, or you opened this terminal before installing it. Close it, open a new one, and see the [Introduction page](../introduction/README.md).
 - **`jupyter: command not found`.** The `eos` environment is not active. Run `conda activate eos` first.
 - **The browser does not open.** Copy the `http://localhost:8888/lab?token=...` address from the terminal into your browser.
-- **There is no R tile.** R is not registered with Jupyter. Follow the one-time steps in [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
+- **There is no R tile.** R is not registered with Jupyter. The Introduction does this in step 4. If it did not work, see [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
 
 ## Next
 

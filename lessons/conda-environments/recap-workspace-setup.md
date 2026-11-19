@@ -9,30 +9,16 @@ You will review what you built in Days 1 and 2, then practise moving around a Gi
 - Move up and down folders with `.` and `..`.
 - Wipe a clone and clone it again.
 
-**What you need:**
-
-- [Git](https://git-scm.com/) ([version-control](../version-control/README.md)).
-- An internet connection.
-- The lessons [interactive-computing](../interactive-computing/README.md) and [version-control](../version-control/README.md) behind you.
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Version control with Git](../version-control/README.md), is done. Git is explained there.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- An internet connection.
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+In JupyterLab, open `lessons`, then `conda-environments`, then [`recap-workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/recap-workspace-setup.ipynb). Run each cell in order, top to bottom.
 
 ## Steps to execute
 
@@ -191,4 +177,4 @@ In JupyterLab, open `Reading-data-and-plotting-in-R.ipynb` from the new folder. 
 
 ## Next
 
-You now have Git, conda and the courage to wipe a broken clone and start over. On to [containers](../containers/README.md).
+[Interactive computing with Jupyter](../interactive-computing/README.md): run your code in notebooks. You now have Git, conda and the courage to wipe a broken clone and start over.

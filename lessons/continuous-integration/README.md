@@ -2,49 +2,39 @@
 
 *In the book: Section 4.5, Continuous Integration with GitHub Actions.*
 
-This lesson shows you how to make GitHub check your work automatically on every push, so broken things are found in minutes. You will add a first check to a new repository and read the real workflows that keep this course working.
+This lesson shows you how to make GitHub check your work automatically on every push, so broken things are found in minutes. We will add a first check to a new repository and read the real workflows that keep this course working.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Containers](../containers/README.md). You need an image to publish. For the first notebook you also need a GitHub account and `gh` signed in (see the notebook's top box).
-
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/continuous-integration/add-a-first-ci-job.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/add-a-first-ci-job.ipynb)) and run each cell in order, top to bottom. You also need a GitHub account and `gh` signed in (see [github-authenticate](../version-control/github-authenticate.md)).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Containers](../containers/README.md), is done. We need an image to publish.
+- A [GitHub account](https://github.com/signup), with `gh` signed in as in [github-authenticate](../version-control/github-authenticate.md). Git and GitHub are explained in [Version control with Git](../version-control/README.md).
 
 ### What you should see
 
-You create a small repository, add a workflow, and see a green tick on GitHub's **Actions** tab. Then you break the code on purpose and see a red cross. The notebook says what each command should print.
+We create a small repository, add a workflow, and see a green tick on GitHub's **Actions** tab. Then we break the code on purpose and see a red cross. Each step says what the commands should print.
 
 > **Picture to add:** the Actions tab of the practice repository with a green run (save a screenshot of the finished first job) (save as assets/overview.png)
 
 ### Where the files are
 
-- `lessons/continuous-integration/add-a-first-ci-job.ipynb` and `.md`: the first CI job. **Needs a GitHub account and `gh` signed in.**
-- `lessons/continuous-integration/publish-an-image-with-actions.ipynb` and `.md`: publish an image to GHCR. **Needs a GitHub account, `gh` signed in and Podman.**
+- `lessons/continuous-integration/add-a-first-ci-job.ipynb` and `.md`: the first CI job. Open the notebook from JupyterLab, or [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/add-a-first-ci-job.ipynb).
+- `lessons/continuous-integration/publish-an-image-with-actions.ipynb` and `.md`: publish an image to GHCR. It needs Podman.
 - `lessons/continuous-integration/github-actions-for-maintenance-testing.ipynb` and `.md`: the maintenance-testing workflows to read.
-- `.github/workflows/docs.yml` and `.github/workflows/ci.yml` in the repository: the two real workflows this course uses.
+- `.github/workflows/docs.yml` in the repository: the real workflow that builds and publishes this site. `test-podman-git-bash.yml` next to it is one you start by hand, to try the container lessons on Windows and Linux. There is no `ci.yml` in the repository. You write that file yourself in the first lesson.
 - `lessons/continuous-integration/assets/`: pictures for this lesson.
 
 ## Steps to execute
 
-1. [`add-a-first-ci-job.md`](add-a-first-ci-job.md) — make a repository, add a check, watch it pass, then fail (needs a GitHub account and `gh` signed in)
-2. [`publish-an-image-with-actions.md`](publish-an-image-with-actions.md) — build an image with Podman on GitHub and publish it to the GitHub Container Registry (needs a GitHub account, `gh` signed in and Podman)
+1. [`add-a-first-ci-job.md`](add-a-first-ci-job.md) — make a repository, add a check, watch it pass, then fail
+2. [`publish-an-image-with-actions.md`](publish-an-image-with-actions.md) — build an image with Podman on GitHub and publish it to the GitHub Container Registry
 3. [`github-actions-for-maintenance-testing.md`](github-actions-for-maintenance-testing.md) — read the workflows that keep a pipeline and its container images up to date
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md#using-the-ai-prompts).
 
 **Ask it to explain.**
 
@@ -82,7 +72,7 @@ The rule from [The Rules](../elements-of-style-rules/README.md):
 
 > **Fail fast.** The sooner you find the broken thing, the cheaper it is to fix.
 
-CI runs your tests, linters and builds automatically on every commit. You find broken things minutes after you wrote them, not a month later when a collaborator hits them.
+CI runs your tests, linters and builds automatically on every commit. A *linter* is a program that checks style and obvious mistakes. You find broken things minutes after you wrote them, not a month later when a collaborator hits them.
 
 ### The anatomy of a workflow
 
@@ -113,10 +103,10 @@ jobs:
 2. **`jobs:`** are units of work. Each job gets its own fresh machine.
 3. **`steps:`** are the ordered actions inside a job. `uses:` pulls a ready-made action. `run:` runs a shell command.
 
-### The two workflows in this repository
+### The workflows we meet
 
-- **`.github/workflows/docs.yml`** builds the Sphinx site and deploys it to GitHub Pages on every push to `main`. It takes about two minutes. See [documentation](../documentation/README.md) for the file.
-- **`.github/workflows/ci.yml`** checks that the notebooks parse, the Dockerfiles lint, and the R and Python code has no syntax errors. It runs on every push and pull request. It does not deploy.
+- **`.github/workflows/docs.yml`** builds the Sphinx site and deploys it to GitHub Pages on every push to `main`. Before it builds, it runs `scripts/check-images.py`, which stops the build if a picture link is broken. It takes about two minutes. The next lesson, [Documentation](../documentation/README.md), explains the file.
+- **`ci.yml`** is the file you write in [Add a first CI job](add-a-first-ci-job.md), in a practice repository. Its `lint` job runs `ruff` on your Python code on every push and pull request. It does not deploy. [GitHub Actions for maintenance testing](github-actions-for-maintenance-testing.md) shows a longer form that runs a pipeline's small test.
 
 ### Marketplace actions
 
@@ -134,7 +124,7 @@ jobs:
 
 ### Secrets
 
-Never commit passwords, API keys or tokens. Put them in **Settings → Secrets and variables → Actions** on the repository. Use them in a workflow as `${{ secrets.MY_TOKEN }}`. `GITHUB_TOKEN` is provided by GitHub automatically, so pushing a container to your own repository's registry needs no setup:
+Never commit passwords, API keys or tokens (*commit* is from [Version control with Git](../version-control/README.md)). Put them in **Settings → Secrets and variables → Actions** on the repository. Use them in a workflow as `${{ secrets.MY_TOKEN }}`. GitHub provides `GITHUB_TOKEN` automatically, so pushing a container to your own repository's registry needs no setup:
 
 ```yaml
 - uses: docker/login-action@v3

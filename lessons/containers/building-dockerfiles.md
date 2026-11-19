@@ -9,30 +9,17 @@ You will build two small container images, one for the sequencing quality tool F
 - Do the same for [MultiQC](https://multiqc.info/).
 - Optionally, publish each folder to GitHub.
 
-**What you need:**
-
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). See the install notes in the [containers lesson](README.md).
-- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
-- For the optional GitHub steps: a [GitHub account](https://github.com/signup), the [GitHub CLI](https://cli.github.com/) (`gh`), and the sign-in steps in [GitHub authentication](../version-control/github-authenticate.md).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Building reusable command-line tools](../reusable-clis/README.md), is done.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- Podman is installed and, on a Mac or Windows computer, running (`podman machine start`). We install it in [Install Podman](README.md#install-podman).
+- For the optional GitHub steps: a [GitHub account](https://github.com/signup), the [GitHub CLI](https://cli.github.com/) (`gh`), and the sign-in steps in [GitHub authentication](../version-control/github-authenticate.md).
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-dockerfiles.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+If a command says *command not found*, see [the command line and Git Bash](../command-line-and-git-bash/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md).
 
 ## Steps to execute
 
@@ -50,7 +37,7 @@ You will build **two** small images, `fastqc` and `multiqc`. They come back in t
 
 ### Activate your conda environment
 
-*Why:* you made the `eos` environment in the [conda environments lesson](../conda-environments/creating-a-conda-environment.md). Activating it puts its tools on your path.
+*Why:* we made the `eos` environment on the Introduction page, and [Conda environments](../conda-environments/creating-a-conda-environment.md) explains it. Activating it puts its tools on your path.
 
 Run the next cell.
 
@@ -64,7 +51,7 @@ conda activate eos
 
 ### Go to your home folder
 
-*Why:* you will make folders and run `git init` in them. If you do that inside the cloned course folder, you put one Git repository inside another. Your home folder keeps them apart. Both image folders (`fastqc-docker` and `multiqc-docker`) will sit side by side here, which the next lesson expects.
+*Why:* we will make folders and run `git init` in them. Inside the cloned course folder, that would put one Git repository inside another, so we use the home folder. Both image folders (`fastqc-docker` and `multiqc-docker`) sit side by side here, which the next page expects.
 
 Run the next cell.
 
@@ -79,7 +66,7 @@ pwd
 
 ### Create a clean build directory
 
-*Why:* Podman looks for a file named *exactly* `Dockerfile`, in the folder where you build. A new empty folder keeps the build small.
+*Why:* Podman looks for a file named *exactly* `Dockerfile` in the folder where you build. A new, empty folder keeps the build small.
 
 Run the next cell.
 
@@ -93,7 +80,7 @@ touch Dockerfile
 
 ### Fill in the Dockerfile
 
-*Why:* this file is the recipe. Open `Dockerfile` in an editor (VS Code, JupyterLab's editor, `nano` or `vim`) and paste:
+*Why:* this file is the recipe. Open `Dockerfile` in an editor (VS Code, the JupyterLab editor, `nano` or `vim`) and paste:
 
 ```dockerfile
 # Base image: condaforge/miniforge3 comes with conda pre-installed and uses only the conda-forge channel.
@@ -200,7 +187,6 @@ podman run --rm -v "$PWD:$PWD" -w "$PWD" fastqc fastqc -h
 
 What each part of the command means:
 
-- `-it`: interactive, with a terminal attached (so output is not held back).
 - `-v $PWD:$PWD`: mount the current folder into the container at the same path.
 - `-w $PWD`: start the container in that same folder.
 - `fastqc` (first): the image name.
@@ -210,7 +196,7 @@ You now have a portable fastqc that runs the same way on your laptop, on Lifebit
 
 ### Publish the source to GitHub (optional)
 
-*Why:* never let a `Dockerfile` live on only one machine. Skip the sections marked *(optional)* if you do not have a GitHub account. The next lessons need the images, not the repositories.
+*Why:* never let a `Dockerfile` live on only one machine. If you do not have a GitHub account, skip every step marked *(optional)*. The next lessons need the images, not the repositories.
 
 First create a `README.md`. Run the next cell, then open `README.md` and paste the lines shown in the comments.
 
@@ -292,7 +278,7 @@ The reference copy of this repository is [`adeslatt/fastqc-docker`](https://gith
 
 ### Choose one path
 
-*Why:* you can either copy the finished reference version to compare, or build your own. Do **one** of the two. If you do both, `mkdir multiqc-docker` in *Go back to your home folder* stops with `File exists`.
+*Why:* you can copy the finished reference version to compare, or build your own. Do **one** of the two. If you do both, `mkdir multiqc-docker` stops with `File exists`.
 
 **Path A (optional): clone the reference version.** Run the next cell. Then type `cd ~/multiqc-docker`, skip *Go back to your home folder* and *Create the build directory*, and continue with *Build and list the image*. Skip *Publish `multiqc-docker` (optional)* too; the clone is already a Git repository.
 
@@ -409,11 +395,11 @@ The [multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md)
 
 ### If something goes wrong
 
-- **`Cannot connect to Podman`, or `podman: command not found`.** Podman is not running or not installed. Run `podman machine start`, wait for it to finish, and try again. See [the containers lesson](README.md) for install links.
-- **`the input device is not a TTY`.** Remove `-it` from the `podman run` command and run it again.
+- **`Cannot connect to Podman`, or `podman: command not found`.** Podman is not running or not installed. Run `podman machine start`, wait for it to finish, and try again. See [Install Podman](README.md#install-podman).
+- **`the input device is not a TTY`.** This appears if `-it` was added to the `podman run` command. Leave `-it` out, as in the command above, and run it again.
 - **`CondaError: Run 'conda init'`, or `conda: command not found`.** Activate the environment in a terminal first, then start JupyterLab from that terminal (see the Check in *Activate your conda environment*).
 - **`mkdir: multiqc-docker: File exists`.** You already cloned it in *Choose one path*. Use the cloned folder, or delete it and start Path B.
 
 ## Next
 
-[Publish your images to a registry](publish-your-images.md): push these two images, so that a workflow on any computer can download them. Or go back to the [containers lesson](README.md).
+[Publish your images to a registry](publish-your-images.md): push these two images, so that a workflow on any computer can download them. After the Containers lesson, [Nextflow modules and features](../nextflow-modules/README.md) wraps each container in a `.nf` module.

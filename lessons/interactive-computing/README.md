@@ -6,21 +6,15 @@ This lesson gives you a working picture of a Jupyter notebook, and two short sta
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Reproducible environments with Conda](../conda-environments/README.md). You need the `eos` environment.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Reproducible environments with Conda](../conda-environments/README.md), is done.
+- You have been through [Let's dive in](../introduction/lets-dive-in.md), which shows the menu, the left bar and the toolbar. This lesson does not teach them again.
 
 ### Do this
 
-1. **Clone the course.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Start JupyterLab and open the first notebook.** In the terminal run `conda activate eos`, then `jupyter lab`. In JupyterLab open `lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb)). On Lifebit, JupyterLab is already running, so skip `jupyter lab` and open the notebook from the file browser.
+In JupyterLab, open `lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/starting-a-jupyter-lab-notebook.ipynb)). On Lifebit, JupyterLab is already running, so open the notebook from the file browser.
 
 ### What you should see
 
@@ -47,7 +41,7 @@ Work through the notebooks in this order:
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md#using-the-ai-prompts).
 
 **Ask it to explain.**
 
@@ -89,23 +83,15 @@ A Jupyter notebook is a **JSON file** (extension `.ipynb`) that holds an ordered
 - **Markdown**: text, headings, links and maths.
 - **Code**: sent to a **kernel** to run.
 
-The **kernel** is a separate program that runs your code. Open a Python notebook and Jupyter starts a Python kernel in the background. Open an R notebook and it starts an R kernel. Variables you create live in the kernel, not in the file. That is why restarting the kernel wipes them.
+The **kernel** is the engine that runs your code, as [Let's dive in](../introduction/lets-dive-in.md) shows. Open a Python notebook and Jupyter starts a Python kernel in the background. Open an R notebook and it starts an R kernel. Variables you create live in the kernel, not in the file. That is why restarting the kernel wipes them.
 
 ### Launch JupyterLab
 
-On a laptop (macOS or Windows Git Bash), in a terminal:
-
-```bash
-conda activate eos
-jupyter lab
-# A browser tab opens at http://localhost:8888/lab
-```
-
-On a cloud platform such as Lifebit, a JupyterLab session is already running. See [Other places to run these lessons](../introduction/other-places-to-run.md).
+We started JupyterLab in step 5 of the [Introduction page](../introduction/README.md). On a cloud platform such as Lifebit, a session is already running. See [Other places to run these lessons](../introduction/other-places-to-run.md).
 
 ### The two starter notebooks
 
-Each one is short on purpose. The aim is a runnable example that explains the basics, not a course in pandas or tidyverse. Each has:
+Each one is short on purpose. It is a runnable example, not a course in pandas or tidyverse. Each has:
 
 1. A "what this notebook is" section.
 2. A few code cells that produce real output.
@@ -118,9 +104,9 @@ To see a real-data notebook with the same pattern, only longer, open [`explore_m
 
 ### The "Restart and Run All" habit
 
-You can run a notebook's cells in any order. That helps when exploring. It hurts when you save the notebook, reopen it tomorrow, and your variables are gone, but cells you ran in a random order left output that looks right.
+You can run a notebook's cells in any order. That helps when exploring. It hurts when you reopen the notebook tomorrow and your variables are gone, but cells you ran in a random order left output that looks right.
 
-**Habit:** before you save a notebook you plan to share, click **Kernel**, then **Restart Kernel and Run All Cells**. If it gives the same output, it is reproducible. If not, you have caught a problem early.
+**Habit:** before you save a notebook you plan to share, click **Kernel**, then **Restart Kernel and Run All Cells**. If it gives the same output, it is reproducible. If not, you have caught a problem early. [Running a JupyterLab notebook](running-a-jupyterlab-notebook.md) shows it on a real notebook.
 
 ### A note for the All of Us Researcher Workbench
 

@@ -6,21 +6,13 @@ This lesson gives you a Git and GitHub routine, so your code is no longer one fr
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [The command line, with Git Bash](../command-line-and-git-bash/README.md). You also need a free [GitHub account](https://github.com/signup).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [The command line, with Git Bash](../command-line-and-git-bash/README.md), is done.
+- A free [GitHub account](https://github.com/signup). If you do not have one, please make one now.
 
-### Do this
-
-1. **Clone the course.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the first notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Open `lessons/version-control/why-git-and-setup.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/why-git-and-setup.ipynb)). Run each cell in order, top to bottom.
+Now we are ready to begin. In JupyterLab, open `lessons/version-control/why-git-and-setup.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/why-git-and-setup.ipynb)). Run each cell in order, top to bottom.
 
 ### What you should see
 
@@ -33,21 +25,21 @@ The previous lesson is [The command line, with Git Bash](../command-line-and-git
 
 ### Where the files are
 
-All files are in `lessons/version-control/` of the [course repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/version-control). Each walkthrough is a notebook (`.ipynb`) with a web page copy (`.md`). The longer reference is [git-survival-guide.md](git-survival-guide.md).
+All files are in `lessons/version-control/` of the [course repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/tree/main/lessons/version-control). Each walkthrough is a notebook (`.ipynb`) with a web page copy (`.md`). The longer reference is the [Git survival guide](git-survival-guide.md).
 
 ## Steps to execute
 
-Work through the notebooks in this order:
+Please work through the notebooks in this order:
 
 1. [why-git-and-setup.md](why-git-and-setup.md): why Git and GitHub, and one-time setup (`nano`, `conda`, `gh`, `git config`).
-2. [workspace-setup.md](workspace-setup.md): check your computer and start JupyterLab.
+2. [workspace-setup.md](workspace-setup.md): what a workspace is, what it costs, and a check of where you are.
 3. [github-authenticate.md](github-authenticate.md): make a Personal Access Token and sign in with `gh auth login`.
 4. [the-add-push-git-routine.md](the-add-push-git-routine.md): the daily edit, status, add, commit, push and pull request loop.
 5. [keeping-your-repository-fork-in-sync.md](keeping-your-repository-fork-in-sync.md): fork, clone, and keep a fork up to date with the original.
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -84,21 +76,9 @@ I want to fix this Git problem: <describe it and paste the output of git status>
 
 Git is a small program that watches a folder and remembers every snapshot you tell it to remember. The folder is a **repository** (repo). A snapshot is a **commit**. The history of commits is your project's memory. GitHub is a website that hosts repos. Git works without GitHub, but GitHub is where most collaboration happens.
 
-### Install or check Git
+### Install Git and tell it who you are
 
-The full install steps are in the [command-line-and-git-bash lesson](../command-line-and-git-bash/README.md).
-
-- **macOS:** Git is not pre-installed. Type `git --version` in Terminal. A window offers to install the Xcode Command Line Tools. Accept it.
-- **Windows:** Git comes with the [Git for Windows](https://gitforwindows.org/) installer, which also gives you Git Bash.
-
-### Tell Git who you are (first time only)
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-```
-
-Use the same email you use on GitHub. Git stamps it on every commit.
+Installing Git is explained in [The command line, with Git Bash](../command-line-and-git-bash/README.md). Telling Git your name and email is the last step of [why-git-and-setup.md](why-git-and-setup.md). Use the same email you use on GitHub, because Git stamps it on every commit.
 
 ### A repo from scratch, in seven moves
 

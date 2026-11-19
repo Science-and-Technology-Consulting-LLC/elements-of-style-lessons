@@ -2,25 +2,16 @@
 
 *In the book: Sections 11.5.5 and 11.5.6, Publishing for Agents; Exposing Help and Schema.*
 
-This lesson shows you how to publish a command-line tool so AI agents (and people) can find it, understand it and use it. The earlier lessons make your work run. This one makes it findable.
+In this lesson we publish a command-line tool so that AI agents (and people) can find it, understand it and use it. The earlier lessons make your work run. This one makes it findable.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Agentic harness](../agentic-harness/README.md). You also need the `hello-py` tool from [A Typer CLI in fifteen minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md).
-
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/publishing-for-agents/exposing-help-and-schema.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/publishing-for-agents/exposing-help-and-schema.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first section makes a conda environment.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Agentic harness](../agentic-harness/README.md), is done.
+- The `hello-py` tool from [A Typer CLI in fifteen minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md) is installed.
+- This notebook uses a **Python** kernel. Its first section makes a conda environment for it.
 
 ### What you should see
 
@@ -40,7 +31,7 @@ You read the `--help` pages of `hello-py` and write a JSON schema of the `greet`
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* Please read [Using the AI prompts](../introduction/README.md) first.
 
 **Ask it to explain.**
 
@@ -74,7 +65,7 @@ Act as an AI agent that has never seen this tool. Using only the README below, l
 
 ## Supplementary information
 
-A well-documented CLI is an API for AI agents. An MCP server is the politest introduction your tool can make. Every habit from the earlier lessons helps:
+A well-documented command-line tool is an *API* (a way for programs to use your tool) for AI agents. An MCP server, from the [MCP server](../mcp-server/README.md) lesson, is the politest introduction your tool can make. Every habit from the earlier lessons helps:
 
 - A repository on **GitHub** is an address an agent can read.
 - A pinned **conda environment** lets an agent reproduce your setup.
@@ -84,10 +75,9 @@ A well-documented CLI is an API for AI agents. An MCP server is the politest int
 
 ### What you will be able to do
 
-1. Publish one of your CLIs as an agent-ready package.
+1. Publish one of your tools as an agent-ready package.
 2. Write a README an agent can act on.
 3. Tag a release that others can pin to.
-4. Hand the package to the [MCP server](../mcp-server/README.md) lesson.
 
 ### The agent-ready checklist
 
@@ -158,7 +148,7 @@ Publishing to [`github.com/Science-and-Technology-Consulting-LLC`](https://githu
 - `.github/workflows/` has a CI workflow (lint and test) and, if the tool is documented, a docs deploy workflow.
 - Tagged releases use SemVer (`v1.0.0`, `v1.1.0`).
 
-Commit often, work on a branch in a team, and merge through review and pull requests.
+Commit often, work on a branch in a team, and merge through review and pull requests. See [Version control](../version-control/README.md).
 
 ### Semantic versioning, briefly
 
@@ -172,7 +162,7 @@ Agents that pin to `~=1.0` get safe upgrades. Agents that pin to `==1.0.1` get e
 
 ### Why this matters more than it used to
 
-A well-published tool is usable by a person who finds your README, and also by an AI agent doing literature-driven analysis, an automated pipeline run that picked your tool from a manifest, a federated workflow that needs your container at each site, and you in six months. All four want structure, honesty and a `--help` that tells the truth.
+A well-published tool is usable by a person who finds your README. It is also usable by an AI agent doing literature-driven analysis, an automated pipeline run that picked your tool from a manifest, a federated workflow that needs your container at each site, and you in six months. All of them want structure, honesty and a `--help` that tells the truth.
 
 ## Next
 

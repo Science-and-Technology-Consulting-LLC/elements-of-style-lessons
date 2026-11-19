@@ -1,43 +1,20 @@
 # Workspace set-up
 
-You will check your computer and start JupyterLab in your own Bash terminal. This matters because every later lesson assumes this workspace.
-
-**What you will do:**
-
-- Check which tools your computer already has.
-- Use your laptop terminal as your workspace.
-- Learn what to watch for on cost.
-- Start JupyterLab.
-
-**What you need:**
-
-- A computer with a terminal (see the Before you begin block). No computer of your own? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-- A modern web browser such as [Chrome](https://www.google.com/chrome/).
+You will check where you are working and what it costs. This matters because every later lesson assumes this workspace.
 
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`workspace-setup.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/workspace-setup.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous step, [why-git-and-setup.md](why-git-and-setup.md), is done.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
 ### Your workspace
 
-A **workspace** is the computer and terminal where you type commands. Use your own laptop terminal. It costs nothing extra, it is always available, and it suits every lesson in the first part of the course. A cloud workspace is covered in [Other places to run these lessons](../introduction/other-places-to-run.md), for when your work outgrows a laptop.
+A **workspace** is the computer and terminal where you type commands. Use your own laptop terminal. It costs nothing extra, it is always available, and it suits every lesson in the first part of the course. No computer of your own, or work that outgrows a laptop? See [Other places to run these lessons](../introduction/other-places-to-run.md).
 
 **What you should see:** nothing yet. This step is reading only.
 
@@ -47,11 +24,9 @@ Your laptop costs nothing extra. If you later use a cloud computer, it charges b
 
 **What you should see:** nothing. This step is reading only.
 
-### Start your notebook
+### Check where you are
 
-In a terminal, go to the course folder and run `jupyter lab`. A browser tab opens with JupyterLab.
-
-The next cell prints the folder this notebook is running in. `pwd` means "print working directory".
+JupyterLab is already running, from the Introduction. The next cell prints the folder this notebook is running in. `pwd` means "print working directory".
 
 ```bash
 pwd
@@ -63,8 +38,7 @@ pwd
 
 ### If something goes wrong
 
-- **`jupyter: command not found`.** JupyterLab is not installed in this terminal. Activate the `eos` environment (`conda activate eos`), or finish the [conda-environments lesson](../conda-environments/README.md).
-- **The browser does not open.** Look in the terminal for a web address that starts with `http://localhost:8888`. Copy it into your browser.
+- **`jupyter: command not found`.** Activate the `eos` environment (`conda activate eos`). Starting JupyterLab is explained in step 5 of the [Introduction page](../introduction/README.md).
 
 ## Next
 

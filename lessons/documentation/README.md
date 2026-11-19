@@ -2,35 +2,25 @@
 
 *In the book: Section 4.6, Documentation as a Website.*
 
-This lesson shows you how to turn plain text files into a documentation website with [Sphinx](https://www.sphinx-doc.org/), the same tool that builds this course site. You will see why documentation is part of the work, not an afterthought.
+This lesson shows you how to turn plain text files into a documentation website with [Sphinx](https://www.sphinx-doc.org/), the same tool that builds this course site. Documentation is part of the work, not an afterthought.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Continuous integration](../continuous-integration/README.md). You need the `eos` environment from [Reproducible environments with Conda](../conda-environments/README.md), and the second notebook uses the ideas of GitHub Actions.
-
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/documentation/building-a-sphinx-site.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb)) and run each cell in order, top to bottom. The notebook has a *Check your setup* section at the top for the Bash kernel.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Continuous integration](../continuous-integration/README.md), is done. The second walkthrough uses GitHub Actions from that lesson.
+- A [GitHub account](https://github.com/signup) with `gh` signed in, for the second walkthrough only. We did this in [github-authenticate](../version-control/github-authenticate.md).
 
 ### What you should see
 
-You install Sphinx, write three small files, build them into a website, and open it in your browser at `http://localhost:8000`. Each step in the notebook says what the output should look like.
+We install Sphinx, write three small files, build them into a website, and open it in your browser at `http://localhost:8000`. Each step says what the output should look like.
 
 > **Picture to add:** the finished example site open in a browser (save a screenshot of this lesson's landing page) (save as assets/overview.png)
 
 ### Where the files are
 
-- `lessons/documentation/building-a-sphinx-site.ipynb`: the notebook you run.
+- `lessons/documentation/building-a-sphinx-site.ipynb`: the notebook you run. Open it from JupyterLab, or [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb).
 - `lessons/documentation/building-a-sphinx-site.md`: the same walkthrough as a web page.
 - `lessons/documentation/docs/`: created when you run the notebook. It holds your practice site.
 - `lessons/documentation/assets/`: pictures for this lesson.
@@ -42,7 +32,7 @@ You install Sphinx, write three small files, build them into a website, and open
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md#using-the-ai-prompts).
 
 **Ask it to explain.**
 
@@ -77,7 +67,7 @@ Read the page below as a new user would. List every place where you would not kn
 
 ### Why documentation
 
-A tool your collaborator cannot understand is a tool your collaborator cannot use. Documentation turns a script into a tool. It also lets an AI agent use the tool (see [MCP server](../mcp-server/README.md)).
+A tool your collaborator cannot understand is a tool your collaborator cannot use. Documentation turns a script into a tool. It also lets an AI agent use the tool, which we come to in [MCP server](../mcp-server/README.md).
 
 The rule from [The Rules](../elements-of-style-rules/README.md):
 
@@ -125,14 +115,14 @@ On a cloud platform such as Lifebit, the workspace's port forwarding gives you t
 
 ### Deploy with GitHub Pages
 
-Every push to `main` runs `.github/workflows/docs.yml`. It installs Sphinx, builds the HTML and publishes it to GitHub Pages. This takes about two minutes. See [publish your site with GitHub Actions](publish-your-site-with-actions.md).
+Every push to `main` runs `.github/workflows/docs.yml`. It installs Sphinx, builds the HTML and publishes it to GitHub Pages in about two minutes. [Publish your site with GitHub Actions](publish-your-site-with-actions.md) does this step by step.
 
 ### Writing conventions
 
 - One `README.md` per topic under `lessons/<topic>/`. It is the canonical source.
 - Use MyST admonitions (`:::{tip}`, `:::{note}`, `:::{warning}`) for callouts.
 - Use `sphinx-design` tabs when a command differs by platform.
-- Link to notebooks by relative path, for example `[notebook](python.ipynb)`, only where the notebook exists.
+- Link to notebooks by relative path, for example `[notebook](../interactive-computing/python.ipynb)`, only where the notebook exists. That notebook is in the [Interactive computing](../interactive-computing/README.md) lesson.
 - End every lesson with **Further reading** and a **Next** link.
 
 ## Next

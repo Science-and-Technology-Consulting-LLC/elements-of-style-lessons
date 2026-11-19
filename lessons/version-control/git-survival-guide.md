@@ -4,12 +4,13 @@
 the NIH-NLM sc-nsforest-qc-nf single-cell quality control pipeline.
 The mistakes are real. The fixes are tested.*
 
+This is a reference. You do not need to run it. Come back to it when you meet a situation the walkthroughs do not cover. Forks and remotes are explained in [keeping-your-repository-fork-in-sync.md](keeping-your-repository-fork-in-sync.md).
+
 ---
 
 ## The Basics You Already Know (and One Thing You Don't)
 
-You know `git add`, `git commit`, `git push`. You have used
-`git clone`. You may even have made a pull request.
+You know `git add`, `git commit` and `git push` from [the-add-push-git-routine.md](the-add-push-git-routine.md). You have used `git clone`. You may even have made a pull request.
 
 Here is the one thing most tutorials skip:
 
@@ -307,7 +308,7 @@ This means the changes in that commit already exist on the target
 branch — perhaps from a prior pull request that was merged, or from
 a parallel commit that made the same change independently.
 
-**Do not panic.** Just skip it:
+Just skip it:
 
 ```bash
 git cherry-pick --skip
@@ -320,8 +321,7 @@ empty, keep skipping. Git will tell you when the sequence is done.
 
 ## The Clean-Main Pattern
 
-When your local `main` has diverged too far from upstream and you
-need to push specific changes, the cleanest approach is:
+When your local `main` has diverged too far from upstream and you need to push specific changes, the cleanest approach is:
 
 ```bash
 # Fetch latest from upstream
@@ -337,10 +337,7 @@ git cherry-pick <hash1> <hash2> <hash3>
 git push upstream clean-main:main
 ```
 
-This pattern gives you a branch that is guaranteed to be compatible
-with upstream, containing only your chosen commits. No merge
-conflicts from your fork-specific changes. No accidental publish
-redirects.
+This gives you a branch that is guaranteed to be compatible with upstream, with only your chosen commits. No merge conflicts from your fork-specific changes. No accidental publish redirects.
 
 **When to use it:**
 - You have fork-specific commits mixed with upstream-worthy fixes
@@ -411,9 +408,7 @@ git rev-parse HEAD
 # 08903ecc434ec6a26692458817fbb25450ab551a
 ```
 
-**Tag container images with commit SHAs, not `:latest`.** (This connects
-to Lesson 5 — test input for plausibility. A SHA tag is how you verify
-that the right code is running.)
+**Tag container images with commit SHAs, not `:latest`.** A SHA tag is how you verify that the right code is running.
 
 When something breaks on the cloud, the first question is always
 "which version of the code is running?" A SHA tag answers that
@@ -528,9 +523,7 @@ the GitHub edit supersedes the local one.
 - **Never** force-pull or `checkout -- .` without checking what
   you would lose
 
-This connects to Lesson 1 — write clearly. If you find yourself
-editing the same file in two places, something about your workflow
-is unclear. Pick one place to make changes and be consistent.
+If you find yourself editing the same file in two places, something about your workflow is unclear. Pick one place to make changes and be consistent.
 
 ---
 
@@ -632,4 +625,6 @@ decide where to go.**
 
 ---
 
-*Next: Chapter 5 — Containerization*
+## Next
+
+[Reproducible environments with Conda](../conda-environments/README.md): give each project its own set of tools.

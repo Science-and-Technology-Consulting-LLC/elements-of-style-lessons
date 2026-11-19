@@ -6,25 +6,16 @@
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Federated computing](../federated-computing/README.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Federated computing](../federated-computing/README.md), is done.
 
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/federated-learning/median-of-coefficients-aggregation.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first two sections make a conda environment.
+Open `lessons/federated-learning/median-of-coefficients-aggregation.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-learning/median-of-coefficients-aggregation.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel, and its first two sections make a conda environment for it.
 
 ### What you should see
 
-You compare the mean and the median of coefficients from five sites, one of them far off. You see `mean  : [ 4.2  -5.6   0.85]` against `median: [ 1.5  -2.    0.35]`: the median ignores the odd site.
+We compare the mean and the median of coefficients from five sites, one of them far off. We see `mean  : [ 4.2  -5.6   0.85]` against `median: [ 1.5  -2.    0.35]`: the median ignores the odd site.
 
 > **Picture to add:** the notebook's output showing the mean and median lines (save a screenshot of the finished run) (save as assets/overview.png)
 
@@ -40,7 +31,7 @@ You compare the mean and the median of coefficients from five sites, one of them
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -60,7 +51,6 @@ Write a Python function that takes the model coefficients from several sites and
 Review this federated learning design: <describe it>. What does each site send, and could a site's private data be inferred from it? Is there a site that could be too small to share safely? List the risks and what to check.
 ```
 
-
 ## Further reading
 
 - [McMahan et al., Federated Averaging (2016)](https://arxiv.org/abs/1602.05629)
@@ -70,7 +60,7 @@ Review this federated learning design: <describe it>. What does each site send, 
 
 ## Supplementary information
 
-For biomedical work this is often the only way to build cell-type classifiers, batch-correction models and patient-stratification models across institutions whose data-use agreements forbid pooling. It is a special case of [federated computing](../federated-computing/README.md).
+For biomedical work this is often the only way to build cell-type classifiers, batch-correction models and patient-stratification models across institutions whose data-use agreements forbid pooling. It is a special case of [federated computing](../federated-computing/README.md), where the per-site phase is training a model.
 
 ### The federated learning loop
 
@@ -82,7 +72,7 @@ For biomedical work this is often the only way to build cell-type classifiers, b
 
 ### The worked example: `oadr-autoantibody`
 
-The same example as in [federated computing](../federated-computing/README.md): the federated beta-cell-function predictor in [oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody). This time, look at the learning half.
+This is the same example as in [Federated computing](../federated-computing/README.md): the federated beta-cell-function predictor in [oadr-autoantibody](https://github.com/Science-and-Technology-Consulting-LLC/oadr-autoantibody). This time, look at the learning half.
 
 | Method | Family | Interpretable? |
 |--------|--------|----------------|

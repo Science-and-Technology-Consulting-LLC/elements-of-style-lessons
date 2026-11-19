@@ -8,28 +8,16 @@ You will build a small command-line tool in Python that prints its own honest he
 - Write a two-command tool, `hello-py`, with [Typer](https://typer.tiangolo.com/).
 - Install it so that you can type `hello-py` from any folder.
 
-**What you need:**
+## Start here
 
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
-- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html), to make the environment. See [conda environments](../conda-environments/README.md).
-- [JupyterLab](https://jupyter.org/install), only if you read this page as a notebook.
+### Pre-requisites
+
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Interactive computing with Jupyter](../interactive-computing/README.md), is done.
+- A terminal. A JupyterLab terminal works: choose *File*, then *New*, then *Terminal*.
 - A plain text editor. JupyterLab has one: choose *File*, then *New*, then *Text File*.
 
 You do not need an account for this lesson.
-
-## Start here
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`typer-cli-in-fifteen-minutes.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/reusable-clis/typer-cli-in-fifteen-minutes.ipynb) and run each cell in order, top to bottom.
 
 > **Where to type the commands.** The gray command boxes in this lesson run in your **terminal**, not in a notebook cell. The only notebook cell is in *Check that Python is the one you expect*. Keep your terminal open next to this page.
 
@@ -37,7 +25,7 @@ You do not need an account for this lesson.
 
 ### Make a clean environment (once)
 
-*Why:* an **environment** is a private box of programs. Anything you install here stays here and cannot break your other work. A **kernel** is the program that runs the code in a notebook cell; the last command gives this environment its own kernel so you can pick it in JupyterLab. The [conda environments lesson](../conda-environments/README.md) explains the idea in full.
+*Why:* a conda environment is a private box of programs, as in the [conda environments lesson](../conda-environments/README.md). This one is new, so what we install here cannot break your other work. The last command gives it its own kernel, so you can pick it in JupyterLab.
 
 In your terminal, run:
 
@@ -209,7 +197,7 @@ Get this pattern into your fingers and the rest of the curriculum unlocks.
 
 ### If something goes wrong
 
-- **`conda: command not found`.** Close the terminal and open a new one. If it still fails, run `conda init`, then open a new terminal. On Windows, use *Git Bash* (see [the command line lesson](../command-line-and-git-bash/README.md)).
+- **`conda: command not found`.** Close the terminal and open a new one. If it still fails, see the [Introduction page](../introduction/README.md).
 - **`zsh: no matches found: typer[all]`.** Put quotes around the name: `pip install 'typer[all]'`.
 - **`No module named hello_py`, or `hello-py: command not found`.** You are in the wrong folder, or the environment is not active. Run `pwd` (it must end in `hello-py-cli`), run `conda activate typer-cli-in-fifteen-minutes`, and try again. If `hello-py` is still not found, run `pip install -e .` again.
 
