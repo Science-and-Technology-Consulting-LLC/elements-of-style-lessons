@@ -6,21 +6,12 @@ This lesson gives you a Bash terminal that works the same on Mac, Windows and Li
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lessons are [Introduction](../introduction/README.md) and [The Rules](../elements-of-style-rules/README.md). You need no earlier practical skill.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [The Rules](../elements-of-style-rules/README.md), is done.
 
-### Do this
-
-1. **Clone the repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook** `lessons/command-line-and-git-bash/using-the-command-line.ipynb`. From the repository folder, run `conda activate eos`, then `jupyter lab`. Open [`using-the-command-line.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/command-line-and-git-bash/using-the-command-line.ipynb) and run each cell in order, top to bottom. The same steps are on the web as [Using the command line](using-the-command-line.md).
+In JupyterLab, open `lessons`, then `command-line-and-git-bash`, then `using-the-command-line.ipynb`, and run each cell in order. The same steps are on the web as [Using the command line](using-the-command-line.md).
 
 ### What you should see
 
@@ -42,7 +33,7 @@ The previous lessons are [Introduction](../introduction/README.md) and [The Rule
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -75,13 +66,13 @@ Look at this sequence of commands that I typed and tell me which ones change or 
 
 ## Supplementary information
 
-The terminal is the common language of biomedical computing. Cloud platforms, HPC clusters (shared computers for big jobs) and containers all take shell commands. You need about ten commands to be productive.
+The terminal is the common language of biomedical computing. Cloud platforms, HPC clusters (shared computers for big jobs) and containers all take shell commands. About ten commands are enough to be productive.
 
 ### One terminal for everyone
 
-On Mac and Linux the built-in shell is already Bash (or zsh, which is close enough). On Windows the equivalent is **Git Bash**, which comes with the Git for Windows installer. Then a colleague on Windows and a colleague on a Mac see the same prompt and run the same commands.
+On Mac and Linux the built-in shell is already Bash (or zsh, which is close enough). On Windows the equivalent is **Git Bash**, which comes with the Git for Windows installer. A colleague on Windows and a colleague on a Mac then see the same prompt and run the same commands.
 
-Neither macOS nor a stock Windows install has Git. Install it once.
+The [Introduction page](../introduction/README.md) tells you to install Git if it is missing. Neither macOS nor a stock Windows install has it. These are the details for each system.
 
 - **Windows.** Download the installer from [git-scm.com](https://git-scm.com/install/windows). Accept the defaults. Open **Git Bash** from the Start menu. Check with `git --version`.
 - **macOS.** Open **Terminal** (`Cmd-Space`, type `Terminal`, press Return). Type `git --version`. If Git is missing, macOS offers to install the command line developer tools. Click **Install** and wait. Then run `git --version` again. You can instead run `brew install git` after installing [Homebrew](https://brew.sh), or use the [standalone installer](https://git-scm.com/download/mac).
@@ -92,7 +83,7 @@ Neither macOS nor a stock Windows install has Git. Install it once.
 
 ### Ten commands
 
-Type each one, press Enter and read what comes back. Repetition will teach you.
+Type each one, press Enter and read what comes back. Repeating them is how you learn them.
 
 | Command | What it does |
 |---|---|

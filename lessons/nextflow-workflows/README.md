@@ -2,25 +2,15 @@
 
 > *In the book: Sections 6.2 and 7.3, Introduction to Workflow Languages; Building a Nextflow Script.*
 
-This lesson shows you how to run a two-step pipeline in Nextflow and in CWL, and how a notebook grows into a workflow you can rerun on any machine.
+This lesson shows you how to run a two-step pipeline in Nextflow and in CWL, and how a notebook grows into a workflow you can rerun on any machine. It is the first of two Nextflow lessons. Here you write a whole pipeline in one script and see the same pipeline in CWL. In [Nextflow modules and features](../nextflow-modules/README.md) you then split it into modules.
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [documentation](../documentation/README.md). This is the first of two Nextflow lessons. Here you write a whole pipeline in one script and see the same pipeline in CWL. In [Nextflow modules and features](../nextflow-modules/README.md) you then split it into modules.
-
-### Do this
-
-1. **Clone the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook** `lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb). Run each cell in order, top to bottom.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Documentation](../documentation/README.md), is done.
+- [Podman](https://podman.io/docs/installation), installed and running, as in the [Containers](../containers/README.md) lesson.
 
 ### What you should see
 
@@ -36,8 +26,10 @@ A finished `fastqc` then `multiqc` run: a `results` folder with FastQC reports f
 
 ## Steps to execute
 
+Open each notebook in JupyterLab and run its cells in order, top to bottom. You can also [view the first notebook on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb).
+
 1. [Building a Nextflow workflow](building-a-nextflow-workflow.md) (notebook: `building-a-nextflow-workflow.ipynb`). The classic `fastqc` then `multiqc` pipeline as one Nextflow script. Source repository: [`adeslatt/Building-A-Nextflow-Script`](https://github.com/adeslatt/Building-A-Nextflow-Script). The same pipeline, split into containers, modules and `main-*.nf`, is the [multiqc-workflow case study](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/case-studies/multiqc-workflow/README.md).
-2. [Building a CWL workflow](building-a-cwl-workflow.md) (notebook: `building-a-cwl-workflow.ipynb`). The same pipeline in CWL, run with `cwltool`. Same containers, different language. Source repository: [`adeslatt/Building-A-CWL-Script`](https://github.com/adeslatt/Building-A-CWL-Script).
+2. [Building a CWL workflow](building-a-cwl-workflow.md) (notebook: `building-a-cwl-workflow.ipynb`). The same pipeline in CWL, run with `cwltool`. The same kind of container, a different language. Source repository: [`adeslatt/Building-A-CWL-Script`](https://github.com/adeslatt/Building-A-CWL-Script).
 3. [Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md) (notebook: `shared-structure-nextflow-vs-cwl.ipynb`). What the two languages share, and why container discipline lets you switch between them.
 
 ## Ask an AI assistant
@@ -136,7 +128,7 @@ process BUILD_H5AD {
 
 ### Channels
 
-A channel is a pipe that carries items, one at a time, between processes.
+A channel carries items, one at a time, between processes ([explained in the walkthrough](building-a-nextflow-workflow.md)).
 
 ```groovy
 workflow {

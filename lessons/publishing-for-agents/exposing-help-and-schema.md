@@ -13,30 +13,20 @@ You will make a command-line tool describe itself in two ways: a `--help` page f
 - Write a JSON schema for the `greet` input with Pydantic.
 - Save the schema in a `schemas/` folder.
 
-### What you need
+### Pre-requisites
 
-- [conda](https://docs.conda.io/) and a terminal. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md) and [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-- The `hello-py` command from [typer-cli-in-fifteen-minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md), installed in your environment. [Typer](https://typer.tiangolo.com/) is a Python package for making command-line tools.
-- [Pydantic](https://docs.pydantic.dev/), a Python package that describes data and writes [JSON Schema](https://json-schema.org/) for it (*Write a JSON schema* shows how to install it).
-- [JupyterLab](https://jupyter.org/) with a Python kernel, if you want to read this as a notebook.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Agentic harness](../agentic-harness/README.md), is done.
+- The `hello-py` command from [A Typer CLI in fifteen minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md) is installed in your environment. [Typer](https://typer.tiangolo.com/) is the Python package we used to make it.
+- This notebook uses a **Python** kernel. The first step below makes a conda environment for it.
 
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`exposing-help-and-schema.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/publishing-for-agents/exposing-help-and-schema.ipynb) and run each cell in order, top to bottom.
+[Pydantic](https://docs.pydantic.dev/) is a Python package that describes data and writes [JSON Schema](https://json-schema.org/) for it. *Write a JSON schema* shows how to install it.
 
 ## Steps to execute
 
 ### Make a clean environment for this walkthrough (in a terminal)
 
-Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
+Why: installing in a separate environment keeps everything you add out of your other work. We met conda environments in [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
 ```bash
 conda create -n exposing-help-and-schema -y python=3.11 ipykernel
@@ -52,7 +42,7 @@ python -m ipykernel install --user \
 
 ### Check which Python this notebook uses
 
-Why: the walkthrough runs its commands in a terminal, but it is good to know which Python and tools your notebook sees.
+Why: the walkthrough runs its commands in a terminal, but it helps to know which Python and tools your notebook sees.
 
 ```python
 import shutil, sys
@@ -65,7 +55,7 @@ for cmd in ["conda", "pip", "git", "podman"]:
 
 ### The two descriptions
 
-Why: an agent needs two things from your tool.
+Why: an agent needs two things from your tool:
 
 - **`--help`** is a page of text for people, and for an agent that scans your command. Typer, `click`, `argparse` and `docopt` all produce it.
 - **A JSON schema of the tool's inputs** is a file for programs. An agent that reads a tool's declaration (for example an MCP tool) uses it to build a correct call.
@@ -74,7 +64,7 @@ An agent that has both can call your tool reliably. An agent that has only one h
 
 ### Set up an environment (in a terminal)
 
-Why: a clean environment keeps these packages away from your other work. Run these lines in a **terminal**, not in a notebook cell:
+Why: a clean environment keeps these packages away from your other work. Run these lines in a **terminal**:
 
 ```bash
 conda create -n publish-demo -y python=3.11
@@ -173,4 +163,4 @@ CI publishes the files under a GitHub Pages route, so agents can fetch them with
 
 ## Next
 
-[MCP server](../mcp-server/README.md): the protocol that uses these schemas as tool declarations. Or return to the [publishing-for-agents lesson](README.md).
+[Platforms](../platforms/README.md): where published tools run.

@@ -1,39 +1,25 @@
 # Building a Common Workflow Language (CWL) workflow
 
-You will run the same two-step pipeline as in the Nextflow lesson, FastQC then MultiQC, written in the Common Workflow Language, so that you see how the same containers work with a different workflow language.
+You will run the same two-step pipeline as in [Building a Nextflow workflow](building-a-nextflow-workflow.md), FastQC then MultiQC, written in the Common Workflow Language, so that you see how the same kind of container works with a different workflow language.
 
-**What you will do:**
+## Start here
+
+### What you will do
 
 - Install `cwltool` and check that the CWL files are valid.
 - Run each tool alone, then the two joined as a workflow.
 - Read the same pipeline written for Snakemake.
 
-**What you need:**
+### Pre-requisites
 
-- The two images `fastqc` and `multiqc`, pushed to a registry as in the [publishing your images](../containers/publish-your-images.md). The files below name `ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9` and `.../multiqc:v1.0.0`. If you pushed your own, put your address in the `dockerPull` line of each tool.
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). `cwltool` runs each tool in its container. See the [containers lesson](../containers/README.md).
-- [Python and pip](../conda-environments/README.md), to install [`cwltool`](https://cwltool.readthedocs.io/) and [Snakemake](https://snakemake.readthedocs.io/).
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- It helps to have done [Building a Nextflow workflow](building-a-nextflow-workflow.md) first, because this is the same pipeline.
+- The two images `fastqc` and `multiqc`, pushed to a registry as in [Publish your images](../containers/publish-your-images.md). The files below name `ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9` and `.../multiqc:v1.0.0`. If you pushed your own, put your address in the `dockerPull` line of each tool.
+- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). See the [Containers](../containers/README.md) lesson.
+- Python and pip, from [Conda environments](../conda-environments/README.md), to install [`cwltool`](https://cwltool.readthedocs.io/) and [Snakemake](https://snakemake.readthedocs.io/).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 > **Check:** Are the images `ghcr.io/science-and-technology-consulting-llc/fastqc:v0.11.9` and `.../multiqc:v1.0.0` public? A student who has not pushed their own needs to pull them without logging in.
-
-## Start here
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-a-cwl-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-cwl-workflow.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
 
 ## Steps to execute
 
@@ -151,7 +137,7 @@ outputs:
       glob: $(inputs.outdir)
 ```
 
-Notice: **the same container image** that the Nextflow module pulls. The science container is portable across workflow languages. `multiqc.cwl` has the same shape and is in the [repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/cwl/multiqc.cwl).
+Notice: the tool names its container image, as a Nextflow process does. Here it is the image you built and published yourself, `fastqc:v0.11.9`, the one named in the first Nextflow example. The Nextflow script that you ran used a ready-made image from `quay.io/biocontainers` instead. Both languages only need an image name and one command, so a science container is portable across workflow languages. `multiqc.cwl` has the same shape and is in the [repository](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/cwl/multiqc.cwl).
 
 ### Download the test data
 
@@ -336,14 +322,14 @@ snakemake --cores 2 --software-deployment-method apptainer
 The container is the same in all three. What differs is the layer around it.
 
 - **CWL is a specification.** It describes tools and workflows. To run one you need a runner, and `cwltool` is the reference implementation ([cwltool documentation](https://cwltool.readthedocs.io/)). Nextflow is the language and the engine in one system ([Nextflow and CWL, Seqera blog](https://seqera.io/blog/nextflow-and-cwl)).
-- **Snakemake runs containers through Apptainer or Singularity** ([Snakemake documentation](https://snakemake.readthedocs.io/)). Nextflow lets you choose Podman, Apptainer, Podman and others in a configuration profile, and the same script runs on your laptop, on a cluster or on a cloud platform (Section 7.8).
+- **Snakemake runs containers through Apptainer or Singularity** ([Snakemake documentation](https://snakemake.readthedocs.io/)). Nextflow lets you choose Podman, Apptainer and others in a configuration profile, and the same script runs on your laptop, on a cluster or on a cloud platform (Section 7.8).
 - **Wiring.** CWL writes each connection down. Snakemake infers the order from file names. Nextflow passes items through channels, so one process runs once for each item that arrives, with no list of files to write (Section 7.6).
 
 Check the current documentation of each before you rely on these points. The tools change.
 
 ### Key takeaways
 
-- The **same Podman containers** back the Nextflow, CWL and Snakemake versions.
+- The same kind of Podman container backs the Nextflow, CWL and Snakemake versions: each names an image and runs one command.
 - Test each tool alone *before* composing them.
 - Wiring between steps is explicit in CWL, inferred from file names in Snakemake, and carried by channels in Nextflow. The mechanics differ. The intent is the same.
 - Parameters live at the workflow level and are passed to each step.
@@ -357,4 +343,4 @@ Check the current documentation of each before you rely on these points. The too
 
 ## Next
 
-[Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md): what the two languages share, and how the container-level discipline lets you switch between them. Or go back to the [Introduction to Nextflow lesson](README.md).
+[Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md): what the two languages share, and how the container-level discipline lets you switch between them.

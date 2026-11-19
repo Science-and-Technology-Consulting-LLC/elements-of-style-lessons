@@ -6,25 +6,15 @@ This lesson shows you how to put one analysis tool in a sealed container, build 
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Building reusable command-line tools](../reusable-clis/README.md). Your container will run one of those tools. You also need [Podman](https://podman.io/docs/installation).
-
-### Do this
-
-1. **Clone the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook** `lessons/containers/building-dockerfiles.ipynb`. From the repository folder, start JupyterLab with `jupyter lab`, then open the file. You can also [view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-dockerfiles.ipynb). Run each cell in order, top to bottom.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Building reusable command-line tools](../reusable-clis/README.md), is done. Your container will run one of those tools.
+- Podman is installed. We install it in [Install Podman](#install-podman), further down this page.
 
 ### What you should see
 
-Two container images on your machine, `fastqc` and `multiqc`, each started with a command such as `podman run ... fastqc -h` that prints the tool's help. The R walkthrough adds a third, `hello-r`.
+Two container images on your machine, `fastqc` and `multiqc`. Each starts with a command such as `podman run ... fastqc -h`, which prints the tool's help. The R walkthrough adds a third image, `hello-r`.
 
 > **Picture to add:** the output of `podman images` listing the `fastqc` and `multiqc` images (save as assets/overview.png)
 
@@ -42,7 +32,7 @@ Two container images on your machine, `fastqc` and `multiqc`, each started with 
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md#using-the-ai-prompts).
 
 **Ask it to explain.**
 
@@ -75,9 +65,9 @@ Review this Dockerfile for one container, one job. Flag unpinned versions, files
 
 ## Supplementary information
 
-A container is a sealed box with everything your code needs: the system libraries, the language, your package versions and your script. Hand it to a collaborator, a cluster or an AI agent and the work runs the way it did on your laptop.
+A container is a sealed box with everything your code needs: the system libraries, the language, your package versions and your script. Hand it to a collaborator, a cluster or an AI agent, and the work runs the way it did on your laptop.
 
-**The rule: one container, one job.** A container that does QC *and* differential expression *and* plotting is hard to test and hard to fit into a workflow. A container that does QC is one brick you can snap together with Nextflow.
+**The rule: one container, one job.** A container that does QC *and* differential expression *and* plotting is hard to test and hard to fit into a workflow. A container that only does QC is one brick you can snap together with Nextflow.
 
 > **Short image names.** Podman may ask which registry to use for a name such as `python`. Write the full name, for example `docker.io/library/python:3.11-slim`, and it will not ask.
 
@@ -107,20 +97,20 @@ ENTRYPOINT ["python", "/opt/scanpy_qc.py"]
 1. **Base image.** Pick a `-slim` Python image or a Bioconductor image for R. Avoid `latest`; pin the version.
 2. **Pinned installs.** Pin every version, and use `--no-cache-dir` to keep the image small.
 3. **One entry-point script.** If you want two, you have two containers.
-4. **`ENTRYPOINT`.** Running the image with no arguments gives the real tool, with `--help` (see [reusable CLIs](../reusable-clis/README.md)).
+4. **`ENTRYPOINT`.** Running the image with no arguments gives the real tool, with `--help` (see [Building reusable command-line tools](../reusable-clis/README.md)).
 
 ### Install Podman
 
-[Podman](https://podman.io/) builds and runs containers. It needs no background service, and the Lifebit platform uses it, so what you build here moves there unchanged. It reads the same `Dockerfile` that Docker reads. Podman can also read a file named `Containerfile`.
+[Podman](https://podman.io/) builds and runs containers. It needs no background service, and the Lifebit platform uses it, so what you build here moves there unchanged. It reads the same `Dockerfile` that Docker reads. It can also read a file named `Containerfile`.
 
-Podman is only for building and testing on your own machine. When you push to GitHub, a GitHub Actions job can build and push the image for you (see [continuous integration](../continuous-integration/README.md)), so you can skip Podman if you do not have admin rights.
+We use Podman only to build and test on your own computer. A GitHub Actions job can build and push the image for you when you push to GitHub (see [Continuous integration](../continuous-integration/README.md)). So if you do not have admin rights, you can skip Podman.
 
 ::::{tab-set}
 
 :::{tab-item} macOS
 :sync: mac
 
-On a Mac, Podman runs inside a small Linux virtual machine. You start it once after each restart.
+On a Mac, Podman runs inside a small Linux virtual machine. You start it once after each restart of your computer.
 
 ```bash
 brew install podman

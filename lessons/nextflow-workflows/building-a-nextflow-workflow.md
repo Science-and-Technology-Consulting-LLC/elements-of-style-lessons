@@ -2,39 +2,23 @@
 
 You will run a two-step pipeline, first FastQC on sequencing files and then MultiQC to combine the results, using [Nextflow](https://www.nextflow.io/docs/latest/), so that the same steps run the same way on any computer.
 
-**What you will do:**
+## Start here
+
+### What you will do
 
 - Get the example files and install Nextflow.
 - Learn the five parts of a Nextflow script: parameters, processes, channels, operators and configuration.
 - Write a short Nextflow script and run it on two small test files.
 
-**What you need:**
+### Pre-requisites
 
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). See the [containers lesson](../containers/README.md).
-- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) and the `eos` environment from [conda environments](../conda-environments/README.md).
-- [Nextflow](https://www.nextflow.io/docs/latest/install.html) (*Install Nextflow* installs it with conda).
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Documentation](../documentation/README.md), is done.
+- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). See the [Containers](../containers/README.md) lesson.
 - An internet connection. The test files come from [Zenodo](https://zenodo.org/records/7025773), and Podman downloads two small tool images on the first run.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
-You do not need the images from the earlier lessons. The script below uses public images.
-
-## Start here
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-a-nextflow-workflow.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-workflows/building-a-nextflow-workflow.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+You do not need the images from the earlier lessons. The script below uses public images. Nextflow itself is installed in the first steps below.
 
 ## Steps to execute
 
@@ -65,9 +49,7 @@ ls -l
 
 ### Install Nextflow
 
-*Why:* Nextflow is the program that reads your script and runs the steps. The first line installs it with conda into the active environment. The other two lines show where it is and which version you have.
-
-Start JupyterLab from a terminal where you have already run `conda activate eos`. Then the notebook uses the same environment.
+*Why:* Nextflow is the program that reads your script and runs the steps. The first line installs it with conda ([Conda environments](../conda-environments/README.md)). The other two lines show where it is and which version you have.
 
 Run the next cell.
 
@@ -262,7 +244,4 @@ ls results
 
 ## Next
 
-- [Nextflow modules and features](../nextflow-modules/README.md): the same pipeline with each tool in its own module and container, then a tour of channels, parameters, resume, profiles and reports.
-- [Building a CWL workflow](building-a-cwl-workflow.md): the same two steps written in Common Workflow Language, for comparison.
-- [Shared structure of Nextflow and CWL](shared-structure-nextflow-vs-cwl.md): what the two languages agree on, and why that makes your work portable.
-- [The multiqc-workflow case study](../../case-studies/multiqc-workflow/README.md): the same pipeline reorganised into containers, modules and a workflow.
+[Building a CWL workflow](building-a-cwl-workflow.md): the same two steps written in Common Workflow Language, for comparison.

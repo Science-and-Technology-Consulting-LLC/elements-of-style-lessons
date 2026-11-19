@@ -2,7 +2,7 @@
 
 You will simulate three hospitals that each train a model on their own data and send only the model's numbers to a coordinator. This is the smallest working picture of *federated computing*: the data stays where it is, and only small summaries travel.
 
-*Part of the [federated-computing](README.md) lesson. This is the mechanical shape behind the oadr-autoantibody notebook.*
+*Part of the [Federated computing](README.md) lesson. This is the mechanical shape behind the oadr-autoantibody notebook.*
 
 ## Start here
 
@@ -13,30 +13,18 @@ You will simulate three hospitals that each train a model on their own data and 
 - Combine the three sets of coefficients with a median at the coordinator.
 - See that the raw data never left the site folders.
 
-### What you need
+### Pre-requisites
 
-- [conda](https://docs.conda.io/) to make a clean environment. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md).
-- [JupyterLab](https://jupyter.org/) with a Python kernel. See [starting a JupyterLab notebook](../interactive-computing/starting-a-jupyter-lab-notebook.md).
-- The Python packages [NumPy](https://numpy.org/) and [pandas](https://pandas.pydata.org/) (*Install the packages the simulation uses (in a terminal)* installs them).
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`simulating-a-3x3-federated-run.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-computing/simulating-a-3x3-federated-run.ipynb) and run each cell in order, top to bottom.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson page, [Federated computing](README.md), is read.
+- The notebook is open: `simulating-a-3x3-federated-run.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/federated-computing/simulating-a-3x3-federated-run.ipynb)). Run each cell in order, top to bottom. It uses a Python kernel.
+- We use [NumPy](https://numpy.org/) and [pandas](https://pandas.pydata.org/). The steps below install them.
 
 ## Steps to execute
 
 ### Make a clean environment for this walkthrough (in a terminal)
 
-Why: a *conda environment* is a private folder of programs. Installing here keeps everything you add out of your other work. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
+Why: a clean environment keeps what we add out of our other work. Environments are explained in [creating a conda environment](../conda-environments/creating-a-conda-environment.md). Run these lines in a **terminal**, not in a notebook cell. `conda create` makes the environment, `conda activate` switches to it, and `ipykernel install` lets Jupyter use it.
 
 ```bash
 conda create -n simulating-a-3x3-federated-run -y python=3.11 ipykernel
@@ -65,7 +53,7 @@ conda activate fed-demo
 
 ### Check which Python this notebook uses
 
-Why: if the notebook uses a Python without NumPy and pandas, *Check which folder you are in* stops with `ModuleNotFoundError`. It is better to learn that now.
+Why: if the notebook uses a Python without NumPy and pandas, the later cells stop with `ModuleNotFoundError`. It is better to learn that now.
 
 ```python
 import shutil, sys
@@ -74,7 +62,7 @@ for cmd in ["conda", "pip", "git", "podman"]:
     print(f"{cmd:<8}", shutil.which(cmd) or "MISSING")
 ```
 
-**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. For this walkthrough only the Python line matters. `MISSING` for `podman` is fine.
+**What you should see:** the first line shows which Python the notebook uses. The other lines show where `conda`, `pip`, `git` and `podman` live, or `MISSING`. Only the Python line matters here. `MISSING` for `podman` is fine.
 
 ```python
 import numpy, pandas
@@ -82,15 +70,15 @@ print("numpy ", numpy.__version__)
 print("pandas", pandas.__version__)
 ```
 
-**What you should see:** two lines with version numbers. If you see `ModuleNotFoundError`, the notebook's Python lacks the packages. See **If something goes wrong** below.
+**What you should see:** two lines with version numbers. If you see `ModuleNotFoundError`, the notebook's Python lacks the packages. See *If something goes wrong* below.
 
 ### The idea
 
-Three sites each hold a fold (a slice) of the data. Each site trains locally on its own fold. The coordinator combines *the model parameters* (never the raw data) into one global model. What makes it *federated* is that raw data never leaves each site.
+Each of the three sites holds its own slice of the data and trains on it locally. The coordinator combines *the model parameters*, never the raw data, into one global model.
 
 ### Check which folder you are in
 
-Why: this notebook creates a folder called `sites` next to it. You want to know where that will be.
+Why: this notebook creates a folder called `sites` next to it, and we want to know where.
 
 ```python
 import os
@@ -181,10 +169,10 @@ The three numbers are close to 1.5, -2.0 and 0.3, the values used to make the da
 ### If something goes wrong
 
 - **`ModuleNotFoundError: No module named 'numpy'` (or `pandas`).** The notebook's Python is not the environment with the packages. In a terminal run `conda activate` for the environment your kernel uses, then `pip install numpy pandas`. Restart the kernel and run the cells again.
-- **`conda: command not found` on Windows.** Open *Git Bash* (not PowerShell) after installing conda. See [conda-environments](../conda-environments/README.md).
+- **`conda: command not found`.** Open a new terminal, as described on the [Introduction page](../introduction/README.md), then try again.
 - **The kernel tile for the new environment is missing in the Launcher.** Restart JupyterLab completely. Close the browser tab and stop `jupyter lab` in the terminal with Ctrl-C, then start it again.
-- **`FileNotFoundError` on `sites/siteA/train.csv`.** You skipped *Make three sites and their data*. Run that cell first, then *Train at each site*.
+- **`FileNotFoundError` on `sites/siteA/train.csv`.** You skipped the step *Make three sites and their data*. Run that cell first, then *Train at each site*.
 
 ## Next
 
-Return to the [federated-computing lesson](README.md), or go to the real biomedical version with four cohorts and a proper coordinator: [oadr-autoantibody](../../case-studies/oadr-autoantibody/README.md) (cohorts SDY524, SDY569, SDY797 and SDY1737).
+Return to the [Federated computing lesson](README.md), or go to the real biomedical version with four cohorts and a proper coordinator: [oadr-autoantibody](../../case-studies/oadr-autoantibody/README.md) (cohorts SDY524, SDY569, SDY797 and SDY1737).

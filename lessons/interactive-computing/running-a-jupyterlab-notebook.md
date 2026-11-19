@@ -8,30 +8,15 @@ You will copy a real R notebook from GitHub, open it in JupyterLab, and run it f
 - Open the notebook and choose the R kernel.
 - Run every cell, then use **Restart Kernel and Run All Cells**.
 
-**What you need:**
-
-- JupyterLab running: [starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md).
-- The R kernel registered: [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
-- [Git](https://git-scm.com/) installed ([command-line-and-git-bash](../command-line-and-git-bash/README.md)).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`running-a-jupyterlab-notebook.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/interactive-computing/running-a-jupyterlab-notebook.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Reproducible environments with Conda](../conda-environments/README.md), is done.
+- JupyterLab is running: [starting-a-jupyter-lab-notebook.md](starting-a-jupyter-lab-notebook.md).
+- The R kernel is registered. The Introduction does this in step 4. If there is no *R* tile in the Launcher, see [exploring-an-r-notebook.md](exploring-an-r-notebook.md).
+- The kernel name at the top right of this notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
@@ -71,7 +56,7 @@ pwd
 
 ### Clone the project
 
-To **clone** is to copy a GitHub project onto your computer. You can also do this in a JupyterLab terminal (*File*, *New*, *Terminal*). The command is the same.
+To **clone** is to copy a GitHub project onto your computer, as we did for the course in the Introduction. You can also run this in a JupyterLab terminal. The command is the same.
 
 ```bash
 [ -d exampleVolcanoPlotNotebook ] || git clone https://github.com/NIH-NICHD/exampleVolcanoPlotNotebook.git
@@ -108,7 +93,7 @@ README.md  Reading-data-and-plotting-in-R.ipynb  install_dependencies.R
 
 In the JupyterLab file browser (left side), open `eos-practice`, then `exampleVolcanoPlotNotebook`, and double-click `Reading-data-and-plotting-in-R.ipynb`.
 
-If JupyterLab does not offer the *R* kernel, either you need to register [IRkernel](https://irkernel.github.io/) (see [exploring-an-r-notebook.md](exploring-an-r-notebook.md)), or your Lifebit image has Python only. In that case use an image with **R + Python (Bioconductor)**.
+If JupyterLab does not offer the *R* kernel, either [IRkernel](https://irkernel.github.io/) is not registered (see [exploring-an-r-notebook.md](exploring-an-r-notebook.md)), or your Lifebit image has Python only. In that case use an image with **R + Python (Bioconductor)**.
 
 > **Picture to add:** the notebook open in JupyterLab with the kernel name "R" at the top right (save as assets/running-a-jupyterlab-notebook-step-7.png)
 
@@ -116,7 +101,7 @@ If JupyterLab does not offer the *R* kernel, either you need to register [IRkern
 
 ### Run every cell, top to bottom
 
-Press `Shift-Enter` to run the current cell and move to the next one. When you finish exploring, use the habit that proves a notebook works:
+Press `Shift-Enter` to run the current cell and move to the next one, as in [Let's dive in](../introduction/lets-dive-in.md). When you finish exploring, use the habit that proves a notebook works:
 
 > **Kernel**, then **Restart Kernel and Run All Cells**.
 
@@ -132,8 +117,7 @@ If the notebook gives the same output, it is *reproducible*. If not, you found a
 
 ### What you practised
 
-- Logging into your environment (your laptop).
-- Starting an interactive JupyterLab session.
+- Working in your environment on your laptop.
 - Cloning a repo from GitHub.
 - Running notebook cells with an R kernel.
 - Making your first visualisation, a volcano plot.
@@ -141,7 +125,7 @@ If the notebook gives the same output, it is *reproducible*. If not, you found a
 ### If something goes wrong
 
 - **`destination path 'exampleVolcanoPlotNotebook' already exists`.** You already cloned it. Skip the clone and run `cd exampleVolcanoPlotNotebook`.
-- **No R kernel in the Launcher.** See [exploring-an-r-notebook.md](exploring-an-r-notebook.md) to install and register it.
+- **No R kernel in the Launcher.** See [exploring-an-r-notebook.md](exploring-an-r-notebook.md) to register it.
 - **An error such as "there is no package called ..." or a missing data file.** The notebook needs its packages and data. See the setup at the top of this notebook and the [recap-workspace-setup lesson](../conda-environments/recap-workspace-setup.md).
 
 ## Next

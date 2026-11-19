@@ -13,28 +13,12 @@ You will install the CloudOS command-line client and sign it in with an API key.
 - Save your key and settings in a profile with `cloudos configure`.
 - Check that the key works by listing your projects.
 
-### What you need
+### Pre-requisites
 
-- A CloudOS account and a workspace. See [creating-a-cloudos-account](creating-a-cloudos-account.md) and [logging-into-cloudos](logging-into-cloudos.md).
-- [Python](https://www.python.org/) 3.9 or higher, with `pip`. See [conda-environments](../conda-environments/README.md).
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-- [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`authenticating-on-cloudos.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/authenticating-on-cloudos.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous pages, [creating a CloudOS account](creating-a-cloudos-account.md) and [logging into CloudOS](logging-into-cloudos.md), are done. You have a CloudOS account and a workspace.
+- [Python](https://www.python.org/) 3.9 or higher, with `pip`. We set these up with conda in [Reproducible environments with Conda](../conda-environments/README.md).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
@@ -55,7 +39,7 @@ pip install cloudos-cli
 cloudos --help
 ```
 
-**What you should see:** `pip` prints lines about downloading and installing, ending in `Successfully installed` with `cloudos-cli` in the list. Then `cloudos --help` prints a usage message and a list of commands such as `configure`, `project`, `workflow` and `job`. If you see `command not found`, see below.
+**What you should see:** `pip` prints lines about downloading and installing, ending in `Successfully installed` with `cloudos-cli` in the list. Then `cloudos --help` prints a usage message and a list of commands such as `configure`, `project`, `workflow` and `job`. If you see `command not found`, see *If something goes wrong*.
 
 ### Configure a profile
 
@@ -63,7 +47,7 @@ Why: a *profile* is a saved set of settings. You enter them once and every later
 
 `cloudos configure` asks for your API key, the platform URL, a project name, the execution platform (`aws` is the default), the repository provider, a workflow name (if any) and a session ID for interactive analysis. Run it **in a terminal** (it asks questions, so it cannot run as a notebook cell). Answer each prompt.
 
-The later cells in this page use a profile named `my_profile`, so give your profile that name:
+The later commands on this page use a profile named `my_profile`, so give your profile that name:
 
 ```text
 cloudos configure --profile my_profile
@@ -100,15 +84,15 @@ Why: a table of your projects proves the key is valid and that the client can re
 cloudos project list --profile my_profile
 ```
 
-**What you should see:** a table of the projects in your workspace. That means the key works. An error about authentication or an invalid key means the key or URL in the profile is wrong (see below).
+**What you should see:** a table of the projects in your workspace. That means the key works. An error about authentication or an invalid key means the key or URL in the profile is wrong (see *If something goes wrong*).
 
 ### Container images
 
-CloudOS runs the images your modules name. The lessons publish images to GitHub's registry. See [containers](../containers/README.md) and the [Nextflow modules preamble](../containers/publish-your-images.md).
+CloudOS runs the images your modules name. The lessons publish images to GitHub's registry. See [Containers](../containers/README.md) and [publish your images](../containers/publish-your-images.md).
 
 ### Bonus: `pushd` and `popd`
 
-Why: two small shell tools you will use again. `pushd <dir>` remembers where you are, then jumps to `<dir>`. `popd` jumps back. This cell visits the `.cloudos` folder, lists it and returns.
+Why: these are two small shell tools you will use again. `pushd <dir>` remembers where you are, then jumps to `<dir>`. `popd` jumps back. This visits the `.cloudos` folder, lists it and returns.
 
 ```bash
 pushd ~/.cloudos
@@ -126,4 +110,4 @@ popd
 
 ## Next
 
-[Running a pipeline on CloudOS](running-a-pipeline-on-cloudos.md): now that you are signed in, run something. Or return to the [platforms lesson](README.md).
+[Running a pipeline on CloudOS](running-a-pipeline-on-cloudos.md): now that you are signed in, run something. 

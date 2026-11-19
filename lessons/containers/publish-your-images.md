@@ -8,30 +8,17 @@ You will tag your two images with a full registry address and push them to GitHu
 - Give each image a full, versioned address.
 - Log in to the registry and push both images.
 
-**What you need:**
-
-- The two images from [building container images](building-dockerfiles.md): `fastqc` and `multiqc`, in the folders `~/fastqc-docker` and `~/multiqc-docker`.
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). See the [containers lesson](README.md).
-- A [GitHub account](https://github.com/signup) and a personal access token (a password that only works for chosen tasks) with the `write:packages` permission. See [GitHub's guide to the container registry](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous walkthrough, [Building container images](building-dockerfiles.md), is done. You have the `fastqc` and `multiqc` images, in the folders `~/fastqc-docker` and `~/multiqc-docker`.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- Podman is installed and, on a Mac or Windows computer, running (`podman machine start`). We install it in [Install Podman](README.md#install-podman).
+- A [GitHub account](https://github.com/signup) and a personal access token (a password that only works for chosen tasks) with the `write:packages` permission. See [GitHub's guide to the container registry](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`publish-your-images.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/publish-your-images.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+If a command says *command not found*, see [the command line and Git Bash](../command-line-and-git-bash/README.md).
 
 ## Steps to execute
 
@@ -44,11 +31,11 @@ This notebook runs shell commands with the Bash kernel and uses tools such as `g
 | **[GitHub Container Registry (GHCR)](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry)** | Default for open work. Free, unlimited public images, and it sits next to your code. | Personal access token with `write:packages` |
 | **[Docker Hub](https://hub.docker.com/)** | The older default. The free tier now limits how often others can pull. | Docker Hub access token |
 
-The [containers lesson](README.md) uses **GHCR**. Pick one per repository and stay with it.
+We use **GHCR**. Pick one per repository and stay with it.
 
 ### Go to your home folder
 
-*Why:* the next cell uses the folder names `fastqc-docker` and `multiqc-docker`, so it must start in the folder that holds both. That is the home folder if you followed [building container images](building-dockerfiles.md).
+*Why:* the next cell uses the folder names `fastqc-docker` and `multiqc-docker`, so it must start in the folder that holds both. That is the home folder if you followed [Building container images](building-dockerfiles.md).
 
 Run the next cell.
 
@@ -62,7 +49,6 @@ ls
 ### Rebuild the images (recap)
 
 *Why:* this makes sure both images exist and are current. Because Podman remembers each step, the rebuild is fast if nothing changed.
-
 
 Run the next cell.
 
@@ -112,4 +98,4 @@ The registry address is now the *portable address* of your image. Your Nextflow 
 
 ## Next
 
-[Continuous integration](../continuous-integration/README.md): let GitHub Actions build and push your images for you, so that you do not repeat these steps by hand. The *Use an image of your own* step of [two containers, two modules](../nextflow-modules/fastqc-and-multiqc-modules.md) then runs a published image in a workflow.
+[Continuous integration](../continuous-integration/README.md): let GitHub Actions build and push your images for you, so that you do not repeat these steps by hand. To run a published image in a workflow, see the *Use an image of your own* step of [two containers, two modules](../nextflow-modules/fastqc-and-multiqc-modules.md). Then [Building a Nextflow workflow](../nextflow-workflows/building-a-nextflow-workflow.md) shows the same two steps in one file.

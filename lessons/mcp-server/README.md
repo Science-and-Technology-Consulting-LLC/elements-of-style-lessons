@@ -6,25 +6,18 @@ This lesson shows you how to wrap a command-line tool in a small *MCP server* so
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Federated learning](../federated-learning/README.md). You also need the `hello-py` tool from [A Typer CLI in fifteen minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md).
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Federated learning](../federated-learning/README.md), is done.
+- The `hello-py` tool from [A Typer CLI in fifteen minutes](../reusable-clis/typer-cli-in-fifteen-minutes.md) (lesson 7).
+- An assistant that understands MCP, such as [Claude Desktop](https://claude.ai/download) or [Claude Code](https://docs.claude.com/en/docs/claude-code), for the last step.
 
-### Do this
-
-1. **Clone the course repository.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Then open `lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel. Its first section makes a conda environment.
+Open `lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/mcp-server/wrap-a-typer-cli-as-an-mcp-server.ipynb)) and run each cell in order, top to bottom. This notebook uses a Python kernel, and its first section makes a conda environment for it.
 
 ### What you should see
 
-You write `hello_mcp_server.py`, run it, and ask an MCP-aware assistant such as Claude Desktop to use the `greet` tool. The assistant replies `Hello, Annie!`.
+We write `hello_mcp_server.py`, run it, and ask an MCP-aware assistant such as Claude Desktop to use the `greet` tool. The assistant replies `Hello, Annie!`.
 
 > **Picture to add:** the assistant's chat showing the greet tool call and its reply (save a screenshot of the finished demo) (save as assets/overview.png)
 
@@ -40,7 +33,7 @@ You write `hello_mcp_server.py`, run it, and ask an MCP-aware assistant such as 
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -62,7 +55,6 @@ Review this MCP server. Check that each tool has a clear name and description, t
 <paste server>
 ```
 
-
 ## Further reading
 
 - [Model Context Protocol specification](https://modelcontextprotocol.io/)
@@ -73,7 +65,7 @@ Review this MCP server. Check that each tool has a clear name and description, t
 
 ## Supplementary information
 
-Every tool you built in the earlier lessons becomes available to an AI assistant once you wrap it with MCP. The work does not change. Its reach grows.
+Every tool you built in the earlier lessons becomes available to an AI assistant once you wrap it with MCP. The work does not change, but its reach grows. The [Platforms](../platforms/README.md) lesson shows where such servers run, especially Lifebit.
 
 ### The worked example
 
@@ -83,18 +75,7 @@ The headline example is `nsforest-cli` from the NIH-NLM `sc-nsforest-qc-nf` work
 
 The assistant reads the MCP-exposed `--help`, asks any clarifying questions and runs the workflow on Lifebit. The researcher never types a Nextflow command.
 
-### What this lesson builds
-
-1. A minimal MCP server in Python that wraps a Typer CLI.
-2. The MCP manifest that tells the assistant what tools exist.
-3. A way to register it so Claude Code, Claude.ai or ChatGPT can find it.
-4. The end-to-end flow: chat, assistant, MCP, CLI, result.
-
 The deliverable is a working MCP server that exposes `nsforest-cli` (or any of your CLIs) to Claude Code, with a recorded conversation showing the assistant working out the inputs and running the workflow.
-
-### Pairs well with
-
-MCP plus [Platforms](../platforms/README.md) (especially Lifebit): assistants drive CLIs, CLIs run on the transport layer, results come back.
 
 ### Register the server with Claude Code
 

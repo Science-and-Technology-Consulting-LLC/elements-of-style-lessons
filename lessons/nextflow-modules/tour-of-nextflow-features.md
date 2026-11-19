@@ -1,7 +1,5 @@
 # A tour of Nextflow's features
 
-**This walkthrough continues the project from [two containers, two modules](fastqc-and-multiqc-modules.md). Do that one first.** It also needs [Nextflow](https://www.nextflow.io/) and [Podman](https://podman.io/docs/installation).
-
 You will run the same FastQC and MultiQC workflow again and again, each time using one more feature of Nextflow: channels, parameters, resource settings, resume, profiles and run reports. This matters because these are the features that let one workflow run unchanged on your laptop, on a cluster and on the Lifebit platform.
 
 *Part of the [Nextflow modules and features](README.md) lesson.*
@@ -17,28 +15,12 @@ You will run the same FastQC and MultiQC workflow again and again, each time usi
 - Choose where the containers run with a profile.
 - Write a report, a timeline and a diagram of the run.
 
-### What you need
+### Pre-requisites
 
-- The folder `~/eos-practice/qc-modules` from [two containers, two modules](fastqc-and-multiqc-modules.md), with its `data`, `modules`, `main.nf` and `nextflow.config`.
-- [Nextflow](https://www.nextflow.io/docs/latest/install.html), installed. Check with `nextflow -version`.
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer its machine must be running (`podman machine start`). See [containers](../containers/README.md).
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`tour-of-nextflow-features.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/tour-of-nextflow-features.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `nextflow` and `podman`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous page, [Two containers, two modules](fastqc-and-multiqc-modules.md), is done. This walkthrough continues that project: the folder `~/eos-practice/qc-modules` with its `data`, `modules`, `main.nf` and `nextflow.config`.
+- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer its machine must be running (`podman machine start`). See [Containers](../containers/README.md).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 > **Check:** I ran these cells with Podman 6.2.0 and Nextflow 26.10 on an Apple-silicon Mac on 2026-11-16, and they passed. The lines Nextflow prints can differ between its versions. I have not run them on Windows or Linux.
 
@@ -57,7 +39,7 @@ ls
 
 ### See what flows through a channel
 
-Why: a *channel* carries data between steps. When a step does not do what you expect, the first thing to check is what is in the channel. `.view` prints each item as it passes. This cell rewrites `main.nf` with one extra line that prints each sample and its two files.
+Why: when a step does not do what you expect, the first thing to check is what is in its channel ([Introduction to Nextflow](../nextflow-workflows/building-a-nextflow-workflow.md)). `.view` prints each item as it passes. This cell rewrites `main.nf` with one extra line that prints each sample and its two files.
 
 ```bash
 cat > main.nf <<'EOF'
@@ -79,7 +61,7 @@ nextflow run main.nf -with-podman -resume
 
 ### Change a setting from the command line
 
-Why: a *parameter* is a setting that belongs to the run, not to the code. Anything in the `params` block of `nextflow.config` can be changed with `--name value`. Here you send the reports to a different folder.
+Why: a parameter belongs to the run, not to the code. Anything in the `params` block of `nextflow.config` can be changed with `--name value`. Here you send the reports to a different folder.
 
 ```bash
 nextflow run main.nf -with-podman -resume --outdir results-two
@@ -106,7 +88,7 @@ ls results-json
 
 ### Give a process more cores in the configuration
 
-Why: how much computer a step needs is a property of the computer you run on, not of the tool. So it goes in the configuration, where you can change it without touching the module. The `withName` line picks the process by its name. This cell rewrites `nextflow.config` with that line and with two *profiles*, which the next steps use.
+Why: how much computer a step needs is a property of the computer you run on, not of the tool. So it goes in the configuration, where you can change it without touching the module. The `withName` line picks the process by its name. This cell rewrites `nextflow.config` with that line and with two *profiles* (named sets of settings), which the next steps use.
 
 ```bash
 cat > nextflow.config <<'EOF'
@@ -217,18 +199,6 @@ ls
 
 ## Supplementary information
 
-### Where each feature lives
-
-| Feature | Where you set it | In this lesson |
-|---------|------------------|----------------|
-| Channels | `main.nf` | *See what flows through a channel* |
-| Parameters | `params` in `nextflow.config`, `--name`, `-params-file` | *Change a setting…*, *Keep settings in a file* |
-| Process settings | `process` in `nextflow.config`, or directives in the module | *Give a process more cores…* |
-| Containers | `container` in the module, the engine in a profile | *Run it again…* |
-| Profiles | `profiles` in `nextflow.config`, `-profile` | *Run it again…* |
-| Resume | `-resume` | *Run it again and watch it skip work* |
-| Reports | `-with-report`, `-with-timeline`, `-with-dag`, `-with-trace` | *Write a report…* |
-
 ### Profiles for other computers
 
 A profile can also choose where the work runs. The course repository's `configs/lifebit.config` sets the executor to AWS Batch for the Lifebit platform, and `configs/podman.config` runs everything on your own computer. The workflow files are the same for both. See [platforms](../platforms/README.md).
@@ -241,4 +211,4 @@ A workflow that other people run should say which parameters it has, their types
 
 ## Next
 
-Return to the [Nextflow modules and features lesson](README.md), or go on to [Differential analysis](../differential-analysis/README.md), where the same kind of pieces run a real analysis.
+[Differential analysis](../differential-analysis/README.md): the same kind of pieces run a real analysis.

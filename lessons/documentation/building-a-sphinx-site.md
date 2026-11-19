@@ -1,40 +1,24 @@
 # Building a Sphinx site: the local build and deploy loop
 
-You will build a small documentation website on your own computer and see how GitHub publishes it. Documentation is what turns a script into a tool that someone else can use.
+We will build a small documentation website on your own computer and see how GitHub publishes it. Documentation is what turns a script into a tool that someone else can use.
 
 *Part of the [documentation](README.md) lesson.*
 
 ## Start here
+
+### Pre-requisites
+
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Continuous integration](../continuous-integration/README.md), is done.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- A [GitHub account](https://github.com/signup), only for the last step (publishing). Every other step works without one.
 
 ### What you will do
 
 - Install [Sphinx](https://www.sphinx-doc.org/) and the add-ons that read Markdown.
 - Write three small files: a settings file, a home page and one more page.
 - Build the files into a website of HTML pages.
-- Read the workflow file that publishes the site on GitHub Pages.
-
-### What you need
-
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-- Python 3 and `pip` inside a conda environment named `eos`. See [creating a conda environment](../conda-environments/creating-a-conda-environment.md).
-- [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
-- A [GitHub account](https://github.com/signup), only for the last step (publishing). You can do every other step without one.
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-a-sphinx-site.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/building-a-sphinx-site.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- See where the next walkthrough publishes the site on GitHub Pages.
 
 ## Steps to execute
 
@@ -52,7 +36,7 @@ pwd
 
 Why: [Sphinx](https://www.sphinx-doc.org/) turns text files into a website. The add-ons let it read [Markdown](https://myst-parser.readthedocs.io/) pages and notebooks, use the Read the Docs look, and add a copy button to code blocks.
 
-Start JupyterLab from the `eos` environment: run `conda activate eos` in a terminal, then `jupyter lab`.
+JupyterLab is running from `eos`, so the packages go into the right Python.
 
 ```bash
 pip install sphinx sphinx-rtd-theme myst-parser myst-nb \
@@ -161,9 +145,9 @@ Why: GitHub can rebuild and publish your site every time you push. That needs a 
 
 ### If something goes wrong
 
-- **`sphinx-build: command not found`.** The install in *Write the settings file* went into a different Python. Run `conda activate eos` in the terminal, start JupyterLab from there, and run *Write the settings file* again.
+- **`sphinx-build: command not found`.** The install in *Install Sphinx and its add-ons* went into a different Python. Run `conda activate eos` in the terminal, start JupyterLab from there, and run *Install Sphinx and its add-ons* again.
 - **Build stops with `WARNING` and `build finished with problems`.** `-W` makes any warning an error. Read the line above it. It names the file and the problem, usually a typo in `conf.py` or `index.md`. Fix the file and run *Build the site* again.
-- **`bash: conda: command not found` on Windows.** Open *Git Bash*, not PowerShell, and see [conda-environments](../conda-environments/README.md).
+- **`bash: conda: command not found` on Windows.** Open *Git Bash*, not PowerShell. Conda is set up in [Reproducible environments with Conda](../conda-environments/README.md).
 - **The page at localhost:8000 does not load.** The server from *Look at the site* is not running, or another program uses port 8000. Run the command in *Look at the site* again, or change `8000` to `8001` in both the command and the address.
 
 ## Next

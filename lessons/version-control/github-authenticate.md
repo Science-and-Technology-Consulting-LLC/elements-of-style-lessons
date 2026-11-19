@@ -2,43 +2,20 @@
 
 You will prove to GitHub who you are, from the terminal. This matters because GitHub accepts your changes only from a signed-in user.
 
-**What you will do:**
-
-- Create a Personal Access Token on the GitHub website.
-- Sign in with the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
-- Check that you are signed in.
-
-**What you need:**
-
-- A free [GitHub account](https://github.com/signup).
-- The `gh` program. Install it with [why-git-and-setup.md](why-git-and-setup.md) (the *Install the GitHub CLI* section).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`github-authenticate.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/version-control/github-authenticate.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous step, [why-git-and-setup.md](why-git-and-setup.md), is done. It installs `gh` (the *Install the GitHub CLI* section).
+- A free [GitHub account](https://github.com/signup).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
 ### Know why you sign in
 
 To contribute to any GitHub repository, even one you own, you first prove who you are. `gh` does this in one step, but it needs a **Personal Access Token (PAT)**. A PAT is a private secret key that tells GitHub that this computer is acting for you. Treat it like a password: never paste it into a notebook cell, an email or a chat.
-
-`gh` came from the [conda-forge package channel](https://conda-forge.org/), the same source used by `conda install` in the [conda-environments lesson](../conda-environments/README.md). **CLI** means *command-line interface*, a program you control by typing.
 
 **What you should see:** nothing. This step is reading only.
 
@@ -61,7 +38,7 @@ You do this in a web browser, on GitHub's [token page](https://github.com/settin
 
 ### Sign in with `gh auth login`
 
-`gh auth login` asks you questions and waits for your answers, so a notebook cell cannot run it. **Open a terminal and type the command there** (item 2 of Before you begin). The cell below is the same command, for reference.
+`gh auth login` asks you questions and waits for your answers, so a notebook cell cannot run it. **Open a terminal and type the command there.** Open a new terminal window as in step 1 of the [Introduction page](../introduction/README.md), and run `conda activate eos` there. The cell below is the same command, for reference.
 
 ```bash
 gh auth login

@@ -6,21 +6,12 @@ This lesson gives you the `eos` conda environment, a named set of software versi
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Version control with Git](../version-control/README.md). You need Git and a terminal.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Version control with Git](../version-control/README.md), is done.
 
-### Do this
-
-1. **Clone the course.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the first notebook.** From the repository folder, start JupyterLab with `jupyter lab`. Open `lessons/conda-environments/creating-a-conda-environment.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb)). Run each cell in order, top to bottom.
+In JupyterLab, open `lessons`, then `conda-environments`, then `creating-a-conda-environment.ipynb` ([view it on GitHub](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb)). Run each cell in order, top to bottom.
 
 ### What you should see
 
@@ -38,14 +29,12 @@ The previous lesson is [Version control with Git](../version-control/README.md).
 
 ## Steps to execute
 
-Work through the notebooks in this order:
-
-1. [creating-a-conda-environment.md](creating-a-conda-environment.md): install Miniconda from scratch in a Linux Bash terminal, then create and activate an `eos` environment.
-2. [recap-workspace-setup.md](recap-workspace-setup.md): a Day 1 and Day 2 checkpoint. Move around a Git clone, use the `..` shortcut, and practise the "wipe the local tangle and clone again" recovery.
+1. [Creating a conda environment](creating-a-conda-environment.md): install Miniconda from scratch in a Linux Bash terminal, then create and activate a practice environment, `eos-practice`.
+2. [Recap: workspace set-up](recap-workspace-setup.md): a Day 1 and Day 2 checkpoint. Move around a Git clone, use the `..` shortcut, and practise the "wipe the local tangle and clone again" recovery.
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -89,16 +78,11 @@ A notebook that worked yesterday usually still works today, until something upda
 
 You almost always want the recipe. Installing packages by hand "until it works" is the classic way to make work that nobody else, including future you, can reproduce.
 
-> **Check:** The notebook `creating-a-conda-environment` makes an empty environment with `conda create -n eos -y`, while this page makes it from `eos.yml`. Is that difference intended?
+> **Check:** The notebook `creating-a-conda-environment` makes an empty practice environment with `conda create -n eos-practice -y`, so it does not replace the `eos` that this page builds from `eos.yml`. Is that difference intended?
 
 ### Install Miniforge
 
-[Miniforge](https://github.com/conda-forge/miniforge) is a clean conda install that uses the `conda-forge` channel by default. That is what you want for biomedical work.
-
-- **macOS and Linux:** [conda-forge.org/download](https://conda-forge.org/download/), or the [Miniforge install notes](https://github.com/conda-forge/miniforge#install).
-- **Windows (with Git Bash):** download the Windows `.exe` from the same page and run it. Reopen Git Bash afterwards.
-
-Check it:
+The Introduction installs [Miniforge](https://github.com/conda-forge/miniforge), a clean conda install that uses the `conda-forge` channel by default. That is what you want for biomedical work. See step 3 of the [Introduction page](../introduction/README.md). To check that it is there:
 
 ```bash
 conda --version
@@ -118,36 +102,13 @@ Podman is not installed by `eos.yml`, on purpose. A conda package of Podman exis
 
 ### Create the `eos` environment from `eos.yml`
 
-The first `conda env create` takes a few minutes, because conda downloads and resolves a few hundred packages. After that, activation is instant.
-
-**On your laptop (macOS).** Install Miniforge once, then create the environment from `eos.yml`:
+The Introduction already did this in step 4, with these lines. The first `conda env create` takes a few minutes, because conda downloads and resolves a few hundred packages. After that, activation is instant.
 
 ```bash
-# 1. Miniforge. Apple Silicon or Intel, there is an installer for both.
-#    Download from https://github.com/conda-forge/miniforge#install
-bash Miniforge3-MacOSX-arm64.sh    # or -x86_64 on Intel
-
-# 2. Create the eos environment from the repo file.
 cd elements-of-style-lessons
 conda env create -f eos.yml
 conda activate eos
 ```
-
-**On your laptop (Windows Git Bash):**
-
-```bash
-# 1. Download Miniforge3-Windows-x86_64.exe from
-#    https://conda-forge.org/download/ and run it.
-#    Then reopen Git Bash so it finds conda.
-conda --version
-
-# 2. Create the eos environment.
-cd elements-of-style-lessons
-conda env create -f eos.yml
-conda activate eos
-```
-
-**On Linux.** Install Miniforge the same way as on macOS, using the Linux installer. No Linux terminal? See [Other places to run these lessons](../introduction/other-places-to-run.md), which covers Google Cloud Shell and Lifebit.
 
 Confirm the essentials:
 
@@ -159,17 +120,7 @@ gh --version
 nextflow -version
 ```
 
-### Register the Bash and R Jupyter kernels
-
-`eos.yml` installs `bash_kernel` (with pip) and `r-irkernel` (with conda). They need a one-time registration so JupyterLab shows a **Bash** tile and an **R** tile in the Launcher:
-
-```bash
-conda activate eos
-python -m bash_kernel.install
-R -e 'IRkernel::installspec(name="ir", displayname="R")'
-```
-
-Restart JupyterLab. The Launcher now shows Python 3, Bash and R.
+The Introduction also registered the Bash and R kernels, which is why the Launcher shows Python 3, Bash and R tiles. `eos.yml` installs `bash_kernel` (with pip) and `r-irkernel` (with conda), and each needs that one-time registration.
 
 ### Editing the environment
 

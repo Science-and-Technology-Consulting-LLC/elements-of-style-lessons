@@ -1,10 +1,8 @@
 # Two containers, two modules: fastqc and multiqc
 
-**This walkthrough needs [Nextflow](https://www.nextflow.io/) and [Podman](https://podman.io/docs/installation) on your computer, and an internet connection.**
-
 You will put each tool in its own module, one file for FastQC and one for MultiQC, each with its own container image, and join them in a short workflow. This matters because a module that does one job can be tested alone, swapped for another tool, and reused in the next pipeline without editing it.
 
-*Part of the [nextflow-modules](README.md) lesson.*
+*Part of the [Nextflow modules and features](README.md) lesson.*
 
 ## Start here
 
@@ -16,28 +14,14 @@ You will put each tool in its own module, one file for FastQC and one for MultiQ
 - Run it with Podman and open the report.
 - Swap in a container image of your own with one option.
 
-### What you need
+### Pre-requisites
 
-- [Nextflow](https://www.nextflow.io/docs/latest/install.html), installed. Check with `nextflow -version`. It needs Java, which the `eos` environment from [conda-environments](../conda-environments/README.md) provides.
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer its machine must be running (`podman machine start`). See [containers](../containers/README.md).
-- The idea of one container, one job from [building container images](../containers/building-dockerfiles.md). You do not need the images you built there. This walkthrough starts from public images and shows where to put yours.
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`fastqc-and-multiqc-modules.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/nextflow-modules/fastqc-and-multiqc-modules.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `nextflow` and `podman`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Introduction to Nextflow](../nextflow-workflows/README.md), is done. It installs Nextflow (check with `nextflow -version`) and explains processes, channels and parameters. Java comes with the `eos` environment.
+- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer its machine must be running (`podman machine start`). See [Containers](../containers/README.md).
+- The idea of one container, one job from [Building container images](../containers/building-dockerfiles.md). You do not need the images you built there. This walkthrough starts from public images and shows where to put yours.
+- An internet connection.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 > **Check:** I ran every step except the last one with Podman 6.2.0 and Nextflow 26.10 on an Apple-silicon Mac on 2026-11-16, and they passed. The last step needs an image of your own in a registry. I have not run these steps on Windows or Linux.
 
@@ -60,7 +44,7 @@ ls -l data
 
 ### Write the FastQC module
 
-Why: [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) checks the quality of sequencing reads. A Nextflow *process* is one step. It declares the container it runs in, what goes in, what comes out, and the command. This one runs FastQC on one sample's read files.
+Why: [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) checks the quality of sequencing reads. A *process* ([Introduction to Nextflow](../nextflow-workflows/building-a-nextflow-workflow.md)) declares the container it runs in, what goes in, what comes out, and the command. This one runs FastQC on one sample's read files.
 
 - `container params.fastqc_image` names the image. The name comes from a *parameter*, so you can change it without editing the module.
 - `tag` labels each run in the log with the sample name.
@@ -119,7 +103,7 @@ EOF
 
 ### Set the parameters
 
-Why: a *parameter* is a setting you can change from the command line. The defaults live in `nextflow.config`, next to the workflow. The two images are public ones from [BioContainers](https://biocontainers.pro/). Each version is written out, so the run does not change under you.
+Why: the *parameters* ([Introduction to Nextflow](../nextflow-workflows/building-a-nextflow-workflow.md)) get their defaults in `nextflow.config`, which lives in `nextflow.config`, next to the workflow. The two images are public ones from [BioContainers](https://biocontainers.pro/). Each version is written out, so the run does not change under you.
 
 ```bash
 cat > nextflow.config <<'EOF'
@@ -136,7 +120,7 @@ EOF
 
 ### Write the workflow
 
-Why: the workflow joins the modules. `include` brings a process in from its file. `channel.fromFilePairs` finds the two read files of each sample and groups them under the sample name. A *channel* is a queue that carries data from one step to the next. `.collect()` waits for every FastQC report and hands them to MultiQC as one list.
+Why: the workflow joins the modules. `include` brings a process in from its file. `channel.fromFilePairs` finds the two read files of each sample and groups them under the sample name in a *channel*. `.collect()` waits for every FastQC report and hands them to MultiQC as one list.
 
 ```bash
 cat > main.nf <<'EOF'
@@ -179,7 +163,7 @@ ls results/fastqc results/multiqc
 
 ### Use an image of your own
 
-Why: the module takes its image from a parameter, so you can run your own build with one option and no edit. The `fastqc` image you built in [building container images](../containers/building-dockerfiles.md) and published in the [publish your images](../containers/publish-your-images.md) works here. Replace `<owner>` with the name of the account that holds it. Skip this step if you did not publish an image.
+Why: the module takes its image from a parameter, so you can run your own build with one option and no edit. The `fastqc` image you built in [Building container images](../containers/building-dockerfiles.md) and published in [Publish your images](../containers/publish-your-images.md) works here. `-resume` makes Nextflow reuse finished steps; [A tour of Nextflow's features](tour-of-nextflow-features.md) explains it. Replace `<owner>` with the name of the account that holds it. Skip this step if you did not publish an image.
 
 ```bash
 nextflow run main.nf -with-podman -resume \
@@ -188,11 +172,11 @@ nextflow run main.nf -with-podman -resume \
 
 **What you should see:** the `FASTQC` line runs again, because its image changed. `MULTIQC` runs again too, because its input changed.
 
-> **Check:** I did not run this step. The images from *Publish your images to a registry* are private until you make them public, and the commands inside them may differ from the BioContainers images. Please try it and tell me what happens.
+> **Check:** I did not run this step. The images from [Publish your images](../containers/publish-your-images.md) are private until you make them public, and the commands inside them may differ from the BioContainers images. Please try it and tell me what happens.
 
 ### If something goes wrong
 
-- **`nextflow: command not found`.** Run `conda activate eos` in the terminal, start JupyterLab from there, and run the cell again. See [conda-environments](../conda-environments/README.md).
+- **`nextflow: command not found`.** Run `conda activate eos` in the terminal, start JupyterLab from there, and run the cell again. See [Conda environments](../conda-environments/README.md).
 - **`Cannot connect to Podman`, or `podman: command not found`.** Podman is not installed, or its machine is not running. On a Mac or Windows computer, run `podman machine start`, wait for it to finish, and run the cell again.
 - **`curl: command not found`, or the downloaded files are tiny.** The download failed. Check your internet connection, delete the two files in `data`, and run the first cell again.
 - **`No such file or directory: data/...` or `No input files`.** You are not in `~/eos-practice/qc-modules`. Run `cd ~/eos-practice/qc-modules` and run the cell again.
@@ -207,7 +191,7 @@ Each module names one container and runs one command. The FastQC module does not
 
 ### Where the images come from
 
-The module's `container` line is a parameter, so the image is decided at run time. The BioContainers images are built by the community from [Bioconda](https://bioconda.github.io/) recipes. Your own images, built as in [building container images](../containers/building-dockerfiles.md) and published as in [publish an image with GitHub Actions](../continuous-integration/publish-an-image-with-actions.md), come from your registry.
+The module's `container` line is a parameter, so the image is decided at run time. The BioContainers images are built by the community from [Bioconda](https://bioconda.github.io/) recipes. Your own images, built as in [Building container images](../containers/building-dockerfiles.md) and published as in [Publish an image with GitHub Actions](../continuous-integration/publish-an-image-with-actions.md), come from your registry.
 
 ## Next
 

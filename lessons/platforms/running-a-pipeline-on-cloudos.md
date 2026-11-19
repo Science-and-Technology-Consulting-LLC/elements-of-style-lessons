@@ -13,35 +13,18 @@ You will import a pipeline, start a job on CloudOS from your terminal, and fetch
 - Submit a small job, `rnatoy`, on public data.
 - Check the job and find its results.
 
-### What you need
+### Pre-requisites
 
-- A CloudOS account and a signed-in profile named `my_profile`. See [creating-a-cloudos-account](creating-a-cloudos-account.md) and [authenticating-on-cloudos](authenticating-on-cloudos.md).
-- The `cloudos` client installed (see the authenticating page).
-- Your pipeline on GitHub, GitLab or Bitbucket Server. CloudOS runs [Nextflow](https://www.nextflow.io/) pipelines. See [nextflow-workflows](../nextflow-workflows/README.md).
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-- [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`running-a-pipeline-on-cloudos.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/platforms/running-a-pipeline-on-cloudos.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- A CloudOS account and a signed-in profile named `my_profile`. See [creating a CloudOS account](creating-a-cloudos-account.md) and [authenticating on CloudOS](authenticating-on-cloudos.md). The `cloudos` client is installed there too.
+- Your pipeline on GitHub, GitLab or Bitbucket Server. CloudOS runs [Nextflow](https://www.nextflow.io/) pipelines. See [Introduction to Nextflow](../nextflow-workflows/README.md).
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ## Steps to execute
 
 ### Test locally first
 
-Why: it is much faster to fix a mistake on your own machine than on the platform. Test the pipeline on your own computer first, with its `-profile test` and the small test data. Then run it on CloudOS.
+Why: it is much faster to fix a mistake on your own computer than on the platform. Please test the pipeline here first, with its `-profile test` and the small test data. Then run it on CloudOS.
 
 ### List your projects and workflows
 
@@ -56,7 +39,7 @@ cloudos workflow list --profile my_profile
 
 ### Import a pipeline from GitHub
 
-Why: CloudOS needs its own copy of the pipeline's address before it can run it. Replace `<owner>`, `<repository>` and `<name>` with your own values. This cell will not run as written, because those are placeholders.
+Why: CloudOS needs the address of your pipeline before it can run it. Replace `<owner>`, `<repository>` and `<name>` with your own values. This cell will not run as written, because those are placeholders.
 
 ```bash
 cloudos workflow import --profile my_profile \
@@ -73,7 +56,7 @@ cloudos workflow import --profile my_profile \
 
 ### Submit a job
 
-Why: this starts the pipeline on the platform's computers. The worked example is `rnatoy`, a small pipeline on public data. `--parameter` passes one named input. `--resumable` lets you resume the job later if it stops.
+Why: this starts the pipeline on the platform's computers. The worked example is `rnatoy`, a small pipeline on public data. `--parameter` passes one named input. `--resumable` lets you resume the job if it stops.
 
 ```bash
 cloudos job run \
@@ -89,7 +72,7 @@ cloudos job run \
 
 ### Check the job and get the results
 
-Why: the job runs on its own. These commands ask how it is doing and where the output went. Replace `<JOB_ID>` with the ID from *Best practices*. This cell will not run as written, because `<JOB_ID>` is a placeholder.
+Why: the job runs on its own. These commands ask how it is doing and where the output went. Replace `<JOB_ID>` with the job ID from *Submit a job*. This cell will not run as written, because `<JOB_ID>` is a placeholder.
 
 ```bash
 cloudos job status --profile my_profile --job-id <JOB_ID>
@@ -103,7 +86,7 @@ cloudos job results --profile my_profile --job-id <JOB_ID>
 ### Best practices
 
 - **Daily GitHub commits** of the scripts and configuration you use. The worked-example scripts belong in a repository, not only on the platform.
-- **Reproducible workflow steps.** Every step containerised, every container tagged.
+- **Reproducible workflow steps.** Every step in a container, every container tagged.
 - **Archive derived datasets on [Zenodo](https://zenodo.org/)** (it gives each one a DOI) so results can be cited in a manuscript.
 
 ### If something goes wrong
@@ -114,4 +97,4 @@ cloudos job results --profile my_profile --job-id <JOB_ID>
 
 ## Next
 
-[Continuous integration](../continuous-integration/README.md): automate the testing of these pipelines. Or return to the [platforms lesson](README.md).
+[Case studies](../../case-studies/README.md): five real pipelines that use everything you have learned.

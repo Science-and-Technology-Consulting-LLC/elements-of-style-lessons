@@ -1,12 +1,19 @@
 # Publish your Sphinx site with GitHub Actions
 
-**This walkthrough needs a GitHub account and the GitHub command-line tool (`gh`) signed in to it.** It creates a real repository and a real web site on your GitHub account.
+**This walkthrough creates a real repository and a real web site on your GitHub account.** It needs a GitHub account and the GitHub command-line tool (`gh`) signed in to it.
 
-You will put a small Sphinx site in a repository, and let GitHub rebuild and publish it every time you push. This matters because the documentation then never falls behind the code, and a broken link stops the publish instead of reaching your readers.
+We will put a small Sphinx site in a repository, and let GitHub rebuild and publish it every time you push. The documentation then never falls behind the code, and a broken link stops the publish instead of reaching your readers.
 
 *Part of the [documentation](README.md) lesson.*
 
 ## Start here
+
+### Pre-requisites
+
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Continuous integration](../continuous-integration/README.md), is done. It covers the GitHub account, `gh` signed in, Git set up with your name and email, and the workflow file we use here.
+- The previous page, [building a Sphinx site](building-a-sphinx-site.md), is done. It explains Sphinx and what happens here.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ### What you will do
 
@@ -15,48 +22,23 @@ You will put a small Sphinx site in a repository, and let GitHub rebuild and pub
 - Add a workflow that builds the site and publishes it on every push.
 - Break a link on purpose, watch the build stop, and fix it.
 
-### What you need
-
-- A [GitHub account](https://github.com/signup) (free).
-- The [GitHub CLI (`gh`)](https://cli.github.com/), installed and signed in. See [github-authenticate](../version-control/github-authenticate.md). Check with `gh auth status`.
-- [Git](https://git-scm.com/), set up with your name and email. See [why-git-and-setup](../version-control/why-git-and-setup.md).
-- The `eos` environment from [conda-environments](../conda-environments/README.md), active in the terminal where you start JupyterLab.
-- The ideas in [building-a-sphinx-site](building-a-sphinx-site.md) and in [add-a-first-ci-job](../continuous-integration/add-a-first-ci-job.md). You can do this lesson without them, but they explain what happens here.
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`publish-your-site-with-actions.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/documentation/publish-your-site-with-actions.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git`, `gh` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
-
 > **Check:** I wrote this lesson without running it. It needs a GitHub login. Please run it once from a fresh `~/eos-practice` and tell me what differs.
 
 ## Steps to execute
 
 ### Confirm you are signed in to GitHub
 
-Why: *Create the repository and push the site* makes a repository on GitHub. It fails if `gh` does not know who you are.
+Why: *Create the repository and push the site* makes a repository on GitHub. It fails if `gh` does not know who you are. If it says you are not logged in, please follow [github-authenticate](../version-control/github-authenticate.md).
 
 ```bash
 gh auth status
 ```
 
-**What you should see:** a line that says `Logged in to github.com` followed by your GitHub user name. If not, run `gh auth login`, or follow [github-authenticate](../version-control/github-authenticate.md).
+**What you should see:** a line that says `Logged in to github.com` followed by your GitHub user name. If not, run `gh auth login`.
 
 ### Install Sphinx and its add-ons
 
-Why: [Sphinx](https://www.sphinx-doc.org/) turns text files into a web site. The version limits match the ones this course's own workflow uses, because newer releases of the add-ons broke each other for a while.
+Why: we use [Sphinx](https://www.sphinx-doc.org/) as in [building a Sphinx site](building-a-sphinx-site.md). The version limits match the ones this course's own workflow uses, because newer releases of the add-ons broke each other for a while.
 
 ```bash
 pip install "sphinx>=7,<7.3" sphinx-rtd-theme "myst-parser>=2,<4" "myst-nb<1.2" \

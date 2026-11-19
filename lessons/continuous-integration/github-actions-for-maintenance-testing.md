@@ -1,46 +1,32 @@
 # GitHub Actions for maintenance testing
 
-You will read three real GitHub Actions workflows that keep a research pipeline working over time. This matters because a pipeline that quietly stopped running two months ago is a paper you cannot reproduce.
+We will read real GitHub Actions workflows that keep a research pipeline working over time. A pipeline that quietly stopped running two months ago is a paper you cannot reproduce.
 
-*Part of the [continuous-integration](README.md) lesson. Do [add a first CI job](add-a-first-ci-job.md) first if you have never written a workflow.*
+*Part of the [continuous-integration](README.md) lesson. Please do [add a first CI job](add-a-first-ci-job.md) first if you have never written a workflow.*
 
 ## Start here
+
+### Pre-requisites
+
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Containers](../containers/README.md), is done, and so is [add a first CI job](add-a-first-ci-job.md).
+- To read the workflows you need nothing more. To use them on your own pipeline you need a [GitHub account](https://github.com/signup) and a repository.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+
+The pipelines in these workflows are written in [Nextflow](https://www.nextflow.io/), which we meet in [Introduction to Nextflow](../nextflow-workflows/README.md), a later lesson. Here we only read them, so you do not need to know Nextflow yet. To adapt the examples, you will later need a Nextflow pipeline with a small test dataset.
 
 ### What you will do
 
 - Learn what *maintenance testing* is: re-running a small test of your pipeline on every change.
 - Read a real test workflow from a published pipeline.
-- Read the test workflow used in this repository.
-- Read the workflow that builds and publishes Docker images automatically.
-
-### What you need
-
-- Nothing to install to read the workflows. To use them on your own pipeline you need a [GitHub account](https://github.com/signup) and a repository.
-- A [Nextflow](https://www.nextflow.io/) pipeline with a small test dataset, if you want to adapt the examples. See [nextflow-workflows](../nextflow-workflows/README.md).
-- Containers, for the last workflow. See [containers](../containers/README.md).
-- [JupyterLab](https://jupyter.org/) with a Bash kernel. The "Check your setup" section below covers the kernel.
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`github-actions-for-maintenance-testing.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/github-actions-for-maintenance-testing.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+- Read a longer test workflow that you can adapt.
+- Read the workflow that builds and publishes container images automatically.
 
 ## Steps to execute
 
 ### Understand why a research repository needs CI
 
-Why: *continuous integration* (CI) means a computer re-runs your checks on every change. Software drifts. Packages update, containers are rebuilt and workflow runners change. Automating the question "does this still run?" is how a [Nextflow](https://www.nextflow.io/) pipeline survives six months of that drift.
+Why: software drifts. Packages update, containers are rebuilt and workflow runners change. Automating the question "does this still run?" is how a [Nextflow](https://www.nextflow.io/) pipeline survives six months of that drift.
 
 [GitHub Actions](https://docs.github.com/en/actions) runs your test data on every push, every pull request and every release. It is free for public repositories, runs on GitHub's own computers (*runners*), and gives each job about 8 GB of memory and a small disk. That is enough for a smoke test, not for a full analysis.
 
@@ -51,7 +37,7 @@ The pattern has four parts:
 3. Write **one workflow file** at `.github/workflows/test.yml` that runs `nextflow run . -profile test` on every push and pull request.
 4. If it goes red, you know within minutes. Without CI you find out when a reviewer tries to rerun your paper.
 
-**What you should see:** nothing to run here. You now have the pattern. The next steps show it in real files.
+**What you should see:** nothing to run here. We now have the pattern. The next steps show it in real files.
 
 ### Read a real test workflow
 
@@ -100,9 +86,9 @@ Read three things in it:
 
 **What you should see:** you can point to the three lines above in the file. If you can, you can read any test workflow.
 
-### Read the version used in this repository
+### Read a version you can adapt
 
-Why: this repository uses a slightly newer form of the same idea. Save it as `.github/workflows/ci.yml` in your own repository to use it.
+Why: this is a slightly newer form of the same idea. It runs the small test pipelines (`main-hello-py-greet.nf`, `main-hello-r-greet.nf` and `main-bulk-de.nf`) that sit in the top folder of this repository. This repository does not have a `ci.yml` of its own. Save the file as `.github/workflows/ci.yml` in your own repository to use it.
 
 ```yaml
 name: CI
@@ -133,15 +119,15 @@ jobs:
           nextflow run main-bulk-de.nf -profile test
 ```
 
-Two small differences from the *Read the Docker publish workflow* example: `actions/checkout@v4` (a newer version) and Nextflow installed with `curl` instead of `wget`. Both work.
+Two small differences from the example in *Read a real test workflow*: `actions/checkout@v4` (a newer version) and Nextflow installed with `curl` instead of `wget`. Both work.
 
 **What you should see:** three steps in the job. First it gets your code, then it installs Nextflow, then it runs the pipelines with `-profile test`.
 
 > **Picture to add:** the Actions tab of this repository showing a passing CI run (save as assets/github-actions-for-maintenance-testing-step-3.png)
 
-### Read the Docker publish workflow
+### Read the image publish workflow
 
-Why: GitHub Actions can also build and publish Docker images. Every push to `main` builds each image in `container/<name>/`, tags it with `:latest` and with the Git commit ID, and uploads it to GHCR (GitHub's container registry).
+Why: GitHub Actions can also build and publish container images. This workflow uses Docker's actions. [Publish an image with Actions](publish-an-image-with-actions.md) does the same job with Podman. Every push to `main` builds each image in `container/<name>/`, tags it with `:latest` and with the Git commit ID, and uploads it to GHCR (GitHub's container registry).
 
 ```yaml
 name: docker-publish
@@ -188,13 +174,13 @@ Every module that names `ghcr.io/.../scanpy-qc:latest` in its `container:` line 
 
 - **CI catches drift before you feel it.**
 - **Testing is `nextflow run ... -profile test` in a fresh virtual machine.** GitHub provides the machine.
-- **Docker publish is the same idea.** Push to `main` and the image appears at GHCR. Later workflows pull it.
+- **Image publish is the same idea.** Push to `main` and the image appears at GHCR. Later workflows pull it.
 
 ### If something goes wrong
 
 - **The workflow never runs.** The `on:` section did not match what you did. A push to a branch not listed under `branches:` does nothing. Check the branch name.
 - **A workflow fails with a YAML error.** YAML cares about spaces. Use spaces, never tabs, and keep each level indented the same amount as in the examples.
-- **Docker publish fails with `denied` or `permission`.** The job needs `packages: write` under `permissions:` (as in *Read the Docker publish workflow*), and the repository must allow Actions to write packages. See [GitHub's container registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
+- **Image publish fails with `denied` or `permission`.** The job needs `packages: write` under `permissions:` (as in *Read the image publish workflow*), and the repository must allow Actions to write packages. See [GitHub's container registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 
 ## Next
 

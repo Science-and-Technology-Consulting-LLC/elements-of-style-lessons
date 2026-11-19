@@ -6,23 +6,11 @@ This lesson gives you eight rules, drawn from Strunk and White and from Kernigha
 
 ## Start here
 
-### Before you start
+### Pre-requisites
 
-The previous lesson is [Introduction](../introduction/README.md). You need nothing from it except the idea of the course.
+- The setup on the [Introduction page](../introduction/README.md) is done.
 
-### Do this
-
-This lesson has no notebook and nothing to run. You read it.
-
-1. **Clone the repository** (optional, if you want the files on your computer). In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal** only if you cloned. On a Mac, open *Terminal*. On Windows, open *Git Bash*.
-3. **Read this page.** On your computer it is `lessons/elements-of-style-rules/README.md`. On the web it is [here](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/elements-of-style-rules/README.md). Read the eight rules once now. Come back when you must choose between two ways to do something.
+This lesson has no notebook and nothing to run. You read it. Please read the eight rules once now, and come back when you must choose between two ways to do something.
 
 ### What you should see
 
@@ -38,7 +26,7 @@ This lesson has no notebooks.
 
 ## Ask an AI assistant
 
-*Optional.* Read [Using the AI prompts](../introduction/README.md) first: what to paste, what never to paste, and how to check the answer.
+*Optional.* How to use these prompts is explained in [Using the AI prompts](../introduction/README.md).
 
 **Ask it to explain.**
 
@@ -132,7 +120,7 @@ These map one to one onto the lessons.
 
 1. **Start simple.** Write a shell script, test it, then scale. A working five-line script you have run once beats a beautiful 200-line one you have not. (Foundation lessons.)
 2. **Containerize.** Use [Podman](https://podman.io/docs/installation) and [Conda](https://docs.conda.io/) at the level of one process. One container, one job, one command line tool. ([Containers](../containers/README.md).)
-3. **Use workflow languages.** [Nextflow](https://www.nextflow.io/) first for biomedical work, or CWL or WDL. Running steps in parallel comes free. The same workflow runs on a laptop, a cluster and the cloud. ([Nextflow modules and features](../nextflow-modules/README.md), then [Introduction to Nextflow](../nextflow-workflows/README.md).)
+3. **Use workflow languages.** [Nextflow](https://www.nextflow.io/) first for biomedical work, or CWL or WDL. Running steps in parallel comes free. The same workflow runs on a laptop, a cluster and the cloud. ([Introduction to Nextflow](../nextflow-workflows/README.md), then [Nextflow modules and features](../nextflow-modules/README.md).)
 4. **Use version control.** Put everything on [GitHub](https://github.com/). If it is worth running once, it is worth committing once. ([Version control](../version-control/README.md).)
 5. **Use AI wisely.** Syntax help, yes. Architecture design, no. You hold the design idea in your head. The AI fills in the keystrokes. ([MCP server](../mcp-server/README.md), [Publishing for agents](../publishing-for-agents/README.md).)
 6. **Fail fast.** Use [GitHub Actions](https://docs.github.com/en/actions) for CI/CD. The sooner you find the broken thing, the cheaper it is to fix. ([Continuous integration](../continuous-integration/README.md).)

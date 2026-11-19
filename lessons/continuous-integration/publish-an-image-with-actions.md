@@ -1,12 +1,19 @@
 # Publish a container image with GitHub Actions
 
-**This walkthrough needs a GitHub account, the GitHub command-line tool (`gh`) signed in to it, and [Podman](https://podman.io/docs/installation) on your computer.** It creates a real repository and a real package on your GitHub account.
+**This walkthrough creates a real repository and a real package on your GitHub account.** It needs a GitHub account, the GitHub command-line tool (`gh`) signed in to it, and [Podman](https://podman.io/docs/installation) on your computer.
 
-You will put a tiny program in a container, test it on your computer, and then let GitHub build the image and publish it to the GitHub Container Registry (GHCR) every time you push. This matters because an image on a registry is one that Nextflow, a colleague or the Lifebit platform can pull, and the version on GitHub is built the same way every time.
+We will put a tiny program in a container, test it on your computer, and then let GitHub build the image and publish it to the GitHub Container Registry (GHCR) every time you push. An image on a registry is one that Nextflow, a colleague or the Lifebit platform can pull, and the version on GitHub is built the same way every time.
 
 *Part of the [continuous-integration](README.md) lesson.*
 
 ## Start here
+
+### Pre-requisites
+
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Containers](../containers/README.md), is done. We install Podman in [Install Podman](../containers/README.md#install-podman). On a Mac or Windows computer its machine must be running (`podman machine start`).
+- The previous page, [add a first CI job](add-a-first-ci-job.md), is done. It also covers the GitHub account, `gh` signed in, and Git set up with your name and email.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
 
 ### What you will do
 
@@ -15,48 +22,23 @@ You will put a tiny program in a container, test it on your computer, and then l
 - Watch the run on the **Actions** tab.
 - Find the published image, make it public, and pull it back to your computer.
 
-### What you need
-
-- A [GitHub account](https://github.com/signup) (free).
-- The [GitHub CLI (`gh`)](https://cli.github.com/), installed and signed in. See [github-authenticate](../version-control/github-authenticate.md). Check with `gh auth status`.
-- [Git](https://git-scm.com/), set up with your name and email. See [why-git-and-setup](../version-control/why-git-and-setup.md).
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer its machine must be running (`podman machine start`). See [containers](../containers/README.md).
-- A first CI job behind you. See [add-a-first-ci-job](add-a-first-ci-job.md).
-- A terminal. On a Mac use *Terminal*. On Windows use *Git Bash*. See [command-line-and-git-bash](../command-line-and-git-bash/README.md).
-
-### Before you begin
-
-1. **Get the code.** In a terminal, run:
-
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`publish-an-image-with-actions.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/continuous-integration/publish-an-image-with-actions.ipynb) and run each cell in order, top to bottom.
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git`, `gh` and `podman`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
-
 > **Check:** I wrote this lesson without running it. It needs a GitHub login and Podman, and neither was available where I edited it. Please run it once from a fresh `~/eos-practice` and tell me what differs. The Podman steps on GitHub's side rely on Podman 4.9.3 being installed on the `ubuntu-latest` runner, as listed in the [runner image notes](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md).
 
 ## Steps to execute
 
 ### Confirm you are signed in to GitHub
 
-Why: *Create the repository and push* makes a repository on GitHub. It fails if `gh` does not know who you are.
+Why: *Create the repository and push* makes a repository on GitHub. It fails if `gh` does not know who you are. If it says you are not logged in, please follow [github-authenticate](../version-control/github-authenticate.md).
 
 ```bash
 gh auth status
 ```
 
-**What you should see:** a line that says `Logged in to github.com` followed by your GitHub user name. If not, run `gh auth login`, or follow [github-authenticate](../version-control/github-authenticate.md).
+**What you should see:** a line that says `Logged in to github.com` followed by your GitHub user name. If not, run `gh auth login`.
 
 ### Make a one-file image
 
-Why: the smallest useful image has one program and one command. This cell makes a folder `hello-image` in `~/eos-practice`, with a Python file and a `Dockerfile`. A *Dockerfile* is a text file that lists how to build an image. Podman reads it the same way Docker does. The `FROM` line names the base image in full, `docker.io/library/python`, so Podman does not have to ask which registry you mean.
+Why: the smallest useful image has one program and one command. This cell makes a folder `hello-image` in `~/eos-practice`, with a Python file and a `Dockerfile`. We met the *Dockerfile* in [Building Dockerfiles](../containers/building-dockerfiles.md). The `FROM` line names the base image in full, `docker.io/library/python`, so Podman does not have to ask which registry you mean.
 
 ```bash
 mkdir -p ~/eos-practice/hello-image
@@ -76,7 +58,7 @@ ls
 
 ### Build and test the image on your computer
 
-Why: test the image before you let GitHub build it. A failure on your computer is quicker to read than one on GitHub. On a Mac or Windows computer, Podman must be running: run `podman machine start` first.
+Why: test the image before you let GitHub build it. A failure on your computer is quicker to read than one on GitHub.
 
 ```bash
 podman build -t hello-image .
@@ -89,14 +71,14 @@ podman run --rm hello-image
 
 ### Look at the workflow
 
-Why: a *workflow* is a recipe that GitHub follows on its own computer. This one runs when you push a change to the image files. It logs in to GHCR with a token that GitHub makes for each run, builds the image with Podman, and pushes it. Here is what each part does:
+Why: a *workflow* is a recipe that GitHub follows on its own computer. This one runs when you push a change to the image files. It logs in to GHCR with a token that GitHub makes for each run, builds the image with Podman, and pushes it. The parts of a workflow file are described in [The anatomy of a workflow](README.md#the-anatomy-of-a-workflow). Here is what is new:
 
 - `paths:` limits the run to pushes that touch the image files or this workflow. A change to a README does not rebuild the image.
 - `permissions: packages: write` lets the run publish a package. Without it the push is refused.
 - `${GITHUB_REPOSITORY,,}` is the repository name in lower case. A registry rejects capital letters in an image name.
 - The tag is the commit hash (`github.sha`). Every push gets its own tag, so a rebuild never changes an image that an earlier run already used.
 
-Read the file below. The next cell writes it for you.
+Please read the file below. The next cell writes it for you.
 
 ```yaml
 name: Publish image
@@ -239,7 +221,7 @@ A repository can hold several images, each in its own folder. A *matrix* runs th
 
 ### Docker's actions instead of Podman
 
-Many repositories use the `docker/login-action` and `docker/build-push-action` actions. They do the same job. The lesson [GitHub Actions for maintenance testing](github-actions-for-maintenance-testing.md) reads one such workflow. Podman needs no extra action because it is already on GitHub's `ubuntu-latest` computer.
+Many repositories use the `docker/login-action` and `docker/build-push-action` actions. They do the same job. [GitHub Actions for maintenance testing](github-actions-for-maintenance-testing.md) reads one such workflow. Podman needs no extra action because it is already on GitHub's `ubuntu-latest` computer.
 
 ## Next
 

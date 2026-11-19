@@ -1,37 +1,25 @@
 # Creating a conda environment
 
-You will install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and make a clean environment called `eos`. This matters because a clean, named environment makes your work repeatable on any machine.
+You will install [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and make a clean practice environment called `eos-practice`. This matters because a clean, named environment makes your work repeatable on any machine.
 
 **What you will do:**
 
 - Install `conda`, the program that manages software environments.
-- Create an environment named `eos`.
+- Create an environment named `eos-practice`.
 - Activate it and list your environments.
-
-**What you need:**
-
-- A Bash terminal on Linux, with an internet connection. A Mac or Windows needs a different installer: see the next line.
-- On a Mac or Windows, use [Miniforge](https://conda-forge.org/download/) instead of the steps in this notebook that download the Linux installer. See the [lesson page](README.md).
-- No Linux terminal? [Other places to run these lessons](../introduction/other-places-to-run.md) covers Google Cloud Shell and Lifebit.
 
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Version control with Git](../version-control/README.md), is done.
+- The kernel name at the top right of the notebook says **Bash**. If it does not, click the name and choose **Bash**.
+- A Bash terminal on Linux, with an internet connection. On a Mac or Windows, the Introduction already installed [Miniforge](https://conda-forge.org/download/), so you can read this page and skip the Linux installer steps. No Linux terminal? [Other places to run these lessons](../introduction/other-places-to-run.md) covers Google Cloud Shell and Lifebit.
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
+The Introduction already created the `eos` environment from `eos.yml`. This page shows by hand what that did, step by step. Run the steps below only in a practice account or folder you can delete: creating `eos` again, as the *Create your first clean environment* step does, replaces the one you have.
 
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb) and run each cell in order, top to bottom.
-
-
-### Check your setup
-
-This notebook runs shell commands with the Bash kernel and uses tools such as `git` and `conda`. If the top right of this notebook does not say **Bash**, or a later command says *command not found*, do the six setup steps on the [Introduction page](../introduction/README.md) and the *Check your tools* step of [Let's dive in](../introduction/lets-dive-in.md) first.
+In JupyterLab, open `lessons`, then `conda-environments`, then [`creating-a-conda-environment.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/conda-environments/creating-a-conda-environment.ipynb). Run each cell in order, top to bottom.
 
 ## Steps to execute
 
@@ -39,7 +27,7 @@ This notebook runs shell commands with the Bash kernel and uses tools such as `g
 
 `conda` is the program we use to control our software and manage installs. A **conda environment** is an isolated bubble: its own Python or R, and its own set of installed packages. Nothing you install into an environment leaks out and disturbs the rest of the computer.
 
-Making a *clean* environment first is a good habit. It makes every assumption about what is or is not installed explicit. Without it you inherit whatever happens to be on a shared machine. That is a common cause of "works on my machine, breaks in the container".
+A *clean* environment makes every assumption about what is or is not installed explicit. Without one you inherit whatever happens to be on a shared machine. That is a common cause of "works on my machine, breaks in the container".
 
 When we build a container image later (see [containers](../containers/README.md)), we usually start from a conda base image. The same tool follows us from laptop to container to workflow to federated node.
 
@@ -47,7 +35,7 @@ When we build a container image later (see [containers](../containers/README.md)
 
 ### Choose where to run this
 
-The steps below use a Linux Bash terminal. Practise installs in a folder you can delete, so a mistake costs nothing. On a Mac or Windows, stop at *Find out what computer you have* and use the Miniforge installer instead.
+The steps below use a Linux Bash terminal. Practise installs in a folder you can delete, so a mistake costs nothing. On a Mac or Windows, you already installed Miniforge in the Introduction, so you can stop at *Find out what computer you have*.
 
 **What you should see:** nothing. This step is a choice.
 
@@ -81,7 +69,7 @@ We install **Miniconda**, the minimal conda installer from Anaconda. The full An
 uname -a
 ```
 
-**What you should see:** one long line. On most Linux machines it starts with `Linux` and contains `x86_64`. The next steps are for that case. If the line starts with `Darwin` (a Mac) or you are on Windows, stop here and install [Miniforge](https://conda-forge.org/download/) instead, then go on at *Create your first clean environment*.
+**What you should see:** one long line. On most Linux machines it starts with `Linux` and contains `x86_64`. The next steps are for that case. If the line starts with `Darwin` (a Mac) or you are on Windows, stop here. You installed [Miniforge](https://conda-forge.org/download/) in the Introduction, so go on at *Create your first clean environment*.
 
 > **Picture to add:** a Linux terminal after `uname -a`, showing the Linux and x86_64 words (save as assets/creating-a-conda-environment-step-5.png)
 
@@ -143,10 +131,10 @@ which conda
 
 ### Create your first clean environment
 
-Name the environment for the project. This course is *Elements of Style*, so `eos` is a natural short name. `-n eos` sets the name, and `-y` answers "yes" to conda's questions. If `eos` already exists, creating it again replaces it, so check `conda env list` first (*List every environment*).
+We already built `eos` in the Introduction. That is the environment for the course, so we leave it alone. Here we practise with a second one, named `eos-practice`. `-n eos-practice` sets the name, and `-y` answers "yes" to conda's questions. If an environment with that name already exists, creating it again replaces it, so check `conda env list` first (*List every environment*).
 
 ```bash
-conda create -n eos -y
+conda create -n eos-practice -y
 ```
 
 **What you should see:** conda prints the folder it will use, then `done`, and a note on how to activate it.
@@ -156,12 +144,12 @@ conda create -n eos -y
 To **activate** an environment is to start using it.
 
 ```bash
-conda activate eos
+conda activate eos-practice
 ```
 
-**What you should see:** no message. Your prompt now starts with `(eos)` instead of `(base)`. You are inside the bubble. Anything you `conda install` from now on lands in `eos` only.
+**What you should see:** no message. Your prompt now starts with `(eos-practice)` instead of `(base)`. You are inside the bubble. Anything you `conda install` from now on lands in `eos-practice` only.
 
-> **Picture to add:** a terminal prompt that starts with (eos) (save as assets/creating-a-conda-environment-step-11.png)
+> **Picture to add:** a terminal prompt that starts with (eos-practice) (save as assets/creating-a-conda-environment-step-11.png)
 
 ### List every environment
 
@@ -177,7 +165,8 @@ conda env list
 # conda environments:
 #
 base                     /home/you/miniconda3
-eos                   *  /home/you/miniconda3/envs/eos
+eos                      /home/you/miniconda3/envs/eos
+eos-practice          *  /home/you/miniconda3/envs/eos-practice
 ```
 
 ### Recap
@@ -188,16 +177,17 @@ You just:
 - Learned where to search for Anaconda packages.
 - Used `wget` to fetch the Miniconda installer.
 - Installed `conda`.
-- Created and activated a clean `eos` environment.
+- Created and activated a clean `eos-practice` environment.
+- Left the course environment `eos` as it was. Run `conda activate eos` to go back to it before you start JupyterLab.
 
 ### If something goes wrong
 
-- **`wget: command not found`.** On a Mac, `wget` is not installed, and the Linux installer is the wrong one anyway. Use [Miniforge](https://conda-forge.org/download/). On Linux, install `wget` with your package manager.
+- **`wget: command not found`.** On a Mac, `wget` is not installed, and the Linux installer is the wrong one anyway. Use the [Miniforge](https://conda-forge.org/download/) you installed in the Introduction. On Linux, install `wget` with your package manager.
 - **`conda: command not found` after the install.** The shell has not re-read its settings. Close the terminal and open a new one, or run `exec -l bash` again. If you skipped `conda init`, run `~/miniconda3/bin/conda init bash` and restart the shell.
-- **`conda activate eos` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one and try again. In a notebook cell this command may not work. Use a terminal.
+- **`conda activate eos-practice` says to run `conda init`.** Run `conda init bash`, close the terminal, open a new one and try again. In a notebook cell this command may not work. Use a terminal.
 
 > **Check:** No executed copy of this notebook was available, so the "What you should see" lines describe the typical result. Compare them with a real run.
 
 ## Next
 
-[recap-workspace-setup.md](recap-workspace-setup.md): a checkpoint that puts conda in context with the notebook and Git work. Then [containers](../containers/README.md), where the environment becomes the seed for a container image.
+[Recap: workspace set-up](recap-workspace-setup.md): a checkpoint that puts conda in context with the notebook and Git work.

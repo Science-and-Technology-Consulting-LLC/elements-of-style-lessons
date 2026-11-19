@@ -8,41 +8,29 @@ You will put the `hello-r` command-line tool into a container, so that it runs t
 - Build the image and test it with `podman run`.
 - See how to swap in a Bioconductor base image, and how to publish the image.
 
-**What you need:**
-
-- The `hello-r.R` script from [the Rscript CLI walkthrough](../reusable-clis/rscript-cli-in-fifteen-minutes.md). Finish that lesson first.
-- [Podman](https://podman.io/docs/installation), installed. On a Mac or Windows computer it must also be running (`podman machine start`). See the install notes in the [containers lesson](README.md).
-- [R](https://www.r-project.org/) and the R kernel for JupyterLab (*Install R and register the R kernel (once)*).
-- A terminal. See [the command line and Git Bash](../command-line-and-git-bash/README.md).
-- For the optional publish step: a [GitHub account](https://github.com/signup) and a personal access token (a password that only works for chosen tasks) with the `write:packages` permission. See [GitHub's guide to the container registry](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
-
 ## Start here
 
-### Before you begin
+### Pre-requisites
 
-1. **Get the code.** In a terminal, run:
+- The setup on the [Introduction page](../introduction/README.md) is done, and JupyterLab is running from the `eos` environment.
+- The previous lesson, [Building reusable command-line tools](../reusable-clis/README.md), is done. In particular, you have the `hello-r.R` script from [the Rscript CLI walkthrough](../reusable-clis/rscript-cli-in-fifteen-minutes.md).
+- The first walkthrough, [Building container images](building-dockerfiles.md), is done.
+- Podman is installed and, on a Mac or Windows computer, running (`podman machine start`). We install it in [Install Podman](README.md#install-podman).
+- For the optional publish step: a [GitHub account](https://github.com/signup) and a personal access token (a password that only works for chosen tasks) with the `write:packages` permission. See [GitHub's guide to the container registry](https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry).
 
-   ```bash
-   git clone https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons.git
-   cd elements-of-style-lessons
-   ```
-
-2. **Open a terminal.** On a Mac, open *Terminal*. On Windows, open *Git Bash*. On Linux, open your terminal program. No terminal at hand? See [Other places to run these lessons](../introduction/other-places-to-run.md).
-3. **Open the notebook.** From the repository folder, start JupyterLab with `jupyter lab`, then open [`building-an-r-dockerfile.ipynb`](https://github.com/Science-and-Technology-Consulting-LLC/elements-of-style-lessons/blob/main/lessons/containers/building-an-r-dockerfile.ipynb) and run each cell in order, top to bottom.
-
-> **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The one notebook cell (*Check that R can see its tools*) uses the R kernel.
+> **Where to type the commands.** The command boxes marked `bash` run in your **terminal**. The one notebook cell (*Check that R can see its tools*) uses the R kernel. If a command says *command not found*, see [the command line and Git Bash](../command-line-and-git-bash/README.md).
 
 ## Steps to execute
 
 ### Install R and register the R kernel (once)
 
-*Why:* a **kernel** is the program that runs the code in a notebook cell. JupyterLab needs the R kernel, called IRkernel, before it can run R cells.
+*Why:* a **kernel** is the program that runs the code in a notebook cell. JupyterLab needs the R kernel, called IRkernel, before it can run R cells. The Introduction already installed it, so if the Launcher already shows an **R** tile, you can skip this step.
 
 In your terminal, run:
 
 ```bash
 conda activate eos        # or any env dedicated to R work
-conda install -c conda-forge r-base r-irkernel -y
+conda install -c conda-forge r-base=4.4 r-irkernel -y
 R -e 'IRkernel::installspec(name="ir", displayname="R")'
 ```
 
@@ -183,7 +171,7 @@ FROM docker.io/bioconductor/bioconductor_docker:RELEASE_3_19
 
 ### Push to a registry (optional)
 
-*Why:* a registry is a website that stores images so other people and other computers can pull them. GitHub's registry, GHCR, is the default for this course. You need a token with `write:packages` first (see What you need). Set `GHCR_USER` to your GitHub user name and `GHCR_TOKEN` to the token. Replace the organisation name in the last two lines with your own lowercase user name unless you belong to that organisation.
+*Why:* a registry is a website that stores images so other people and other computers can pull them. GitHub's registry, GHCR, is the default for this course. You need a token with `write:packages` first (see Pre-requisites). Set `GHCR_USER` to your GitHub user name and `GHCR_TOKEN` to the token. Replace the organisation name in the last two lines with your own lowercase user name unless you belong to that organisation.
 
 ```bash
 echo "$GHCR_TOKEN" | podman login ghcr.io -u "$GHCR_USER" --password-stdin
@@ -201,4 +189,4 @@ podman push ghcr.io/science-and-technology-consulting-llc/hello-r:0.1.0
 
 ## Next
 
-Back to [containers](README.md), then [nextflow-modules](../nextflow-modules/README.md): wrap this container as a `.nf` module.
+Back to the [Containers lesson](README.md), then [Nextflow modules and features](../nextflow-modules/README.md): wrap this container as a `.nf` module.
