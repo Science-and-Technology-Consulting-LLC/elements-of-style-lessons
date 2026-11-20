@@ -15,7 +15,7 @@ tools for immediate use so the practioner becomes immediately capable.
 | Position | Lesson | What you take away |
 |----------|--------|--------------------|
 | Set the stage | [Introduction](lessons/introduction/index.md) | The why |
-| Set the stage | [The Rules](lessons/elements-of-style-rules/index.md) | A few Pithy phrases |
+| Set the stage | [The Rules](lessons/elements-of-style-rules/index.md) | Ask the right question, know the domain, then eight rules |
 | Foundation | [Command line, with Git Bash](lessons/command-line-and-git-bash/index.md) | A terminal that's the same on Mac, Windows, and Lifebit |
 | Foundation | [Version control with Git](lessons/version-control/index.md) | A repo your code survives in |
 | Foundation | [Reproducible environments with Conda](lessons/conda-environments/index.md) | The clean dry workbench |

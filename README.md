@@ -11,6 +11,19 @@ session to accommplished bioinformaticians already shipping Nextflow pipelines. 
 topical, complete with containers, command-line interfaces (CLIs), Nextflow modules,
 notebooks), and references its corresponding chapter in the book.
 
+## Where we begin
+
+Everything in these lessons is one activity: looking for the signal in the noise. Before any code, we do four things, in this order:
+
+1. **Ask the right question.**
+2. **Know the domain.** Talk to the expert. Listen. Understand what is cause and what is effect.
+3. **Know your measurement technologies.** The numbers and the code.
+4. **Know what your answers could be.** State a hypothesis, then test it.
+
+Then come the eight rules that keep the answer durable. Both are in [The Rules](lessons/elements-of-style-rules/README.md), the second lesson.
+
+Editing the lessons? The usual loop is in [EDITING-LESSONS.md](EDITING-LESSONS.md).
+
 ## The published site
 
 **https://science-and-technology-consulting-llc.github.io/elements-of-style-lessons/**
